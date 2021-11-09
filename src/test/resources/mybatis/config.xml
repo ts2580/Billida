@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  	<settings>
+  		<setting name="mapUnderscoreToCamelCase" value="true"/>   <!-- 스네이크표기법 컬럼명을 카멜표기법으로 자동으로 매핑 -->
+  	</settings>
+  	
+  	<typeAliases>
+  		<typeAlias alias="Member" type="com.kh.spring.member.model.dto.Member"/>  <!-- 타입을 별칭으로 간편하게 사용하기 위해 지정 -->
+  	</typeAliases>
+  	
+  	<mappers>
+  		<mapper resource="mybatis/mapper/mybatisMapper.xml"/>
+  	</mappers>
+  
+  </configuration>
