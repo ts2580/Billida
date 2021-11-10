@@ -95,12 +95,12 @@ body{
 }
 .top-searchbar input[type="submit"]{
 	position: absolute;
-	background: url(../images/search-icon.png) no-repeat 0px 0px;
+	background: url(../../../resources/images/search-icon.png) no-repeat 0px 0px;
 	height: 26px;
 	width: 26px;
 	display: inline-block;
 	border: none;
-	top: 12px;
+	top: 28px;
 	right: -22px;
 	outline:none;
 	cursor:pointer;
