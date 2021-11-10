@@ -87,7 +87,7 @@
             <div class="userinfo">
                <div class="user">
                   <ul>
-                     <li><a href="#"><img src="${contextPath}/resources/images/user-pic.png" title="user-name" /><span>!! </span></a></li>
+                     <li><a href="/member/SignUp"><img src="${contextPath}/resources/images/user-pic.png" title="user-name" /><span>!! </span></a></li>
                   </ul>
                </div>
             </div>
