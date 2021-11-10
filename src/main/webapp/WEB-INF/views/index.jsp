@@ -9,26 +9,33 @@
 </style>
 </head>
 <body>
+		<div class="content">
+			<div class="wrapper">
+			 <div class="main" role="main">
+			 	<img class="mainImg" src="${contextPath}/resources/images/main1.jpg">
+			 </div>
+			 
+			 <a id="recommendList">추천 사물함 리스트</a>
+			 
+			 <div class="lockerList">
+				 <div class="locker">
+				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
+				 	<span class="lockerInfo">택배함사진&정보</span>
+				 </div>
+				 <div class="locker">
+				 	<img class="mainImg" src="${contextPath}/resources/images/사물함2.jpg">
+				 	<span class="lockerInfo">택배함사진&정보</span>
+				 </div>
+				 <div class="locker">
+				 	<img class="mainImg" src="${contextPath}/resources/images/사물함3.jpg">
+				 	<span class="lockerInfo">택배함사진&정보</span>
+				 </div>
+			 </div>
 
-<h1 style="text-align: center;">PCLASS TOY PROJECT</h1>
+			</div>
+		</div>
+	
 
-<c:if test="${not empty message}">
-	<span class="valid-msg">${message}</span>
-</c:if>
-
-<c:if test="${empty authentication}"> <!-- authentication의 존재유무를 확인 -->
-
-<h2><a href="/member/login">login</a></h2>  <!-- login을 누르면 href에서 지정한 경로가 호출됨 -->
-<h2><a href="/member/join">회원가입</a></h2>
-
-</c:if>
-
-<c:if test="${not empty authentication}">
-	<h1>${authentication.userId}님 안녕?</h1>
-	<h2><a href="/member/logout">logout</a></h2>
-	<h2><a href="/member/mypage">마이페이지</a></h2>
-	<h2><a href="/board/board-form">게시글 작성</a></h2>
-</c:if>
 
 
 
