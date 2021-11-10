@@ -54,7 +54,7 @@
          <div class="header">
             <div class="wrap">
             <div class="logo">
-               <a href="index.html"><img src="${contextPath}/resources/images/billida.png" title="pinbal" /></a>
+               <a href="index.html"><img src="${contextPath}/resources/images/logo.gif" title="pinbal" /></a>
             </div>
             <div class="nav-icon">
                 <a href="#" class="right_bt" id="activator"><span> </span> </a>
