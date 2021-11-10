@@ -11,9 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("member")
 public class MemberController {
 	
-	@GetMapping("SignUp")
+	@GetMapping("/signUp")
 	public void singUp() {
 		
 		
 	}
+	
 }
