@@ -21,37 +21,6 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- 메일 발송을 위해 추가해야하는 bean : JavaMailSenderImpl -->
 	<bean id="javaMailSenderImpl" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="username" value="thdms12333@gmail.com"/>
