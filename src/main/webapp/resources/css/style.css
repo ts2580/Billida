@@ -25,6 +25,22 @@ body{
 	font-family: 'Open Sans', sans-serif;
 	background:#F0EFEE;
 }
+
+@media only screen and (max-width: 1090px){
+	.locker_list{
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
+	}
+	
+	.locker_area{
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 60px;
+	}
+}
+
 /*---start-wrap----*/
 .wrap{
 	width:80%;
@@ -66,24 +82,43 @@ body{
 	font-weight: bolder;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	
+	color: #494949;
 }
 
-.lockerList{
+.locker_list{
 	display: flex;
 	justify-content: space-between;
 }
 
-.locker{
+.locker_area{
 	width: 300px;
 	height: 300px;
+	color: #494949;
 }
 
-.lockerInfo{
+.locker_name{
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	font-weight: 600;
+	font-size:19px;
 	padding-top: 3px;
+	padding-bottom: 5px;
+}
+
+.locker_location{
+	position: relative;
+	padding-bottom: 5px;
+	font-size: 13px;
+}
+
+.locker_info{
+	display; flex;
+	font-size: 11px;
 	padding-bottom: 20px;
+}
+
+#size{
+	padding-left: 30px;
 }
 
 /*---start-header----*/
@@ -754,7 +789,7 @@ span.mail a:hover{
 /*--media Quries for 1280px-monitors-*/
 @media only screen and (max-width:1280px) and (min-width:1024px) {
 	.wrap{
-		width:80%;
+		width:100%;
 	}
 	.footer {
 		bottom: 0px;
@@ -770,7 +805,7 @@ span.mail a:hover{
 /*--media Quries for 1024px-monitors-*/
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	.wrap{
-		width:90%;
+		width:100%;
 	}
 	.footer {
 		bottom: 0px;
@@ -796,7 +831,7 @@ span.mail a:hover{
 /*--media Quries for 768px-monitors-*/
 @media only screen and (max-width:768px) and (min-width:640px) {
 	.wrap{
-		width:90%;
+		width:100%;
 	}
 	.footer {
 		bottom: 0px;

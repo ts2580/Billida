@@ -5,8 +5,8 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>Pinball Website Template | Home :: w3layouts</title>
-      <link href="css/style.css" rel='stylesheet' type='text/css' />
+      <title>Billida</title>
+      <link href="../../../resources/css/style.css" rel='stylesheet' type='text/css' />
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="shortcut icon" type="image/x-icon" href="images/fav-icon.png" />
       <meta charset="UTF-8">
@@ -19,7 +19,7 @@
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
       <!----//webfonts---->
       <!-- Global CSS for the page and tiles -->
-        <link href="${contextPath}/resources/css/style.css" rel='stylesheet' type='text/css' />
+      <link rel="stylesheet" href="../../../resources/css/main.css">
         <!-- //Global CSS for the page and tiles -->
       <!---start-click-drop-down-menu----->
       <script src="${contextPath}/resources/js/jquery.min.js"></script>
