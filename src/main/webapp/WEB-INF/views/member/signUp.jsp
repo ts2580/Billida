@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입 </title>
-
+	
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -45,6 +45,39 @@
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원가입</h4>
         <form class="validation-form" novalidate>
+          
+          <div class="mb-3">
+            <label for="email">아이디</label>
+            <div style="display: flex" >
+            
+            <input type="text" class="form-control" id="email" placeholder="영어+숫자를 혼합해 사용해주세요" required>
+            <input   type="button" value="중복확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" ></input>
+			
+			<span class="invalid-feedback">
+                같은 비밀번호를 입력해주세요
+             </span>
+			</div>
+            
+			</div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name">비밀번호</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                비밀번호를 확인해주세요
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="nickname">중복확인</label>
+              <input type="text" class="form-control" id="nickname" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                같은 비밀번호를 입력해주세요
+              </div>
+            </div>
+          </div>
+          
+          
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -60,6 +93,19 @@
                 별명을 입력해주세요.
               </div>
             </div>
+          </div>   
+                 
+
+
+          <div class="mb-3">
+            <label for="email">휴대전화</label>
+            <div style="display: flex;">
+            <input type="tell" class="form-control" id="tell"required>
+            <input type="button" value="인증" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+ 			</div>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
           </div>
 
           <div class="mb-3">
@@ -72,37 +118,25 @@
 
           <div class="mb-3">
             <label for="address">주소</label>
-            <input type="text" class="form-control" id="address" placeholder="서울특별시 강남구" required>
+			<div style="display: flex;">
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="서울특별시 강남구" required>
+            <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+            </div>
             <div class="invalid-feedback">
               주소를 입력해주세요.
             </div>
           </div>
 
           <div class="mb-3">
+            <label for="address1">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+            <input type="text" class="form-control" id="address1" placeholder="상세주소를 입력해주세요.">
+          </div>
+          <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
             <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
           </div>
 
-          <div class="row">
-            <div class="col-md-8 mb-3">
-              <label for="root">가입 경로</label>
-              <select class="custom-select d-block w-100" id="root">
-                <option value=""></option>
-                <option>검색</option>
-                <option>카페</option>
-              </select>
-              <div class="invalid-feedback">
-                가입 경로를 선택해주세요.
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="code">추천인 코드</label>
-              <input type="text" class="form-control" id="code" placeholder="" required>
-              <div class="invalid-feedback">
-                추천인 코드를 입력해주세요.
-              </div>
-            </div>
-          </div>
+         
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="aggrement" required>
@@ -117,6 +151,60 @@
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
   </div>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+function daumPost() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                //document.getElementById("address1").value = extraAddr;
+            
+            } else {
+                document.getElementById("address1").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postCode').value = data.zonecode;
+            document.getElementById("address1").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("address2").focus();
+        }
+    }).open();
+
+
+
+}
+</script>
+
   <script>
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
@@ -130,7 +218,9 @@
         }, false);
       });
     }, false);
+    
   </script>
+  
 </body>
 
 </html>
