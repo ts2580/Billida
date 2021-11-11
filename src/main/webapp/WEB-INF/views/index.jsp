@@ -17,18 +17,33 @@
 			 
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
-			 <div class="lockerList">
-				 <div class="locker">
+			 <div class="locker_list">
+				 <div class="locker_area">
 				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
-				 	<span class="lockerInfo">택배함사진&정보</span>
+				 	<div class="locker_name">${main.lockerTitle}</div>
+				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
+				 	<div class="locker_info">
+				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
+				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
+				 	</div>
 				 </div>
-				 <div class="locker">
-				 	<img class="mainImg" src="${contextPath}/resources/images/사물함2.jpg">
-				 	<span class="lockerInfo">택배함사진&정보</span>
+				 <div class="locker_area">
+				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
+				 	<div class="locker_name">${main.lockerTitle}</div>
+				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
+				 	<div class="locker_info">
+				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
+				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
+				 	</div>
 				 </div>
-				 <div class="locker">
-				 	<img class="mainImg" src="${contextPath}/resources/images/사물함3.jpg">
-				 	<span class="lockerInfo">택배함사진&정보</span>
+				 <div class="locker_area">
+				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
+				 	<div class="locker_name">${main.lockerTitle}</div>
+				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
+				 	<div class="locker_info">
+				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
+				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
+				 	</div>
 				 </div>
 			 </div>
 
