@@ -43,8 +43,7 @@
   
   @ResponseBody
   
-  @RequestMapping(value = "/uploadAjaxLocker", method = RequestMethod.POST,
-  produces = "text/plain;charset=UTF-8") 
+  @RequestMapping(value = "/uploadAjaxLocker", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8") 
   public String uploadAjaxLockerImage(MultipartFile file) throws Exception {
   
   logger.info("택배함"); 
@@ -61,25 +60,72 @@
   
   }
   
+	
+	//커버이미지 업로드
+	  
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjaxLocker", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8") 
+	public String uploadAjaxLockerCoverImg(MultipartFile file) throws Exception {
+		logger.info("커버이미지"); 
+		logger.info("originalName: " +
+				file.getOriginalFilename()); String uploadpath = "bilida/lockerCoverImage";
+	  
+	ResponseEntity<String> img_path = new ResponseEntity<>(
+	UploadFileUtils.uploadFile(uploadpath, file.getOriginalFilename(),
+	file.getBytes()), HttpStatus.CREATED); 
+	
+	String coverImagePath = (String)img_path.getBody();
+	  
+	return coverImagePath; 
+	
+	}
+	
 	/*
-	 * //커버이미지 업로드
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/deleteFile", method = RequestMethod.POST) public
+	 * ResponseEntity<String> deleteFile(String fileName, String directory) throws
+	 * Exception { logger.info("delete file: " + fileName);
+	 * logger.info("delete foloder:"+directory); String inputDirectory = null;
+	 * 
+	 * if(directory.equals("profile")) { inputDirectory = "bilida/locker"; } else
+	 * if(directory.equals("certificate")) { inputDirectory = "bilida/certificate";
+	 * }else { inputDirectory = "bilida/coverImage"; } URL url; HttpURLConnection
+	 * uCon = null;
+	 * 
+	 * try { s3.fileDelete(bucketName, inputDirectory+fileName); } catch (Exception
+	 * e) { // s3.fileDelete(bucketName, "s_user.jpg"); e.printStackTrace(); }
+	 * 
+	 * new File(inputDirectory + fileName.replace('/',
+	 * File.separatorChar)).delete();
+	 * 
+	 * return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	 * 
+	 * }
 	 * 
 	 * @ResponseBody
 	 * 
-	 * @RequestMapping(value = "/uploadAjaxCover", method = RequestMethod.POST,
-	 * produces = "text/plain;charset=UTF-8") public String
-	 * uploadAjaxCoverImg(MultipartFile file) throws Exception {
+	 * @RequestMapping(value = "/deleteFileDB", method = RequestMethod.POST) public
+	 * ResponseEntity<String> deleteFileDB(String fileName, String directory) throws
+	 * Exception {
 	 * 
-	 * logger.info("커버이미지"); logger.info("originalName: " +
-	 * file.getOriginalFilename()); String uploadpath = "almom/coverImage";
+	 * logger.info("delete file: " + fileName);
+	 * logger.info("delete foloder:"+directory); String inputDirectory = null;
+	 * if(directory.equals("profile")) { inputDirectory = "almom/profileImage"; }
+	 * else if(directory.equals("certificate")) { inputDirectory =
+	 * "almom/certificate"; }else { inputDirectory = "almom/coverImage"; } URL url;
+	 * HttpURLConnection uCon = null;
 	 * 
-	 * ResponseEntity<String> img_path = new ResponseEntity<>(
-	 * UploadFileUtils.uploadFile(uploadpath, file.getOriginalFilename(),
-	 * file.getBytes()), HttpStatus.CREATED); String coverImagePath = (String)
-	 * img_path.getBody();
+	 * try { s3.fileDelete(bucketName, inputDirectory+fileName); } catch (Exception
+	 * e) { // s3.fileDelete(bucketName, "s_user.jpg"); e.printStackTrace(); }
+	 * service.deleteImage(fileName); new File(inputDirectory +
+	 * fileName.replace('/', File.separatorChar)).delete();
 	 * 
-	 * return coverImagePath; }
+	 * return new ResponseEntity<String>("deleted", HttpStatus.OK); }
 	 * 
+	 * 
+	 */	
+	/*
 	 * // 프로필 이미지 업로드
 	 * 
 	 * @ResponseBody
@@ -141,48 +187,8 @@
 	 * HttpStatus.CREATED); } catch (Exception e) { e.printStackTrace(); entity =
 	 * new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST); } finally { in.close(); }
 	 * return entity; }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/deleteFile", method = RequestMethod.POST) public
-	 * ResponseEntity<String> deleteFile(String fileName, String directory)throws
-	 * Exception {
-	 * 
-	 * logger.info("delete file: " + fileName);
-	 * logger.info("delete foloder:"+directory); String inputDirectory = null;
-	 * if(directory.equals("profile")) { inputDirectory = "almom/profileImage"; }
-	 * else if(directory.equals("certificate")) { inputDirectory =
-	 * "almom/certificate"; }else { inputDirectory = "almom/coverImage"; } URL url;
-	 * HttpURLConnection uCon = null;
-	 * 
-	 * try { s3.fileDelete(bucketName, inputDirectory+fileName); } catch (Exception
-	 * e) { // s3.fileDelete(bucketName, "s_user.jpg"); e.printStackTrace(); }
-	 * 
-	 * new File(inputDirectory + fileName.replace('/',
-	 * File.separatorChar)).delete();
-	 * 
-	 * return new ResponseEntity<String>("deleted", HttpStatus.OK); }
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/deleteFileDB", method = RequestMethod.POST) public
-	 * ResponseEntity<String> deleteFileDB(String fileName, String directory)throws
-	 * Exception {
-	 * 
-	 * logger.info("delete file: " + fileName);
-	 * logger.info("delete foloder:"+directory); String inputDirectory = null;
-	 * if(directory.equals("profile")) { inputDirectory = "almom/profileImage"; }
-	 * else if(directory.equals("certificate")) { inputDirectory =
-	 * "almom/certificate"; }else { inputDirectory = "almom/coverImage"; } URL url;
-	 * HttpURLConnection uCon = null;
-	 * 
-	 * try { s3.fileDelete(bucketName, inputDirectory+fileName); } catch (Exception
-	 * e) { // s3.fileDelete(bucketName, "s_user.jpg"); e.printStackTrace(); }
-	 * service.deleteImage(fileName); new File(inputDirectory +
-	 * fileName.replace('/', File.separatorChar)).delete();
-	 * 
-	 * return new ResponseEntity<String>("deleted", HttpStatus.OK); }
-	 */ 
+	 */	  
+	 	  
   
   }
  
