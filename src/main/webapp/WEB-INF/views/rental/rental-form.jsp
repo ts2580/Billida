@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form:form action="/rental/rental-form" method="get" id="rental" class="test">
+	<form:form action="/rental/rental-form" method="post" id="rental" class="test">
 		<table border="1">
 			<tr>
 				<td>대여번호 :</td>
