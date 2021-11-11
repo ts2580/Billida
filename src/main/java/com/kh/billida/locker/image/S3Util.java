@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
@@ -17,13 +18,12 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 
 public class S3Util {
 
-	private String accessKey = "AKIAZTR6CXMEW6Z36NCR"; // 엑세스 키
-	private String secretKey = "rX2zmsRclxEdfONb/ov3rysu91bTLR1dcF0IPYUE"; // 보안 엑세스 키
 
+	private Config config;
 	private AmazonS3 conn;
 
 	public S3Util() {
-		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		AWSCredentials credentials = new BasicAWSCredentials(config.ACCESSKEY.DESC, config.SECRETKEY.DESC);
 		ClientConfiguration clientConfig = new ClientConfiguration();
 		clientConfig.setProtocol(Protocol.HTTP);
 		this.conn = new AmazonS3Client(credentials, clientConfig);
