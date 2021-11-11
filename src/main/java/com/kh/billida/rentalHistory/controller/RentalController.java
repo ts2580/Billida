@@ -26,7 +26,7 @@ public class RentalController {
 	@GetMapping("rental-form")
 	public void rentalForm(Rental rental, HttpSession session){
 		
-		rentalService.insertBilligi(rental);
+		/* rentalService.insertBilligi(rental); */
 		
 	}
 	
