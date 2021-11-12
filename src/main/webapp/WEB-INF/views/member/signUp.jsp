@@ -47,10 +47,10 @@
         <form class="validation-form" novalidate>
           
           <div class="mb-3">
-            <label for="email">아이디</label>
+            <label for="id">아이디</label>
             <div style="display: flex" >
             
-            <input type="text" class="form-control" id="email" placeholder="영어+숫자를 혼합해 사용해주세요" required>
+            <input type="text" class="form-control" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" required>
             <input   type="button" value="중복확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" ></input>
 			
 			<span class="invalid-feedback">
@@ -62,15 +62,15 @@
           
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="name">비밀번호</label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <label for="password">비밀번호</label>
+              <input type="text" class="form-control" id="password" placeholder="" value="" required>
               <div class="invalid-feedback">
                 비밀번호를 확인해주세요
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="nickname">중복확인</label>
-              <input type="text" class="form-control" id="nickname" placeholder="" value="" required>
+              <label for="password">중복확인</label>
+              <input type="text" class="form-control" id="password-check" placeholder="" value="" required>
               <div class="invalid-feedback">
                 같은 비밀번호를 입력해주세요
               </div>
@@ -98,9 +98,9 @@
 
 
           <div class="mb-3">
-            <label for="email">휴대전화</label>
+            <label for="tel">휴대전화</label>
             <div style="display: flex;">
-            <input type="tell" class="form-control" id="tell"required>
+            <input type="tel" class="form-control" id="tell"required>
             <input type="button" value="인증" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
             <div class="invalid-feedback">
@@ -117,9 +117,9 @@
           </div>
 
           <div class="mb-3">
-            <label for="address">주소</label>
+            <label for="address">우편번호</label>
 			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="서울특별시 강남구" required>
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
             </div>
             <div class="invalid-feedback">
@@ -128,8 +128,8 @@
           </div>
 
           <div class="mb-3">
-            <label for="address1">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="address1" placeholder="상세주소를 입력해주세요.">
+            <label for="address1">주소<span class="text-muted">&nbsp;</span></label>
+            <input type="text" readonly="readonly" class="form-control" class="form-control" id="address1" placeholder="주소를 입력해주세요.">
           </div>
           <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
@@ -151,7 +151,8 @@
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
   </div>
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {
 	new daum.Postcode({
