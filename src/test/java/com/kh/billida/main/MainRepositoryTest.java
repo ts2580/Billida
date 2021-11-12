@@ -19,10 +19,9 @@ public interface MainRepositoryTest {
 			+ " values(locker_id.nextval,#{userCode}, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerImage}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDate})")
 	int insertDummyApi(Main main);
 	
-	
-	
-
 	@Select("select * from locker")
 	List<Main> lockers();
 	
+	@Select("select * from locker where locker_title like '%'||#{keyword}||'%' or locker_content like '%'||#{keyword}||'%' or location like '%'||#{keyword}||'%'")
+	List<Main> searchLockers(String keyword);
 }
