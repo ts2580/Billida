@@ -1,10 +1,12 @@
 package com.kh.billida.main.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.kh.billida.common.paging.Paging;
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.repository.MainRepository;
 
@@ -20,6 +22,22 @@ public class MainServiceImpl implements MainService {
 	public List<Main> selectLockerList() {
 		List<Main> mainList = mainRepository.selectLockerList();
 		return mainList;
+	}
+
+	@Override
+	public Map<String, Object> selectLockerByKeyword(String search, int page) {
+		int cntPerPage = 5;
+		
+		List<Main> searchList = mainRepository.selectLockerByKeyword(search);
+		
+		Paging paging =Paging.builder()
+				.url("/main/search")
+				.blockCnt(cntPerPage)
+				.currentPage(page)
+				.total((int)mainRepository.selectcountList(search))
+				.build();
+			
+		return Map.of("searchList", searchList, "paging", paging);
 	}
 
 	

@@ -39,7 +39,9 @@ body{
 		flex-direction: column;
 		padding-bottom: 60px;
 	}
+	
 }
+
 
 /*---start-wrap----*/
 .wrap{
@@ -51,7 +53,7 @@ body{
 .wrapper{
 	display: flex;
 	flex-direction: column;
-	width: 70%;
+	width: 80%;
 	align-content: center;
 	
 }
@@ -91,8 +93,8 @@ body{
 }
 
 .locker_area{
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 	color: #494949;
 }
 
@@ -108,17 +110,17 @@ body{
 .locker_location{
 	position: relative;
 	padding-bottom: 5px;
-	font-size: 13px;
+	font-size: 10px;
 }
 
 .locker_info{
 	display; flex;
-	font-size: 11px;
+	font-size: 10px;
 	padding-bottom: 20px;
 }
 
 #size{
-	padding-left: 30px;
+	padding-left: 16px;
 }
 
 /*---start-header----*/

@@ -4,9 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<style type="text/css">
-	.valid-msg{color:red;   font-size:0.5vw;}
-</style>
+
 </head>
 <body>
 		<div class="content">
@@ -18,33 +16,17 @@
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
 			 <div class="locker_list">
-				 <div class="locker_area">
-				 	<img class="mainImg" src="${main.lockerImage}">
-				 	<div class="locker_name">${main.lockerTitle}</div>
-				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
-				 	<div class="locker_info">
-				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
-				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
-				 	</div>
-				 </div>
-				 <div class="locker_area">
-				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
-				 	<div class="locker_name">${main.lockerTitle}</div>
-				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
-				 	<div class="locker_info">
-				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
-				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
-				 	</div>
-				 </div>
-				 <div class="locker_area">
-				 	<img class="mainImg" src="${contextPath}/resources/images/사물함1.png">
-				 	<div class="locker_name">${main.lockerTitle}</div>
-				 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${main.lockerContent}</div>
-				 	<div class="locker_info">
-				 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${main.rentableDate}</span>
-				 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${main.lockerSize}</span>
-				 	</div>
-				 </div>
+			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8">
+					 <div class="locker_area">
+					 	<img class="mainImg" src="${mains.lockerImage}">
+					 	<div class="locker_name">${mains.lockerTitle}"</div>
+					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
+					 	<div class="locker_info">
+					 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${mains.rentableDate}</span>
+					 		<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${mains.lockerSize}</span>
+					 	</div>
+					 </div>
+				 </c:forEach>
 			 </div>
 
 			</div>
@@ -54,11 +36,11 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         
 <script>
-        $.ajax({
+     /* $.ajax({
                 method: "GET",
                 url: "https://dapi.kakao.com/v2/search/image",
                 data: {
-                    query: "무인택배 보관함",
+                    query: "무인택배",
                     page:3,
                 },
                 headers: {
@@ -71,9 +53,8 @@
                 for (var i = 0; i < 80; i++) {
                 	console.log(msg.documents[i].image_url);
 				}
-                
-                
-            });
+            }); */
+
     </script>
 
 

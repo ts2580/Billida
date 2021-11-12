@@ -11,7 +11,7 @@ public class SMSSender {
 
 
 
-	public static void certifiedPhoneNumber(String phoneNumber, String num) {
+	public static void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 		String api_key = "NCSK6UGZA5OCZHKD";
 		String api_secret="GE0P8OVKRESRGYDJC9FCLXR0E7CAYKY5";
 		Message coolsms = new Message(api_key,api_secret);
@@ -20,7 +20,7 @@ public class SMSSender {
 		params.put("to",phoneNumber);
 		params.put("from", "010-2911-6322");
 		params.put("type", "SMS");
-		params.put("text", "휴대폰인증 테스트 메시지 : 인증번호는 ["+num+"]입니다");
+		params.put("text", "휴대폰인증 테스트 메시지 : 인증번호는 ["+cerNum+"]입니다");
 		params.put("app_version","test app 1.2");
 		
 		try {
@@ -34,3 +34,4 @@ public class SMSSender {
 	}
 
 }
+
