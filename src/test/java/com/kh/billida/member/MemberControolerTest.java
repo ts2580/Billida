@@ -37,9 +37,12 @@ public class MemberControolerTest {
 		mockMvc.perform(post("/member/signUp")
 				.param("Id", "test2")
 				.param("password", "1234")
+				.param("name", "테스트맨")
 				.param("nick", "테스트")
 				.param("tell", "01000000000")
+				.param("postCode", "06959")
 				.param("address", "서울")
+				.param("addressDetail", "집")
 				.param("email", "aaa@gbb.com"))
 		.andExpect(status().isOk()) // 200번아닐경우 에러뜸
 		.andDo(print());

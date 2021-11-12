@@ -44,13 +44,13 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원가입</h4>
-        <form class="validation-form" novalidate>
+        <form class = "validation-form" modelAttribute = "member" action = "/member/signUp" method = "post" id = "signUp" novalidate>
           
           <div class="mb-3">
             <label for="id">아이디</label>
             <div style="display: flex" >
             
-            <input type="text" class="form-control" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" required>
+            <input type="text" class="form-control" name="Id" id="Id" placeholder="영어+숫자를 혼합해 사용해주세요" required>
             <input   type="button" value="중복확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" ></input>
 			
 			<span class="invalid-feedback">
@@ -63,7 +63,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <input type="text" class="form-control" id="password" placeholder="" value="" required>
+              <input type="text" class="form-control" name="password"  id="password" placeholder="" value="" required>
               <div class="invalid-feedback">
                 비밀번호를 확인해주세요
               </div>
@@ -81,14 +81,14 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" name="name" id="name" placeholder="" value="" required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
-              <input type="text" class="form-control" id="nickname" placeholder="" value="" required>
+              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
               <div class="invalid-feedback">
                 별명을 입력해주세요.
               </div>
@@ -100,7 +100,7 @@
           <div class="mb-3">
             <label for="tel">휴대전화</label>
             <div style="display: flex;">
-            <input type="tel" class="form-control" id="tell"required>
+            <input type="tel" class="form-control" name="tell" id="tell"required>
             <input type="button" value="인증" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
             <div class="invalid-feedback">
@@ -110,7 +110,7 @@
 
           <div class="mb-3">
             <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
             <div class="invalid-feedback">
               이메일을 입력해주세요.
             </div>
@@ -129,11 +129,11 @@
 
           <div class="mb-3">
             <label for="address1">주소<span class="text-muted">&nbsp;</span></label>
-            <input type="text" readonly="readonly" class="form-control" class="form-control" id="address1" placeholder="주소를 입력해주세요.">
+            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요.">
           </div>
           <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
+            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요.">
           </div>
 
          
@@ -146,10 +146,7 @@
           <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
         </form>
       </div>
-    </div>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
-    </footer>
+    </div>    
   </div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
