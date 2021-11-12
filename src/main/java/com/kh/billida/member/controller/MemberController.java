@@ -28,15 +28,15 @@ public class MemberController {
 	@GetMapping("/signUp")
 	public void singUp() {}
 	
-	@PostMapping("/signUp-phoneCheck")
-	public @ResponseBody String smsMessage(String phoneNumber) {
+	@PostMapping("/message")
+	public @ResponseBody String testMessage(String phonNumber) {
 		Random rand = new Random();
-		String num ="";
+		String numStr ="";
 		for (int i = 0; i < 6; i++) {
 			String ran = Integer.toString(rand.nextInt(10));
-			num += ran;
+			numStr += ran;
 		}
-		SMSSender.certifiedPhoneNumber(phoneNumber,num);
+		SMSSender.certifiedPhoneNumber(phonNumber,numStr);
 		return "/";
 				
 	}
@@ -47,5 +47,8 @@ public class MemberController {
 		
 		return "/";
 	}
-	
+	@GetMapping("/test")
+	public void test() {
+		
+	}
 }

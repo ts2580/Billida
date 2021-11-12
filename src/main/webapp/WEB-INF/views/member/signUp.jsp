@@ -40,6 +40,7 @@
 </head>
 
 <body>
+<form action="">
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -100,8 +101,19 @@
           <div class="mb-3">
             <label for="tel">휴대전화</label>
             <div style="display: flex;">
+            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"required>
+            <input type="button" value="전송" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+ 			</div>
+            <div class="invalid-feedback">
+              휴대폰번호를 입력해주세요.
+            </div>
+          </div>
+          
+           <div class="mb-3">
+            <label for="tel">휴대전화 인증번호</label>
+            <div style="display: flex;">
             <input type="tel" class="form-control" id="tell"required>
-            <input type="button" value="인증" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+            <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
             <div class="invalid-feedback">
               이메일을 입력해주세요.
@@ -151,7 +163,7 @@
       <p class="mb-1">&copy; 2021 YD</p>
     </footer>
   </div>
-
+</form>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {
