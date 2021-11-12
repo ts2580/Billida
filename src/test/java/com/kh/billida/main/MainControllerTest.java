@@ -136,7 +136,7 @@ public class MainControllerTest {
 		String latitude;
 		String longitude;
 		int password;
-		String size;
+		//String size;
 		LocalDate targetDate = LocalDate.of(2021, 12, 25);
 		
 		Main main = new Main();
@@ -161,8 +161,8 @@ public class MainControllerTest {
 			latitude = obj.getString("latitude");
 			longitude = obj.getString("longitude");
 			password = obj.getInt("insttCode");
-			size = obj.getString("boxHg");
-			System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password+","+size);
+			//size = obj.getString("boxHg");
+			System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
 			
 			main.setUserCode("1");
 			main.setLockerTitle(name);
@@ -172,7 +172,7 @@ public class MainControllerTest {
 			main.setLongitude(longitude);
 			main.setLockerPassword(password);
 			main.setRentableDate(targetDate);
-			main.setLockerSize(size);
+			main.setLockerSize("L");
 			main.setLockerImage(urlList.get(i));
 			
 			mainRepositoryTest.insertDummyApi(main);	
