@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class RentalController {
 	
 	private RentalService rentalService;
-	// 이친구는 왜 final 붙이면 빈에 바인딩이 안되냐
+	
 	private final RentalRepository rentalRepository;
 	
 	@GetMapping("rental-form")
@@ -28,9 +28,13 @@ public class RentalController {
 	
 	@PostMapping("rental-form")
 	public String rentalForm(Rental rental){
+		
 		// rentalService.insertRental(rental);
 		// 아니 애는 왜 null point
+		
 		rentalRepository.insertRental(rental);
+		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
+		
 		return "redirect:/rental/rental-form";
 	}
 	
