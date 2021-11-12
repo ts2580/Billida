@@ -17,7 +17,7 @@ public interface MainRepositoryTest {
 	
 	@Insert("insert into locker(locker_id, user_code, locker_title, locker_content, locker_size, locker_password, latitude, longitude, location, rentable_date)"
 			+ " values(locker_id.nextval,#{userCode}, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDate})")
-	int insertinsertDummyApi(Main main);
+	int insertDummyApi(Main main);
 	
 	
 	

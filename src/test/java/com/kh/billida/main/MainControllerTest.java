@@ -91,11 +91,8 @@ public class MainControllerTest {
 		mainRepositoryTest.insertWithDto(main);
 	}
 	
-	
-	
 	@Test
 	public void insertDummyApi() throws IOException, JSONException {
-		
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_female_safety_hdrycstdyplace_api"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=qt0%2BUr8fKiB4cFa0dxYrRkBZevm3bNeJx6NS9zc0jthKuFEFJan2kVokNKzCHQhrgb%2Bvj9Y7lxmfWreKIzMKSA%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("0", "UTF-8")); /*페이지 번호*/
@@ -120,34 +117,70 @@ public class MainControllerTest {
         }
         rd.close();
         conn.disconnect();
-        //System.out.println(sb.toString());
         
         JSONObject jObject = new JSONObject(sb.toString());
         JSONObject jsonResponse = jObject.getJSONObject("response").getJSONObject("body");
-		
-		//System.out.println(jsonResponse.toString());
 		
 		JSONArray jArray = null;
 		jArray = jsonResponse.getJSONArray("items");
 		System.out.println(jArray.toString());
 		
-		JSONObject obj = jArray.getJSONObject(0);
+		//JSONObject obj = jArray.getJSONObject(1);
+		
 		//fcltyNm시설명
 		//rdnmadr 도로명주소
 		//lnmadr 지번주소(~동)
 		//latitude 위도
 		//longitude 경도
 		//insttCode 제공기관 코드(비번으로 넣을까?)
-		
-		
-		String fcltyNm ="";
-		//date = obj2.getString("createDt");
-		
-		
-		
+		String name;
+		String roadAd;
+		String address;
+		String latitude;
+		String longitude;
+		int password;
+		String size;
 		LocalDate targetDate = LocalDate.of(2021, 12, 25);
 		
-		//mainRepositoryTest.insertDummyData(main);
+		Main main = new Main();
+		
+		for (int i = 0; i < 100; i++) {
+			JSONObject obj = jArray.getJSONObject(i);
+			
+			name = obj.getString("fcltyNm");
+			roadAd = obj.getString("rdnmadr");
+			address = obj.getString("lnmadr");
+			latitude = obj.getString("latitude");
+			longitude = obj.getString("longitude");
+			password = obj.getInt("insttCode");
+			size = obj.getString("boxHg");
+			System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password+","+size);
+			
+			main.setUserCode("1");
+			main.setLockerTitle(name);
+			main.setLockerContent(roadAd);
+			main.setLocation(address);
+			main.setLatitude(latitude);
+			main.setLongitude(longitude);
+			main.setLockerPassword(password);
+			main.setRentableDate(targetDate);
+			main.setLockerSize(size);
+			
+			mainRepositoryTest.insertDummyApi(main);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 		
 	}
 	
