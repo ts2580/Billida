@@ -58,16 +58,21 @@
                 method: "GET",
                 url: "https://dapi.kakao.com/v2/search/image",
                 data: {
-                    query: "택배함",
-                    page: 3,
+                    query: "무인택배 보관함",
+                    page:3,
                 },
                 headers: {
                     Authorization: "KakaoAK c4cb5006db806d8310ea2e01c8fe254b"
                 },
             })
             .done(function (msg) {
-              /*   alert("Data Saved: " + msg); */
                 console.log(msg);
+               
+                for (var i = 0; i < 80; i++) {
+                	console.log(msg.documents[i].image_url);
+				}
+                
+                
             });
     </script>
 

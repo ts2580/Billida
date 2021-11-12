@@ -5,15 +5,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -96,7 +96,7 @@ public class MainControllerTest {
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_female_safety_hdrycstdyplace_api"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=qt0%2BUr8fKiB4cFa0dxYrRkBZevm3bNeJx6NS9zc0jthKuFEFJan2kVokNKzCHQhrgb%2Bvj9Y7lxmfWreKIzMKSA%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("0", "UTF-8")); /*페이지 번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("80", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*XML/JSON 여부*/
         urlBuilder.append("&" + URLEncoder.encode("ctprvnNm","UTF-8") + "=" + URLEncoder.encode("서울특별시", "UTF-8")); /*시도명*/
         URL url = new URL(urlBuilder.toString());
@@ -120,12 +120,9 @@ public class MainControllerTest {
         
         JSONObject jObject = new JSONObject(sb.toString());
         JSONObject jsonResponse = jObject.getJSONObject("response").getJSONObject("body");
-		
 		JSONArray jArray = null;
 		jArray = jsonResponse.getJSONArray("items");
 		System.out.println(jArray.toString());
-		
-		//JSONObject obj = jArray.getJSONObject(1);
 		
 		//fcltyNm시설명
 		//rdnmadr 도로명주소
@@ -143,8 +140,19 @@ public class MainControllerTest {
 		LocalDate targetDate = LocalDate.of(2021, 12, 25);
 		
 		Main main = new Main();
-		
-		for (int i = 0; i < 100; i++) {
+	
+		File file = new File("C:/CODE/imgUrl.txt");
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufReader = new BufferedReader(fileReader);
+		List<String> urlList = new ArrayList<String>();
+				
+		String str = "";
+        while((str = bufReader.readLine()) != null){
+            urlList.add(str);
+        }
+        bufReader.close();
+        
+		for (int i = 0; i < 80; i++) {
 			JSONObject obj = jArray.getJSONObject(i);
 			
 			name = obj.getString("fcltyNm");
@@ -165,23 +173,10 @@ public class MainControllerTest {
 			main.setLockerPassword(password);
 			main.setRentableDate(targetDate);
 			main.setLockerSize(size);
+			main.setLockerImage(urlList.get(i));
 			
-			mainRepositoryTest.insertDummyApi(main);
-			
+			mainRepositoryTest.insertDummyApi(main);	
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
 	}
 	
 	@Test
@@ -189,4 +184,36 @@ public class MainControllerTest {
 		List<Main> lockers = mainRepositoryTest.lockers();
 	}
 
+	
+	@Test
+	public void fileread() throws IOException {
+		File file = new File("C:/CODE/imgUrl.txt");
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufReader = new BufferedReader(fileReader);
+		
+		List<String> urlList = new ArrayList<String>();
+				
+		String str = "";
+        while((str = bufReader.readLine()) != null){
+            urlList.add(str);
+        }
+        
+        System.out.println("0번 인덱스 : " + urlList.get(0));
+        bufReader.close();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

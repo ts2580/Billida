@@ -10,7 +10,7 @@ import com.kh.billida.main.model.dto.Main;
 @Mapper
 public interface MainRepository {
 
-	@Select("select * from locker")
+	@Select("select * from locker where locker_id = '9'")
 	List<Main> selectLockerList();
 
 }
