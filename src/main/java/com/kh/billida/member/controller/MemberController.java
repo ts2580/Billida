@@ -28,7 +28,7 @@ public class MemberController {
 	@GetMapping("/signUp")
 	public void singUp() {}
 	
-	@PostMapping("/signUp")
+	@PostMapping("/signUp-phoneCheck")
 	public @ResponseBody String smsMessage(String phoneNumber) {
 		Random rand = new Random();
 		String num ="";
