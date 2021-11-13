@@ -86,8 +86,8 @@ public class MemberController {
 	}
 	   @GetMapping("id-check")
 	   @ResponseBody
-	   public String idCheck(String Id) {
-	      Member member = memberService.selectMemberByUserId(Id);
+	   public String idCheck(String id) {
+	      Member member = memberService.selectMemberByUserId(id);
 	      
 	      if(member == null) {
 	         return "available"; 

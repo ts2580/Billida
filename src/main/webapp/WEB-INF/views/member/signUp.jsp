@@ -9,6 +9,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>회원가입 </title>
 	
   <!-- Bootstrap CSS -->
@@ -16,6 +17,12 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <style>
+  .valid-msg{
+   display:block;
+   color:#007bff;
+   font-size:15px;
+   margin-bottom: 5px;
+}
     body {
       min-height: 100vh;
       background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
@@ -47,34 +54,33 @@
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/signUp"
          method="post" id="signUp">
           
-          <div class="mb-3">
             <label for="id">아이디</label>
-            <div style="display: flex" >
+            <span class="mb-3" style="display: flex;" >
             
-            <input type="text" class="form-control" name="Id" id="Id" placeholder="영어+숫자를 혼합해 사용해주세요" required>
-            <input   type="button" value="중복확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" ></input>
-			
-			<span class="invalid-feedback">
-                같은 비밀번호를 입력해주세요
-             </span>
-			</div>
-            
-			</div>
+            <input size="20" type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
+            	<c:if  test="${empty error.Id}">
+            		value="${joinForm.id}"
+            	</c:if>
+            required />
+            <button  type="button" id="btnIdCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >중복확인</button>
+			</span>
+                <c:if test="${empty error.userId}">
+                      <span id="idCheck" class="valid-msg"></span>
+                 </c:if>
+                <form:errors path="Id" cssClass="valid-msg"/>
           
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <input type="text" class="form-control" name="password"  id="password" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                비밀번호를 확인해주세요
-              </div>
+              <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" required>
             </div>
+                <c:if test="${empty error.password}">
+                      <span id="password" class="valid-msg"></span>
+                 </c:if>
+                <form:errors path="password" cssClass="valid-msg"/>
             <div class="col-md-6 mb-3">
-              <label for="password">중복확인</label>
-              <input type="text" class="form-control" name="password-check" id="password-check" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                같은 비밀번호를 입력해주세요
-              </div>
+              <label for="password">비밀번호 확인</label>
+              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" required>
             </div>
           </div>
           
@@ -160,6 +166,7 @@
       </div>
     </div>    
   </div>
+<script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {

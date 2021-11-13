@@ -23,8 +23,8 @@ public class MemberServiceImpl implements MemberService{
 		      form.setPassword(passwordEncoder.encode(form.getPassword()));
 		      memberRepository.insertMember(form);
 		   }
-	   public Member selectMemberByUserId(String Id) {
-		      return memberRepository.selectMemberByUserId(Id);
+	   public Member selectMemberByUserId(String id) {
+		      return memberRepository.selectMemberByUserId(id);
 		  }
 
 }

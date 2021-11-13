@@ -29,7 +29,7 @@ public class JoinFormValidator implements Validator{
 		
 		//1. 아이디 존재 유무
 		if(memberRepository.selectMemberByUserId(form.getId()) != null) {
-			errors.rejectValue("Id", "error-Id", "이미 존재하는 아이디입니다.");
+			errors.rejectValue("id", "error-id", "이미 존재하는 아이디입니다.");
 		}
 		
 		//2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인

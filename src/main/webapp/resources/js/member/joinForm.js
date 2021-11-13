@@ -13,11 +13,11 @@
    		document.querySelector("#btnIdCheck").addEventListener('click', e => {
    			
    			/*id 속성값이 지정되어 있으면 id값으로 해당 요소객체 호출 가능*/
-   			let id = userId.value;
+   			let Id = id.value;
    			
 			/*우리 서버에 요청을 보내서 사용자가 입력한 아이디가 있는지 없는지 확인해야 하니까 우리서버와 통신이 발생해야 함 => fetch 사용*/
-   			if(id){ /*userId가 null이 아니라면*/
-   				fetch('/member/id-check?userId=' + id)
+   			if(Id){ /*userId가 null이 아니라면*/
+   				fetch('/member/id-check?id=' + Id)
    				.then(response => {
 					if(!response.ok)
 						throw new Error(`${response.statusText} : ${response.status}`);
@@ -27,7 +27,7 @@
 						
    					if(text == 'available'){
    						document.querySelector('#idCheck').innerHTML = '사용 가능한 아이디 입니다.';
-   						confirmId = id;
+   						confirmId = Id;
    					}else if(text == 'disable'){
    						document.querySelector('#idCheck').innerHTML = '사용 불가능한 아이디 입니다.';
    					}
@@ -39,26 +39,30 @@
    				
    
    		
-   		document.querySelector('#frm_join').addEventListener('submit', e => {
+   		document.querySelector('#signUp').addEventListener('submit', e => {
    			
    			let pwReg = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
-   			let tellReg = /^\d{9,11}$/;
+   			let phoneReg = /^\d{9,11}$/;
    			
-   			if(confirmId != userId.value){
+   			if(confirmId != id.value){
    				e.preventDefault();
    				document.querySelector('#idCheck').innerHTML = '아이디 중복 검사를 통과하지 않았습니다.';
    			}
    			
 
-   			/*if(!pwReg.test(password.value)){
+   			if(!pwReg.test(password.value)){
    				e.preventDefault();
-   				document.querySelector('#pwCheck').innerHTML = '비밀번호는 숫자, 영문자, 특수문자 조합의 8자리 이상 문자열입니다.';
+   				document.querySelector('#password').innerHTML = '비밀번호는 숫자, 영문자, 특수문자 조합의 8자리 이상 문자열입니다.';
    			}
-   			
-   			if(!tellReg.test(tell.value)){
+   			if(password.value != passwordCheck.value){
+				e.preventDefault();
+				document.querySelector('#password').innerHTML = '비밀번호가 일치하지 않습니다.';
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+   			if(!phoneReg.test(phone.value)){
    				e.preventDefault();
-   				document.querySelector('#tellCheck').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
-   			}*/
+   				document.querySelector('#phone').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
+   			}
    		})
    	
    	})();
