@@ -37,7 +37,7 @@ body{
 	.locker_area{
 		display: flex;
 		flex-direction: column;
-		padding-bottom: 60px;
+		padding-bottom: 75px;
 	}
 	
 }
@@ -102,7 +102,7 @@ body{
 	display: flex;
 	justify-content: flex-start;
 	font-weight: 600;
-	font-size:19px;
+	font-size:100%;
 	padding-top: 3px;
 	padding-bottom: 5px;
 }

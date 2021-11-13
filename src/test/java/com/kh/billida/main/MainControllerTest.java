@@ -95,7 +95,7 @@ public class MainControllerTest {
 	public void insertDummyApi() throws IOException, JSONException {
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_female_safety_hdrycstdyplace_api"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=qt0%2BUr8fKiB4cFa0dxYrRkBZevm3bNeJx6NS9zc0jthKuFEFJan2kVokNKzCHQhrgb%2Bvj9Y7lxmfWreKIzMKSA%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("0", "UTF-8")); /*페이지 번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("80", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*XML/JSON 여부*/
         urlBuilder.append("&" + URLEncoder.encode("ctprvnNm","UTF-8") + "=" + URLEncoder.encode("서울특별시", "UTF-8")); /*시도명*/
@@ -141,7 +141,7 @@ public class MainControllerTest {
 		
 		Main main = new Main();
 	
-		File file = new File("C:/CODE/imgUrl2.txt");
+		File file = new File("C:/CODE/imgUrl.txt");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufReader = new BufferedReader(fileReader);
 		List<String> urlList = new ArrayList<String>();
@@ -164,7 +164,7 @@ public class MainControllerTest {
 			//size = obj.getString("boxHg");
 			System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
 			
-			main.setUserCode("1");
+			//main.setUserCode("1");
 			main.setLockerTitle(name);
 			main.setLockerContent(roadAd);
 			main.setLocation(address);
@@ -208,8 +208,10 @@ public class MainControllerTest {
 	}
 	
 	
-	
-	
+	@Test
+	public void listAll() {
+		
+	}
 	
 	
 	

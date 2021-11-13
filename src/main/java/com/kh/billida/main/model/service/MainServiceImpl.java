@@ -29,16 +29,12 @@ public class MainServiceImpl implements MainService {
 		int cntPerPage = 5;
 		
 		List<Main> searchList = mainRepository.selectLockerByKeyword(search);
-		
-		Paging paging =Paging.builder()
-				.url("/main/search")
-				.blockCnt(cntPerPage)
-				.currentPage(page)
-				.total((int)mainRepository.selectcountList(search))
-				.build();
+	
 			
-		return Map.of("searchList", searchList, "paging", paging);
+		return Map.of("searchList", searchList);
 	}
+
+
 
 	
 	

@@ -1,6 +1,7 @@
 package com.kh.billida.main.model.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,5 +19,7 @@ public interface MainRepository {
 
 	@Select("select count(*) from locker where locker_title like '%'||#{search}||'%' or locker_content like '%'||#{search}||'%' or location like '%'||#{search}||'%'")
 	int selectcountList(String search);
+
+	
 
 }

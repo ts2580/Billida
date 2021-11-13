@@ -1,91 +1,67 @@
 package com.kh.billida.common.paging;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class Paging {
-	
-	// 페이지 url
-	private String url;
-	// 전체 게시물 개수
-	private int total;
-	// 현재 페이지
-	private int currentPage;
-	// 페이지당 그릴 게시물 개수
-	private int cntPerPage;
-	// 페이지 블록에 들어갈 페이지의 개수
-	private int blockCnt;
 
-	// 이전 페이지
-	private int prev;
-	// 다음 페이지
-	private int next;
-	// 마지막 페이지
-	private int lastPage;
-	// 블록 시작 값
-	private int blockStart;
-	// 블록 끝 값
-	private int blockEnd;
+	public static final int PAGE_SCALE = 3; // 페이지당 게시물수
+	public static final int BLOCK_SCALE = 5; // 화면당 페이지수
 
-	public Paging(PagingBuilder builder) {
-		this.url = builder.url;
-		this.total = builder.total;
-		this.currentPage = builder.currentPage;
-		this.blockCnt = builder.blockCnt;
-		this.cntPerPage = builder.cntPerPage;
-		this.lastPage = (int) Math.ceil((double) total / cntPerPage);
-		this.prev = currentPage > 1 ? currentPage - 1 : 1;
-		this.next = currentPage < lastPage ? currentPage + 1 : lastPage;
-		calBlockStartAndEnd();
-	}
+	private int curPage; // 현재 페이지
+	private int prevPage; // 이전 페이지
+	private int nextPage; // 다음 페이지
+	private int totPage; // 전체 페이지 갯수
+	private int totBlock; // 전체 페이지블록 갯수
+	private int curBlock; // 현재 블록
+	private int prevBlock; // 이전 블록
+	private int nextBlock; // 다음 블록
+	private int pageBegin; // #{start} 변수에 전달될 값
+	private int pageEnd; // #{end} 변수에 전달될 값
+	private int blockBegin; // 블록의 시작페이지 번호
+	private int blockEnd; // 블록의 끝페이지 번호
 
-	private void calBlockStartAndEnd() {
-		this.blockStart = (currentPage - 1) / blockCnt * blockCnt + 1;
-		int end = blockStart + blockCnt - 1;
-		this.blockEnd = end > lastPage ? lastPage : end;
-	}
+	// 생성자
+	// Pager(레코드갯수, 출력할페이지번호)
+	public Paging(int count, int curPage) {
+	        curBlock = 1; //현재블록 번호
+	        this.curPage = curPage; //현재 페이지 번호
+	        setTotPage(count); //전체 페이지 갯수 계산
+	        setPageRange(); // #{start}, #{end} 값 계산하는 메소드
+	        setTotBlock(); // 전체 블록 갯수 계산
+	        setBlockRange(); //블록의 시작,끝 번호 계산
+	    }
 
-	public static PagingBuilder builder() {
-		return new PagingBuilder();
-	}
-
-	public static class PagingBuilder {
-		private String url;
-		private int total; // 전체 게시물 개수
-		private int currentPage; // 현재 페이지
-		private int blockCnt; // 페이지 블록에 들어갈 페이지의 개수
-		private int cntPerPage; // 페이지당 그릴 게시물 개수
-
-		public PagingBuilder url(String url) {
-			this.url = url;
-			return this;
+	public void setBlockRange() {
+		// 원하는 페이지가 몇번째 블록에 속하는지 계산
+		curBlock = (curPage - 1) / BLOCK_SCALE + 1;
+		// 블록의 시작페이지,끝페이지 번호 계산
+		blockBegin = (curBlock - 1) * BLOCK_SCALE + 1;
+		blockEnd = blockBegin + BLOCK_SCALE - 1;
+		// 마지막 블록 번호가 범위를 초과하지 않도록 처리
+		if (blockEnd > totPage) {
+			blockEnd = totPage;
 		}
-
-		public PagingBuilder total(int total) {
-			this.total = total;
-			return this;
-		}
-
-		public PagingBuilder currentPage(int currentPage) {
-			this.currentPage = currentPage;
-			return this;
-		}
-
-		public PagingBuilder blockCnt(int blockCnt) {
-			this.blockCnt = blockCnt;
-			return this;
-		}
-
-		public PagingBuilder cntPerPage(int cntPerPage) {
-			this.cntPerPage = cntPerPage;
-			return this;
-		}
-
-		public Paging build() {
-			return new Paging(this);
+		// [이전][다음]을 눌렀을 때 이동할 페이지 번호
+		prevPage = (curBlock == 1) ? 1 : (curBlock - 1) * BLOCK_SCALE;
+		nextPage = curBlock > totBlock ? (curBlock * BLOCK_SCALE) : (curBlock * BLOCK_SCALE) + 1;
+		// 마지막 페이지가 범위를 초과하지 않도록 처리
+		if (nextPage >= totPage) {
+			nextPage = totPage;
 		}
 	}
 
-	
+	// 페이지블록의 총 갯수 계산 (총 100페이지라면 10개의 블록이다)
+	public void setTotBlock() {
+		totBlock = (int) Math.ceil(totPage * 1.0 / BLOCK_SCALE);
+	}
+
+	// where rn between #{start} and #{end}에 입력될 값
+	public void setPageRange() {
+		// 시작번호=(현재페이지-1)x페이지당 게시물수 + 1
+		// 끝번호=시작번호 + 페이지당 게시물수 - 1
+		pageBegin = (curPage - 1) * PAGE_SCALE + 1;
+		pageEnd = pageBegin + PAGE_SCALE - 1;
+	}
 
 }
