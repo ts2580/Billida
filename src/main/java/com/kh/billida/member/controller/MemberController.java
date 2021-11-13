@@ -66,10 +66,7 @@ public class MemberController {
 									,Model model
 									,HttpSession session
 									,RedirectAttributes redirectAttr) {
-		//입력데이터를 못끌고옴 ㅠ
-		//System.out.println(member.toString());
-		
-		//memberService.insertMember(member);
+
 	    ValidateResult vr = new ValidateResult();
 	    model.addAttribute("error", vr.getError());
 
@@ -95,4 +92,24 @@ public class MemberController {
 	         return "disable";
 	      }
 	   }
+	   @GetMapping("login")
+		public void login() {
+			
+		}
+	   
+	   @PostMapping("login")
+		public String loginlmpl( Member member, HttpSession session, RedirectAttributes redirctAttr){
+		   System.out.println(member.toString());
+			Member certifiedUser = memberService.authenicateUser(member);
+			
+			if(certifiedUser == null) {
+				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
+				return "redirect:/member/login";
+			}
+			
+			
+			session.setAttribute("authentication", certifiedUser); //세션에 올려주기
+			logger.debug(certifiedUser.toString());
+			return "redirect:/member/mypage";
+		}   
 }

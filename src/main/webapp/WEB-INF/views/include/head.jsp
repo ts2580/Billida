@@ -88,7 +88,8 @@
             <div class="userinfo">
                <div class="user">
                   <ul>
-                     <li><a href="/member/signUp"><img src="${contextPath}/resources/images/user-pic.png" title="user-name" /><span>유저닉네임</span></a></li>
+                     <li><a href="/member/login"><img src="${contextPath}/resources/images/login.png" style="width: 18%"/></a>
+                     <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
                   </ul>
                </div>
             </div>
