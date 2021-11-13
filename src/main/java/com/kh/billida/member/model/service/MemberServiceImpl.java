@@ -1,10 +1,12 @@
 package com.kh.billida.member.model.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.member.model.repository.MemberRepository;
+import com.kh.billida.member.validator.JoinForm;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,13 +15,16 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService{
 	
 	private final MemberRepository memberRepository;
-	private final RestTemplate http;
+	private final PasswordEncoder passwordEncoder;
+
 	
 	
-	
-	public void insertMember(Member form) {
-		memberRepository.insertMember(form);
-		
-	}
+	   public void insertMember(JoinForm form) {
+		      form.setPassword(passwordEncoder.encode(form.getPassword()));
+		      memberRepository.insertMember(form);
+		   }
+	   public Member selectMemberByUserId(String Id) {
+		      return memberRepository.selectMemberByUserId(Id);
+		  }
 
 }

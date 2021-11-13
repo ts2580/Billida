@@ -40,12 +40,12 @@
 </head>
 
 <body>
-<form action="">
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원가입</h4>
-        <form class = "validation-form" modelAttribute = "member" action = "/member/signUp" method = "post" id = "signUp" novalidate>
+        <form:form modelAttribute="joinForm" class ="validation-form" action="/member/signUp"
+         method="post" id="signUp">
           
           <div class="mb-3">
             <label for="id">아이디</label>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="password">중복확인</label>
-              <input type="text" class="form-control" id="password-check" placeholder="" value="" required>
+              <input type="text" class="form-control" name="password-check" id="password-check" placeholder="" value="" required>
               <div class="invalid-feedback">
                 같은 비밀번호를 입력해주세요
               </div>
@@ -101,7 +101,7 @@
           <div class="mb-3">
             <label for="tel">휴대전화</label>
             <div style="display: flex;">
-            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"required>
+            <input type="tel" class="form-control" id="phone" name="phone"required>
             <input type="button" value="전송" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
             <div class="invalid-feedback">
@@ -129,7 +129,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="address">우편번호</label>
+            <label for="postCode">우편번호</label>
 			<div style="display: flex;">
             <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
@@ -140,7 +140,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="address1">주소<span class="text-muted">&nbsp;</span></label>
+            <label for="address">주소<span class="text-muted">&nbsp;</span></label>
             <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요.">
           </div>
           <div class="mb-3">
@@ -156,11 +156,10 @@
           </div>
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
-        </form>
+        </form:form>
       </div>
     </div>    
   </div>
-</form>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {
@@ -199,14 +198,14 @@ function daumPost() {
                 //document.getElementById("address1").value = extraAddr;
             
             } else {
-                document.getElementById("address1").value = '';
+                document.getElementById("address").value = '';
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postCode').value = data.zonecode;
-            document.getElementById("address1").value = addr;
+            document.getElementById("address").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("address2").focus();
+            document.getElementById("addressDetail").focus();
         }
     }).open();
 
