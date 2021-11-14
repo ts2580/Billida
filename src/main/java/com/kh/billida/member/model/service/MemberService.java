@@ -9,4 +9,5 @@ public interface MemberService {
 	void insertMember(JoinForm form);	
 	Member selectMemberByUserId(String id);
 	Member authenicateUser(Member member);
+	Member selectMemberByNick(String nick);
 }

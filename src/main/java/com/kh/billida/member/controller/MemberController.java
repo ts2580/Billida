@@ -92,6 +92,17 @@ public class MemberController {
 	         return "disable";
 	      }
 	   }
+	   @GetMapping("nick-check")
+	   @ResponseBody
+	   public String nickCheck(String nick) {
+	      Member member = memberService.selectMemberByNick(nick);
+	      
+	      if(member == null) {
+	         return "available"; 
+	      }else {
+	         return "disable";
+	      }
+	   }
 	   @GetMapping("login")
 		public void login() {
 			

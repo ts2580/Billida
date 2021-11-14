@@ -26,6 +26,10 @@ public class MemberServiceImpl implements MemberService{
 	   public Member selectMemberByUserId(String id) {
 		      return memberRepository.selectMemberByUserId(id);
 		  }
+	   public Member selectMemberByNick(String nick) {
+		      return memberRepository.selectMemberByUserId(nick);
+		  }
+	   
 	@Override
 	public Member authenicateUser(Member member) {
 		
