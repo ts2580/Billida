@@ -27,7 +27,7 @@ public class JoinFormValidator implements Validator {
 		JoinForm form = (JoinForm) target;
 
 		// 1. 아이디 존재 유무
-		if (memberRepository.selectMemberByUserId(form.getId()) != null) {
+		if (memberRepository.selectMemberById(form.getId()) != null) {
 			errors.rejectValue("Id", "error-Id", "이미 존재하는 아이디입니다.");
 		}
 

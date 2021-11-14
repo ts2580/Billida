@@ -57,7 +57,7 @@
             <label for="id">아이디</label>
             <span class="mb-3" style="display: flex;" >
             
-            <input type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
+            <input size="20" type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
             	<c:if  test="${empty error.Id}">
             		value="${joinForm.id}"
             	</c:if>
@@ -73,18 +73,14 @@
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
               <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" required>
-            	<c:if test="${empty error.password}">
-                      <span id="pwCheck" class="valid-msg"></span>
-                 </c:if>
             </div>
+                <c:if test="${empty error.password}">
+                      <span id="password" class="valid-msg"></span>
+                 </c:if>
                 <form:errors path="password" cssClass="valid-msg"/>
             <div class="col-md-6 mb-3">
-
               <label for="password">비밀번호 확인</label>
               <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" required>
-            	<c:if test="${empty error.password}">
-                      <span id="passwordFail" class="valid-msg"></span>
-                 </c:if> 
             </div>
           </div>
           
@@ -93,13 +89,16 @@
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
               <input type="text" class="form-control" name="name" id="name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                이름을 입력해주세요.
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
               <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
-                <c:if test="${empty error.nick}">
-                      <span id="nickCheck" class="valid-msg"></span>
-                 </c:if> 
+              <div class="invalid-feedback">
+                별명을 입력해주세요.
+              </div>
             </div>
           </div>   
                  
@@ -107,15 +106,14 @@
 
           <div class="mb-3">
             <label for="tel">휴대전화</label>
-            <span style="display: flex;">
+            <div style="display: flex;">
             <input type="tel" class="form-control" id="phone" name="phone"required>
-            <button type="button" " class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >전송!</button>
- 			</span>
- 			<c:if test="${empty error.phone}">
-                 <span id="phoneCheck" class="valid-msg"></span>
-            </c:if>
+            <input type="button" value="전송" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+ 			</div>
+            <div class="invalid-feedback">
+              휴대폰번호를 입력해주세요.
+            </div>
           </div>
-          
           
            <div class="mb-3">
             <label for="tel">휴대전화 인증번호</label>

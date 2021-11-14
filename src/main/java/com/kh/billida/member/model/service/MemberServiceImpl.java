@@ -24,16 +24,22 @@ public class MemberServiceImpl implements MemberService{
 		      memberRepository.insertMember(form);
 		   }
 	   public Member selectMemberByUserId(String id) {
-		      return memberRepository.selectMemberByUserId(id);
+		      return memberRepository.selectMemberById(id);
 		  }
 	   public Member selectMemberByNick(String nick) {
-		      return memberRepository.selectMemberByUserId(nick);
+		      return memberRepository.selectMemberByNick(nick);
 		  }
-	   
-	@Override
-	public Member authenicateUser(Member member) {
-		
-		return memberRepository.authenicateUser(member);
-	}
+
+	   public Member authenticateUser(Member member) {
+		      Member storedMember = memberRepository.selectMemberById(member.getId());
+		      
+		      if(storedMember!=null&&passwordEncoder.matches(member.getPassword(), storedMember.getPassword())) {
+		         return storedMember;
+		      }
+		      
+		      return null;
+		      
+		   }
+
 
 }
