@@ -64,7 +64,7 @@
             required />
             <button  type="button" id="btnIdCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >중복확인</button>
 			</span>
-                <c:if test="${empty error.userId}">
+                <c:if test="${empty error.id}">
                       <span id="idCheck" class="valid-msg"></span>
                  </c:if>
                 <form:errors path="Id" cssClass="valid-msg"/>

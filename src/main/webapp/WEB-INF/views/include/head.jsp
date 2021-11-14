@@ -88,8 +88,14 @@
             <div class="userinfo">
                <div class="user">
                   <ul>
+                  <c:if test="${empty authentication}">
                      <li><a href="/member/login"><img src="${contextPath}/resources/images/login.png" style="width: 18%"/></a>
                      <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
+                  </c:if>
+                  
+                  <c:if test="${not empty authentication}">
+                     <button>로그아웃</button>
+                  </c:if>
                   </ul>
                </div>
             </div>

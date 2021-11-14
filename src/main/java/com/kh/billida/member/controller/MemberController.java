@@ -92,6 +92,17 @@ public class MemberController {
 	         return "disable";
 	      }
 	   }
+	   @GetMapping("nick-check")
+	   @ResponseBody
+	   public String nickCheck(String nick) {
+	      Member member = memberService.selectMemberByNick(nick);
+	      
+	      if(member == null) {
+	         return "available"; 
+	      }else {
+	         return "disable";
+	      }
+	   }
 	   @GetMapping("login")
 		public void login() {
 			
@@ -99,8 +110,8 @@ public class MemberController {
 	   
 	   @PostMapping("login")
 		public String loginlmpl( Member member, HttpSession session, RedirectAttributes redirctAttr){
-		   System.out.println(member.toString());
-			Member certifiedUser = memberService.authenicateUser(member);
+		    System.out.println(member.toString());
+			Member certifiedUser = memberService.authenticateUser(member);
 			
 			if(certifiedUser == null) {
 				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
@@ -110,6 +121,6 @@ public class MemberController {
 			
 			session.setAttribute("authentication", certifiedUser); //세션에 올려주기
 			logger.debug(certifiedUser.toString());
-			return "redirect:/member/mypage";
+			return "redirect:/";
 		}   
 }

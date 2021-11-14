@@ -16,8 +16,11 @@ public interface MemberRepository {
 	void insertMember(JoinForm form);
 	
 	@Select("select * from member where id = #{id}")
-	Member selectMemberByUserId(String id);
+	Member selectMemberById(String id);
 	
-	@Select("select * from member where id = #{Id} and password = #{password}")
+	@Select("select * from member where nick = #{nick}")
+	Member selectMemberByNick(String id);
+	
+	@Select("select * from member where id = #{id} and password = #{password}")
 	Member authenicateUser(Member member);
 }
