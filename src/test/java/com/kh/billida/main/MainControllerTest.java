@@ -14,8 +14,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +35,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.amazonaws.util.json.JSONArray;
 import com.amazonaws.util.json.JSONException;
 import com.amazonaws.util.json.JSONObject;
+import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.main.model.dto.Main;
 
 @WebAppConfiguration
@@ -48,7 +52,7 @@ public class MainControllerTest {
 	
 	@Autowired
 	private MainRepositoryTest mainRepositoryTest;
-	
+	private Main mains;
 	
 	@Before
 	public void setup() {
@@ -200,17 +204,24 @@ public class MainControllerTest {
 	public void selectLockers() {
 		List<Main> lockers = mainRepositoryTest.lockers();
 	}
-
+	
 	@Test
-	public void searchLockers() {
-		List<Main> searchLockers = mainRepositoryTest.searchLockers("성동");
-		System.out.println(searchLockers);
+	public void getListPagingTest() {
+		Criteria cri = new Criteria();
+	
+		Map<String, Object> commandMap =  new HashMap<String, Object>();
+		commandMap.put("pageNum", cri.getPageNum());
+		commandMap.put("amount", cri.getAmount());
+		commandMap.put("search", "성동");
+		
+		mainRepositoryTest.getListPaging(commandMap);	
 	}
 	
-	
+
 	@Test
-	public void listAll() {
-		
+	public void getTotal() {
+		int total = mainRepositoryTest.getTotal("성동");
+		System.out.println(total);
 	}
 	
 	

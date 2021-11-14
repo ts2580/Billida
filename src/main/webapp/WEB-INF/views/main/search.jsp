@@ -4,14 +4,15 @@
 <html>
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+	<link href="../../../resources/css/search.css" rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
+
 </head>
 <body>
 <div class="content">
 	<div class="wrapper">
 		<div class="locker_list">
 			<c:forEach items="${list}" var="lockerList">
-			<a>${lockerList.lockerTitle}</a>
-			
 				<div class="locker_area">
 					<img class="mainImg" src="${lockerList.lockerImage}">
 					<div class="locker_name">${lockerList.lockerTitle}</div>
@@ -23,58 +24,67 @@
 				</div>
 			</c:forEach>
 		</div>
-	 <!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
- <tr>
-        <td colspan = "7" align = "center">
-            <c:if test="${paging.curBlock > 1}">
-  <a href="#" onclick="list('1')">[처음]</a>
-            </c:if> <!-- 현재 블록이 1블록보다 크면 (뒤쪽에 있기때문에) 처음으로 갈 수 있도록 링크를 추가 -->
-        
-            <c:if test="${paging.curBlock > 1}">
-                <a href="#" onclick="list('${paging.prevPage}')">[이전]</a>
-            </c:if> <!-- 현재 블록이 1블록보다 크면 이전 블록으로 이동할 수 있도록 링크 추가 -->
-            
-            <c:forEach var="num"
-                begin="${paging.blockBegin}"
-                end="${paging.blockEnd}">
-                <c:choose>
-                    <c:when test="${num == paging.curPage}">
-                    
-                    <!-- 현재 페이지인 경우 하이퍼링크 제거 -->
-                    <!-- 현재 페이지인 경우에는 링크를 빼고 빨간색으로 처리를 한다. -->
-                        <span style="color:red;">${num}</span>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="#" onclick="list('${num}')" >${num}</a>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-            
-            
-            <c:if test="${paging.curBlock <= paging.totBlock}">
-                <a href="#" onclick="list('${paging.nextPage}')">[다음]</a>
-            </c:if> <!-- 현재 페이지블록이 총 페이지블록보다 작으면 다음으로 갈 수있도록 링크를 추가 -->
-            
-            
-            <c:if test="${paging.curPage <= paging.totPage}">
-                <a href="#" onclick="list('${paging.totPage}')">[끝]</a>
-            </c:if> <!-- 현재 페이지블록이 총 페이지블록보다 작거나 같으면 끝으로 갈 수 있도록 링크를 추가함-->
-            </td>
-    </tr>
-	
-	
+
+		<div class="pageInfo_wrap">
+			<div class="pageInfo_area">
+				<ul id="pageInfo" class="pageInfo">
+				
+					<!-- 이전페이지 버튼 -->
+                	<c:if test="${paging.prev}">
+                    	<li class="pageInfo_btn previous"><a href="${paging.startPage-1}">Previous</a></li>
+                	</c:if>
+				
+					<!-- 각 번호 페이지 버튼  -->
+					<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+						<li class="pageInfo_btn ${paging.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
+					</c:forEach>
+					
+					<!-- 다음페이지 버튼 -->
+                	<c:if test="${paging.next}">
+                    	<li class="pageInfo_btn next"><a href="${paging.endPage + 1 }">Next</a></li>
+                	</c:if>
+				</ul>
+			</div>
+		</div>
+
+		<form id="moveForm" method="get">
+			<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
+			<input type="hidden" name="amount" value="${paging.cri.amount}">
+			<input type="hidden" name="keyword" value="${paging.cri.keyword}">
+		</form>
+
 	</div>
 </div>
 
 
-<script>
-//아래쪽에서 이 함수를 호출해서 페이지값을 컨트롤러에 맵핑시킨다
-function list(page){
-    console.log("페이지를 이동합니다.");
-    location.href="search?curPage="+page;
-}
-</script>
+<script type="text/javascript">
 
+	let moveForm = $("#moveForm");
+	
+	$(".move").on("click", function(e){
+		e.preventDefault();
+		
+		moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+		moveForm.attr("action", "");
+		moveForm.submit();
+	});
+	
+	$(".pageInfo a").on("click", function(e){
+		 e.preventDefault();
+	     moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	     moveForm.attr("action", "/search");
+	     moveForm.submit();
+	});
+
+	$(".search_area").on("click", function(e){
+        e.preventDefault();
+        let val = $("input[name='keyword']").val();
+        moveForm.find("input[name='keyword']").val(val);
+        moveForm.find("input[name='pageNum']").val(1);
+        moveForm.submit();
+    });
+
+</script>
 
 
 

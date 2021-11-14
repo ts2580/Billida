@@ -81,8 +81,8 @@
             </div>            
             <div class="top-searchbar">
                <form action="/search" method="get">
-                  <input type="text" name="search" required="required" placeholder="지역, 사물함명으로 찾아보세요."/>
-                  <input type="submit" value="" />
+                  <input type="text" name="keyword" required="required" value="${paging.cri.keyword}" placeholder="지역, 사물함명으로 찾아보세요."/>
+                  <input class="search_area" type="submit" value="" />
                </form>
             </div>
             <div class="userinfo">

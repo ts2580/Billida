@@ -4,64 +4,48 @@ import lombok.Data;
 
 @Data
 public class Paging {
+	
+	//시작 페이지(시작 번호)
+	private int startPage;
+	//끝 페이지(끝 번호)
+	private int endPage;
+	//이전 페이지 존재유무
+	private boolean prev;
+	//다음 페이지 존재유무
+	private boolean next;
+	//전체 게시물 수
+	private int total;
+	//현재 페이지, 페이지당 게시물 표시수 정보
+	private Criteria cri;
 
-	public static final int PAGE_SCALE = 3; // 페이지당 게시물수
-	public static final int BLOCK_SCALE = 5; // 화면당 페이지수
-
-	private int curPage; // 현재 페이지
-	private int prevPage; // 이전 페이지
-	private int nextPage; // 다음 페이지
-	private int totPage; // 전체 페이지 갯수
-	private int totBlock; // 전체 페이지블록 갯수
-	private int curBlock; // 현재 블록
-	private int prevBlock; // 이전 블록
-	private int nextBlock; // 다음 블록
-	private int pageBegin; // #{start} 변수에 전달될 값
-	private int pageEnd; // #{end} 변수에 전달될 값
-	private int blockBegin; // 블록의 시작페이지 번호
-	private int blockEnd; // 블록의 끝페이지 번호
-
-	// 생성자
-	// Pager(레코드갯수, 출력할페이지번호)
-	public Paging(int count, int curPage) {
-	        curBlock = 1; //현재블록 번호
-	        this.curPage = curPage; //현재 페이지 번호
-	        setTotPage(count); //전체 페이지 갯수 계산
-	        setPageRange(); // #{start}, #{end} 값 계산하는 메소드
-	        setTotBlock(); // 전체 블록 갯수 계산
-	        setBlockRange(); //블록의 시작,끝 번호 계산
-	    }
-
-	public void setBlockRange() {
-		// 원하는 페이지가 몇번째 블록에 속하는지 계산
-		curBlock = (curPage - 1) / BLOCK_SCALE + 1;
-		// 블록의 시작페이지,끝페이지 번호 계산
-		blockBegin = (curBlock - 1) * BLOCK_SCALE + 1;
-		blockEnd = blockBegin + BLOCK_SCALE - 1;
-		// 마지막 블록 번호가 범위를 초과하지 않도록 처리
-		if (blockEnd > totPage) {
-			blockEnd = totPage;
-		}
-		// [이전][다음]을 눌렀을 때 이동할 페이지 번호
-		prevPage = (curBlock == 1) ? 1 : (curBlock - 1) * BLOCK_SCALE;
-		nextPage = curBlock > totBlock ? (curBlock * BLOCK_SCALE) : (curBlock * BLOCK_SCALE) + 1;
-		// 마지막 페이지가 범위를 초과하지 않도록 처리
-		if (nextPage >= totPage) {
-			nextPage = totPage;
-		}
-	}
-
-	// 페이지블록의 총 갯수 계산 (총 100페이지라면 10개의 블록이다)
-	public void setTotBlock() {
-		totBlock = (int) Math.ceil(totPage * 1.0 / BLOCK_SCALE);
-	}
-
-	// where rn between #{start} and #{end}에 입력될 값
-	public void setPageRange() {
-		// 시작번호=(현재페이지-1)x페이지당 게시물수 + 1
-		// 끝번호=시작번호 + 페이지당 게시물수 - 1
-		pageBegin = (curPage - 1) * PAGE_SCALE + 1;
-		pageEnd = pageBegin + PAGE_SCALE - 1;
-	}
-
+	
+	/* 생성자 */
+    public Paging(Criteria cri, int total) {
+        
+        this.cri = cri;
+        this.total = total;
+        
+        /* 마지막 페이지 */
+        this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
+        /* 시작 페이지 */
+        this.startPage = this.endPage - 9;
+        
+        /* 전체 마지막 페이지 */
+        int realEnd = (int)(Math.ceil(total * 1.0/cri.getAmount()));
+        
+        /* 전체 마지막 페이지(realend)가 화면에 보이는 마지막페이지(endPage)보다 작은 경우, 보이는 페이지(endPage) 값 조정 */
+        if(realEnd < this.endPage) {
+            this.endPage = realEnd;
+        }
+        
+        /* 시작 페이지(startPage)값이 1보다 큰 경우 true */
+        this.prev = this.startPage > 1;
+        
+        /* 마지막 페이지(endPage)값이 1보다 큰 경우 true */
+        this.next = this.endPage < realEnd;
+        
+        
+    }
+    
+    
 }

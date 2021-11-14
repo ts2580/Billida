@@ -4,9 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  
+
   	<settings>
   		<setting name="mapUnderscoreToCamelCase" value="true"/>   <!-- 스네이크표기법 컬럼명을 카멜표기법으로 자동으로 매핑 -->
+  		<setting name="cacheEnabled" value="false" />
+   		<setting name="jdbcTypeForNull" value="NULL" />
   	</settings>
   	
 <!--   	<typeAliases>
@@ -16,5 +18,9 @@
   	<mappers>
   		<mapper resource="mybatis/mapper/mybatisMapper.xml"/>
   	</mappers> -->
+  	
+  	<mappers>
+  		<mapper resource="mybatis/mainMapper.xml"/>
+  	</mappers>
   
   </configuration>
