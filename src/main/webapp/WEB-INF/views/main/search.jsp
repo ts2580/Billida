@@ -6,7 +6,6 @@
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<link href="../../../resources/css/search.css" rel='stylesheet' type='text/css' />
 	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
-
 </head>
 <body>
 <div class="content">
