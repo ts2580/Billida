@@ -5,21 +5,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
 <style type="text/css">
-$primary: #2196F3;
-
-
-
-@keyframes spinner {
-  0% { transform: rotateZ(0deg); }
-  100% { transform: rotateZ(359deg); }
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background-size: cover;
+     min-height: 100vh;
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
 }
 
+@keyframes spinner {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(359deg);
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -27,17 +39,14 @@ $primary: #2196F3;
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
   padding: 20px;
-  background: rgba(darken($primary,40%), 0.85);
 }
 
-
 .login {
-  
   border-radius: 2px 2px 5px 5px;
   padding: 10px 20px 20px 20px;
   width: 90%;
@@ -45,132 +54,111 @@ $primary: #2196F3;
   background: #ffffff;
   position: relative;
   padding-bottom: 80px;
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
-  
-  &.loading {
-    button {
-      max-height: 100%;
-      padding-top: 50px;
-      .spinner {
-        opacity: 1;
-        top: 40%;
-      }
-    }  
-  }
-  
-  &.ok {
-    button {
-      background-color: #8bc34a;
-      .spinner{
-        border-radius: 0;
-        border-top-color: transparent;
-        border-right-color: transparent;
-        height: 20px;
-        animation: none;
-        transform: rotateZ(-45deg);
-      }
-    }
-  }
-  
-  input {
-    display: block;
-    padding: 15px 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border: 1px solid #ddd;
-    transition: border-width 0.2s ease;
-    border-radius: 2px;
-    color: #ccc;
-    
-    &+ i.fa {
-        color: #fff;
-      font-size: 1em;
-      position: absolute;
-      margin-top: -47px;
-      opacity: 0;
-      left: 0;
-      transition: all 0.1s ease-in;
-    }
-    
-    &:focus {
-      &+ i.fa {
-        opacity: 1;
-        left: 30px;
-      transition: all 0.25s ease-out;
-      }
-      outline: none;
-      color: #444;
-      border-color: $primary;
-      border-left-width: 35px;
-    }
-    
-  }
-  
-  a {
-   font-size: 0.8em;   
-    color: $primary;
-    text-decoration: none;
-  }
-  
-  .title {
-    color: #444;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0 30px 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
-  }
-  
-  button {
-    width: 100%;
-    height: 100%;
-    padding: 10px 10px;
-    background: $primary;
-    color: #fff;
-    display: block;
-    border: none;
-    margin-top: 20px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    max-height: 60px;
-    border: 0px solid rgba(0,0,0,0.1);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.login.loading button {
+  max-height: 100%;
+  padding-top: 50px;
+}
+.login.loading button .spinner {
+  opacity: 1;
+  top: 40%;
+}
+.login.ok button {
+  background-color: #8bc34a;
+}
+.login.ok button .spinner {
+  border-radius: 0;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  height: 20px;
+  animation: none;
+  transform: rotateZ(-45deg);
+}
+.login input {
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  transition: border-width 0.2s ease;
+  border-radius: 2px;
+  color: #ccc;
+}
+.login input + i.fa {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin-top: -47px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.1s ease-in;
+}
+.login input:focus {
+  outline: none;
+  color: #444;
+  border-color: #2196f3;
+  border-left-width: 35px;
+}
+.login input:focus + i.fa {
+  opacity: 1;
+  left: 30px;
+  transition: all 0.25s ease-out;
+}
+.login a {
+  font-size: 0.8em;
+  color: #2196f3;
+  text-decoration: none;
+}
+.login .title {
+  color: #444;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+.login button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  background: #2196f3;
+  color: #fff;
+  display: block;
+  border: none;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 60px;
+  border: 0px solid rgba(0, 0, 0, 0.1);
   border-radius: 0 0 2px 2px;
-    transform: rotateZ(0deg);
-    
-    transition: all 0.1s ease-out;
-      border-bottom-width: 7px;
-    
-    .spinner {
-      display: block;
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      border: 4px solid #ffffff;
-      border-top-color: rgba(255,255,255,0.3);
-      border-radius: 100%;
-      left: 50%;
-      top: 0;
-      opacity: 0;
-      margin-left: -20px;
-      margin-top: -20px;
-      animation: spinner 0.6s infinite linear;
-      transition: top 0.3s 0.3s ease,
-                opacity 0.3s 0.3s ease,
-                border-radius 0.3s ease;
-      box-shadow: 0px 1px 0px rgba(0,0,0,0.2);
-    }
-    
-  }
-  
-    &:not(.loading) button:hover {
-      box-shadow: 0px 1px 3px $primary;
-    }
-    &:not(.loading) button:focus {
-      border-bottom-width: 4px;
-    }
-    
-  
+  transform: rotateZ(0deg);
+  transition: all 0.1s ease-out;
+  border-bottom-width: 7px;
+}
+.login button .spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 4px solid #ffffff;
+  border-top-color: rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  margin-left: -20px;
+  margin-top: -20px;
+  animation: spinner 0.6s infinite linear;
+  transition: top 0.3s 0.3s ease, opacity 0.3s 0.3s ease, border-radius 0.3s ease;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+}
+.login:not(.loading) button:hover {
+  box-shadow: 0px 1px 3px #2196f3;
+}
+.login:not(.loading) button:focus {
+  border-bottom-width: 4px;
 }
 
 footer {
@@ -179,51 +167,68 @@ footer {
   text-align: center;
   color: #ddd;
   font-weight: normal;
-  text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
   font-size: 0.8em;
-  a, a:link {
-    color: #fff;
-    text-decoration: none;
-  }
+}
+footer a,
+footer a:link {
+  color: #fff;
+  text-decoration: none;
+}
+.valid-msg{
+	font-size: 15px;
+	color: red;
 }
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="wrapper">
-		<form class="login" action = "/member/login" method="post">
-			<p class="title">Log in</p>
-			<input type="text" placeholder="Username" name="id" id="id" autofocus /> 
-			<i class="fa fa-user"></i>
-			 <input type="password"	placeholder="Password" name="password" id="password" />
-			  <i class="fa fa-key"></i> 
-			  <a href="#">Forgot your password?</a>
-			<button>
-				<i class="spinner"></i> <span class="state">Log in</span>
-			</button>
-		</form>
-		
-	</div>
-	<script type="text/javascript">
-		var working = false;
-		$('.login').on('submit', function(e) {
-			e.preventDefault();
-			if (working)
-				return;
-			working = true;
-			var $this = $(this), $state = $this.find('button > .state');
-			$this.addClass('loading');
-			$state.html('Authenticating');
-			setTimeout(function() {
-				$this.addClass('ok');
-				$state.html('Welcome back!');
-				setTimeout(function() {
-					$state.html('Log in');
-					$this.removeClass('ok loading');
-					working = false;
-				}, 4000);
-			}, 3000);
-		});
-	</script>
+<div class="wrapper">
+  <form action="/member/login" method="post" class="login">
+    <p class="title">Log in</p>
+    <input name="id" id="id" type="text" placeholder="Username" autofocus/>
+    <i class="fa fa-user"></i>
+    <input name="password" id="password" type="password" placeholder="Password" />
+    <i class="fa fa-key"></i>
+		<c:if test="${not empty message}">
+			<span class="valid-msg">${message}</span>
+		</c:if>
+    <div style="display: grid;">
+    <a href="/member/signUp">Sign up</a>
+    <a style="margin-top:2px;" href="#">Forgot your password?</a>
+    </div>
+    <button>
+      <i class="spinner"></i>
+      <span class="state">Log in</span>
+    </button>
+  </form>
+<a style="display: flex; margin-top: 5px; href="javascript:loginWithKakao();" id="custom-login-btn">
+	<img src="/resources/images/kakao_login_medium_wide.png" />
+	<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->
+	</a>
+  <footer><a target="blank" href="http://boudra.me/"></a></footer>
+  </p>
+</div>
+<!-- 	<script type="text/javascript">
+	var working = false;
+	$(".login").on("submit", function (e) {
+	  e.preventDefault();
+	  if (working) return;
+	  working = true;
+	  var $this = $(this),
+	    $state = $this.find("button > .state");
+	  $this.addClass("loading");
+	  $state.html("Authenticating");
+	  setTimeout(function () {
+	    $this.addClass("ok");
+	    $state.html("Welcome back!");
+	    setTimeout(function () {
+	      $state.html("Log in");
+	      $this.removeClass("ok loading");
+	      working = false;
+	    }, 4000);
+	  }, 3000);
+	});
+	</script> -->
 </body>
 </html>

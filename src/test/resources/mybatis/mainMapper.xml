@@ -5,10 +5,29 @@
   
   <mapper namespace="com.kh.billida.main.MainRepositoryTest">
   
+  	<select id="getListPaging" resultType="com.kh.billida.main.model.dto.Main">
+		<![CDATA[
+        
+	        select locker_id, user_code, locker_title, locker_content, locker_image, locker_size, locker_password, location, rentable_date from(
+	        
+	                select /*+INDEX_DESC(locker) */ rownum as rn, locker_id, user_code, locker_title, locker_content, locker_image, locker_size, locker_password, location, rentable_date
+	                  
+	                from locker where rownum <= #{pageNum} * #{amount} and locker_title like '%'||#{search}||'%' 
+																	or locker_content like '%'||#{search}||'%' 
+																	or location like '%'||#{search}||'%') 
+	                
+	        where rn > (#{pageNum} -1) * #{amount}
+   		]]>
+		
+	</select>
   
   
-  
-  
+  	<select id="getTotal" resultType="int">
+		select count(*) from locker
+		where locker_title like '%'||#{search}||'%' 
+		or locker_content like '%'||#{search}||'%' 
+		or location like '%'||#{search}||'%'
+	</select>
   
   
   

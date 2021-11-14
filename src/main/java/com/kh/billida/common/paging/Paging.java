@@ -1,91 +1,51 @@
 package com.kh.billida.common.paging;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class Paging {
 	
-	// 페이지 url
-	private String url;
-	// 전체 게시물 개수
+	//시작 페이지(시작 번호)
+	private int startPage;
+	//끝 페이지(끝 번호)
+	private int endPage;
+	//이전 페이지 존재유무
+	private boolean prev;
+	//다음 페이지 존재유무
+	private boolean next;
+	//전체 게시물 수
 	private int total;
-	// 현재 페이지
-	private int currentPage;
-	// 페이지당 그릴 게시물 개수
-	private int cntPerPage;
-	// 페이지 블록에 들어갈 페이지의 개수
-	private int blockCnt;
-
-	// 이전 페이지
-	private int prev;
-	// 다음 페이지
-	private int next;
-	// 마지막 페이지
-	private int lastPage;
-	// 블록 시작 값
-	private int blockStart;
-	// 블록 끝 값
-	private int blockEnd;
-
-	public Paging(PagingBuilder builder) {
-		this.url = builder.url;
-		this.total = builder.total;
-		this.currentPage = builder.currentPage;
-		this.blockCnt = builder.blockCnt;
-		this.cntPerPage = builder.cntPerPage;
-		this.lastPage = (int) Math.ceil((double) total / cntPerPage);
-		this.prev = currentPage > 1 ? currentPage - 1 : 1;
-		this.next = currentPage < lastPage ? currentPage + 1 : lastPage;
-		calBlockStartAndEnd();
-	}
-
-	private void calBlockStartAndEnd() {
-		this.blockStart = (currentPage - 1) / blockCnt * blockCnt + 1;
-		int end = blockStart + blockCnt - 1;
-		this.blockEnd = end > lastPage ? lastPage : end;
-	}
-
-	public static PagingBuilder builder() {
-		return new PagingBuilder();
-	}
-
-	public static class PagingBuilder {
-		private String url;
-		private int total; // 전체 게시물 개수
-		private int currentPage; // 현재 페이지
-		private int blockCnt; // 페이지 블록에 들어갈 페이지의 개수
-		private int cntPerPage; // 페이지당 그릴 게시물 개수
-
-		public PagingBuilder url(String url) {
-			this.url = url;
-			return this;
-		}
-
-		public PagingBuilder total(int total) {
-			this.total = total;
-			return this;
-		}
-
-		public PagingBuilder currentPage(int currentPage) {
-			this.currentPage = currentPage;
-			return this;
-		}
-
-		public PagingBuilder blockCnt(int blockCnt) {
-			this.blockCnt = blockCnt;
-			return this;
-		}
-
-		public PagingBuilder cntPerPage(int cntPerPage) {
-			this.cntPerPage = cntPerPage;
-			return this;
-		}
-
-		public Paging build() {
-			return new Paging(this);
-		}
-	}
+	//현재 페이지, 페이지당 게시물 표시수 정보
+	private Criteria cri;
 
 	
-
+	/* 생성자 */
+    public Paging(Criteria cri, int total) {
+        
+        this.cri = cri;
+        this.total = total;
+        
+        /* 마지막 페이지 */
+        this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
+        /* 시작 페이지 */
+        this.startPage = this.endPage - 9;
+        
+        /* 전체 마지막 페이지 */
+        int realEnd = (int)(Math.ceil(total * 1.0/cri.getAmount()));
+        
+        /* 전체 마지막 페이지(realend)가 화면에 보이는 마지막페이지(endPage)보다 작은 경우, 보이는 페이지(endPage) 값 조정 */
+        if(realEnd < this.endPage) {
+            this.endPage = realEnd;
+        }
+        
+        /* 시작 페이지(startPage)값이 1보다 큰 경우 true */
+        this.prev = this.startPage > 1;
+        
+        /* 마지막 페이지(endPage)값이 1보다 큰 경우 true */
+        this.next = this.endPage < realEnd;
+        
+        
+    }
+    
+    
 }

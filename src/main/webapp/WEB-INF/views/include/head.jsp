@@ -81,15 +81,21 @@
             </div>            
             <div class="top-searchbar">
                <form action="/search" method="get">
-                  <input type="text" name="search" required="required" placeholder="지역, 사물함명으로 찾아보세요."/>
-                  <input type="submit" value="" />
+                  <input type="text" name="keyword" required="required" value="${paging.cri.keyword}" placeholder="지역, 사물함명으로 찾아보세요."/>
+                  <input class="search_area" type="submit" value="" />
                </form>
             </div>
             <div class="userinfo">
                <div class="user">
                   <ul>
+                  <c:if test="${empty authentication}">
                      <li><a href="/member/login"><img src="${contextPath}/resources/images/login.png" style="width: 18%"/></a>
                      <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
+                  </c:if>
+                  
+                  <c:if test="${not empty authentication}">
+                     <button>로그아웃</button>
+                  </c:if>
                   </ul>
                </div>
             </div>

@@ -19,7 +19,7 @@
 			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8">
 					 <div class="locker_area">
 					 	<img class="mainImg" src="${mains.lockerImage}">
-					 	<div class="locker_name">${mains.lockerTitle}"</div>
+					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
 					 		<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${mains.rentableDate}</span>
