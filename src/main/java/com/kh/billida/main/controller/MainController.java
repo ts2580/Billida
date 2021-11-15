@@ -44,27 +44,28 @@ public class MainController {
 		return "index";
 	}
 	
+	//메인페이지에서 검색어 입력 시 수행되는 메서드
 	@GetMapping("/search")
 	public String lockerList(Model model, Criteria cri, String keyword) {
 		
+		//맵에 값들 담아서 넘겨주기
 		Map<String, Object> commandMap = new HashMap<String, Object>();
 		commandMap.put("pageNum", cri.getPageNum());
 		commandMap.put("amount", cri.getAmount());
 		commandMap.put("keyword", keyword);
 		
-		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-		list = mainService.getListPaging(commandMap);
-		System.out.println("리스트 확인용 : " + list);
+		//각 페이지에 들어갈 게시물들 정보 뽑아오기
+		List<Map<String, Object>> list = mainService.getListPaging(commandMap);
 		
-		//cri.setKeyword(search);
+		//맵에 담은 후 모델에 전달
+		Map<String, Object> map = new HashMap<String, Object>();
 		
+		//검색어에 해당하는 게시물 갯수 구해오기
 		int total = mainService.getTotal(cri);
 		Paging paging = new Paging(cri, total);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("paging", paging);
-		
 		model.addAllAttributes(map);
 		
 		return "main/search";

@@ -25,10 +25,10 @@ public class Paging {
         this.cri = cri;
         this.total = total;
         
-        /* 마지막 페이지 */
-        this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
-        /* 시작 페이지 */
-        this.startPage = this.endPage - 9;
+        /* 마지막 페이지 */ //페이지 블록에 들어갈 페이지 갯수만큼 나누고 곱합
+        this.endPage = (int)(Math.ceil(cri.getPageNum()/5.0))*5;   
+        /* 시작 페이지 */ 
+        this.startPage = this.endPage - 4;
         
         /* 전체 마지막 페이지 */
         int realEnd = (int)(Math.ceil(total * 1.0/cri.getAmount()));

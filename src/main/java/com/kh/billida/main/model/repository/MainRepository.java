@@ -15,12 +15,6 @@ public interface MainRepository {
 	@Select("select * from locker")
 	List<Main> selectLockerList();
 
-	@Select("select * from locker where locker_title like '%'||#{keyword}||'%' or locker_content like '%'||#{keyword}||'%' or location like '%'||#{keyword}||'%'")
-	List<Main> selectLockerByKeyword(String search);
-
-	@Select("select count(*) from locker where locker_title like '%'||#{keyword}||'%' or locker_content like '%'||#{keyword}||'%' or location like '%'||#{keyword}||'%'")
-	int selectcountList(String search);
-
 	List<Map<String, Object>> getListPaging(Map<String, Object> commandMap);
 	
 	int getTotal(Criteria cri);

@@ -10,8 +10,6 @@ public interface MainService {
 
 	List<Main> selectLockerList();
 
-	Map<String, Object> selectLockerByKeyword(String search, int page);
-
 	List<Map<String, Object>> getListPaging(Map<String, Object> commandMap);
 	
 	int getTotal(Criteria cri);
