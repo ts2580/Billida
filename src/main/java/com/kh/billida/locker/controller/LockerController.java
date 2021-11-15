@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.billida.locker.model.service.LockerService;
-import com.webjjang.util.PageObject;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,10 +55,10 @@ public class LockerController {
 	
 	//리스팅
 	@GetMapping("/imageList")
-	public String imageList(PageObject pageObject, Model model) {
+	public String imageList(Model model) {
 		
-		log.info("pageObject : " + pageObject);
-		model.addAttribute("/imageList", lockerService.imageList(pageObject));
+		log.info("model : " + model);
+		
 		
 		return "imageList";
 	}

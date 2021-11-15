@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ taglib prefix="pageObject" tagdir="/WEB-INF/tags" %>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
 <title>이미지 리스트</title>
