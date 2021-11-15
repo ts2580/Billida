@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../../../resources/css/search.css" rel='stylesheet' type='text/css' />
 	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
 </head>
@@ -25,7 +26,7 @@
 			
 			<c:forEach items="${list}" var="lockerList">
 				<div class="locker_area">
-					<img class="mainImg" src="${lockerList.lockerImage}">
+					<div class="lockerImg" ><img class="imgs" src="${lockerList.lockerImage}"></div>
 					<div class="locker_name">${lockerList.lockerTitle}</div>
 					<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${lockerList.lockerContent}</div>
 					<div class="locker_info">
