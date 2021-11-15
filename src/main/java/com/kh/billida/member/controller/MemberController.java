@@ -77,10 +77,6 @@ public class MemberController {
 	    memberService.insertMember(form);
 	    return "redirect:/";
 	}
-	@GetMapping("/test")
-	public void test() {
-		
-	}
 	   @GetMapping("id-check")
 	   @ResponseBody
 	   public String idCheck(String id) {
@@ -122,5 +118,15 @@ public class MemberController {
 			session.setAttribute("authentication", certifiedUser); //세션에 올려주기
 			logger.debug(certifiedUser.toString());
 			return "redirect:/";
-		}   
+		}
+	   @GetMapping("logout")
+		public String logout(HttpSession session) {
+		   session.removeAttribute("authentication");
+		   return"redirect:/";
+		}
+	   @GetMapping("kakaoLogin")
+	   public String kakaoLogin() {
+			
+			return "/";
+		}
 }

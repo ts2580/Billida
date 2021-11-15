@@ -202,33 +202,28 @@ footer a:link {
       <span class="state">Log in</span>
     </button>
   </form>
-<a style="display: flex; margin-top: 5px; href="javascript:loginWithKakao();" id="custom-login-btn">
-	<img src="/resources/images/kakao_login_medium_wide.png" />
-	<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->
-	</a>
+  <form class="form-auth-small" name="kakaologin_frm" action="/member/kakaoLogin" method="post">
+								<div class="form-group" id="kakaoLogin">
+									<div class="kakaoBtn">
+										<!-- 카카오 정보 넣어줄 input 숨김처리로 넣어놓음 -->
+										<input type="hidden" name="kakaoId" id="kakaoId" />
+										<input type="hidden" name="kakaoEmail" id="kakaoEmail" />
+										<input type="hidden" name="kakaoNick" id="kakaoNick" />
+										<input type="hidden" name="kakaoGender" id="kakaoGender" />
+										<a href="javascript:loginWithKakao();" style="display: flex; margin-top: 5px; " id="custom-login-btn">
+											<img src="/resources/images/kakao_login_medium_wide.png" />
+											<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->
+										</a>
+									</div>
+								</div>
+							</form>
+
   <footer><a target="blank" href="http://boudra.me/"></a></footer>
   </p>
 </div>
-<!-- 	<script type="text/javascript">
-	var working = false;
-	$(".login").on("submit", function (e) {
-	  e.preventDefault();
-	  if (working) return;
-	  working = true;
-	  var $this = $(this),
-	    $state = $this.find("button > .state");
-	  $this.addClass("loading");
-	  $state.html("Authenticating");
-	  setTimeout(function () {
-	    $this.addClass("ok");
-	    $state.html("Welcome back!");
-	    setTimeout(function () {
-	      $state.html("Log in");
-	      $this.removeClass("ok loading");
-	      working = false;
-	    }, 4000);
-	  }, 3000);
-	});
-	</script> -->
+
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src='/resources/js/member/kakaoLogin.js'></script>
 </body>
 </html>

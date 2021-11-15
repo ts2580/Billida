@@ -94,7 +94,7 @@
                   </c:if>
                   
                   <c:if test="${not empty authentication}">
-                     <button>로그아웃</button>
+                     <a href="/member/logout">로그아웃</a>
                   </c:if>
                   </ul>
                </div>

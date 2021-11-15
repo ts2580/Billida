@@ -10,4 +10,5 @@ public interface MemberService {
 	Member selectMemberByUserId(String id);
 	Member authenticateUser(Member member);
 	Member selectMemberByNick(String nick);
+	void insertKaKaoMember(JoinForm form);
 }
