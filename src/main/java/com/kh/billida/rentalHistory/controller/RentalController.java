@@ -24,22 +24,29 @@ public class RentalController {
 	
 	private final RentalRepository rentalRepository;
 	
+	private int lockerId;
+	
+	private int userCode;
+	
 	@GetMapping("rental-form")
 	public void rental(Model model){
 		// Qwerasdf1234!
 		
 		LockerForLent locker = new LockerForLent();
 		
-		int param = 33;
-		locker.setLockerId(param);
-		// 메인페이지에서 넘어온 라커 ID 파라미터가 33이라고 가정
+		lockerId = 35;
+		locker.setLockerId(lockerId);
+		// 메인페이지에서 lockerId 타고 들어옴. 임시로 숫자 집어넣음
+		// 파라미터로 받을지 세션으로 받을지 상의 후 정할것
 		
-		// locker = rentalService.selectLocker(param);
+		// locker = rentalService.selectLocker(lockerId);
 		// 애는 또 왜 nullpoint가 뜨냐고
 		
-		locker = rentalRepository.selectLocker(param);
+		locker = rentalRepository.selectLocker(lockerId);
+		userCode = locker.getUserCode();
+		
 		model.addAttribute("locker", locker);
-		System.out.println(model);
+
 	}
 	
 	@PostMapping("rental-form")
@@ -48,6 +55,8 @@ public class RentalController {
 		// rentalService.insertRental(rental);
 		// 아니 애는 왜 null point
 		
+		rental.setLockerId(lockerId);
+		rental.setUserCode(Integer.toString(userCode));
 		
 		rentalRepository.insertRental(rental);
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지

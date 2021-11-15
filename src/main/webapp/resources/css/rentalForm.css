@@ -1,23 +1,40 @@
 @charset "UTF-8";
 
 .billigi{
-	margin-top: 150px;
+	margin-top: 100px;
 	margin-left: 10%;
 	width: 1356px;
 	height: 700px;
 	background-color: white;
 }
-.contents{
-	display: flex;
-}
+
 
 .title{
 	font-weight: bold;
 	font-size: 30px;
 	font-family: 'Single Day', cursive;
+	padding-top: 15px;
+	padding-left: 30px
+}
+
+.contents{
+	display: flex;
+	padding-left: 30px;
+	padding-top: 30px;
 }
 
 .pic{
-	width: 800px;
-	height: 800px;
+	width: 500px;
+	height: 500px;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
+
+.rental-contents{
+	padding-left: 50px
+}
+
+.rental-contents-title{
+	width: 110px;
+}
+
