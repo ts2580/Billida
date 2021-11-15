@@ -865,6 +865,13 @@ span.mail a:hover{
 		top: 2em;
 	}
 }
+
+@media only screen and (max-width:900px){
+	.main{
+			height: 250px;
+		}
+}
+
 /*--//End-media Quries for 1024px-monitors-*/
 /*--media Quries for 768px-monitors-*/
 @media only screen and (max-width:768px) and (min-width:640px) {	
