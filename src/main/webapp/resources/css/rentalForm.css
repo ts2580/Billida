@@ -1,7 +1,23 @@
 @charset "UTF-8";
 
-.test{
-	margin-top: 20%;
-	margin-left: 40%;
-	
+.billigi{
+	margin-top: 150px;
+	margin-left: 10%;
+	width: 1356px;
+	height: 700px;
+	background-color: white;
+}
+.contents{
+	display: flex;
+}
+
+.title{
+	font-weight: bold;
+	font-size: 30px;
+	font-family: 'Single Day', cursive;
+}
+
+.pic{
+	width: 800px;
+	height: 800px;
 }
