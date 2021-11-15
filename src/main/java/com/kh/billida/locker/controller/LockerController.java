@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/locker")
 @Slf4j
 public class LockerController {
@@ -60,7 +59,7 @@ public class LockerController {
 		log.info("model : " + model);
 		
 		
-		return "imageList";
+		return "/locker/imageList";
 	}
 	//보기
 	
