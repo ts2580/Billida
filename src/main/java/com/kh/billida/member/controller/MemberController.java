@@ -131,7 +131,7 @@ public class MemberController {
 				,Member member
 				,HttpSession session
 				,RedirectAttributes redirectAttr) {
-		   System.out.println(form.toString());
+		   System.out.println("여긴 멤버컨트롤러 처음"+form.toString());
 		   ValidateResult vr = new ValidateResult();
 		    model.addAttribute("error", vr.getError());
 
@@ -139,7 +139,8 @@ public class MemberController {
 		         vr.addError(errors);
 		         return "member/login";
 		      }
-		    System.out.println(form.toString());
+		    System.out.println("멤버서비스들어간다릿!"+form.toString());
+		    
 		    memberService.insertMember(form);
 		    return "redirect:/";
 		}

@@ -20,13 +20,14 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	   public void insertMember(JoinForm form) {
-		   System.out.println("여긴 멤버서비스임플이다 여기서 폼은 : "+form);
-		   	  if(form.getKakaonum()==null) {
-		   		System.out.println("여긴 멤버서비스임플이다 여기서 폼은 돌면 안된다. : "+form);
-		   		form.setPassword(passwordEncoder.encode(form.getPassword()));
-		   	  }
-		   	System.out.println("여긴 멤버서비스임플이다 여기서 이프문이 끝난뒤다  폼은 : "+form);
-		      memberRepository.insertMember(form);
+		   if(form.getKakaonum()==null) {
+		   form.setPassword(passwordEncoder.encode(form.getPassword()));
+		   memberRepository.insertMember(form);
+		   }else {
+			   System.out.println("이걸로가야댐");
+			   memberRepository.insertkakaoMember(form);
+			   System.out.println("나와야댐");
+		   }
 		   }
 	   public Member selectMemberByUserId(String id) {
 		      return memberRepository.selectMemberById(id);
