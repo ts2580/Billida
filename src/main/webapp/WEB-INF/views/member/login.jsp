@@ -202,21 +202,21 @@ footer a:link {
       <span class="state">Log in</span>
     </button>
   </form>
-  <form class="form-auth-small" name="kakaologin_frm" action="/member/kakaoLogin" method="post">
+  <form:form modelAttribute="joinForm" action="/member/kakaoLogin" name="kakaologin_frm" method="post" class="form-auth-small"  >
 								<div class="form-group" id="kakaoLogin">
 									<div class="kakaoBtn">
 										<!-- 카카오 정보 넣어줄 input 숨김처리로 넣어놓음 -->
-										<input type="hidden" name="kakaoId" id="kakaoId" />
-										<input type="hidden" name="kakaoEmail" id="kakaoEmail" />
-										<input type="hidden" name="kakaoNick" id="kakaoNick" />
-										<input type="hidden" name="kakaoGender" id="kakaoGender" />
+										<input type="hidden" name="id" id="kakaoId" />
+										<input type="hidden" name="email" id="kakaoEmail" />
+										<input type="hidden" name="nick" id="kakaoNick" />
+										<input type="hidden" name="kakaoNum" id="kakaoNum" />
 										<a href="javascript:loginWithKakao();" style="display: flex; margin-top: 5px; " id="custom-login-btn">
 											<img src="/resources/images/kakao_login_medium_wide.png" />
 											<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->
 										</a>
 									</div>
 								</div>
-							</form>
+							</form:form>
 
   <footer><a target="blank" href="http://boudra.me/"></a></footer>
   </p>
