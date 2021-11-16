@@ -32,13 +32,11 @@ public class JoinFormValidator implements Validator {
 		if (memberRepository.selectMemberById(form.getId()) != null) {
 			errors.rejectValue("Id", "error-Id", "이미 존재하는 아이디입니다.");
 		}
-		boolean valid = true;
 		// 2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인
-		if(form.getKakaonum()!="1") {
-		valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
+		boolean valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 		if (!valid) {
+			System.out.println("조인폼벨리안임 여기들어와짐?");
 			errors.rejectValue("password", "error-password", "비밀번호는 8글자 이상의 숫자 영문자 특수문자 조합입니다.");
-		}
 		}
 		// 3. 전화번호가 9~11 자리의 숫자
 		valid = Pattern.matches("^\\d{9,11}$", form.getPhone());
