@@ -5,44 +5,49 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="stylesheet" href="${contextPath}/resources/css/rentalForm.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 </head>
 <body>
 
-	<form:form action="/rental/rental-form" method="post" id="rental" class="test">
-		<table border="1">
-			<tr>
-				<td>대여번호 :</td>
-				<td><input type="number" name="historyIndex" value="${rental.historyIndex}" placeholder="기본키-중복x-높은숫자 암거나" /></td>
-			</tr>
-			<tr>
-				<td>택배함 번호 :</td>
-				<td><input type="number" name="lockerId" value="${rental.lockerId}" placeholder="DB에 있는 택배함 번호로"/></td>
-			</tr>
-			<tr>
-				<td>유저코드 :</td>
-				<td><input type="text" name="UserCode" value="${rental.userCode}" placeholder="DB에 있는 유저 코드로"/></td>
-			</tr>
-			<tr>
-				<td>대여시작일 :</td>
-				<td><input type="date" name="RentStart" value="${rental.rentStart}" /></td>
-			</tr>
-			<tr>
-				<td>대여 종료일 :</td>
-				<td><input type="date" name="RentEnd" value="${rental.rentEnd}" /></td>
-			</tr>
-			<tr>
-				<td>비용 :</td>
-				<td><input type="number" name="rentCost" value="${rental.rentCost}" /></td>
-			</tr>
-			<tr>
-				<td>반납시 택배함 이미지 :</td>
-				<td><input type="text" name="rentPic" value="${rental.rentPic}"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="대여" /></td>
-			</tr>
-		</table>
-	</form:form>
+	<div class="billigi">
+		<div class="title">${locker.lockerTitle}</div>
+		<div class="contents">
+			<div>
+				<img src="${locker.lockerImage}" class="pic">
+			</div>
+			<form:form action="/rental/rental-form" method="post" id="rental" class="rental-contents">
+				<table>
+					<tr>
+						<td colspan="2"><i class="fas fa-map-marker-alt"></i>${locker.location}</td>
+					</tr>
+					<tr>
+						<td class="rental-contents-title">사이즈</td>
+						<td>${locker.lockerSize}</td>
+					</tr>
+					<tr>
+						<td class="rental-contents-title">대여 시작일</td>
+						<td><input type="date" name="RentStart" value="${rental.rentStart}"/></td>
+					</tr>
+					<tr>
+						<td class="rental-contents-title">대여 종료일</td>
+						<td><input type="date" name="RentEnd" value="${rental.rentEnd}"/></td>
+					</tr>
+					<tr>
+						<td class="rental-contents-title">비용</td>
+						<td><input type="number" name="rentCost" value="${rental.rentCost}"/></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="대여" /></td>
+					</tr>
+				</table>
+			</form:form>
+		</div>
+
+
+	</div>
+
 
 
 </body>

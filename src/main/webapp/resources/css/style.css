@@ -24,24 +24,17 @@ img{max-width:100%;}
 body{
 	font-family: 'Open Sans', sans-serif;
 	background:#F0EFEE;
+	height: 100%;
 }
 
-@media only screen and (max-width: 1090px){
-	.locker_list{
-		display: flex;
-		flex-direction: column;
-		align-content: center;
-		align-items: center;
-	}
-	
-	.locker_area{
-		display: flex;
-		flex-direction: column;
-		padding-bottom: 75px;
-	}
-	
-}
+html {
+  position: relative;
+  min-height: 100%; }
 
+  
+.list2, .list3{
+	display: none;
+}
 
 /*---start-wrap----*/
 .wrap{
@@ -61,6 +54,8 @@ body{
 .content{
 	display:flex;
 	justify-content:center;
+	flex-direction: column;
+	align-items: center;
 	margin-top: 78px;
 }
 
@@ -74,7 +69,16 @@ body{
 .mainImg{
 	width: 100%;
 	height: 100%;
+}
 
+.lockerImg{
+	height: 250px;
+	width: 250px;
+}
+
+.imgs{
+	height: 250px;
+	width: 250px;
 }
 
 #recommendList{
@@ -89,7 +93,7 @@ body{
 
 .locker_list{
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .locker_area{
@@ -787,6 +791,37 @@ span.mail a:hover{
 		padding: 10px;
 	}
 }
+
+@media only screen and (max-width: 1090px) {
+	/* .locker_list{
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
+	}
+	
+	.locker_area{
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 75px;
+	} */
+	
+	.list1{
+		display:none;
+	}
+	
+	.list2, .list3{
+		display: flex;
+		justify-content: space-evenly;
+		padding-bottom: 85px;
+	}
+	
+	.pageInfo_area{
+		padding-top: 100px;
+	}
+	
+}  
+
 /*--//End-media Quries for 1366px-monitors-*/
 /*--media Quries for 1280px-monitors-*/
 @media only screen and (max-width:1280px) and (min-width:1024px) {
@@ -803,6 +838,7 @@ span.mail a:hover{
 		width: 30.2%;
 	}
 }
+
 /*--//End-media Quries for 1280px-monitors-*/
 /*--media Quries for 1024px-monitors-*/
 @media only screen and (max-width:1024px) and (min-width:768px) {
@@ -829,9 +865,17 @@ span.mail a:hover{
 		top: 2em;
 	}
 }
+
+@media only screen and (max-width:900px){
+	.main{
+			height: 250px;
+		}
+}
+
 /*--//End-media Quries for 1024px-monitors-*/
 /*--media Quries for 768px-monitors-*/
-@media only screen and (max-width:768px) and (min-width:640px) {
+@media only screen and (max-width:768px) and (min-width:640px) {	
+	
 	.wrap{
 		width:100%;
 	}
@@ -917,9 +961,27 @@ span.mail a:hover{
 		margin: 0.44em 1.5em;
 	}
 }
+
+@media only screen and (max-width:660px){
+	.list2, .list3{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-bottom: 0;
+	}
+	
+	.locker_area{
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 75px;
+	}	
+}
+
 /*--//End-media Quries for 768px-monitors-*/
 /*--media Quries for 640px-monitors-*/
 @media only screen and (max-width:640px) and (min-width:480px) {
+	
+	
 	.wrap{
 		width:90%;
 	}

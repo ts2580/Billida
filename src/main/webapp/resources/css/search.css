@@ -1,21 +1,81 @@
 @charset "UTF-8";
 
-.pageInfo{
-      list-style : none;
-      display: inline-block;
-    margin: 50px 0 0 100px;      
-  }
-  .pageInfo li{
-      float: left;
-    font-size: 20px;
-    margin-left: 18px;
-    padding: 7px;
-    font-weight: 500;
-  }
- a:link {color:black; text-decoration: none;}
- a:visited {color:black; text-decoration: none;}
- a:hover {color:black; text-decoration: underline;}
+.pageInfo {
+	list-style: none;
+	display: inline-block;
+}
 
-.active{
-      background-color: #cdd5ec;
-  }
+.pageInfo li {
+	display:flex;
+	justify-content: center;
+	float: left;
+	font-size: 15px;
+	padding: 8px 16px;
+	border-radius: 35%;
+	width: 8px;
+	cursor: pointer;
+}
+
+.pageInfo li.active{
+	background-color: orange;
+	color: white;
+}
+
+.pageInfo li:hover:not(.active){
+	background-color: silver;
+}
+
+li:link {
+	color: black;
+	text-decoration: none;
+}
+
+li:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #cdd5ec;
+}
+
+.pageInfo_wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.pageInfo_area {
+	padding-top: 125px;
+	
+}
+
+.searchInfo {
+	display: flex;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	font-size: 18px;
+}
+
+.searchInfo a:hover {
+	text-decoration: none;
+	color: darkorange;
+}
+
+.keywordInfo {
+	color: darkorange;
+	border-bottom: 1px solid darkorange;
+}
+
+.no_search {
+	margin-top: 40px;
+	text-align: center;
+	line-height: 35px;
+}
+
+hr{
+	margin: 0;
+	width: 98%;
+	padding-bottom: 25px;
+	border-left: hidden;
+}
+

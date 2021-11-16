@@ -95,6 +95,7 @@ public class MainControllerTest {
 		mainRepositoryTest.insertWithDto(main);
 	}
 	
+	//여성안심택배함api 
 	@Test
 	public void insertDummyApi() throws IOException, JSONException {
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_female_safety_hdrycstdyplace_api"); /*URL*/
@@ -128,23 +129,17 @@ public class MainControllerTest {
 		jArray = jsonResponse.getJSONArray("items");
 		System.out.println(jArray.toString());
 		
-		//fcltyNm시설명
-		//rdnmadr 도로명주소
-		//lnmadr 지번주소(~동)
-		//latitude 위도
-		//longitude 경도
-		//insttCode 제공기관 코드(비번으로 넣을까?)
+		//fcltyNm시설명,rdnmadr 도로명주소, lnmadr 지번주소(~동), latitude 위도, longitude 경도, insttCode 제공기관 코드(비번으로 넣을까?)
 		String name;
 		String roadAd;
 		String address;
 		String latitude;
 		String longitude;
 		int password;
-		//String size;
-		LocalDate targetDate = LocalDate.of(2021, 12, 25);
+		LocalDate targetDate = LocalDate.of(2021, 12, 25); //대여가능날짜 임시 지정
 		
 		Main main = new Main();
-	
+		//임시 이미지url 불러오기
 		File file = new File("C:/CODE/imgUrl.txt");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufReader = new BufferedReader(fileReader);
@@ -165,8 +160,7 @@ public class MainControllerTest {
 			latitude = obj.getString("latitude");
 			longitude = obj.getString("longitude");
 			password = obj.getInt("insttCode");
-			//size = obj.getString("boxHg");
-			System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
+			//System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
 			
 			//main.setUserCode("1");
 			main.setLockerTitle(name);
@@ -183,6 +177,7 @@ public class MainControllerTest {
 		}
 	}
 	
+	//이미지url 불러오기 테스트
 	@Test
 	public void fileread() throws IOException {
 		File file = new File("C:/CODE/imgUrl.txt");
@@ -195,8 +190,6 @@ public class MainControllerTest {
         while((str = bufReader.readLine()) != null){
             urlList.add(str);
         }
-        
-        System.out.println("0번 인덱스 : " + urlList.get(0));
         bufReader.close();
 	}
 	
@@ -205,6 +198,7 @@ public class MainControllerTest {
 		List<Main> lockers = mainRepositoryTest.lockers();
 	}
 	
+	//페이지 번호에 따른 데이터 출력되는지 테스트
 	@Test
 	public void getListPagingTest() {
 		Criteria cri = new Criteria();
@@ -217,7 +211,7 @@ public class MainControllerTest {
 		mainRepositoryTest.getListPaging(commandMap);	
 	}
 	
-
+	//키워드 검색 시 추출되는 데이터의 갯수
 	@Test
 	public void getTotal() {
 		int total = mainRepositoryTest.getTotal("성동");

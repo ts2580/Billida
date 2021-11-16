@@ -25,21 +25,11 @@ public class MainServiceImpl implements MainService {
 		return mainList;
 	}
 
-	@Override
-	public Map<String, Object> selectLockerByKeyword(String search, int page) {
-		int cntPerPage = 5;
-		
-		List<Main> searchList = mainRepository.selectLockerByKeyword(search);
-	
-			
-		return Map.of("searchList", searchList);
-	}
-
 	//게시판 페이징
 	@Override
 	public List<Map<String, Object>> getListPaging(Map<String, Object> commandMap) {
-		
-		return mainRepository.getListPaging(commandMap);
+		List<Map<String,Object>> lockers = mainRepository.getListPaging(commandMap);
+		return lockers;
 	}
 
 	//검색 락커 총 갯수

@@ -75,11 +75,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/test")
-	public void test() {
-
-	}
-
 	@GetMapping("id-check")
 	@ResponseBody
 	public String idCheck(String id) {
@@ -124,6 +119,18 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("authentication");
+		return "redirect:/";
+	}
+
+	@GetMapping("kakaoLogin")
+	public String kakaoLogin() {
+
+		return "/";
+	}
+
 	@GetMapping("/check")
 	public String passwordCheck(Member member, HttpSession session, RedirectAttributes redirctAttr) {
 
@@ -131,7 +138,7 @@ public class MemberController {
 			redirctAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
 			return "redirect:/member/login";
 		}
-		
+
 		return "member/check";
 	}
 

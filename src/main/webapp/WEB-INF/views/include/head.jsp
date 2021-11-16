@@ -65,7 +65,7 @@
                       <div class="form_content">
                         <div class="menu_box_list">
                            <ul>
-                         	  <li><a href="#"><span>HOME</span></a></li>
+                         	  <li><a href="/"><span>HOME</span></a></li>
                               <li><a href="/member/check"><span>마이페이지</span></a></li>
                               <li><a href="#"><span>빌리기</span></a></li>
                               <li><a href="#"><span>빌려주기</span></a></li>
@@ -94,7 +94,7 @@
                   </c:if>
                   
                   <c:if test="${not empty authentication}">
-                     <button>로그아웃</button>
+                     <a href="/member/logout">로그아웃</a>
                   </c:if>
                   </ul>
                </div>
