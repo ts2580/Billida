@@ -31,105 +31,118 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("member")
 public class MemberController {
-
+	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	
 	private final MemberService memberService;
-	private final JoinFormValidator joinFormValidator;
+    private final JoinFormValidator joinFormValidator;
 
-	@InitBinder(value = "joinForm") // model의 속성 중 속성명이 joinForm인 속성이 있는 경우 initBinder 메서드 실행
-	public void initBinder(WebDataBinder webDataBinder) {
-		webDataBinder.addValidators(joinFormValidator);
-	}
-
+    @InitBinder(value = "joinForm") //model의 속성 중 속성명이 joinForm인 속성이 있는 경우 initBinder 메서드 실행
+    public void initBinder(WebDataBinder webDataBinder) {
+       webDataBinder.addValidators(joinFormValidator);
+    }
+    
 	@GetMapping("signUp")
 	public void singUp(Model model) {
-		model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
+		model.addAttribute(new JoinForm()).addAttribute("error",new ValidateResult().getError());
 	}
-
+	
 	@PostMapping("/message")
 	public @ResponseBody String testMessage(String phonNumber) {
 		Random rand = new Random();
-		String numStr = "";
+		String numStr ="";
 		for (int i = 0; i < 6; i++) {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr += ran;
 		}
-		SMSSender.certifiedPhoneNumber(phonNumber, numStr);
+		SMSSender.certifiedPhoneNumber(phonNumber,numStr);
 		return "/";
-
+				
 	}
-
+	
 	@PostMapping("signUp")
-	public String signUp(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
-			RedirectAttributes redirectAttr) {
+	public String signUp(@Validated JoinForm form
+									,Errors errors
+									,Model model
+									,HttpSession session
+									,RedirectAttributes redirectAttr) {
 
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
+	    ValidateResult vr = new ValidateResult();
+	    model.addAttribute("error", vr.getError());
 
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/signUp";
+	    if(errors.hasErrors()) {      
+	         vr.addError(errors);
+	         return "member/signUp";
+	      }
+	    memberService.insertMember(form);
+	    return "redirect:/";
+	}
+	   @GetMapping("id-check")
+	   @ResponseBody
+	   public String idCheck(String id) {
+	      Member member = memberService.selectMemberByUserId(id);
+	      
+	      if(member == null) {
+	         return "available"; 
+	      }else {
+	         return "disable";
+	      }
+	   }
+	   @GetMapping("nick-check")
+	   @ResponseBody
+	   public String nickCheck(String nick) {
+	      Member member = memberService.selectMemberByNick(nick);
+	      
+	      if(member == null) {
+	         return "available"; 
+	      }else {
+	         return "disable";
+	      }
+	   }
+	   @GetMapping("login")
+		public void login(Model model) {
+		   //카카오 로그인시 신규회원용
+		   model.addAttribute(new JoinForm()).addAttribute("error",new ValidateResult().getError());
 		}
-		memberService.insertMember(form);
-		return "redirect:/";
-	}
-
-	@GetMapping("id-check")
-	@ResponseBody
-	public String idCheck(String id) {
-		Member member = memberService.selectMemberByUserId(id);
-
-		if (member == null) {
-			return "available";
-		} else {
-			return "disable";
+	   
+	   @PostMapping("login")
+		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirctAttr){
+			Member certifiedUser = memberService.authenticateUser(member);
+			System.out.println(member);
+			if(certifiedUser == null) {
+				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
+				return "redirect:/member/login";
+			}
+			
+			
+			session.setAttribute("authentication", certifiedUser); //세션에 올려주기
+			logger.debug(certifiedUser.toString());
+			return "redirect:/";
 		}
-	}
-
-	@GetMapping("nick-check")
-	@ResponseBody
-	public String nickCheck(String nick) {
-		Member member = memberService.selectMemberByNick(nick);
-
-		if (member == null) {
-			return "available";
-		} else {
-			return "disable";
+	   @GetMapping("logout")
+		public String logout(HttpSession session) {
+		   session.removeAttribute("authentication");
+		   return"redirect:/";
 		}
-	}
+	   @PostMapping("kakaoLogin")
+	   public String kakaoLogin(@Validated JoinForm form
+				,Errors errors
+			     ,Model model
+				,Member member
+				,HttpSession session
+				,RedirectAttributes redirectAttr) {
+		   System.out.println(form.toString());
+		   ValidateResult vr = new ValidateResult();
+		    model.addAttribute("error", vr.getError());
 
-	@GetMapping("login")
-	public void login() {
-
-	}
-
-	@PostMapping("login")
-	public String loginlmpl(Member member, HttpSession session, RedirectAttributes redirctAttr) {
-		System.out.println(member.toString());
-		Member certifiedUser = memberService.authenticateUser(member);
-
-		if (certifiedUser == null) {
-			redirctAttr.addFlashAttribute("message", "아이디나 비밀번호가 정확하지 않습니다.");
-			return "redirect:/member/login";
+		    if(errors.hasErrors()) {      
+		         vr.addError(errors);
+		         return "member/login";
+		      }
+		    System.out.println(form.toString());
+		    memberService.insertMember(form);
+		    return "redirect:/";
 		}
-
-		session.setAttribute("authentication", certifiedUser); // 세션에 올려주기
-		logger.debug(certifiedUser.toString());
-		return "redirect:/";
-	}
-
-	@GetMapping("logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("authentication");
-		return "redirect:/";
-	}
-
-	@GetMapping("kakaoLogin")
-	public String kakaoLogin() {
-
-		return "/";
-	}
 
 	@GetMapping("/check")
 	public String passwordCheck(Member member, HttpSession session, RedirectAttributes redirctAttr) {
