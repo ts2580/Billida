@@ -25,7 +25,6 @@ public class ReviewController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ReviewService reviewService;
 	
-
 	@GetMapping("review-form")// href=/review/review-form?historyIndex=인덱스번호
 	public void reviewFormInfo(Model model, int historyIndex) {
 
