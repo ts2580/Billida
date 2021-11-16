@@ -15,7 +15,7 @@ public class Member {
 	private String address;
 	private String addressDetail;
 	private String email;
-	private int kakao_num;
+	private String kakaoNum;
 	private String grade;
 	private int mileage;
 	private long member_X;

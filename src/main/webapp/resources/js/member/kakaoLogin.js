@@ -18,16 +18,18 @@ function loginWithKakao(){
 				const id = res.id;		
 				const email = res.kakao_account.email;
 				const nick = res.properties.nickname;
+				const num = res.kakaoNum;
 				alert(nick+' 님 환영합니다!');	
 				console.log(email);
 				console.log(nick);
 				console.log(id);
-							
+					
 				document.getElementById('kakaoId').value = id;
 				document.getElementById('kakaoEmail').value = email;
 				document.getElementById('kakaoNick').value = nick;
+				document.getElementById('kakaoNum').value = 0;
 				document.kakaologin_frm.submit();
-				location.href="/";
+				//location.href="/";
 				}
 			})
 		},
