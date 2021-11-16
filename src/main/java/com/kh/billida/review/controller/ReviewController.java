@@ -20,12 +20,12 @@ public class ReviewController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ReviewService reviewService;
 	
-	@GetMapping("/review-form")
+	@GetMapping("review-form")
 	public void reviewForm() {};
 	
-	@PostMapping("/review-form")
+	@PostMapping("review-form")
 	public String uploadReview() {
-		return "/";
+		return "index";
 	}
 	
 
