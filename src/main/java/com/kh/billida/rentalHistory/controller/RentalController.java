@@ -29,15 +29,15 @@ public class RentalController {
 	private int userCode;
 	
 	@GetMapping("rental-form")
-	public void rental(Model model){
+	public void rental(Model model, LockerForLent locker){
 		// Qwerasdf1234!
-		
-		LockerForLent locker = new LockerForLent();
 		
 		lockerId = 35;
 		locker.setLockerId(lockerId);
 		// 메인페이지에서 lockerId 타고 들어옴. 임시로 숫자 집어넣음
 		// 파라미터로 받을지 세션으로 받을지 상의 후 정할것
+		
+		System.out.println(locker);
 		
 		// locker = rentalService.selectLocker(lockerId);
 		// 애는 또 왜 nullpoint가 뜨냐고
