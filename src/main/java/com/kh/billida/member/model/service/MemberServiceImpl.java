@@ -40,6 +40,11 @@ public class MemberServiceImpl implements MemberService{
 		      return null;
 		      
 		   }
+	@Override
+	public void insertKaKaoMember(JoinForm form) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
