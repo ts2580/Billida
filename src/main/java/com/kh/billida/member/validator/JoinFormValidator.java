@@ -25,18 +25,21 @@ public class JoinFormValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		JoinForm form = (JoinForm) target;
-
+		System.out.println("여긴 조인폼벨리데이터!"+form);
+		if(form.getKakaonum()==null) {
+		
 		// 1. 아이디 존재 유무
 		if (memberRepository.selectMemberById(form.getId()) != null) {
 			errors.rejectValue("Id", "error-Id", "이미 존재하는 아이디입니다.");
 		}
-
+		boolean valid = true;
 		// 2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인
-		boolean valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
+		if(form.getKakaonum()!="1") {
+		valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 		if (!valid) {
 			errors.rejectValue("password", "error-password", "비밀번호는 8글자 이상의 숫자 영문자 특수문자 조합입니다.");
 		}
-
+		}
 		// 3. 전화번호가 9~11 자리의 숫자
 		valid = Pattern.matches("^\\d{9,11}$", form.getPhone());
 		if (!valid) {
@@ -45,7 +48,10 @@ public class JoinFormValidator implements Validator {
 		// 4. 닉네임 존재유무
 		
 		  if(memberRepository.selectMemberByNick(form.getNick()) != null) {
-		  errors.rejectValue("nick", "error-nick", "이미 존재하는 닉네임입니다."); }
+		  errors.rejectValue("nick", "error-nick", "이미 존재하는 닉네임입니다."); 
+		  }
+			
+		}
 		 
 	}
 

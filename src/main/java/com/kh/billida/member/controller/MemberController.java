@@ -100,15 +100,15 @@ public class MemberController {
 	      }
 	   }
 	   @GetMapping("login")
-		public void login() {
-			
+		public void login(Model model) {
+		   //카카오 로그인시 신규회원용
+		   model.addAttribute(new JoinForm()).addAttribute("error",new ValidateResult().getError());
 		}
 	   
 	   @PostMapping("login")
-		public String loginlmpl( Member member, HttpSession session, RedirectAttributes redirctAttr){
-		    System.out.println(member.toString());
+		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirctAttr){
 			Member certifiedUser = memberService.authenticateUser(member);
-			
+			System.out.println(member);
 			if(certifiedUser == null) {
 				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
 				return "redirect:/member/login";
@@ -124,9 +124,23 @@ public class MemberController {
 		   session.removeAttribute("authentication");
 		   return"redirect:/";
 		}
-	   @GetMapping("kakaoLogin")
-	   public String kakaoLogin() {
-			
-			return "/";
+	   @PostMapping("kakaoLogin")
+	   public String kakaoLogin(@Validated JoinForm form
+				,Errors errors
+			     ,Model model
+				,Member member
+				,HttpSession session
+				,RedirectAttributes redirectAttr) {
+		   System.out.println(form.toString());
+		   ValidateResult vr = new ValidateResult();
+		    model.addAttribute("error", vr.getError());
+
+		    if(errors.hasErrors()) {      
+		         vr.addError(errors);
+		         return "member/login";
+		      }
+		    System.out.println(form.toString());
+		    memberService.insertMember(form);
+		    return "redirect:/";
 		}
 }

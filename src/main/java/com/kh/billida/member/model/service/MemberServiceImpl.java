@@ -20,7 +20,12 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	   public void insertMember(JoinForm form) {
-		      form.setPassword(passwordEncoder.encode(form.getPassword()));
+		   System.out.println("여긴 멤버서비스임플이다 여기서 폼은 : "+form);
+		   	  if(form.getKakaonum()==null) {
+		   		System.out.println("여긴 멤버서비스임플이다 여기서 폼은 돌면 안된다. : "+form);
+		   		form.setPassword(passwordEncoder.encode(form.getPassword()));
+		   	  }
+		   	System.out.println("여긴 멤버서비스임플이다 여기서 이프문이 끝난뒤다  폼은 : "+form);
 		      memberRepository.insertMember(form);
 		   }
 	   public Member selectMemberByUserId(String id) {
@@ -40,11 +45,7 @@ public class MemberServiceImpl implements MemberService{
 		      return null;
 		      
 		   }
-	@Override
-	public void insertKaKaoMember(JoinForm form) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	   
 }
+
+
