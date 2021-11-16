@@ -13,13 +13,13 @@
 	<a class="review_title">리뷰등록</a>
 	<a class="review_info">별점과 리뷰를 남겨주세요.</a>
 		<div>
-			<form:form modelAttribute="reviewForm" action="/review/review-form" method="post" id="frm_review">
+			<form:form action="/review/upload-review" method="post" id="frm_review">
 				<div>
-					<div>사물함이미지</div>
+					<div><img class="reviewImg" src="${reviews.lockerImage}"></div>
 					<div>
-						<span>- 사물함명 : </span>
-						<span>- 대여날짜 : </span>
-						<span>- 반납날짜 : </span>
+						<span>- 사물함명 : ${reviews.lockerTitle}</span>
+						<span>- 대여날짜 : ${reviews.rentStart}</span>
+						<span>- 반납날짜 : ${reviews.rentEnd}</span>
 					</div>
 				</div>
 				<div>만족도 체크</div>
@@ -52,6 +52,7 @@
 		
 		
 </div>
+
 
 <script type="text/javascript">
 
