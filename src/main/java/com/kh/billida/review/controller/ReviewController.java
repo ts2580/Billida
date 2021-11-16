@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.billida.main.model.service.MainService;
+import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.service.ReviewService;
 
@@ -34,11 +38,21 @@ public class ReviewController {
 		model.addAttribute("reviews", reviews);
 	}
 	
-	/*
-	 * @PostMapping("") public String uploadReview() {
-	 * 
-	 * }
-	 */
+	
+	@PostMapping("upload-review")
+	public String uploadReview(@SessionAttribute("reviews") RentHistoryAndLocker reviews
+								,@SessionAttribute("authentication") Member member
+								,@RequestParam List<MultipartFile> reviewInfo
+								,RentHistoryAndLocker rentInfo
+								,String starScore) {
+		
+		rentInfo.setUserCode(member.getUserCode());
+		reviewService.insertReview(reviewInfo, rentInfo);
+		
+		
+		return "index";
+	}
+	 
 	
 	
 	

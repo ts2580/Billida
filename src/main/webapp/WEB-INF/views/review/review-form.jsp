@@ -13,7 +13,7 @@
 	<a class="review_title">리뷰등록</a>
 	<a class="review_info">별점과 리뷰를 남겨주세요.</a>
 		<div>
-			<form:form action="/review/upload-review" method="post" id="frm_review">
+			<form:form action="/review/upload-review" method="post" id="frm_review" enctype="multipart/form-data">
 				<div>
 					<div><img class="reviewImg" src="${reviews.lockerImage}"></div>
 					<div>

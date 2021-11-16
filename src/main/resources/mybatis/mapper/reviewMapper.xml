@@ -14,5 +14,12 @@
   	</select>
 
   
+  	<insert id="insertReview">
+  		insert into review(review_num, user_code, history_index, locker_id, content, score)
+		values(review_num.nextval, '1', 11, 35, '리뷰테스트', '4.5')
+  	</insert>
+  
+  
+  
   
   </mapper>
