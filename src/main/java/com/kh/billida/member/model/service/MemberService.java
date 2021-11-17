@@ -7,7 +7,8 @@ import com.kh.billida.member.validator.JoinForm;
 public interface MemberService {
 
 	void insertMember(JoinForm form);	
-	Member selectMemberByUserId(String id);
+	Member selectMemberById(String id);
 	Member authenticateUser(Member member);
 	Member selectMemberByNick(String nick);
+	void updateMember(JoinForm form);
 }

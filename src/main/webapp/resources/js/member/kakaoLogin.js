@@ -39,7 +39,7 @@ function loginWithKakao(){
 	});
 }
 
-/*function unlinkApp() {
+function unlinkApp() {
 	Kakao.API.request({
 		url: '/v1/user/unlink',
 		success: function(response) {
@@ -66,4 +66,4 @@ function kakaoLogout() {
       alert('로그아웃 완료!');
       location.href="/member/logout";
 	})
- }*/
+ }

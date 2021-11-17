@@ -93,7 +93,10 @@
                      <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
                   </c:if>
                   
-                  <c:if test="${not empty authentication}">
+                  <c:if test="${not empty authentication.kakaoNum}">
+                     <a href="javascript:kakaoLogout();">카카오 로그아웃</a>
+                  </c:if>
+                  <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
                      <a href="/member/logout">로그아웃</a>
                   </c:if>
                   </ul>
@@ -104,6 +107,9 @@
       </div>
       
       <!----wookmark-scripts---->
+      
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src='/resources/js/member/kakaoLogin.js'></script>
         <script src="${contextPath}/resources/js/jquery.imagesloaded.js"></script>
         <script src="${contextPath}/resources/js/jquery.wookmark.js"></script>
         <script type="text/javascript">

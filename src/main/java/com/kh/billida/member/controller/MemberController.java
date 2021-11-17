@@ -1,5 +1,6 @@
 package com.kh.billida.member.controller;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -80,7 +81,7 @@ public class MemberController {
 	   @GetMapping("id-check")
 	   @ResponseBody
 	   public String idCheck(String id) {
-	      Member member = memberService.selectMemberByUserId(id);
+	      Member member = memberService.selectMemberById(id);
 	      
 	      if(member == null) {
 	         return "available"; 
@@ -131,17 +132,49 @@ public class MemberController {
 				,Member member
 				,HttpSession session
 				,RedirectAttributes redirectAttr) {
+		   member = memberService.selectMemberById(form.getId());
+		   System.out.println("컨트롤러처음"+member);
+		   if(member!=null&&member.getName()!=null) {
+			   Member certifiedUser = memberService.authenticateUser(member);
+			    session.setAttribute("authentication", certifiedUser);
+			   return"redirect:/";
+			   }
+		   
 		   System.out.println("여긴 멤버컨트롤러 처음"+form.toString());
-		   ValidateResult vr = new ValidateResult();
+		   System.out.println("멤버서비스들어간다릿!"+form.toString());
+		   if(member==null) { 
+		   memberService.insertMember(form);
+		   }
+		    System.out.println("카카오회원가입초기 이후 멤버값"+form.toString());
+		    System.out.println("폼에들어가는 아이디여"+form.getId());
+		    member = memberService.selectMemberById(form.getId());
+		    System.out.println(member);
+		    Member certifiedUser = memberService.authenticateUser(member);
+		    session.setAttribute("authentication", certifiedUser); //세션에 올려주기
+		    return "redirect:/member/kakaoSignup";
+		    
+		}
+	   @GetMapping("kakaoSignup")
+	   public void kakaoSignup(@Validated JoinForm form,Model model) {
+		   model.addAttribute(new JoinForm()).addAttribute("error",new ValidateResult().getError());
+		   System.out.println("겟매핑에서 폼"+form);
+	   }
+	   
+		@PostMapping("kakaoSignup")
+		public String kakaoSignup(@Validated JoinForm form
+										,Errors errors
+										,Member member
+										,Model model
+										,HttpSession session
+										,RedirectAttributes redirectAttr) {
+		    ValidateResult vr = new ValidateResult();
 		    model.addAttribute("error", vr.getError());
-
 		    if(errors.hasErrors()) {      
 		         vr.addError(errors);
-		         return "member/login";
-		      }
-		    System.out.println("멤버서비스들어간다릿!"+form.toString());
-		    
-		    memberService.insertMember(form);
+		         return "member/kakaoSignup";
+		    }
+		    System.out.println("폼에 들어가나?"+form);
+		    memberService.updateMember(form);
 		    return "redirect:/";
 		}
 }
