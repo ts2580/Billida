@@ -10,9 +10,9 @@ import com.kh.billida.member.validator.JoinForm;
 @Mapper
 public interface MemberRepository {
 
-	@Insert ("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade,kakaonum)"
+	@Insert ("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade)"
 			+ " values(USER_CODE.nextval,#{id},#{password},#{name},#{nick}"
-			+ ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01',#{kakaonum})")
+			+ ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01')")
 	void insertMember(JoinForm form);
 	
 	@Select("select * from member where id = #{id}")
@@ -23,4 +23,8 @@ public interface MemberRepository {
 	
 	@Select("select * from member where id = #{id} and password = #{password}")
 	Member authenicateUser(Member member);
+
+	@Insert ("insert into member(user_code,id,nick,email,grade,kakaonum)"
+			+ " values(USER_CODE.nextval,#{id},#{nick},#{email},'01',#{kakaonum})")
+	void insertkakaoMember(JoinForm form);
 }

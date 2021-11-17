@@ -209,7 +209,7 @@ footer a:link {
 										<input type="hidden" name="id" id="kakaoId" />
 										<input type="hidden" name="email" id="kakaoEmail" />
 										<input type="hidden" name="nick" id="kakaoNick" />
-										<input type="hidden" name="kakaoNum" id="kakaoNum" />
+										<input type="hidden" name="kakaonum" id="kakaonum" />
 										<a href="javascript:loginWithKakao();" style="display: flex; margin-top: 5px; " id="custom-login-btn">
 											<img src="/resources/images/kakao_login_medium_wide.png" />
 											<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->

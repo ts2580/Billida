@@ -27,7 +27,7 @@ function loginWithKakao(){
 				document.getElementById('kakaoId').value = id;
 				document.getElementById('kakaoEmail').value = email;
 				document.getElementById('kakaoNick').value = nick;
-				document.getElementById('kakaoNum').value = 0;
+				document.getElementById('kakaonum').value = '0';
 				document.kakaologin_frm.submit();
 				//location.href="/";
 				}
