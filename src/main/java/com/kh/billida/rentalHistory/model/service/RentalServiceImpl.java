@@ -1,18 +1,16 @@
 package com.kh.billida.rentalHistory.model.service;
 
 import org.springframework.stereotype.Service;
-
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.repository.RentalRepository;
 
+import lombok.RequiredArgsConstructor;
 
-import lombok.Data;
 
-
-@Data
 @Service
-public class RentalServiceImpl {
+@RequiredArgsConstructor
+public class RentalServiceImpl implements RentalService{
 	
 	private final RentalRepository rentalRepository;
 	
