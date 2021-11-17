@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Rental {
 	
-	private int historyIndex;
+	private long historyIndex;
 	private int lockerId;
 	private String userCode;
 	private Date rentStart;

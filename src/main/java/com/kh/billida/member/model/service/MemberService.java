@@ -14,4 +14,5 @@ public interface MemberService {
 	Member selectMemberByNick(String nick);
 	void updateMember(JoinForm form);
 	boolean checkPassword(Member member, HttpSession session);
+	void deleteMember(String userCode);
 }

@@ -53,7 +53,10 @@ public class MemberServiceImpl implements MemberService{
 		public void updateMember(JoinForm form) {
 			 memberRepository.updateMember(form);
 		}
-
+		public void deleteMember(String userCode) {
+			memberRepository.deleteMember(userCode);
+			
+		}
 	
 	@Override
 	public boolean checkPassword(Member member, HttpSession session) {
@@ -65,6 +68,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return false;
 	}
+
 	   
 }
 

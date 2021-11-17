@@ -8,22 +8,16 @@
    		
 	/* 즉시 실행함수로 넣어주면 전역 안에 포함이 안되기 때문에 외부에서의 접근을 막아줄 수 있다 */
    	(()=>{
+   		let confirmNick = '';
+   		let nickReg = /[a-zA-Z0-9가-힣]{2,10}/;
    		
-   		document.querySelector('#signUp').addEventListener('submit', e => {
+		document.querySelector("#btnNickCheck").addEventListener('click', e => {
+   			let nickName = nick.value;
    			
-   			let phoneReg = /^\d{9,11}$/;
-			
-   			if(!phoneReg.test(phone.value)){
-   				e.preventDefault();
-   				document.querySelector('#phoneCheck').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
-   			}
-   			let confirmNick = '';
-   			let nickReg = /[a-zA-Z0-9가-힣]{2,10}/;
-			let nickName = nick.value;
    			if(nickName){
 				if(!nickReg.test(nick.value)){
 					e.preventDefault();
-					//alert("닉네임은 2글자 이상의 문자열입니다.");
+					alert("닉네임은 2글자 이상의 문자열입니다.");
 					document.querySelector('#nickCheck').innerHTML = '닉네임은 2글자 이상의 문자열입니다.';
 				} else{
 					fetch('/member/nick-check?nick=' + nickName)
@@ -43,7 +37,20 @@
 					})	
 				}
 			}
+   		})
+   		document.querySelector('#kakaosignUp').addEventListener('submit', e => {
    			
+   			let phoneReg = /^\d{9,11}$/;
+			
+   			if(!phoneReg.test(phone.value)){
+   				e.preventDefault();
+   				document.querySelector('#phoneCheck').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
+   			}
+   			
+   			if(confirmNick != nick.value){
+   				e.preventDefault();
+   				document.querySelector('#nickCheck').innerHTML = '닉네임 중복 검사를 통과하지 않았습니다.';
+   			}
    			
    		})
    	

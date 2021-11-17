@@ -75,7 +75,8 @@ public class MemberController {
 	         vr.addError(errors);
 	         return "member/signUp";
 	      }
-	    memberService.insertMember(form);
+
+
 	    return "redirect:/";
 	}
 	   @GetMapping("id-check")
@@ -206,6 +207,13 @@ public class MemberController {
 		return "/member/mypage"; 
 	}
 	
-	
+	@GetMapping("delete")
+	public String delete(Member member,HttpSession session) {
+		Member deleteUser = (Member) session.getAttribute("authentication");
+		System.out.println("멤버값 나와라 뿅"+deleteUser);
+		memberService.deleteMember(deleteUser.getUserCode());
+		logout(session);
+		return"redirect:/";
+	}
 
 }

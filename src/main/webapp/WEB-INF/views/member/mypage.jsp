@@ -50,11 +50,18 @@
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3">회원 정보 수정</h4>
+      <span style="display: flex; justify-content: space-between;"><h4 class="mb-3">회원 정보 수정 </h4>
+      <c:if test="${not empty authentication.kakaoNum}">
+      	<button type="button" onclick="javascript:unlinkApp();" class="btn btn-primary btn-lg btn-block" style=" width: 150px; height:38px; margin-left: 10px; font-size: 14px;">카카오 회원탈퇴</button>
+      </c:if>
+      <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
+         <a type="button" href="/member/delete" class="btn btn-primary btn-lg btn-block" style=" width: 150px; height:38px; margin-left: 10px; font-size: 14px;">일반 회원탈퇴</a>
+      </c:if>
+      </span>  
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/edit"
          method="post" id="signUp">
           
-            <label for="id">아이디 : ${Id}</label>
+            <label for="id">아이디 : ${authentication.name}</label>
             
           
           <div class="row">
@@ -151,6 +158,8 @@
     </div>    
   </div>
 <script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src='/resources/js/member/kakaoLogin.js'></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {

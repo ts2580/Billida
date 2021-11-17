@@ -50,9 +50,9 @@
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3">회원가입</h4>
+        <h4 class="mb-3">카카오 회원가입</h4>
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/kakaoSignup"
-         method="post" id="signUp">
+         method="post" id="kakaosignUp">
           <input style="display: none" name="id" id="id" value="${authentication.id}">
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -61,10 +61,14 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
+              <span style="display: flex;">
               <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
+              
+            <button  type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
                 <c:if test="${empty error.nick}">
                       <span id="nickCheck" class="valid-msg"></span>
-                 </c:if> 
+                 </c:if>
+                 <form:errors path="nick" cssClass="valid-msg"/>
             </div>
           </div>   
                  
@@ -79,6 +83,7 @@
  			<c:if test="${empty error.phone}">
                  <span id="phoneCheck" class="valid-msg"></span>
             </c:if>
+             <form:errors path="phone" cssClass="valid-msg"/>
           </div>
           
           
@@ -88,9 +93,6 @@
             <input type="tel" class="form-control" id="tell"required>
             <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
           </div>
 
           <div class="mb-3">
@@ -106,9 +108,6 @@
 			<div style="display: flex;">
             <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
-            </div>
-            <div class="invalid-feedback">
-              주소를 입력해주세요.
             </div>
           </div>
 

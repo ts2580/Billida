@@ -1,5 +1,6 @@
 package com.kh.billida.member.model.repository;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -7,6 +8,8 @@ import org.apache.ibatis.annotations.Update;
 
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.member.validator.JoinForm;
+
+import lombok.Delegate;
 
 @Mapper
 public interface MemberRepository {
@@ -31,4 +34,7 @@ public interface MemberRepository {
 	
 	@Update("UPDATE member SET name=#{name},nick=#{nick},phone=#{phone},email=#{email},post_code=#{postCode},address=#{address},address_detail=#{addressDetail} where id = #{id}")
 	void updateMember(JoinForm form);
+	
+	@Delete("delete from member where user_code=#{userCode}")
+	void deleteMember(String userCode);
 }

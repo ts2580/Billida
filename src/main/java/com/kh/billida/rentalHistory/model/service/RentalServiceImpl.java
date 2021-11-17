@@ -16,16 +16,22 @@ public class RentalServiceImpl {
 	
 	private final RentalRepository rentalRepository;
 	
-	public void insertBilligi(Rental rental) {
-		System.out.println("서비스 까지 옴");
-		rentalRepository.insertRental(rental);
-	}
-	
-	public LockerForLent selectLocker(int param) {
-		
-		LockerForLent locker = rentalRepository.selectLocker(param);
+	public LockerForLent selectLocker(int lockerId) {
+		System.out.println("selectLocker 서비스 까지 옴");
+		LockerForLent locker = rentalRepository.selectLocker(lockerId);
 		
 		return locker;
 	}
+	
+	public void insertRental(Rental rental) {
+		System.out.println("insertRental 서비스 까지 옴");
+		rentalRepository.insertRental(rental);
+	}
+	
+	
+	
+	
+	
+	
 	
 }

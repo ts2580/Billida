@@ -72,7 +72,11 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" required>
+              <input type="password" class="form-control" name="password"  id="password" placeholder="" 
+              	<c:if  test="${empty error.password}">
+            		value="${joinForm.password}"
+            	</c:if>
+              required>
             	<c:if test="${empty error.password}">
                       <span id="pwCheck" class="valid-msg"></span>
                  </c:if>
@@ -81,7 +85,8 @@
             <div class="col-md-6 mb-3">
 
               <label for="password">비밀번호 확인</label>
-              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" required>
+              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder=""  
+              required>
             	<c:if test="${empty error.password}">
                       <span id="passwordFail" class="valid-msg"></span>
                  </c:if> 
@@ -96,7 +101,11 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
-              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
+              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" 
+              	<c:if  test="${empty error.nick}">
+            		value="${joinForm.nick}"
+            	</c:if>
+              required>
                 <c:if test="${empty error.nick}">
                       <span id="nickCheck" class="valid-msg"></span>
                  </c:if> 
