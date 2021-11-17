@@ -8,7 +8,7 @@ import lombok.Data;
 public class LockerForLent {
 	
 	private int lockerId;
-	private int userCode;
+	private String userCode;
 	private String lockerTitle;
 	private String lockerContent;
 	private String lockerImage;

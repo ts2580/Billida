@@ -5,8 +5,9 @@ import com.kh.billida.rentalHistory.model.dto.Rental;
 
 public interface RentalService {
 
+	LockerForLent selectLocker(int lockerId);
+	
 	void insertRental(Rental rental);
  
-	LockerForLent selectLocker(int param);
 
 }
