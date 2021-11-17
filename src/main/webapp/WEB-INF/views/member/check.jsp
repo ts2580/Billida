@@ -160,21 +160,6 @@ body {
 .login:not(.loading) button:focus {
   border-bottom-width: 4px;
 }
-
-footer {
-  display: block;
-  padding-top: 50px;
-  text-align: center;
-  color: #ddd;
-  font-weight: normal;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
-  font-size: 0.8em;
-}
-footer a,
-footer a:link {
-  color: #fff;
-  text-decoration: none;
-}
 .valid-msg{
 	font-size: 15px;
 	color: red;
@@ -184,18 +169,18 @@ footer a:link {
 </head>
 <body>
 <div class="wrapper">
-  <form action="/member/check" method="post" class="passwordCheck">
+  <form:form class="login" modelAttribute="member" action="/member/check" method="post">
     <p class="title">Password</p>
-    <input name="password" id="password" type="password" placeholder="Password" autofocus/>
+    <input type="password" placeholder="Password" id="password" autofocus/>
     <i class="fa fa-key"></i>
-		<c:if test="${not empty message}">
+   		<c:if test="${not empty message}">
 			<span class="valid-msg">${message}</span>
 		</c:if>
     <button>
       <i class="spinner"></i>
-      <span class="state">Log in</span>
+      <span class="state">확 인</span>
     </button>
-  </form>
+  </form:form>
   </p>
 </div>
 <!-- 	<script type="text/javascript">

@@ -1,5 +1,7 @@
 package com.kh.billida.member.model.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -46,6 +48,17 @@ public class MemberServiceImpl implements MemberService{
 		      return null;
 		      
 		   }
+	
+	@Override
+	public boolean checkPassword(Member member, HttpSession session) {
+		Member storedMember = memberRepository.selectMemberById((String)session.getAttribute("Id"));
+		System.out.println(storedMember.toString());
+		System.out.println(member.getPassword());
+		if(passwordEncoder.matches(member.getPassword(), storedMember.getPassword())) {
+			return true;
+		}
+		return false;
+	}
 	   
 }
 
