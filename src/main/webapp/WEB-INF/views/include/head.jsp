@@ -66,7 +66,7 @@
                         <div class="menu_box_list">
                            <ul>
                          	  <li><a href="/"><span>HOME</span></a></li>
-                              <li><a href="#"><span>마이페이지</span></a></li>
+                              <li><a href="/member/check"><span>마이페이지</span></a></li>
                               <li><a href="#"><span>빌리기</span></a></li>
                               <li><a href="#"><span>빌려주기</span></a></li>
                               <li><a href="#"><span>예약확인</span></a></li>

@@ -116,12 +116,14 @@ public class MemberController {
 			
 			
 			session.setAttribute("authentication", certifiedUser); //세션에 올려주기
+			session.setAttribute("Id", member.getId());
 			logger.debug(certifiedUser.toString());
 			return "redirect:/";
 		}
 	   @GetMapping("logout")
 		public String logout(HttpSession session) {
 		   session.removeAttribute("authentication");
+		   session.removeAttribute("Id");
 		   return"redirect:/";
 		}
 	   @PostMapping("kakaoLogin")
@@ -144,4 +146,33 @@ public class MemberController {
 		    memberService.insertMember(form);
 		    return "redirect:/";
 		}
+
+	@GetMapping("/check")
+	public String check(Member member, HttpSession session, RedirectAttributes redirctAttr) {
+
+		if (session.getAttribute("authentication") == null) {
+			redirctAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
+			return "redirect:/member/login";
+		}
+
+		return "member/check";
+	}
+	
+	@PostMapping("check")
+	public String passwordCheck(Member member
+									,Errors errors
+									,Model model
+									,HttpSession session
+									,RedirectAttributes redirectAttr) {
+		/*
+		 * System.out.println(member.toString());
+		 * if(memberService.checkPassword(member,session)) { return "member/mypage"; }
+		 * redirectAttr.addFlashAttribute("message","비밀번호가 정확하지 않습니다."); return
+		 * "redirect:/member/check";
+		 */
+		return "/member/mypage"; 
+	}
+	
+	
+
 }
