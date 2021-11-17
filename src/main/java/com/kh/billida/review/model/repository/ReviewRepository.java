@@ -3,7 +3,6 @@ package com.kh.billida.review.model.repository;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,8 +13,7 @@ public interface ReviewRepository {
 	
 	RentHistoryAndLocker selectReviews(int historyIndex);
 
-	
-	void insertReview(List<MultipartFile> reviewInfo, RentHistoryAndLocker rentInfo);
+	void insertReview(Map<String, Object> commandMap);
 
 	
 }
