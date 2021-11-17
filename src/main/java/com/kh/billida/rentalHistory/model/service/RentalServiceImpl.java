@@ -16,7 +16,7 @@ public class RentalServiceImpl {
 	
 	private final RentalRepository rentalRepository;
 	
-	public void insertBilligi(Rental rental) {
+	public void insertRental(Rental rental) {
 		System.out.println("서비스 까지 옴");
 		rentalRepository.insertRental(rental);
 	}

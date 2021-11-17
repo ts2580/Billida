@@ -53,42 +53,7 @@
         <h4 class="mb-3">회원가입</h4>
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/kakaoSignup"
          method="post" id="signUp">
-          
-            <label for="id">아이디</label>
-            <span class="mb-3" style="display: flex;" >
-            
-            <input type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
-            	<c:if  test="${empty error.Id}">
-            		value="${joinForm.id}"
-            	</c:if>
-            required />
-            <button  type="button" id="btnIdCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >중복확인</button>
-			</span>
-                <c:if test="${empty error.id}">
-                      <span id="idCheck" class="valid-msg"></span>
-                 </c:if>
-                <form:errors path="Id" cssClass="valid-msg"/>
-          
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="password">비밀번호</label>
-              <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" required>
-            	<c:if test="${empty error.password}">
-                      <span id="pwCheck" class="valid-msg"></span>
-                 </c:if>
-            </div>
-                <form:errors path="password" cssClass="valid-msg"/>
-            <div class="col-md-6 mb-3">
-
-              <label for="password">비밀번호 확인</label>
-              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" required>
-            	<c:if test="${empty error.password}">
-                      <span id="passwordFail" class="valid-msg"></span>
-                 </c:if> 
-            </div>
-          </div>
-          
-          
+          <input style="display: none" name="id" id="id" value="${authentication.id}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -168,7 +133,7 @@
       </div>
     </div>    
   </div>
-<script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
+<script type="text/javascript" src="/resources/js/member/kakaojoinForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {

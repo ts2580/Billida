@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService{
 			   System.out.println("나와야댐");
 		   }
 		   }
-	   public Member selectMemberByUserId(String id) {
+	   public Member selectMemberById(String id) {
 		      return memberRepository.selectMemberById(id);
 		  }
 	   public Member selectMemberByNick(String nick) {
@@ -43,11 +43,17 @@ public class MemberServiceImpl implements MemberService{
 		      
 		      if(storedMember!=null&&passwordEncoder.matches(member.getPassword(), storedMember.getPassword())) {
 		         return storedMember;
+		      }else if(storedMember.getKakaoNum()!=null) {
+		    	  return storedMember;
 		      }
 		      
 		      return null;
 		      
 		   }
+		public void updateMember(JoinForm form) {
+			 memberRepository.updateMember(form);
+		}
+
 	
 	@Override
 	public boolean checkPassword(Member member, HttpSession session) {
