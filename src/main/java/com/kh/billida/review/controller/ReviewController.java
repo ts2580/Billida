@@ -1,6 +1,12 @@
 package com.kh.billida.review.controller;
 
+
 import java.util.HashMap;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +20,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+
+import com.kh.billida.member.model.dto.Member;
 
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.dto.Review;
@@ -32,10 +41,16 @@ public class ReviewController {
 	@GetMapping("review-form")// href=/review/review-form?historyIndex=인덱스번호
 	public void reviewFormInfo(Model model, int historyIndex, HttpSession session) {
 
-		RentHistoryAndLocker reviewInfo = reviewService.selectReviews(historyIndex);
+		List<RentHistoryAndLocker> reviewInfo = reviewService.selectReviews(historyIndex);
+		System.out.println("reviewInfo : " + reviewInfo);
+
+		Map<String, Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("reviewInfo", reviewInfo);
+		System.out.println("리뷰맵 : " + commandMap);
 		
-		model.addAttribute("reviewInfo", reviewInfo);
-		session.setAttribute("rentHistoryLocker", reviewInfo);
+		model.addAllAttributes(commandMap);
+		session.setAttribute("rentHistoryLocker", commandMap);
+
 	}
 	
 	@PostMapping("upload-review")
@@ -60,7 +75,29 @@ public class ReviewController {
 		
 		return "redirect:/";
 	}
-	 
+
+	@GetMapping("review-list")
+	public void reviewList(@SessionAttribute("authentication") Member member
+						, Model model) {
+		String userCode = member.getUserCode();
+		List<Integer> historyindexs = new ArrayList<Integer>();
+		historyindexs= reviewService.findReviewList(userCode);
+		
+		List<RentHistoryAndLocker> list = new ArrayList<RentHistoryAndLocker>();
+		List<RentHistoryAndLocker> rentList = new ArrayList<RentHistoryAndLocker>();
+		Map<String, Object> commandMap = new HashMap<String, Object>();
+		
+		for (int i = 0; i < historyindexs.size(); i++) {
+			list = reviewService.selectReviews(historyindexs.get(i));
+			rentList.addAll(i, list);	
+		}
+		
+		commandMap.put("rentList", rentList);
+		model.addAllAttributes(commandMap);
+		//System.out.println(commandMap);
+	
+	}
+
 	
 	
 	

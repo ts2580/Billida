@@ -9,7 +9,7 @@
   	<select id="selectReviews" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
 		  	select * 
 			from rent_history r, locker l
-			where history_index = 11
+			where history_index = #{historyIndex}
 			and r.locker_id = l.locker_id
   	</select>
 
