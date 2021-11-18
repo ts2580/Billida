@@ -10,6 +10,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="../cssfile/report-main.css">  <!-- css경로 재지정 -->
 	<title>report-main</title>
 </head>
@@ -19,6 +20,27 @@
             <div class="col-md-3">
                 <div class="contact-info">
                     <img src="../resources/image/logo.gif" alt="image" style="max-width: 100%; height: auto;"/>
+=======
+	<title>report-main</title>
+	<style type="text/css">
+		.contact { padding: 4%; height: 400px; }
+		.col-md-3{ background: #fdfdfe; padding: 4%; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
+		.contact-info{ margin-top:10%; }
+		.contact-info img{ margin-bottom: 15%; }
+		.contact-info h2{ margin-bottom: 10%; }
+		.col-md-9{ background: #6c757d36; padding: 3%; border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem;}
+		.contact-form label{ font-weight:600; }
+		.contact-form button{ background: #d14b4b; color: #fff; font-weight: 600; width: 25%; }
+		.contact-form button:focus{ box-shadow:none; }
+	</style>
+</head>
+<body>
+    <div class="container contact" style="padding-top: 170px;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="contact-info">
+                	<img src="${contextPath}/resources/images/logo.gif" title="pinbal" style="max-width: 100%; height: auto;" />
+>>>>>>> refs/heads/dev
                     <hr>
                     <br>
                     <h4><b>신고하기</b></h4>

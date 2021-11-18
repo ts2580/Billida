@@ -12,6 +12,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="../cssfile/report-board.css"> <!-- css경로 재지정 -->
 	<title>report-board</title>
+<<<<<<< HEAD
 </head>
 <body>
     <br>
@@ -19,6 +20,14 @@
     <br>
     <br>
     <div class="well" style="width: 800px; position: absolute; left: 50%; transform: translateX(-50%);">
+=======
+	<style type="text/css">
+		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+	</style>
+</head>
+<body>
+    <div class="well">
+>>>>>>> refs/heads/dev
         <h3>신고글 목록</h3>
         <hr>
         <table class="table">
