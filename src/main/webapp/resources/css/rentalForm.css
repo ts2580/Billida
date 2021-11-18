@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
+body{
+	background-color: white;
+}
+
 .billigi{
-	margin-top: 100px;
+	margin-top: 5px;
 	margin-left: 10%;
 	width: 1356px;
-	height: 700px;
-	background-color: white;
+	height: 600px;
 }
 
 
@@ -20,19 +23,48 @@
 .contents{
 	display: flex;
 	padding-left: 30px;
-	padding-top: 30px;
+	padding-top: 5px;
 }
 
 .pic{
-	width: 500px;
+	width: 1000px;
 	height: 500px;
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
-.rental-contents{
-	padding-left: 50px
+.outline{
+	margin-left: 31px;
+    border: 1px solid #d9d9d9;
+    height: 300px;
+    width: 350px;
 }
+
+.price-and-time{
+	line-height: 27px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d8d8d8;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.price{
+	font-size: 24px;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+.rental-contents{
+	padding: 30px;
+	padding-top: 10px;
+}
+
+table{
+	border-collapse: separate;
+ 	border-spacing: 0 10px;
+}
+
 
 .rental-contents-title{
 	width: 110px;

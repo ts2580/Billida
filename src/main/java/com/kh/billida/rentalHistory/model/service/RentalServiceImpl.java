@@ -15,14 +15,11 @@ public class RentalServiceImpl implements RentalService{
 	private final RentalRepository rentalRepository;
 	
 	public LockerForLent selectLocker(int lockerId) {
-		System.out.println("selectLocker 서비스 까지 옴");
 		LockerForLent locker = rentalRepository.selectLocker(lockerId);
-		
 		return locker;
 	}
 	
 	public void insertRental(Rental rental) {
-		System.out.println("insertRental 서비스 까지 옴");
 		rentalRepository.insertRental(rental);
 	}
 	
