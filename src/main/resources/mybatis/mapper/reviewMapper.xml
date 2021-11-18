@@ -19,7 +19,16 @@
 		values(review_num.nextval, #{userCode}, #{historyIndex}, #{lockerId}, #{content}, #{score})
   	</insert>
   
-  
+  	<select id="getListPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
+		<![CDATA[
+	        select * 
+	        from(
+	        	select /*+INDEX_DESC(rent_history) */ rownum as rn, r.history_index, r.rent_start, r.rent_end, l.locker_title, l.locker_image
+	          	from rent_history r, locker l where rownum <= #{pageNum} * #{amount} and r.user_code = #{userCode} 
+	          										and r.locker_id = l.locker_id)
+	        where rn > (#{pageNum} -1) * #{amount}
+   		]]>
+	</select>
   
   
   </mapper>

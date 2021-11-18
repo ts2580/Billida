@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- 태그 라이브러리 추가  -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!-- 스프링 폼태그 사용 가능  -->
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../../../resources/css/reviewForm.css" rel='stylesheet' type='text/css' />
-<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
+	<link rel="stylesheet" href="${contextPath}/resources/css/all.css">
+	<script type="text/javascript" src="${contextPath}/resources/js/webUtil.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/urlEncoder.js"></script>
+	<link href="../../../resources/css/reviewForm.css" rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
 </head>
 <body>
 
 <div class="review_wrap">
-	<a class="review_title">리뷰등록</a>
-	<a class="review_info">별점과 리뷰를 남겨주세요.</a>
-		<div>
-			<form:form modelAttribute="review" action="/review/upload-review" method="post" id="frm_review">
-				<div>${reviewInfo}</div>
-				<div>
-					<div><img class="reviewImg" src="${reviewInfo.lockerImage}"></div>
-					<div>
-
-						<span>- 사물함명 : ${rentHistoryLocker.lockerTitle}</span>
-						<span>- 대여날짜 : ${rentHistoryLocker.rentStart}</span>
-						<span>- 반납날짜 : ${rentHistoryLocker.rentEnd}</span>
+	<a class="review_title">리뷰등록
+		<br>
+		별점과 리뷰를 남겨주세요.
+	</a>
+		<div class="form_area">
+			<form:form modelAttribute="review" action="/review/upload-review" method="post" id="frm_review" name="frm_review">
+				<div class="review_area">
+					<div class="reviewImg"><img class="reviewImg" src="${reviewInfo.lockerImage}"></div>
+					<div class="review_info">
+						<span class="locker_title">- 사물함명 : ${reviewInfo.lockerTitle}</span>
+						<span class="rent_start">- 대여날짜 : ${reviewInfo.rentStart}</span>
+						<span class="rent_end">- 반납날짜 : ${reviewInfo.rentEnd}</span>
 					</div>
 				</div>
-				<div class="score_msg"> </div>
 				<div class="starRev">
 	 				<span class="star R1"><input type="hidden" id="rating0" value="0.5"/>0.5</span>
 					<span class="star R2"><input type="hidden" id="rating1" value="1.0"/>1</span>
@@ -38,12 +41,14 @@
 					<span class="star R2"><input type="hidden" id="rating9" value="5.0"/>5.0</span>
 					<input type="hidden" name="score" id="score" value="" />
 				</div>
+				<div class="score_msg"> </div>
 				<div class="review_contents">
-	            	<div class="content_msg"> </div>
-		            	<textarea name="content" id="content" rows="10" class="review_textarea"></textarea>
-		        	</div>   
+		            <textarea name="content" id="content" rows="10" class="review_textarea"></textarea>
+		            <div class="content_msg"> </div>
+		        </div>   
 		        <div class="cmd">
-		            <input type="submit" name="save" id="save" value="등록">
+		            <div class="saveDiv"><input type="submit" class="save" name="save" value="등록"></div>
+		            <a class="cancelDiv" onclick='window.close()'><input type="button" class="cancel" name="cancel" value="취소"></a>
 		        </div>
 			</form:form>
 		</div>
@@ -86,8 +91,7 @@
     }
     
 document.querySelector('#frm_review').addEventListener('submit', e => {
-		console.log(content.value);	
-	
+
 		let contentReg = /^.{10,100}$/;
 		
 		if(!contentReg.test(content.value)){
@@ -103,7 +107,16 @@ document.querySelector('#frm_review').addEventListener('submit', e => {
 		}else{
 			document.querySelector('.score_msg').style.display = 'none';
 		}
+		
+ 		if(contentReg.test(content.value) && score.value !== '0'){
+			opener.name = "reviewPop";
+			document.frm_review.target = opener.name;
+			document.frm_review.action='/review/upload-review'
+			document.frm_review.submit();
+			window.open("about:blank", "_self").close();
+		}
 })
+
     
     
     
