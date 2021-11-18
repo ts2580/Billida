@@ -56,7 +56,6 @@
           
             <label for="id">아이디</label>
             <span class="mb-3" style="display: flex;" >
-            
             <input type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
             	<c:if  test="${empty error.Id}">
             		value="${joinForm.id}"
@@ -101,14 +100,14 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
-              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" 
-              	<c:if  test="${empty error.nick}">
-            		value="${joinForm.nick}"
-            	</c:if>
-              required>
+              <span style="display: flex;">
+              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
+              
+            <button  type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
                 <c:if test="${empty error.nick}">
                       <span id="nickCheck" class="valid-msg"></span>
-                 </c:if> 
+                 </c:if>
+                 <form:errors path="nick" cssClass="valid-msg"/>
             </div>
           </div>   
                  

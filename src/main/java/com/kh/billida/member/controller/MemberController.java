@@ -75,8 +75,7 @@ public class MemberController {
 	         vr.addError(errors);
 	         return "member/signUp";
 	      }
-
-
+	    memberService.insertMember(form);
 	    return "redirect:/";
 	}
 	   @GetMapping("id-check")
@@ -188,8 +187,11 @@ public class MemberController {
 			redirctAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
 			return "redirect:/member/login";
 		}
-
-		return "member/check";
+		Member user = (Member) session.getAttribute("authentication");
+		if(user.getKakaoNum()==null) {
+			return "member/check";	
+		}
+		return"member/kakaoChange";
 	}
 	
 	@PostMapping("check")
