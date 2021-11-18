@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,26 @@
     <br>
     <div class="well" style="width: 800px; position: absolute; left: 50%; transform: translateX(-50%);">
 =======
+	<style type="text/css">
+		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+	</style>
+</head>
+<body>
+    <div class="well">
+>>>>>>> refs/heads/dev
+=======
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="UTF-8">
+    <%@ include file="/WEB-INF/views/include/head.jsp" %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="../cssfile/report-board.css"> <!-- css경로 재지정 -->
+	<title>report-board</title>
 	<style type="text/css">
 		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
 	</style>
