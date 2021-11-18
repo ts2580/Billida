@@ -19,6 +19,7 @@
 		values(review_num.nextval, #{userCode}, #{historyIndex}, #{lockerId}, #{content}, #{score})
   	</insert>
   
+  
   	<select id="getRentListPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
 		<![CDATA[
 	        select * 
