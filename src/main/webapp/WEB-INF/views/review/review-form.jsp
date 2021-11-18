@@ -14,8 +14,7 @@
 <body>
 
 <div class="review_wrap">
-	<a class="review_title">리뷰등록
-		<br>
+	<a class="review_title">
 		별점과 리뷰를 남겨주세요.
 	</a>
 		<div class="form_area">

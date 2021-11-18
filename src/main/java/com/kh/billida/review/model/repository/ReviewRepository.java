@@ -20,9 +20,16 @@ public interface ReviewRepository {
 	List<Integer> findReviewList(String userCode);
 
 	@Select("select count(*) from rent_history where user_code = #{userCode}")
-	int getTotal(String userCode);
 
-	List<Map<String, Object>> getListPaging(Map<String, Object> criMap);
+	int getRentTotal(String userCode);
+
+	List<Map<String, Object>> getRentListPaging(Map<String, Object> criMap);
+	
+	List<Map<String, Object>> getReviewListPaging(Map<String, Object> criMap);
+
+	@Select("select count(*) from review where user_code = #{userCode}")
+	int getReviewTotal(String userCode);
+
 
 
 	

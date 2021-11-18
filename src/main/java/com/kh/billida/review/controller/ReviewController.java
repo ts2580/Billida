@@ -42,7 +42,6 @@ public class ReviewController {
 		
 		model.addAttribute("reviewInfo", reviewInfo);
 		session.setAttribute("rentHistoryLocker", reviewInfo);
-
 	}
 	
 	@PostMapping("upload-review")
@@ -64,8 +63,8 @@ public class ReviewController {
 	}
 
 	@GetMapping("rent-list")
-	public String reviewList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
-		
+	public String rentList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
+
 		Member member = (Member) session.getAttribute("authentication");
 
 		if (member == null) {
@@ -74,45 +73,53 @@ public class ReviewController {
 		}
 			
 		String userCode = member.getUserCode();
-		List<Integer> historyindexs = new ArrayList<Integer>();
-		historyindexs= reviewService.findReviewList(userCode);
-		
 		cri.setAmount(3);
 		int amount = cri.getAmount();
-		
-		System.out.println("기본페이지넘 : " + cri.getPageNum());
+
 		Map<String, Object> criMap = new HashMap<String, Object>();
 		criMap.put("pageNum", cri.getPageNum());
 		criMap.put("amount", amount);
 		criMap.put("userCode", userCode);
 		
-		List<Map<String, Object>> list = reviewService.getListPaging(criMap);
-		System.out.println("페이징처리할 대여목록 리스트 : " + list);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
+		List<Map<String, Object>> list = reviewService.getRentListPaging(criMap);
 		//유저코드에 해당하는 사물함대여리스트 갯수 받아오기
-		int total = reviewService.getTotal(userCode);
+		int total = reviewService.getRentTotal(userCode);
 		Paging paging = new Paging(cri, total);
-		
+
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 		
-		
-		
-//		RentHistoryAndLocker list;
-//		List<RentHistoryAndLocker> rentList = new ArrayList<RentHistoryAndLocker>();
-//		Map<String, Object> commandMap = new HashMap<String, Object>();
-//		
-//		for (int i = 0; i < historyindexs.size(); i++) {
-//			list = reviewService.selectReviews(historyindexs.get(i));
-//			rentList.add(i, list);	
-//		}
-//		
-//		commandMap.put("rentList", rentList);
-//		model.addAllAttributes(commandMap);
-		
 		return "review/rent-list";
+	}
+	
+	@GetMapping("review-list")
+	public String reviewList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
+		Member member = (Member) session.getAttribute("authentication");
+
+		if (member == null) {
+			redirectAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
+			return "redirect:/member/login";
+		}
+		
+		String userCode = member.getUserCode();
+		Map<String, Object> criMap = new HashMap<String, Object>();
+		criMap.put("pageNum", cri.getPageNum());
+		criMap.put("amount", cri.getAmount());
+		criMap.put("userCode", userCode);
+		
+		List<Map<String, Object>> list = reviewService.getReviewListPaging(criMap);
+		
+		int total = reviewService.getReviewTotal(userCode);
+		Paging paging = new Paging(cri, total);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("paging", paging);
+		model.addAllAttributes(map);
+		
+		return "review/review-list";
 	}
 
 	

@@ -33,13 +33,23 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int getTotal(String userCode) {
-		return reviewRepository.getTotal(userCode);
+	public int getRentTotal(String userCode) {
+		return reviewRepository.getRentTotal(userCode);
 	}
 
 	@Override
-	public List<Map<String, Object>> getListPaging(Map<String, Object> criMap) {
-		return reviewRepository.getListPaging(criMap);
+	public List<Map<String, Object>> getRentListPaging(Map<String, Object> criMap) {
+		return reviewRepository.getRentListPaging(criMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> getReviewListPaging(Map<String, Object> criMap) {
+		return reviewRepository.getReviewListPaging(criMap);
+	}
+
+	@Override
+	public int getReviewTotal(String userCode) {
+		return reviewRepository.getReviewTotal(userCode);
 	}
 
 }

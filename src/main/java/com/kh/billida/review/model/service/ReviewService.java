@@ -14,9 +14,13 @@ public interface ReviewService {
 
 	void insertReview(Map<String, Object> commandMap);
 
-	int getTotal(String userCode);
+	int getRentTotal(String userCode);
 
-	List<Map<String, Object>> getListPaging(Map<String, Object> criMap);
+	List<Map<String, Object>> getRentListPaging(Map<String, Object> criMap);
+
+	List<Map<String, Object>> getReviewListPaging(Map<String, Object> criMap);
+
+	int getReviewTotal(String userCode);
 
 
 }
