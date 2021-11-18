@@ -48,7 +48,7 @@
 						</tr>
 						<tr>
 							<td class="rental-contents-title">비용</td>
-							<td><input type="number" placeholder="자동계산됨 입력하지마"/></td>
+							<td><input type="number" placeholder="자동계산됨 입력 노필요"/></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit" value="대여" /></td>
