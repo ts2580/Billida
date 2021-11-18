@@ -40,7 +40,6 @@ public class MainController {
 		Map<String, Object> commandMap = new HashMap<String, Object>();
 		commandMap.put("mainList", mainList);
 		
-		System.out.println("메인 : "+commandMap);
 		model.addAllAttributes(commandMap);
 
 		return "index";

@@ -7,14 +7,6 @@
 <script type="text/javascript" src='../../../resources/js/jquery.js'></script>
 
 <style type="text/css">
-
-.review_wrapper{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 80px;
-}
-
 .title{
 	display: flex;
 	justify-content: center;
@@ -25,13 +17,13 @@
 	padding-bottom: 25px;
 }
 
-.review_list{
+.rent_list{
 	display: flex;
 	flex-direction: column;
 	width: 60%;
 }
 
-.review_area{
+.rent_area{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -40,16 +32,20 @@
 	color: #494949;
 }
 
-.reviewImg, .reviewImgs{
-	height: 100px;
-	width: 100px;
+.rentImg, .rentImgs{
+	height: 150px;
+	width: 150px;
 }
 
-.nameNick{
+.rent_info{
 	display: flex;
+	flex-direction: column;
+	font-size: 15px;
+	padding-left: 30px;
+	width: 60%;
 }
 
-.review_name {
+.rent_name {
     display: flex;
     justify-content: flex-start;
     font-size: 100%;
@@ -57,33 +53,18 @@
     padding-bottom: 7px;
 }
 
-.review_nick{
-	display: flex;
+.rent_start {
+    position: relative;
+    padding-bottom: 7px;
 }
 
-.review_info{
-	display: flex;
+.rent_end {
+    position: relative;
 }
 
-.review_score{
-	display: flex;
-}
-
-.review_content{
-	display: flex;
-}
-
-.review_date{
-	display: flex;
-}
-
-.review_modify{
+.reviewButton{
 	display: flex;
 	padding-left: 50px;
-}
-
-.review_delete{
-	display: flex;
 }
 
 hr{
@@ -143,36 +124,27 @@ li:visited {
 }
 
 
-
-
 </style>
 
 </head>
 <body>
-<div class="review_wrapper">
-<h1 class="title">내가 작성한 리뷰</h1>
-	<ul class="review_list">
-		<c:forEach items="${list}" var="reviews">
-			<li class="review_area">
-				<div class="reviewImg"><img class="reviewImg" src="${reviews.LOCKER_IMAGE}">사진</div>
-				<div class="nameNick">
-					<div class="review_name">- 사물함명 : ${reviews.LOCKER_TITLE}</div>
-					<div class="review_nick">- 사물함 대여자 : ${reviews.NICK}</div>
+<div class="content">
+<h1 class="title">사물함 대여 현황</h1>
+	<div class="rent_list list1">
+		<c:forEach items="${list}" var="rents">
+			<div class="rent_area">
+				<div class="rentImg"><img class="rentImgs" src="${rents.lockerImage}"></div>
+				<div class="rent_info">
+					<div class="rent_name"> - 사물함명 : ${rents.lockerTitle}</div>
+					<div class="rent_start"> - 대여날짜 : ${rents.rentStart}</div>
+					<div class="rent_end">- 반납날짜 : ${rents.rentEnd}</div>
 				</div>
-				<div class="review_info">
-					<div class="review_score">${reviews.SCORE}</div>
-					<div class="review_content">${reviews.CONTENT}</div>
-				</div>
-				<div class="review_date">${reviews.CREATE_DATE}</div>
-				<div>
-					<div class="review_modify"><button onclick='openReviewForm(${reviews.HISTORY_INDEX})'>수정하기</button></div>
-					<div class="review_delete"><button type="button">삭제</button></div>
-				</div>
-			</li>
+				<div class="reviewButton"><button onclick='openReviewForm(${rents.historyIndex})'>리뷰작성</button></div>
+			</div>
+			<hr>
 		</c:forEach>
-	</ul>
-	
-	<div class="pageInfo_wrap">
+		
+		<div class="pageInfo_wrap">
 			<div class="pageInfo_area">
 				<ul id="pageInfo" class="pageInfo">
 				
@@ -198,6 +170,11 @@ li:visited {
 			<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
 			<input type="hidden" name="amount" value="${paging.cri.amount}">
 		</form>
+		
+		
+		
+	</div>
+<!--"location.href='review-form?historyIndex=${rents.historyIndex}'"  -->
 </div>
 
 <script type="text/javascript">
@@ -207,7 +184,7 @@ let moveForm = $("#moveForm");
 $(".pageInfo li").on("click", function(e){
 	 e.preventDefault();
      moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-     moveForm.attr("action", "review-list");
+     moveForm.attr("action", "rent-list");
      moveForm.submit();
 });
 
@@ -223,9 +200,6 @@ $(".pageInfo li").on("click", function(e){
 
 
 </script>
-
-
-
 
 
 </body>

@@ -1,33 +1,120 @@
 @charset "UTF-8";
 
 .review_wrap{
-    max-width: 50%;
+    max-width: 100%;
     margin: 0 auto; 
     background-color: #fff;
     height: 500px;
     padding: 20px;
     box-sizing: border-box;
-    margin-top: 100px;
 }
 
-.warning_msg {
-    display: none;
-    position: relative;
-    text-align: center;
-    background: #ffffff;
-    line-height: 26px;
-    width: 100%;
-    color: red;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #e0e0e0;
+.review_title{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	font-size: 15px;
+	font-weight: bolder;
+<<<<<<< HEAD
+=======
+	padding-bottom: 15px;
+	padding-top: 8px;
+>>>>>>> refs/heads/dev
 }
+
+.form_area{
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+}
+
+#frm_review{
+	display: flex;
+	flex-direction: column;
+}
+
+.review_area{
+	display: flex;
+}
+
+.reviewImg{
+	width: 150px;
+	height: 150px;
+}
+
+.review_info{
+	display: flex;
+	flex-direction: column;
+	padding-left: 16px;
+	font-size: 15px;
+	justify-content: center;
+}
+
+.locker_title{
+	display: flex;
+	padding-bottom: 5px;
+}
+
+.rent_start{
+	display: flex;
+	padding-bottom: 5px;
+}
+
+.rent_end{
+	display: flex;
+}
+
+.score_msg, .content_msg{
+	color: red;
+	font-size: 5px;
+	text-align: center;
+}
+
+.starRev{
+	width:100%;
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+}
+
+.review_contents{
+	display: flex;
+	flex-direction: column;
+	padding: 10px 10px 11px;
+	background-color: #f4f4f4;
+	border: 1px solid #cbcbcb;
+	margin-top: 30px;
+	
+}
+
+#content{
+	resize: none;
+	background-color: transparent;
+	border: none;
+}
+
+.cmd{
+	display: flex;
+	justify-content: center;
+	padding-top: 15px;
+}
+
+.saveDiv, .cancelDiv{
+	width: 70px;
+	height: 30px;
+}
+
+.save, .cancel{
+	width: 60px;
+	height: 30px;
+}
+
 
 .R1{
-    background: url('/resources/images/star.png') no-repeat -52px 0;
+    background: url('/resources/images/star.png') no-repeat -86px 0;
     background-size: auto 100%;
-    width: 15px;
-    height: 30px;
+    width: 25px;
+    height: 50px;
     float:left;
     text-indent: -9999px;
     cursor: pointer;
@@ -36,12 +123,12 @@
 .R2{
     background: url('/resources/images/star.png') no-repeat right 0;
     background-size: auto 100%;
-    width: 15px;
-    height: 30px;
+    width: 25px;
+    height: 50px;
     float:left;
     text-indent: -9999px;
     cursor: pointer;
 }
 
 .R1.on{background-position:0 0;}
-.R2.on{background-position:-15px 0;}
+.R2.on{background-position:-25px 0;}

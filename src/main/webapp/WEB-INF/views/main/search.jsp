@@ -73,28 +73,12 @@
 
 	let moveForm = $("#moveForm");
 	
-	$(".move").on("click", function(e){
-		e.preventDefault();
-		
-		moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
-		moveForm.attr("action", "");
-		moveForm.submit();
-	});
-	
 	$(".pageInfo li").on("click", function(e){
 		 e.preventDefault();
 	     moveForm.find("input[name='pageNum']").val($(this).attr("href"));
 	     moveForm.attr("action", "/search");
 	     moveForm.submit();
 	});
-
-	$(".search_area").on("click", function(e){
-        e.preventDefault();
-        let val = $("input[name='keyword']").val();
-        moveForm.find("input[name='keyword']").val(val);
-        moveForm.find("input[name='pageNum']").val(1);
-        moveForm.submit();
-    });
 
 </script>
 
