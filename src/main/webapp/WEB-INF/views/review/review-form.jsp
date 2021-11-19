@@ -66,14 +66,14 @@ function drawStar(target){
 			document.querySelector('.content_msg').style.display = 'none';
 		}
 		
-		if(score.value == 0){
+		if(score.value == '0'){
 			e.preventDefault();
 			document.querySelector('.score_msg').innerHTML = '별점을 선택해주세요.';
 		}else{
 			document.querySelector('.score_msg').style.display = 'none';
 		}
 		
- 		if(contentReg.test(content.value) && score.value != 0){
+ 		if(contentReg.test(content.value) && score.value !== '0'){
 			opener.name = "reviewPop";
 			document.frm_review.target = opener.name;
 			document.frm_review.action='/review/upload-review'

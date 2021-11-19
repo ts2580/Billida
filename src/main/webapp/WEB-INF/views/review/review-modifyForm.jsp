@@ -31,16 +31,16 @@
 					<span class="star">
 						★★★★★
 						<c:choose>
-							<c:when test="${reviewInfo.SCORE eq 0.5}"><span id="star" style="width: 10%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 1.0}"><span id="star" style="width: 20%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 1.5}"><span id="star" style="width: 30%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 2.0}"><span id="star" style="width: 40%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 2.5}"><span id="star" style="width: 50%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 3.0}"><span id="star" style="width: 60%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 3.5}"><span id="star" style="width: 70%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 4.0}"><span id="star" style="width: 80%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 4.5}"><span id="star" style="width: 90%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq 5.0}"><span id="star" style="width: 100%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
+							<c:when test="${reviewInfo.SCORE eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
 						</c:choose>
 						<input type="range" oninput="drawStar(this)" value="0" step="0.5" min="0" max="5" name="score" id="score"/>
 					</span>
@@ -77,14 +77,14 @@ function drawStar(target){
 			document.querySelector('.content_msg').style.display = 'none';
 		}
 		
-		if(score.value == 0){
+		if(score.value == '0'){
 			e.preventDefault();
 			document.querySelector('.score_msg').innerHTML = '별점을 선택해주세요.';
 		}else{
 			document.querySelector('.score_msg').style.display = 'none';
 		}
 		
- 		if(contentReg.test(content.value) && score.value != 0){
+ 		if(contentReg.test(content.value) && score.value !== '0'){
 			opener.name = "reviewPop";
 			document.frm_review.target = opener.name;
 			document.frm_review.action='/review/modify-review'

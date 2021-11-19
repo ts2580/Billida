@@ -25,16 +25,16 @@
 								<span class="star">
 								★★★★★
 									<c:choose>
-										<c:when test="${reviews.SCORE eq 0.5}"><span id="star" style="width: 10%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 1.0}"><span id="star" style="width: 20%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 1.5}"><span id="star" style="width: 30%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 2.0}"><span id="star" style="width: 40%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 2.5}"><span id="star" style="width: 50%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 3.0}"><span id="star" style="width: 60%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 3.5}"><span id="star" style="width: 70%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 4.0}"><span id="star" style="width: 80%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 4.5}"><span id="star" style="width: 90%">★★★★★</span></c:when>
-										<c:when test="${reviews.SCORE eq 5.0}"><span id="star" style="width: 100%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
+										<c:when test="${reviews.SCORE eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
 									</c:choose>
 								</span>
 							</div>		
