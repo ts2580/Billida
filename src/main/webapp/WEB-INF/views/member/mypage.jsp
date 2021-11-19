@@ -58,16 +58,16 @@
          <a type="button" href="/member/delete" class="btn btn-primary btn-lg btn-block" style=" width: 150px; height:38px; margin-left: 10px; font-size: 14px;">일반회원 탈퇴</a>
       </c:if>
       </span>  
-        <form:form modelAttribute="joinForm" class ="validation-form" action="/member/edit"
-         method="post" id="signUp">
+        <form:form modelAttribute="joinForm" class ="validation-form" action="/member/update"
+         method="post" id="update">
           
-            <label for="id">아이디 : ${authentication.name}</label>
+            <input style="display: none" name="id" id="id" value="${authentication.id}">
             
           
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" required>
+              <input type="password" class="form-control" name="password"  id="password" placeholder="" value="" >
             	<c:if test="${empty error.password}">
                       <span id="pwCheck" class="valid-msg"></span>
                  </c:if>
@@ -76,7 +76,7 @@
             <div class="col-md-6 mb-3">
 
               <label for="password">비밀번호 확인</label>
-              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" required>
+              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="" value="" >
             	<c:if test="${empty error.password}">
                       <span id="passwordFail" class="valid-msg"></span>
                  </c:if> 
@@ -87,11 +87,11 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" name="name" id="name" placeholder="" value="" >
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
-              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
+              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" >
                 <c:if test="${empty error.nick}">
                       <span id="nickCheck" class="valid-msg"></span>
                  </c:if> 
@@ -103,7 +103,7 @@
           <div class="mb-3">
             <label for="tel">휴대전화</label>
             <span style="display: flex;">
-            <input type="tel" class="form-control" id="phone" name="phone"required>
+            <input type="tel" class="form-control" id="phone" name="phone">
             <button type="button" " class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >전송!</button>
  			</span>
  			<c:if test="${empty error.phone}">
@@ -115,7 +115,7 @@
            <div class="mb-3">
             <label for="tel">휴대전화 인증번호</label>
             <div style="display: flex;">
-            <input type="tel" class="form-control" id="tell"required>
+            <input type="tel" class="form-control" id="tell" >
             <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
  			</div>
             <div class="invalid-feedback">
@@ -125,7 +125,7 @@
 
           <div class="mb-3">
             <label for="email">이메일</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" >
             <div class="invalid-feedback">
               이메일을 입력해주세요.
             </div>
@@ -134,7 +134,7 @@
           <div class="mb-3">
             <label for="postCode">우편번호</label>
 			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" >
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
             </div>
             <div class="invalid-feedback">

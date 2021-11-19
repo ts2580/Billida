@@ -58,16 +58,16 @@ public class MemberServiceImpl implements MemberService{
 			
 		}
 	
-	@Override
-	public boolean checkPassword(Member member, HttpSession session) {
+	public boolean checkPassword(String password, HttpSession session) {
 		Member storedMember = memberRepository.selectMemberById((String)session.getAttribute("Id"));
-		System.out.println(storedMember.toString());
-		System.out.println(member.getPassword());
-		if(passwordEncoder.matches(member.getPassword(), storedMember.getPassword())) {
+		
+		if(passwordEncoder.matches(password, storedMember.getPassword())) {
 			return true;
+		}else {
+			return false;
 		}
-		return false;
 	}
+	
 
 	   
 }

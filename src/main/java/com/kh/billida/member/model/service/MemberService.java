@@ -13,6 +13,7 @@ public interface MemberService {
 	Member authenticateUser(Member member);
 	Member selectMemberByNick(String nick);
 	void updateMember(JoinForm form);
-	boolean checkPassword(Member member, HttpSession session);
+	boolean checkPassword(String password, HttpSession session);
 	void deleteMember(String userCode);
+	
 }

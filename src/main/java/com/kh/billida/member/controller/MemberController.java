@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -195,18 +196,20 @@ public class MemberController {
 	}
 	
 	@PostMapping("check")
-	public String passwordCheck(Member member
+	public String passwordCheck(@ModelAttribute Member member
 									,Errors errors
 									,Model model
 									,HttpSession session
 									,RedirectAttributes redirectAttr) {
-		/*
-		 * System.out.println(member.toString());
-		 * if(memberService.checkPassword(member,session)) { return "member/mypage"; }
-		 * redirectAttr.addFlashAttribute("message","비밀번호가 정확하지 않습니다."); return
-		 * "redirect:/member/check";
-		 */
-		return "/member/mypage"; 
+		
+		
+		 if(memberService.checkPassword(member.getPassword(),session)) {
+			 return "member/mypage";
+		 }else {
+			 redirectAttr.addFlashAttribute("message","비밀번호가 정확하지 않습니다."); 
+			 return "redirect:/member/check";
+		 }
+		
 	}
 	
 	@GetMapping("delete")
@@ -215,6 +218,23 @@ public class MemberController {
 		System.out.println("멤버값 나와라 뿅"+deleteUser);
 		memberService.deleteMember(deleteUser.getUserCode());
 		logout(session);
+		return"redirect:/";
+	}
+	
+	@PostMapping("update")
+	public String updateMember(@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,HttpSession session
+								,RedirectAttributes redirectAttr) {
+		
+		/*
+		 * ValidateResult vr = new ValidateResult(); model.addAttribute("error",
+		 * vr.getError()); if(errors.hasErrors()) { vr.addError(errors); return
+		 * "member/mypage"; }
+		 */
+	    System.out.println(form);
+		memberService.updateMember(form);		
 		return"redirect:/";
 	}
 

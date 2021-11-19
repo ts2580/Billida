@@ -169,9 +169,10 @@ body {
 </head>
 <body>
 <div class="wrapper">
-  <form:form class="login" modelAttribute="member" action="/member/check" method="post">
+  <form:form class="login" modelAttribute="member" action="/member/check" method="post" id="check">
     <p class="title">Password</p>
-    <input type="password" placeholder="Password" id="password" autofocus/>
+    <input style="display: none" name="id" id="id" value="${authentication.id}">
+    <input type="password" placeholder="Password" name="password" id="password" autofocus/>
     <i class="fa fa-key"></i>
    		<c:if test="${not empty message}">
 			<span class="valid-msg">${message}</span>
