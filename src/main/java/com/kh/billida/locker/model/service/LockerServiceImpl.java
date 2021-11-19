@@ -15,4 +15,17 @@ public class LockerServiceImpl implements LockerService{
 		return null;
 	}
 
+	@Override
+	public void appendAttach(String[] uploadedFiles, Integer bno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeAttach(String fileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

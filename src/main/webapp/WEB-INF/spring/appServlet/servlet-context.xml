@@ -42,6 +42,13 @@
 		<beans:constructor-arg name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
+	<beans:bean id="uploadPath" class="java.lang.String">
+        <beans:constructor-arg value="/C:/CODE/upload"/>
+    </beans:bean>
+    <beans:bean id="uploadDirectPath" class="java.lang.String">
+        <beans:constructor-arg value="/C:/CODE/upload"/>
+    </beans:bean>
+	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!-- 트랜잭션 처리에 사용할 메서드 네임패턴과 트랜잭션 정책 (advice => 공통관심사) -->

@@ -18,6 +18,6 @@ public class Locker {
 	private String rent_end;
 	private int profit;
 	private long latitude;
-	private long longtitude;
+	private long longitude;
 	
 }
