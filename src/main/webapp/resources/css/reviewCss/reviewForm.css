@@ -15,11 +15,7 @@
 	justify-content: center;
 	font-size: 15px;
 	font-weight: bolder;
-<<<<<<< HEAD
-=======
-	padding-bottom: 15px;
 	padding-top: 8px;
->>>>>>> refs/heads/dev
 }
 
 .form_area{
@@ -74,7 +70,7 @@
 	width:100%;
 	display: flex;
 	justify-content: center;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 
 .review_contents{
@@ -109,26 +105,26 @@
 	height: 30px;
 }
 
-
-.R1{
-    background: url('/resources/images/star.png') no-repeat -86px 0;
-    background-size: auto 100%;
-    width: 25px;
-    height: 50px;
-    float:left;
-    text-indent: -9999px;
+.star {
+    position: relative;
+    font-size: 4rem;
+    color: #ddd;
+  }
+  
+  .star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
     cursor: pointer;
-}
-
-.R2{
-    background: url('/resources/images/star.png') no-repeat right 0;
-    background-size: auto 100%;
-    width: 25px;
-    height: 50px;
-    float:left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-
-.R1.on{background-position:0 0;}
-.R2.on{background-position:-25px 0;}
+  }
+  
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: orange;
+    overflow: hidden;
+    pointer-events: none;
+  }
