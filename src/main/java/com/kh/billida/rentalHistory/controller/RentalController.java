@@ -69,7 +69,7 @@ public class RentalController {
 	}
 
 	@GetMapping("indexLinkTest")
-	public String indexLinkTest(Model model) {
+	public void indexLinkTest(Model model) {
 		List<Main> mainList = new ArrayList<Main>();
 		mainList = mainService.selectLockerList(); 
 
@@ -77,8 +77,6 @@ public class RentalController {
 		commandMap.put("mainList", mainList);
 		
 		model.addAllAttributes(commandMap);
-
-		return "index";
 	}
 	
 
