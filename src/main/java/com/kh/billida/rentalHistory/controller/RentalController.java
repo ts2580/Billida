@@ -2,7 +2,10 @@ package com.kh.billida.rentalHistory.controller;
 
 
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.billida.main.model.dto.Main;
+import com.kh.billida.main.model.service.MainService;
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.service.RentalService;
@@ -23,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 public class RentalController {
 	
 	private final RentalService rentalService;
+	
+	private final MainService mainService;
 	
 	private int lockerId;
 	
@@ -61,7 +68,16 @@ public class RentalController {
 		return "redirect:/rental/rental-form";
 	}
 
-	
+	@GetMapping("indexLinkTest")
+	public void indexLinkTest(Model model) {
+		List<Main> mainList = new ArrayList<Main>();
+		mainList = mainService.selectLockerList(); 
+
+		Map<String, Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("mainList", mainList);
+		
+		model.addAllAttributes(commandMap);
+	}
 	
 
 	
