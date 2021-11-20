@@ -8,7 +8,7 @@ import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 
 public interface ReviewService {
 
-	RentHistoryAndLocker selectReviews(int historyIndex);
+	RentHistoryAndLocker selectRentInfo(int historyIndex);
 
 	List<Integer> findReviewList(String userCode);
 
@@ -21,6 +21,10 @@ public interface ReviewService {
 	List<Map<String, Object>> getReviewListPaging(Map<String, Object> criMap);
 
 	int getReviewTotal(String userCode);
+
+	Map<String, Object> selectReviewInfo(String reviewNum);
+
+	void modifyReview(Map<String, Object> commandMap);
 
 
 }

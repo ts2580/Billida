@@ -6,7 +6,7 @@
   <!-- 메인 리포지토리 등록  -->
   <mapper namespace="com.kh.billida.review.model.repository.ReviewRepository">
   
-  	<select id="selectReviews" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
+  	<select id="selectRentInfo" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
 		  	select * 
 			from rent_history r, locker l
 			where history_index = #{historyIndex}
@@ -42,6 +42,20 @@
 		    where rn > (#{pageNum} -1) * #{amount}
 	    ]]>
   	</select>
+  	
+  	<select id="selectReviewInfo" resultType="map">
+  		select r.*, l.locker_image, l.locker_title, h.rent_start, h.rent_end
+		from review r, locker l, rent_history h
+		where l.locker_id = r.locker_id
+		and r.history_index = h.history_index
+		and r.review_num = #{reviewNum}
+  	</select>
+  	
+  	<update id="modifyReview">
+  	update review
+	set score = #{score}, content = #{content}, update_date = SYSDATE
+	where review_num = #{reviewNum}
+  	</update>
   
   
   </mapper>

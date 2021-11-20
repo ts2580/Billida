@@ -12,7 +12,7 @@ import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 @Mapper
 public interface ReviewRepository {
 	
-	RentHistoryAndLocker selectReviews(int historyIndex);
+	RentHistoryAndLocker selectRentInfo(int historyIndex);
 
 	void insertReview(Map<String, Object> commandMap);
 
@@ -29,6 +29,10 @@ public interface ReviewRepository {
 
 	@Select("select count(*) from review where user_code = #{userCode}")
 	int getReviewTotal(String userCode);
+
+	Map<String, Object> selectReviewInfo(String reviewNum);
+
+	void modifyReview(Map<String, Object> commandMap);
 
 
 

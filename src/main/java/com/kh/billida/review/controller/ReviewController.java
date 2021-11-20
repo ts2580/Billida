@@ -35,33 +35,6 @@ public class ReviewController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ReviewService reviewService;
 	
-	@GetMapping("review-form")// href=/review/review-form?historyIndex=인덱스번호
-	public void reviewFormInfo(Model model, int historyIndex, HttpSession session) {
-
-		RentHistoryAndLocker reviewInfo = reviewService.selectReviews(historyIndex);
-		
-		model.addAttribute("reviewInfo", reviewInfo);
-		session.setAttribute("rentHistoryLocker", reviewInfo);
-	}
-	
-	@PostMapping("upload-review")
-	public String uploadReview(Model model
-						, @ModelAttribute Review reviewForm //jsp에서 값 채워진 모델로 받아오기
-						, @SessionAttribute(value="rentHistoryLocker", required = false) RentHistoryAndLocker rentInfo
-						) {
-		
-		Map<String, Object> commandMap = new HashMap<String, Object>();
-		commandMap.put("score", reviewForm.getScore()); //별점
-		commandMap.put("content", reviewForm.getContent()); //리뷰내용
-		commandMap.put("userCode", rentInfo.getUserCode());//userCode
-		commandMap.put("historyIndex", rentInfo.getHistoryIndex());//historyIndex
-		commandMap.put("lockerId", rentInfo.getLockerId());//lockerId
-
-		reviewService.insertReview(commandMap);
-		
-		return "redirect:/";
-	}
-
 	@GetMapping("rent-list")
 	public String rentList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
 
@@ -94,6 +67,24 @@ public class ReviewController {
 		return "review/rent-list";
 	}
 	
+	@PostMapping("upload-review")
+	public String uploadReview(Model model
+						, @ModelAttribute Review reviewForm //jsp에서 값 채워진 모델로 받아오기
+						, @SessionAttribute(value="rentHistoryLocker", required = false) RentHistoryAndLocker rentInfo
+						) {
+		
+		Map<String, Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("score", reviewForm.getScore()); //별점
+		commandMap.put("content", reviewForm.getContent()); //리뷰내용
+		commandMap.put("userCode", rentInfo.getUserCode());//userCode
+		commandMap.put("historyIndex", rentInfo.getHistoryIndex());//historyIndex
+		commandMap.put("lockerId", rentInfo.getLockerId());//lockerId
+
+		reviewService.insertReview(commandMap);
+		
+		return "redirect:/";
+	}
+	
 	@GetMapping("review-list")
 	public String reviewList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
 		Member member = (Member) session.getAttribute("authentication");
@@ -121,8 +112,39 @@ public class ReviewController {
 		
 		return "review/review-list";
 	}
-
 	
+	@GetMapping("review-form")// href=/review/review-form?historyIndex=인덱스번호
+	public void reviewFormInfo(Model model, int historyIndex, HttpSession session) {
+
+		RentHistoryAndLocker reviewInfo = reviewService.selectRentInfo(historyIndex);
+		
+		model.addAttribute("reviewInfo", reviewInfo);
+		session.setAttribute("rentHistoryLocker", reviewInfo);
+	}
+
+	@GetMapping("review-modifyForm") //review-modify?reviewNum=리뷰번호
+	public void modifyReview(Model model, String reviewNum, HttpSession session) {
+		
+		Map<String, Object> reviewInfo = reviewService.selectReviewInfo(reviewNum);
+		model.addAttribute("reviewInfo", reviewInfo);
+		session.setAttribute("modifyFormInfo", reviewInfo);
+	}
+	
+	@PostMapping("modify-review")
+	public String modifyReview(Model model
+						, @ModelAttribute Review reviewForm
+						, @SessionAttribute(value="modifyFormInfo", required = false) Map<String,Object> modifyInfo
+						) {
+		
+		Map<String, Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("score", reviewForm.getScore()); //별점
+		commandMap.put("content", reviewForm.getContent()); //리뷰내용
+		commandMap.put("reviewNum", modifyInfo.get("REVIEW_NUM")); //리뷰넘버
+		
+		reviewService.modifyReview(commandMap);
+		
+		return "redirect:/review/review-list";
+	}
 	
 	
 	
