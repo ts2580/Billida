@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+.review_wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 80px;
+}
+
+.title{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bolder;
+	padding-top: 30px;
+	padding-bottom: 25px;
+}
+
+.review_list{
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+}
+
+.review_area{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	color: #494949;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.reviewImg{
+	height: 100px;
+	width: 100px;
+}
+
+.review_box{
+	display: flex;
+	flex-direction: column;
+	padding-left: 30px;
+	width: 35%;
+}
+
+.nameNick{
+	display: flex;
+	flex-direction:column;
+}
+
+.review_name {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+.review_nick{
+	display: flex;
+	font-size: 12px;
+}
+
+.review_info{
+	display: flex;
+	flex-direction:column;
+	font-size: 12px;
+}
+
+.review_score{
+	display: flex;
+}
+
+.review_content{
+	display: flex;
+}
+
+.review_date{
+	display: flex;
+	font-size: 10px;
+	padding-left: 160px;
+}
+
+.button_box{
+	display: flex;
+	flex-direction: column;
+	padding-left: 50px;
+}
+
+.review_modify{
+	display: flex;
+	
+}
+
+.review_delete{
+	display: flex;
+}
+
+hr{
+	margin: 0;
+	width: 100%;
+	border-left: hidden;
+}
+
+.pageInfo {
+	list-style: none;
+	display: inline-block;
+}
+
+.pageInfo li {
+	display:flex;
+	justify-content: center;
+	float: left;
+	font-size: 15px;
+	padding: 8px 16px;
+	border-radius: 35%;
+	width: 8px;
+	cursor: pointer;
+}
+
+.pageInfo li.active{
+	background-color: orange;
+	color: white;
+}
+
+.pageInfo li:hover:not(.active){
+	background-color: silver;
+}
+
+li:link {
+	color: black;
+	text-decoration: none;
+}
+
+li:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #cdd5ec;
+}
+
+.pageInfo_wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.pageInfo_area {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	
+}
+
+.star {
+    position: relative;
+    font-size: 1.5rem;
+    color: #ddd;
+}
+  
+.star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+.star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: orange;
+    overflow: hidden;
+    pointer-events: none;
+}

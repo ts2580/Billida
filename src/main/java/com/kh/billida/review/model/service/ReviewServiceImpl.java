@@ -18,8 +18,8 @@ public class ReviewServiceImpl implements ReviewService{
 	private final ReviewRepository reviewRepository;
 	
 	@Override
-	public RentHistoryAndLocker selectReviews(int historyIndex) {
-		return reviewRepository.selectReviews(historyIndex);
+	public RentHistoryAndLocker selectRentInfo(int historyIndex) {
+		return reviewRepository.selectRentInfo(historyIndex);
 	}
 
 	@Override
@@ -50,6 +50,17 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int getReviewTotal(String userCode) {
 		return reviewRepository.getReviewTotal(userCode);
+	}
+
+	@Override
+	public Map<String, Object> selectReviewInfo(String reviewNum) {
+		return reviewRepository.selectReviewInfo(reviewNum);
+	}
+
+	@Override
+	public void modifyReview(Map<String, Object> commandMap) {
+		reviewRepository.modifyReview(commandMap);
+		
 	}
 
 }
