@@ -15,10 +15,10 @@
 			 
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
-			 <div class="locker_list list1">
+			  <div class="locker_list list1">
 			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8">
 					 <div class="locker_area">
-					 	<div class="lockerImg"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg lockerId" id="${mains.lockerId}"><img class="imgs" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -63,7 +63,20 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         
-<script>
+<script type="text/javascript">
+
+	let IdArr = new Array();
+
+	for(let i = 0; i < 4; i++) {
+	
+		IdArr[i] = document.getElementsByClassName('lockerId')[i].id;
+	
+		document.getElementById(IdArr[i]).addEventListener('click',() =>{
+			location.href='/rental/rental-form?lockerId='+IdArr[i];
+		}); 
+	};
+	
+	
      /* $.ajax({
                 method: "GET",
                 url: "https://dapi.kakao.com/v2/search/image",
