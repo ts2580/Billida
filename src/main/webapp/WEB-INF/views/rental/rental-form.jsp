@@ -19,7 +19,7 @@
 		<img src="${contextPath}/resources/images/billigi.jpg"">
 	</div>
 	<div class="billigi">
-		<div class="title">${locker.lockerTitle}</div>
+		<div class="title">${locker.lockerId}.${locker.lockerTitle}</div>
 		<div class="contents">
 			<div>
 				<img src="${locker.lockerImage}" class="pic">

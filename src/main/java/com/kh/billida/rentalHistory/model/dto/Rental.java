@@ -8,7 +8,7 @@ import lombok.Data;
 public class Rental {
 	
 	private long historyIndex;
-	private int lockerId;
+	private Long lockerId;
 	private String userCode;
 	private Date rentStart;
 	private Date rentEnd;

@@ -11,7 +11,7 @@ import com.kh.billida.rentalHistory.model.dto.Rental;
 public interface RentalRepository {
 
 	@Select("select * from locker where LOCKER_ID=#{lockerId}")
-	LockerForLent selectLocker(int param);
+	LockerForLent selectLocker(long param);
 	
 	@Insert("insert into rent_history(HISTORY_INDEX, LOCKER_ID, USER_CODE, RENT_START, RENT_END, RENT_COST) "
 			+ "values(RENT_HISTORY_INDEX.nextval, #{lockerId}, #{userCode}, #{rentStart}, #{rentEnd}, #{rentCost})")

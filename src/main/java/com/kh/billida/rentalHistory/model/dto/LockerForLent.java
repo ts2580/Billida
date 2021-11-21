@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class LockerForLent {
 	
-	private int lockerId;
+	private long lockerId;
 	private String userCode;
 	private String lockerTitle;
 	private String lockerContent;
@@ -15,7 +15,6 @@ public class LockerForLent {
 	private String lockerSize;
 	private Long lockerPassword;
 	private String location;
-	private Date rentableDate;
-	private String rentEnd;
+	private Date rentableDateEnd;
 
 }
