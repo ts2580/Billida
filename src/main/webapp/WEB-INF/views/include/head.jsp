@@ -94,10 +94,10 @@
                   </c:if>
                   
                   <c:if test="${not empty authentication.kakaoNum}">
-                     <a href="javascript:kakaoLogout();">카카오 로그아웃</a>
+                     <a href="javascript:kakaoLogout();"><img src="/resources/images/logout.png" style="width: 18%;    margin-left: 140px;"/></a>
                   </c:if>
                   <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
-                     <a href="/member/logout">로그아웃</a>
+                     <a href="/member/logout"><img src="/resources/images/logout.png" style="width: 18%; margin-left: 140px;"/></a>
                   </c:if>
                   </ul>
                </div>

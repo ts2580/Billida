@@ -2,6 +2,7 @@ package com.kh.billida.member.controller;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -107,11 +108,11 @@ public class MemberController {
 		}
 	   
 	   @PostMapping("login")
-		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirctAttr){
+		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirectAttr){
 			Member certifiedUser = memberService.authenticateUser(member);
 			System.out.println(member);
 			if(certifiedUser == null) {
-				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
+				redirectAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
 				return "redirect:/member/login";
 			}
 			
@@ -181,10 +182,10 @@ public class MemberController {
 		}
 
 	@GetMapping("/check")
-	public String check(Member member, HttpSession session, RedirectAttributes redirctAttr) {
+	public String check(Member member, HttpSession session, RedirectAttributes redirectAttr) {
 
 		if (session.getAttribute("authentication") == null) {
-			redirctAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
+			redirectAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
 			return "redirect:/member/login";
 		}
 		Member user = (Member) session.getAttribute("authentication");
@@ -193,6 +194,8 @@ public class MemberController {
 		}
 		return"member/kakaoChange";
 	}
+	@GetMapping("mail")
+	public void mail() {}
 	
 	@PostMapping("check")
 	public String passwordCheck(Member member
@@ -217,5 +220,29 @@ public class MemberController {
 		logout(session);
 		return"redirect:/";
 	}
+	
+	@GetMapping("findId")
+	public void findId() {}
+	@PostMapping("findIdByEmail")
+	public String findIdByEmail(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr) {
+		Member certifiedUser = memberService.authenticateUser(member);
+		System.out.println(member);
+		if(certifiedUser == null) {
+			redirectAttr.addFlashAttribute("message","입력하신 정보를 확인해주세요");
+			return "redirect:/member/findId";
+		}
+	      String token = UUID.randomUUID().toString();
+			/* session.setAttribute("persistUser", form); */
+	      session.setAttribute("persistToken", token);
+	      
+	      memberService.findIdByEmail(token);
+	      redirectAttr.addFlashAttribute("message","이메일이 발송되었습니다.");
+		return "redirect:/";
+	}
+	@GetMapping("findPassword")
+	public void findPassword() {
+		
+	}
+	
 
 }

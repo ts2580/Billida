@@ -68,6 +68,11 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return false;
 	}
+	@Override
+	public void findIdByEmail(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	   
 }

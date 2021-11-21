@@ -184,49 +184,31 @@ footer a:link {
 </head>
 <body>
 <div class="wrapper">
-  <form action="/member/login" method="post" class="login">
-    <p class="title">Log in</p>
-    <input name="id" id="id" type="text" placeholder="Username" autofocus/>
+  <form action="/member/findIdByEmail" method="post" class="login">
+    <p class="title">Find ID</p>
+    <input name="name" id="name" type="text" placeholder="Username" autofocus/>
     <i class="fa fa-user"></i>
-    <input name="password" id="password" type="password" placeholder="Password" />
-    <i class="fa fa-key"></i>
+    <input name="email" id="email" type="email" placeholder="email" />
+    <i class="fa fa-envelope-o"></i>
 		<c:if test="${not empty message}">
 			<span class="valid-msg">${message}</span>
 		</c:if>
     <div style="display: grid;">
     <a href="/member/signUp">Sign up</a>
     <span style="display: flex; justify-content: space-between;">
-    <a style="margin-top:2px;" href="#">Forgot your id?</a>
     <a style="margin-top:2px;" href="#">Forgot your password?</a>
     </span>
     </div>
     <button>
       <i class="spinner"></i>
-      <span class="state">Log in</span>
+      <span class="state">Send Email</span>
     </button>
   </form>
-  <form:form modelAttribute="joinForm" action="/member/kakaoLogin" name="kakaologin_frm" method="post" class="form-auth-small"  >
-								<div class="form-group" id="kakaoLogin">
-									<div class="kakaoBtn">
-										<!-- 카카오 정보 넣어줄 input 숨김처리로 넣어놓음 -->
-										<input type="hidden" name="id" id="kakaoId" />
-										<input type="hidden" name="email" id="kakaoEmail" />
-										<input type="hidden" name="nick" id="kakaoNick" />
-										<input type="hidden" name="kakaonum" id="kakaonum" />
-										<a href="javascript:loginWithKakao();" style="display: flex; margin-top: 5px; " id="custom-login-btn">
-											<img src="/resources/images/kakao_login_medium_wide.png" />
-											<!-- <button class="btn btn-lg kakao">카카오톡 간편 로그인</button> -->
-										</a>
-									</div>
-								</div>
-							</form:form>
 
   <footer><a target="blank" href="http://boudra.me/"></a></footer>
   </p>
 </div>
 
 
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script src='/resources/js/member/kakaoLogin.js'></script>
 </body>
 </html>

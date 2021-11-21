@@ -15,4 +15,5 @@ public interface MemberService {
 	void updateMember(JoinForm form);
 	boolean checkPassword(Member member, HttpSession session);
 	void deleteMember(String userCode);
+	void findIdByEmail(Object object);
 }
