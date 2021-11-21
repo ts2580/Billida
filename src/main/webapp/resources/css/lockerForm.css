@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+body{
+	background-color: white;
+}
+
+table{
+	border-collapse: separate;
+ 	border-spacing: 0 10px;
+}
+
+
+.billigi{
+	margin-top: 5px;
+	margin-left: 10%;
+	width: 1256px;
+	height: 700px;
+}
+
+
+.title{
+	font-weight: bold;
+	font-size: 30px;
+	font-family: 'Single Day', cursive;
+	padding-top: 15px;
+	padding-left: 30px
+}
+
+.contents{
+	display: flex;
+	padding-left: 30px;
+	padding-top: 5px;
+}
+
+.outline{
+	margin-left: 31px;
+    border: 1px solid #d9d9d9;
+    height: 500px;
+    width: 350px;
+}
+
+.price-and-time{
+	line-height: 27px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d8d8d8;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.price{
+	font-size: 24px;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+.rental-contents{
+	padding: 30px;
+	padding-top: 10px;
+	width:420px;
+}
+
+
+
+.rental-contents-title{
+	width: 110px;
+}
+ 

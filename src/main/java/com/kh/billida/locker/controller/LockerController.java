@@ -3,10 +3,12 @@ package com.kh.billida.locker.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.lang.ProcessBuilder.Redirect;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,17 +20,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.kh.billida.locker.image.FileUtils;
 import com.kh.billida.locker.model.service.LockerService;
+
+import lombok.RequiredArgsConstructor;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
 @Controller
-@RequestMapping("/locker")
+@RequiredArgsConstructor
 public class LockerController {
 
+	// return을 void로 설정하면 uri를 jsp forward할때 사용함
 	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+	    return new CommonsMultipartResolver();
+	}
 	
 	@Inject
 	private LockerService lockerService;
@@ -39,10 +51,98 @@ public class LockerController {
 	@Resource(name="uploadDirectPath")
 	private String uploadDirectPath;
 	
-	@RequestMapping(value="uploadForm", method = RequestMethod.GET)
-	public void uploadFormGET() throws Exception{
-		logger.info(uploadDirectPath);
+	//lockerMain페이지로 이동
+	// return type이 void인 경우 uri를 jsp로 forword하는 정보 사용한다.
+	@RequestMapping(value="/locker/lockerMain", method = RequestMethod.GET)
+	public void lockerMainGET() {
+		
 	}
+	
+	// 글쓰기 처리->글쓰기 처리가 다 끝나면 자동으로 lockerMain으로 가야함.
+	@RequestMapping(value="/locker/lockerMain", method = RequestMethod.POST)
+	public String lockerMainPost() {
+		return "redirect:/locker/lockerMain";
+	}
+	
+	//lockerMain페이지로 이동
+	// return type이 void인 경우 uri를 jsp로 forword하는 정보 사용한다.
+	@RequestMapping(value="/locker/uploadForm")
+	public void uploadFormGET() {
+			
+	}
+		
+	// 글쓰기 처리->글쓰기 처리가 다 끝나면 자동으로 lockerMain으로 가야함.
+	@RequestMapping(value="/locker/uploadForm", method = RequestMethod.POST)
+	public String uploadFormPOST() {
+		return "/locker/lockerMain";
+	}
+	
+	
+	
+	// 요청은 get방식으로 글쓰기 폼
+	// 등록 폼
+	@RequestMapping(value="/locker/lockerMainDropdownForm", method = RequestMethod.GET)
+	public void lockerMainDropdownFormGET() {
+		
+	}
+	
+	@RequestMapping(value="/locker/lockerMainDropdownForm", method = RequestMethod.POST)
+	public String lockerMainDropdownFormPOST() {
+		logger.info("드롭다운버튼 선택");
+		return "/locker/lockerMain";
+	}
+
+	
+
+	
+	// 요청은 get방식으로 글쓰기 폼
+	@RequestMapping(value="/locker/uploadLockerImage", method = RequestMethod.GET)
+    public String uploadImage(){
+        logger.info("이미지 업로드 후 lockerMain으로 이동");
+        return "/locker/uploadLockerImage";
+    }
+	
+	//등록 처리
+	// 글쓰기 처리->글쓰기 처리가 다 끝나면 자동으로 list로 가야함.
+	@RequestMapping(value="/locker/uploadLockerImage", method = RequestMethod.POST)
+    public void uploadLockerImage(MultipartFile file, Model model)throws Exception{
+        logger.info("originalName:"+ file.getOriginalFilename());//파일 이름
+        logger.info("size:"+ file.getSize());//파일 크기
+        logger.info("contentType:"+ file.getContentType());//파일확장자
+        
+    }
+    
+	
+	/*
+	 * //리스팅
+	 * 
+	 * @GetMapping("/imageList") public String imageList(Model model) {
+	 * 
+	 * log.info("model : " + model);
+	 * 
+	 * 
+	 * return "/locker/imageList"; }
+	 */
+	//보기
+	
+	
+	
+	
+	
+	//수정 폼
+	
+	//수정 처리
+	
+	//삭제
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
@@ -159,6 +259,7 @@ public class LockerController {
 		}
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
 	public void uploadFormPOST(MultipartFile file, Model model, @RequestParam String type) throws Exception {
 		logger.info("upload POST .....orinalName={}, size={}, contentType={}", 
@@ -174,46 +275,6 @@ public class LockerController {
 	
 	
 	
-	
-	
-	
-	
-	
-	@RequestMapping(value="/uploadLockerImage", method = RequestMethod.GET)
-    public String uploadImage(){
-        logger.info("/upload.......");
-        return "/locker";
-    }
-    
-    @RequestMapping(value="/uploadLockerImage", method = RequestMethod.POST)
-    public void upload(MultipartFile file, Model model)throws Exception{
-        logger.info("originalName:"+ file.getOriginalFilename());//파일 이름
-        logger.info("size:"+ file.getSize());//파일 크기
-        logger.info("contentType:"+ file.getContentType());//파일확장자
-    }
-    
-	
-	/*
-	 * //리스팅
-	 * 
-	 * @GetMapping("/imageList") public String imageList(Model model) {
-	 * 
-	 * log.info("model : " + model);
-	 * 
-	 * 
-	 * return "/locker/imageList"; }
-	 */
-	//보기
-	
-	//등록 폼
-	
-	//등록 처리
-	
-	//수정 폼
-	
-	//수정 처리
-	
-	//삭제
 	
 	
 }

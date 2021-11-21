@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="uploadLockerImagePost" method="post" enctype="multipart/form-data">
+	<form action="uploadLockerImage" method="post" enctype="multipart/form-data">
 	<div>
 		<input type="file" name="files">
 	</div>

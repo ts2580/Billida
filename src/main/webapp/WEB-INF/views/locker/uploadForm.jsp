@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +45,7 @@ window.setUploadedFile = (filename) => {
     document.getElementById('upfile').innerHTML = filename;
     document.getElementById("form2").reset();
 };
+
 const $fileDrop = $('div.fileDrop'),
       $uploadedList = $('div.uploadedList');
       
@@ -63,6 +66,7 @@ $fileDrop.on('drop', (evt) => {
     $("#ajax-file").prop("files", evt.originalEvent.dataTransfer.files);
     $('#form3').submit();
 });
+
 const $percent = $('#percent'),
       $status = $('#status'),
       $uplist = $('div.uploadedList');
@@ -91,6 +95,7 @@ $('#form3').ajaxForm({
         $status.html(uf + ' Uploaded');
     }
 });
+
 function deleteFile(fileName) {
 	sendAjax("/deleteFile?fileName=" + fileName, (isSuccess, res) => {
         if (isSuccess) {
@@ -103,6 +108,7 @@ function deleteFile(fileName) {
         }
     }, 'DELETE');
 }
+
 function getOriginalName(fileName) {
 	let ret = fileName.substring(fileName.indexOf('_') + 1);
 	console.debug("ori>>", ret)
@@ -117,10 +123,12 @@ function getOriginalName(fileName) {
 	}
 	
 }
+
 function checkImageType(fileName) {
 	let pattern = /jpg$|png$|gif$/i;
 	return fileName.match(pattern);
 }
+
 function sendAjax(url, fn, method, jsonData) {
     let options = {
                     method: method || 'GET',
@@ -139,6 +147,7 @@ function sendAjax(url, fn, method, jsonData) {
         }
     });
 }
+
 </script>    
 
 <c:if test="${ type eq 'ifr' }">

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- insert 데이터 삽입 실시 : 이미지 저장 -->
+<mapper>
+<insert id ="saveImage">
+	<![CDATA[
+	insert into LOCKER(Locker_idx,Locker_image)
+	values(#{locker_idx}, #{locker_image}
+	]]>
+</insert>
+
+<!-- select 조건 절 조회 : 이미지 조회 -->
+<select id="selectImage" resultType="map">
+	<![CDATA[
+	select Locker_image
+		from LOCKER
+	where Locker_idx =#{locker_idx}
+	]]>
+
+</select>
+</mapper>
