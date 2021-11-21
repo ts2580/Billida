@@ -30,7 +30,7 @@
 					<div class="locker_name">${lockerList.lockerTitle}</div>
 					<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${lockerList.lockerContent}</div>
 					<div class="locker_info">
-						<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${lockerList.rentableDate}</span> 
+						<span id="date"><i class="far fa-calendar-alt"></i> 대여가능기간 : ~ ${lockerList.rentableDateEnd}</span> 
 						<span id="size"><i class="fas fa-box-open"></i> 사이즈 : ${lockerList.lockerSize}</span>
 					</div>
 				</div>

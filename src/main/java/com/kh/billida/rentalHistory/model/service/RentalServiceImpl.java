@@ -14,7 +14,7 @@ public class RentalServiceImpl implements RentalService{
 	
 	private final RentalRepository rentalRepository;
 	
-	public LockerForLent selectLocker(int lockerId) {
+	public LockerForLent selectLocker(Long lockerId) {
 		LockerForLent locker = rentalRepository.selectLocker(lockerId);
 		return locker;
 	}
