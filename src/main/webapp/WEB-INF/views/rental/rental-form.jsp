@@ -21,8 +21,8 @@
 	<div class="billigi">
 		<div class="title">${locker.lockerId}.${locker.lockerTitle}</div>
 		<div class="contents">
-			<div>
-				<img src="${locker.lockerImage}" class="pic">
+			<div class="pic">
+				<img src="${locker.lockerImage}" >
 			</div>
 			<div class="outline">
 				<p class="price-and-time">

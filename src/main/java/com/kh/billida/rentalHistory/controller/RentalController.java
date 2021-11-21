@@ -39,7 +39,6 @@ public class RentalController {
 		// Qwerasdf1234!
 		
 		this.lockerId = lockerId;
-		
 		locker.setLockerId(lockerId);
 		// 메인페이지에서 lockerId 타고 들어옴. 임시로 숫자 집어넣음
 		// 파라미터로 받을지 세션으로 받을지 상의 후 정할것
@@ -53,12 +52,8 @@ public class RentalController {
 	@PostMapping("rental-form")
 	public String rentalForm(Rental rental){
 		
-		LocalDate rentStart = LocalDate.of(rental.getRentStart().getYear(), rental.getRentStart().getMonth(), rental.getRentStart().getDate());
-		LocalDate rentEnd = LocalDate.of(rental.getRentEnd().getYear(), rental.getRentEnd().getMonth(), rental.getRentEnd().getDate());
-			
-		System.out.println("lockerId" + lockerId);
-		System.out.println("rentStart  : " + rentStart);
-		System.out.println("rentEnd  : " + rentEnd);
+		LocalDate rentStart = rental.getRentStart().toLocalDate();
+		LocalDate rentEnd = rental.getRentEnd().toLocalDate();
 		
 		int rentCost = (rentEnd.getDayOfYear()-rentStart.getDayOfYear()+1)*3000;
 		
@@ -66,11 +61,11 @@ public class RentalController {
 		rental.setUserCode(rentalService.selectLocker(lockerId).getUserCode());
 		rental.setRentCost(rentCost);
 		
-		// rentalService.insertRental(rental);
+		rentalService.insertRental(rental);
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
 		// 긴거 맵퍼, 짧은거 리포지토리
 		
-		return "redirect:/rental/rental-form";
+		return "redirect:/rental/rental-form?lockerId="+lockerId;
 	}
 
 	@GetMapping("indexLinkTest")

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class LockerForLent {
 	
-	private long lockerId;
+	private Long lockerId;
 	private String userCode;
 	private String lockerTitle;
 	private String lockerContent;

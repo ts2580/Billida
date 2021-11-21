@@ -28,9 +28,7 @@ body{
 
 .pic{
 	width: 1000px;
-	height: 500px;
-	background-size: contain;
-	background-repeat: no-repeat;
+	clip:rect(0px 100px 100px 0px);
 }
 
 .outline{
