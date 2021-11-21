@@ -17,7 +17,7 @@ public class Main {
 	private int lockerPassword; //비밀번호
 	private String location; //세부안내
 	private LocalDate rentableDateStart; //임대가능일자
-	private String rentableDateEnd; //임대종료
+	private LocalDate rentableDateEnd; //임대종료
 	private String latitude; //위도
 	private String longitude; //경도
 
