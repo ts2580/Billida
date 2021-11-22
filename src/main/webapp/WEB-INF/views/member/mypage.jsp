@@ -60,8 +60,8 @@ body {
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<span style="display: flex; justify-content: space-between;"><h4
-						class="mb-3">회원 정보 수정</h4> <c:if
+				<span style="display: flex; justify-content: space-between;">
+					<h4 class="mb-3">회원 정보 수정</h4> <c:if
 						test="${not empty authentication.kakaoNum}">
 						<button type="button" onclick="javascript:unlinkApp();"
 							class="btn btn-primary btn-lg btn-block"
@@ -73,9 +73,10 @@ body {
 							class="btn btn-primary btn-lg btn-block"
 							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">일반회원
 							탈퇴</a>
-					</c:if> </span>
+					</c:if>
+				</span>
 				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/update" method="post" id="update">
+					action="/member/password" method="post" id="password">
 
 					<input style="display: none" name="id" id="id"
 						value="${authentication.id}">
@@ -103,8 +104,14 @@ body {
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">비밀번호 변경</button>
 				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
 				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/update" method="post" id="update">
+					action="/member/name" method="post" id="name">
 
 					<input style="display: none" name="id" id="id"
 						value="${authentication.id}">
@@ -117,9 +124,16 @@ body {
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">이름 변경</button>
 				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				
 
 				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/update" method="post" id="update">
+					action="/member/nick" method="post" id="nick">
 
 					<input style="display: none" name="id" id="id"
 						value="${authentication.id}">
@@ -133,6 +147,12 @@ body {
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">별명 변경</button>
 				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
 
 				<form:form modelAttribute="joinForm" class="validation-form"
 					action="/member/tel" method="post" id="tel">
@@ -161,6 +181,12 @@ body {
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">휴대전화 변경</button>
 				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
 				
 				<form:form modelAttribute="joinForm" class="validation-form"
 					action="/member/email" method="post" id="email">
@@ -179,6 +205,12 @@ body {
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">이메일 변경</button>
 				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
 				
 				<form:form modelAttribute="joinForm" class="validation-form"
 					action="/member/address" method="post" id="address">

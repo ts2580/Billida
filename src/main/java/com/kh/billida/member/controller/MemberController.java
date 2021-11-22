@@ -227,20 +227,19 @@ public class MemberController {
 	
 
 	@PostMapping("update")
-	public String updateMember(@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,HttpSession session
-								,RedirectAttributes redirectAttr) {
-		
-		/*
-		 * ValidateResult vr = new ValidateResult(); model.addAttribute("error",
-		 * vr.getError()); if(errors.hasErrors()) { vr.addError(errors); return
-		 * "member/mypage"; }
-		 */
-	    System.out.println(form);
-		memberService.updateMember(form);		
-		return"redirect:/";
+	public String updateMember(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
+			RedirectAttributes redirectAttr) {
+
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+
+		System.out.println(form);
+		memberService.updateMember(form);
+		return "redirect:/";
 	}
 
 	@GetMapping("findId")
@@ -271,7 +270,90 @@ public class MemberController {
 	 * 
 	 * }
 	 */
+		
+
+	@PostMapping("password")
+	public String updatePassword (@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,HttpSession session
+								,RedirectAttributes redirectAttr) {
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+		memberService.updatePassword(form);
+		return "redirect:/";
+	}
 	
+	@PostMapping("name")
+	public String updateName (@ModelAttribute JoinForm form 								
+								,RedirectAttributes redirectAttr) {
 
-
+		memberService.updateName(form);
+		return "redirect:/";
+	}
+	
+	@PostMapping("nick")
+	public String updateNick (@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,HttpSession session
+								,RedirectAttributes redirectAttr) {
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+		memberService.updateNick(form);
+		return "redirect:/";
+	}
+	
+	@PostMapping("tel")
+	public String updateTel (@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,RedirectAttributes redirectAttr) {
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+		memberService.updateTel(form);
+		return "redirect:/";
+	}
+	
+	@PostMapping("email")
+	public String updateEmail (@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,RedirectAttributes redirectAttr) {
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+		memberService.updateEmail(form);
+		return "redirect:/";
+	}
+	
+	@PostMapping("address")
+	public String updateAddress (@Validated JoinForm form 
+								,Errors errors
+								,Model model
+								,RedirectAttributes redirectAttr) {
+		ValidateResult vr = new ValidateResult();
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "member/mypage";
+		}
+		memberService.updateAddress(form);
+		return "redirect:/";
+	}
 }
