@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- 태그 라이브러리 추가  -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!-- 스프링 폼태그 사용 가능  -->
 <!DOCTYPE html>
 
-<html lang="ko" xmlns:o="urn:schemas-microsoft-com:office:office"
+<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office"
 	xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
+      <script src="${contextPath}/resources/js/jquery.min.js"></script>
 <title></title>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->
-<style type="text/css">
+<style>
 * {
 	box-sizing: border-box;
 }
@@ -66,7 +69,8 @@ p {
 }
 </style>
 </head>
-<body style="background-color: #f9f9f9; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+<body
+	style="background-color: #f9f9f9; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
 	<table border="0" cellpadding="0" cellspacing="0" class="nl-container"
 		role="presentation"
 		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f9f9f9;"
@@ -124,7 +128,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<a href="http:/localhost:9090">
-																	<img  alt="Alternate text" src="http://localhost:9090/resources/images/mailLogo.gif"
+																	<img  alt="Alternate text" src="${contextPath}/resources/images/mailLogo.gif"
 																		style="display: block; height: auto; border: 0; width: 154px; max-width: 100%;"
 																		title="Alternate text" width="154" />
 																	</a>
@@ -190,7 +194,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<img alt="Alternate text" class="big"
-																		src="http://localhost:9090/resources/images/mail/Up_pink.png"
+																		src="/resources/images/mail/Up_pink.png"
 																		style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;"
 																		title="Alternate text" width="700" />
 																</div>
@@ -228,7 +232,7 @@ p {
 															<td
 																style="width: 100%; padding-right: 0px; padding-left: 0px; padding-top: 30px;">
 																<div align="center" style="line-height: 10px">
-																	<img alt="I'm an image" src="http://localhost:9090/resources/images/mail/Welcome_Email.png"
+																	<img alt="I'm an image" src="/resources/images/mail/Welcome_Email.png"
 																		style="display: block; height: auto; border: 0; width: 420px; max-width: 100%;"
 																		title="I'm an image" width="420" />
 																</div>
@@ -272,7 +276,7 @@ p {
 																		style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #191919; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
-																			<span style="font-size: 22px;">ID : ${param.Id} </span>
+																			<span style="font-size: 22px;">아이디 : ${param.Id} </span>
 																		</p>
 																	</div>
 																</div>
@@ -362,7 +366,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<img alt="Alternate text" class="big"
-																		src="http://localhost:9090/resources/images/mail/white_down.png"
+																		src="/resources/images/mail/white_down.png"
 																		style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;"
 																		title="Alternate text" width="700" />
 																</div>

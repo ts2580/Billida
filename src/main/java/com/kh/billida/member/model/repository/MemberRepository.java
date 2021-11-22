@@ -3,6 +3,7 @@ package com.kh.billida.member.model.repository;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -37,4 +38,11 @@ public interface MemberRepository {
 	
 	@Delete("delete from member where user_code=#{userCode}")
 	void deleteMember(String userCode);
+	
+	//@Select("select id from member where name=#{name} and email = #{email}")
+	//Member selectMemberByNameAndEmail(Member member);
+	@Select("select id from member where name=#{name} and email = #{email}")
+	Member selectMemberByNameAndEmail(@Param("name")String name,@Param("email") String email);
+
+	
 }

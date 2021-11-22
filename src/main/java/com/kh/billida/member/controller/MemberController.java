@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -223,26 +224,32 @@ public class MemberController {
 	
 	@GetMapping("findId")
 	public void findId() {}
+
+	
 	@PostMapping("findIdByEmail")
 	public String findIdByEmail(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr) {
-		Member certifiedUser = memberService.authenticateUser(member);
 		System.out.println(member);
-		if(certifiedUser == null) {
+		Member checkUser = memberService.findIdByEmail(member);
+		if(checkUser == null) {
 			redirectAttr.addFlashAttribute("message","입력하신 정보를 확인해주세요");
 			return "redirect:/member/findId";
 		}
-	      String token = UUID.randomUUID().toString();
-			/* session.setAttribute("persistUser", form); */
-	      session.setAttribute("persistToken", token);
-	      
-	      memberService.findIdByEmail(token);
-	      redirectAttr.addFlashAttribute("message","이메일이 발송되었습니다.");
+		checkUser.setName(member.getName());
+		checkUser.setEmail(member.getEmail());
+		System.out.println("리포지토리에서 불러온 아이디값"+checkUser);
+		memberService.sendIdByEmail(checkUser);
+		
 		return "redirect:/";
 	}
 	@GetMapping("findPassword")
 	public void findPassword() {
 		
 	}
+	/*
+	 * @GetMapping("mail") public void a() {
+	 * 
+	 * }
+	 */
 	
 
 }
