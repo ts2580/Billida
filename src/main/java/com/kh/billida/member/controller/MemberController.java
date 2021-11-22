@@ -2,11 +2,13 @@ package com.kh.billida.member.controller;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -108,11 +110,11 @@ public class MemberController {
 		}
 	   
 	   @PostMapping("login")
-		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirctAttr){
+		public String loginlmpl( Model model, Member member, HttpSession session, RedirectAttributes redirectAttr){
 			Member certifiedUser = memberService.authenticateUser(member);
 			System.out.println(member);
 			if(certifiedUser == null) {
-				redirctAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
+				redirectAttr.addFlashAttribute("message","아이디나 비밀번호가 정확하지 않습니다.");
 				return "redirect:/member/login";
 			}
 			
@@ -182,10 +184,10 @@ public class MemberController {
 		}
 
 	@GetMapping("/check")
-	public String check(Member member, HttpSession session, RedirectAttributes redirctAttr) {
+	public String check(Member member, HttpSession session, RedirectAttributes redirectAttr) {
 
 		if (session.getAttribute("authentication") == null) {
-			redirctAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
+			redirectAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
 			return "redirect:/member/login";
 		}
 		Member user = (Member) session.getAttribute("authentication");
@@ -194,6 +196,8 @@ public class MemberController {
 		}
 		return"member/kakaoChange";
 	}
+	@GetMapping("mail")
+	public void mail() {}
 	
 	@PostMapping("check")
 	public String passwordCheck(@ModelAttribute Member member
@@ -221,6 +225,7 @@ public class MemberController {
 		return"redirect:/";
 	}
 	
+
 	@PostMapping("update")
 	public String updateMember(@Validated JoinForm form 
 								,Errors errors
@@ -237,5 +242,36 @@ public class MemberController {
 		memberService.updateMember(form);		
 		return"redirect:/";
 	}
+
+	@GetMapping("findId")
+	public void findId() {}
+
+	
+	@PostMapping("findIdByEmail")
+	public String findIdByEmail(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr) {
+		System.out.println(member);
+		Member checkUser = memberService.findIdByEmail(member);
+		if(checkUser == null) {
+			redirectAttr.addFlashAttribute("message","입력하신 정보를 확인해주세요");
+			return "redirect:/member/findId";
+		}
+		checkUser.setName(member.getName());
+		checkUser.setEmail(member.getEmail());
+		System.out.println("리포지토리에서 불러온 아이디값"+checkUser);
+		memberService.sendIdByEmail(checkUser);
+		
+		return "redirect:/";
+	}
+	@GetMapping("findPassword")
+	public void findPassword() {
+		
+	}
+	/*
+	 * @GetMapping("mail") public void a() {
+	 * 
+	 * }
+	 */
+	
+
 
 }

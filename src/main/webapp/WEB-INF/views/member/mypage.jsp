@@ -37,6 +37,9 @@ body {
 	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
 	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
 }
+.form{
+	border: 1px solid;
+}
 
 .input-form {
 	max-width: 680px;
@@ -48,7 +51,7 @@ body {
 	border-radius: 10px;
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);	
 }
 </style>
 </head>
@@ -98,8 +101,7 @@ body {
 							</c:if>
 						</div>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정
-						완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">비밀번호 변경</button>
 				</form:form>
 				<form:form modelAttribute="joinForm" class="validation-form"
 					action="/member/update" method="post" id="update">
@@ -113,8 +115,7 @@ body {
 								value="">
 						</div>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정
-						완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">이름 변경</button>
 				</form:form>
 
 				<form:form modelAttribute="joinForm" class="validation-form"
@@ -130,8 +131,7 @@ body {
 							<span id="nickCheck" class="valid-msg"></span>
 						</c:if>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정
-						완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">별명 변경</button>
 				</form:form>
 
 				<form:form modelAttribute="joinForm" class="validation-form"
@@ -159,7 +159,7 @@ body {
 								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">
 						</div>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정 완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">휴대전화 변경</button>
 				</form:form>
 				
 				<form:form modelAttribute="joinForm" class="validation-form"
@@ -177,7 +177,7 @@ body {
 							placeholder="you@example.com">
 						<div class="invalid-feedback">이메일을 입력해주세요.</div>
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정 완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">이메일 변경</button>
 				</form:form>
 				
 				<form:form modelAttribute="joinForm" class="validation-form"
@@ -207,7 +207,7 @@ body {
 						<label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label> <input type="text" class="form-control" name="addressDetail"
 							id="addressDetail" placeholder="상세주소를 입력해주세요.">
 					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">수정 완료</button>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">주소 변경</button>
 				</form:form>
 
 
