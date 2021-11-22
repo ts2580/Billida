@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.service.MainService;
@@ -40,8 +39,7 @@ public class RentalController {
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
-		// 메인페이지에서 lockerId 타고 들어옴. 임시로 숫자 집어넣음
-		// 파라미터로 받을지 세션으로 받을지 상의 후 정할것
+		// 파라미터로 받음. 개꿀
 		
 		locker = rentalService.selectLocker(lockerId);
 	
