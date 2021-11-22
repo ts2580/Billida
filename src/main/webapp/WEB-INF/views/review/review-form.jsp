@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="${contextPath}/resources/css/all.css">
-	<script type="text/javascript" src="${contextPath}/resources/js/webUtil.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/js/urlEncoder.js"></script>
+	<link rel="stylesheet" href="../../../resources/css/all.css">
+	<script type="text/javascript" src="../../../resources/js/webUtil.js"></script>
+	<script type="text/javascript" src="../../../resources/js/urlEncoder.js"></script>
 	<link href="../../../resources/css/reviewCss/reviewForm.css" rel='stylesheet' type='text/css' />
 	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
 </head>
@@ -73,7 +73,7 @@ function drawStar(target){
 			document.querySelector('.score_msg').style.display = 'none';
 		}
 		
- 		if(contentReg.test(content.value) && score.value !== '0'){
+ 		if(contentReg.test(content.value) && score.value != '0'){
 			opener.name = "reviewPop";
 			document.frm_review.target = opener.name;
 			document.frm_review.action='/review/upload-review'

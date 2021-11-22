@@ -38,7 +38,8 @@
 		       	select /*+INDEX_DESC(rent_history) */ rownum as rn, r.*, m.nick, l.locker_image, l.locker_title
 		        from review r, member m, locker l where rownum <= #{pageNum} * #{amount} and m.user_code = l.user_code
 		          										and r.locker_id = l.locker_id
-	                               						and r.user_code = #{userCode})
+	                               						and r.user_code = #{userCode}
+	                               						and r.deleteyn = 'N')
 		    where rn > (#{pageNum} -1) * #{amount}
 	    ]]>
   	</select>

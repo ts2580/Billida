@@ -12,7 +12,7 @@ public class Review {
 	private int historyIndex;
 	private int lockerId;
 	private String content;
-	private String score;
+	private float score;
 	private LocalDate createDate;
 	private LocalDate updateDate;
 	private String deleteyn;

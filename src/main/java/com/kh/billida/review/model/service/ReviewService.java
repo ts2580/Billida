@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
+import com.kh.billida.review.model.dto.Review;
 
 public interface ReviewService {
 
@@ -25,6 +26,10 @@ public interface ReviewService {
 	Map<String, Object> selectReviewInfo(String reviewNum);
 
 	void modifyReview(Map<String, Object> commandMap);
+
+	void deleteReview(String reviewNum);
+
+
 
 
 }

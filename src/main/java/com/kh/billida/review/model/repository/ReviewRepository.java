@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
+import com.kh.billida.review.model.dto.Review;
 
 @Mapper
 public interface ReviewRepository {
@@ -27,14 +29,15 @@ public interface ReviewRepository {
 	
 	List<Map<String, Object>> getReviewListPaging(Map<String, Object> criMap);
 
-	@Select("select count(*) from review where user_code = #{userCode}")
+	@Select("select count(*) from review where user_code = #{userCode} and deleteyn = 'N'")
 	int getReviewTotal(String userCode);
 
 	Map<String, Object> selectReviewInfo(String reviewNum);
 
 	void modifyReview(Map<String, Object> commandMap);
 
-
+	@Update("update review set deleteyn = 'Y' where review_num = #{reviewNum}")
+	void deleteReview(String reviewNum);
 
 	
 }

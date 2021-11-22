@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
+import com.kh.billida.review.model.dto.Review;
 import com.kh.billida.review.model.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -62,5 +63,13 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewRepository.modifyReview(commandMap);
 		
 	}
+
+	@Override
+	public void deleteReview(String reviewNum) {
+		reviewRepository.deleteReview(reviewNum);
+		
+	}
+
+
 
 }

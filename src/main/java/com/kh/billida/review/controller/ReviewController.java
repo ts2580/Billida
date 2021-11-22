@@ -109,6 +109,7 @@ public class ReviewController {
 		map.put("list", list);
 		map.put("paging", paging);
 		model.addAllAttributes(map);
+		session.setAttribute("reviewList", list);
 		
 		return "review/review-list";
 	}
@@ -137,7 +138,7 @@ public class ReviewController {
 						) {
 		
 		Map<String, Object> commandMap = new HashMap<String, Object>();
-		commandMap.put("score", reviewForm.getScore()); //별점
+		commandMap.put("score", (float)reviewForm.getScore()); //별점
 		commandMap.put("content", reviewForm.getContent()); //리뷰내용
 		commandMap.put("reviewNum", modifyInfo.get("REVIEW_NUM")); //리뷰넘버
 		
@@ -146,7 +147,14 @@ public class ReviewController {
 		return "redirect:/review/review-list";
 	}
 	
-	
-	
+	@GetMapping("delete-review")
+	public String deleteReview(String reviewNum) {
+		
+		System.out.println("리뷰넘 :  " + reviewNum);
+		
+		reviewService.deleteReview(reviewNum);
+		
+		return "redirect:/review/review-list";
+	}
 
 }

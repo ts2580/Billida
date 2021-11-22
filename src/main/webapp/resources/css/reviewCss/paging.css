@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.pageInfo {
+	list-style: none;
+	display: inline-block;
+}
+
+.pageInfo li {
+	display:flex;
+	justify-content: center;
+	float: left;
+	font-size: 15px;
+	padding: 8px 16px;
+	border-radius: 35%;
+	width: 6px;
+	cursor: pointer;
+}
+
+.pageInfo li.active{
+	background-color: orange;
+	color: white;
+}
+
+.pageInfo li:hover:not(.active){
+	background-color: silver;
+}
+
+li:link {
+	color: black;
+	text-decoration: none;
+}
+
+li:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #cdd5ec;
+}
+
+.pageInfo_wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.pageInfo_area {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	
+}
