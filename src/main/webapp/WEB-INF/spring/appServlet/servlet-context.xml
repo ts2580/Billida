@@ -30,10 +30,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-<!-- 	<interceptors>
+<!--  	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
-			<beans:bean class="com.kh.spring.common.interceptor.AuthInterceptor"/>
+			<beans:bean class="com.kh.billida.member.common.interceptor.AuthInterceptor"/>
 		</interceptor>
 	</interceptors> -->
 	

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.kh.billida.member.common.code.ErrorCode;
 import com.kh.billida.member.common.exception.HandlableException;
+import com.kh.billida.member.model.dto.Member;
 
 public class AuthInterceptor implements HandlerInterceptor {
 
@@ -22,6 +23,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			case "member":
 				memberAuthorize(httpRequest, httpResponse, uriArr);
 				break;
+			case "review":
+				reviewAuthorize(httpRequest, httpResponse, uriArr);
+				break;
 			default:
 				break;
 			}
@@ -29,6 +33,23 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 		// 다음 인터셉터 또는 컨트롤러에게 요청을 전달
 		return true;
+	}
+
+
+	private void reviewAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		switch (uriArr[2]) {
+		case "review-list":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		default:
+	         break;
+		}
+		
 	}
 
 

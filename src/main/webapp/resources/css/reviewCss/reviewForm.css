@@ -1,10 +1,8 @@
 @charset "UTF-8";
 
 body{
-	background: rgba(251, 168, 116, 0.78);
 	height: 100%;
 }
-
 
 .review_wrap{
     max-width: 100%;
@@ -86,7 +84,7 @@ body{
 	background-color: #f4f4f4;
 	border: 1px solid #cbcbcb;
 	margin-top: 30px;
-	
+	border-radius: 7px;
 }
 
 #content{
@@ -109,6 +107,26 @@ body{
 .save, .cancel{
 	width: 60px;
 	height: 30px;
+	border-radius: 5px;
+	border: none;
+}
+
+.save{
+	background-color: rgba(253, 179, 109, 1);
+}
+
+.cancel{
+	background-color: rgba(166, 166, 166, 0.67);
+}
+
+.save:hover{
+	background-color: rgba(248, 106, 18, 0.86);
+    color: white;
+}
+
+.cancel:hover{
+	background-color: rgba(54, 54, 54, 0.75);
+    color: white;
 }
 
 .star {

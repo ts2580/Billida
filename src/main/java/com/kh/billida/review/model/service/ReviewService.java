@@ -29,6 +29,8 @@ public interface ReviewService {
 
 	void deleteReview(String reviewNum);
 
+	List<Review> getUserReviews(String userCode);
+
 
 
 

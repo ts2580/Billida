@@ -9,9 +9,9 @@
 	<link href="../../../resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
-<div class="content">
+<div class="rent_wrapper">
 <h1 class="title">사물함 대여 현황</h1>
-	<div class="rent_list list1">
+	<div class="rent_list">
 		<c:forEach items="${list}" var="rents">
 			<div class="rent_area">
 				<div class="rentImg"><img class="rentImgs" src="${rents.lockerImage}"></div>
@@ -20,7 +20,19 @@
 					<div class="rent_start"> - 대여날짜 : ${rents.rentStart}</div>
 					<div class="rent_end">- 반납날짜 : ${rents.rentEnd}</div>
 				</div>
-				<div class="reviewButton"><a type="button" onclick='openReviewForm(${rents.historyIndex})'>리뷰작성</a></div>
+				
+				<c:forEach items="${reviews}" var="review">
+					<c:if test="${review.historyIndex == rents.historyIndex}">
+						<div class="reviewButton">
+							<a type="button" class="reviewWrite"><i class="far fa-check-square"></i> 리뷰완료</a>
+						</div>
+					</c:if>
+					<c:if test="${review.historyIndex != rents.historyIndex}">
+						<div class="reviewButton">
+							<a type="button" class="reviewWrite" onclick='openReviewForm(${rents.historyIndex})'><i class="fas fa-edit"></i> 리뷰작성</a>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 			<hr>
 		</c:forEach>

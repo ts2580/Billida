@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
+import com.kh.billida.member.common.code.ErrorCode;
+import com.kh.billida.member.common.exception.HandlableException;
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.dto.Review;
@@ -46,22 +48,24 @@ public class ReviewController {
 		}
 			
 		String userCode = member.getUserCode();
-		cri.setAmount(3);
-		int amount = cri.getAmount();
 
 		Map<String, Object> criMap = new HashMap<String, Object>();
 		criMap.put("pageNum", cri.getPageNum());
-		criMap.put("amount", amount);
+		criMap.put("amount", cri.getAmount());
 		criMap.put("userCode", userCode);
 		
 		List<Map<String, Object>> list = reviewService.getRentListPaging(criMap);
 		//유저코드에 해당하는 사물함대여리스트 갯수 받아오기
 		int total = reviewService.getRentTotal(userCode);
 		Paging paging = new Paging(cri, total);
-
+		
+		//이미 작성한 리뷰 존재하는지 확인하기 위해 리뷰들 가져오기
+		List<Review> reviews = reviewService.getUserReviews(userCode);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("paging", paging);
+		map.put("reviews", reviews);
 		model.addAllAttributes(map);
 		
 		return "review/rent-list";
@@ -82,17 +86,22 @@ public class ReviewController {
 
 		reviewService.insertReview(commandMap);
 		
-		return "redirect:/";
+		return "redirect:/review/review-list";
 	}
 	
 	@GetMapping("review-list")
 	public String reviewList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
 		Member member = (Member) session.getAttribute("authentication");
 
-		if (member == null) {
-			redirectAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
-			return "redirect:/member/login";
-		}
+		
+		  if (member == null) { 
+			  redirectAttr.addFlashAttribute("message","로그인 후 이용 가능합니다"); 
+			  return "redirect:/member/login";
+		  }
+		 
+//		if(member == null) {
+//			throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
+//		}
 		
 		String userCode = member.getUserCode();
 		Map<String, Object> criMap = new HashMap<String, Object>();

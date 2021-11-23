@@ -42,7 +42,7 @@
 	display: flex;
 	flex-direction: column;
 	padding-left: 30px;
-	width: 35%;
+	width: 50%;
 }
 
 .nameNick{
@@ -79,15 +79,18 @@
 .review_date{
 	display: flex;
 	font-size: 10px;
-	padding-left: 160px;
+	width: 20%;
+	justify-content: flex-end;
 }
 
 .button_box{
 	display: flex;
 	flex-direction: column;
-	padding-left: 50px;
+	width: 15%;
 	font-size: 12px;
 	line-height: 20px;
+	cursor: pointer;
+	align-items: flex-end;
 }
 
 .review_modify{
@@ -104,11 +107,11 @@
 }
 
 .modifyBtn:hover{
-	background-color: orange;
+	color: orange;
 }
 
 .deleteBtn:hover{
-	background-color: gray;
+	color: #00BFFF;
 }
 
 hr{
@@ -139,4 +142,10 @@ hr{
     color: orange;
     overflow: hidden;
     pointer-events: none;
+}
+
+@media only screen and (max-width: 930px) {
+	.review_list{
+		width: 90%;
+	}
 }

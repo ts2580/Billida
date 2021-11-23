@@ -98,7 +98,7 @@ html {
 
 .locker_area{
 	width: 250px;
-	height: 250px;
+	height: 335px;
 	color: #494949;
 }
 
@@ -813,7 +813,6 @@ span.mail a:hover{
 	.list2, .list3{
 		display: flex;
 		justify-content: space-evenly;
-		padding-bottom: 85px;
 	}
 	
 	.pageInfo_area{
@@ -973,7 +972,7 @@ span.mail a:hover{
 	.locker_area{
 		display: flex;
 		flex-direction: column;
-		padding-bottom: 75px;
+		
 	}	
 }
 

@@ -39,5 +39,8 @@ public interface ReviewRepository {
 	@Update("update review set deleteyn = 'Y' where review_num = #{reviewNum}")
 	void deleteReview(String reviewNum);
 
+	@Select("select * from review where user_code = #{userCode}")
+	List<Review> getUserReviews(String userCode);
+
 	
 }

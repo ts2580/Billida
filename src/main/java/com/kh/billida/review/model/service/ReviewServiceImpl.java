@@ -70,6 +70,11 @@ public class ReviewServiceImpl implements ReviewService{
 		
 	}
 
+	@Override
+	public List<Review> getUserReviews(String userCode) {
+		return reviewRepository.getUserReviews(userCode);
+	}
+
 
 
 }
