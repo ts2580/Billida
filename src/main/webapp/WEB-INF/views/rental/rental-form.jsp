@@ -4,8 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link rel="stylesheet"
-	href="${contextPath}/resources/css/rentalForm.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/rentalFormCss/rentalForm.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
@@ -32,8 +31,7 @@
 					<p class="price-and-time">
 						<span class="price">3,000원</span> <span class="time">~/일</span>
 					</p>
-					<form:form action="/rental/rental-form" method="post" id="rental"
-						class="rental-contents">
+					<form:form action="/rental/rental-form" method="post" class="rental-contents">
 						<table>
 							<tr>
 								<td colspan="2"><i class="fas fa-map-marker-alt"></i>${locker.location}</td>
@@ -75,13 +73,10 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	</div>
 
 
-
+<script type="text/javascript" src = "${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script> 
 
 
 </body>

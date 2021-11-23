@@ -8,7 +8,7 @@
       <title>Billida</title>
       <link href="../../../resources/css/style.css" rel='stylesheet' type='text/css' />
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="shortcut icon" type="image/x-icon" href="images/fav-icon.png" />
+      <link rel="shortcut icon" type="image/x-icon" href="../../../resources/images/favicon.ico" />
       <meta charset="UTF-8">
 	  <link rel="stylesheet" href="${contextPath}/resources/css/all.css">
 	  <script type="text/javascript" src="${contextPath}/resources/js/webUtil.js"></script>
