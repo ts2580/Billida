@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.member.common.SMSSender;
@@ -270,90 +272,5 @@ public class MemberController {
 	 * 
 	 * }
 	 */
-		
 
-	@PostMapping("password")
-	public String updatePassword (@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,HttpSession session
-								,RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updatePassword(form);
-		return "redirect:/";
-	}
-	
-	@PostMapping("name")
-	public String updateName (@ModelAttribute JoinForm form 								
-								,RedirectAttributes redirectAttr) {
-
-		memberService.updateName(form);
-		return "redirect:/";
-	}
-	
-	@PostMapping("nick")
-	public String updateNick (@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,HttpSession session
-								,RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateNick(form);
-		return "redirect:/";
-	}
-	
-	@PostMapping("tel")
-	public String updateTel (@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateTel(form);
-		return "redirect:/";
-	}
-	
-	@PostMapping("email")
-	public String updateEmail (@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateEmail(form);
-		return "redirect:/";
-	}
-	
-	@PostMapping("address")
-	public String updateAddress (@Validated JoinForm form 
-								,Errors errors
-								,Model model
-								,RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateAddress(form);
-		return "redirect:/";
-	}
 }

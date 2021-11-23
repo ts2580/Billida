@@ -17,11 +17,5 @@ public interface MemberService {
 	void deleteMember(String userCode);
 	Member findIdByEmail(Member member);
 	void sendIdByEmail(Member checkUser);
-	void updatePassword(JoinForm form);
-	void updateName(JoinForm form);
-	void updateNick(JoinForm form);
-	void updateTel(JoinForm form);
-	void updateEmail(JoinForm form);
-	void updateAddress(JoinForm form);
 
 }

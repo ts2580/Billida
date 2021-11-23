@@ -104,40 +104,5 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	@Override
-	public void updatePassword(JoinForm form) {
-		form.setPassword(passwordEncoder.encode(form.getPassword()));
-		memberRepository.updatePassword(form);
-		
-	}
 
-	@Override
-	public void updateName(JoinForm form) {
-		memberRepository.updateName(form);
-		
-	}
-	
-	@Override
-	public void updateNick(JoinForm form) {
-		memberRepository.updateNick(form);
-		
-	}
-	
-	@Override
-	public void updateTel(JoinForm form) {
-		memberRepository.updateTel(form);
-		
-	}
-	
-	@Override
-	public void updateEmail(JoinForm form) {
-		memberRepository.updateEmail(form);
-		
-	}
-	
-	@Override
-	public void updateAddress(JoinForm form) {
-		memberRepository.updateAddress(form);
-		
-	}
 }
