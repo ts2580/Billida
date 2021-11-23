@@ -31,6 +31,8 @@ public interface ReviewService {
 
 	List<Review> getUserReviews(String userCode);
 
+	void updateRentHistoryReviewYn(int historyIndex);
+
 
 
 

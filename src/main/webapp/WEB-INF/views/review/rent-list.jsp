@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
 	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
 	<link href="../../../resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
 	<link href="../../../resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
+	
 </head>
 <body>
 <div class="rent_wrapper">
@@ -20,19 +23,16 @@
 					<div class="rent_start"> - 대여날짜 : ${rents.rentStart}</div>
 					<div class="rent_end">- 반납날짜 : ${rents.rentEnd}</div>
 				</div>
-				
-				<c:forEach items="${reviews}" var="review">
-					<c:if test="${review.historyIndex == rents.historyIndex}">
-						<div class="reviewButton">
-							<a type="button" class="reviewWrite"><i class="far fa-check-square"></i> 리뷰완료</a>
-						</div>
-					</c:if>
-					<c:if test="${review.historyIndex != rents.historyIndex}">
-						<div class="reviewButton">
-							<a type="button" class="reviewWrite" onclick='openReviewForm(${rents.historyIndex})'><i class="fas fa-edit"></i> 리뷰작성</a>
-						</div>
-					</c:if>
-				</c:forEach>
+				<c:if test="${rents.reviewYn == 'Y'}">
+					<div class="reviewButton">
+						<a type="button" class="reviewWrite"><i class="far fa-check-square"></i> 리뷰완료</a>
+					</div>
+				</c:if>	
+				<c:if test="${rents.reviewYn == 'N'}">
+					<div class="reviewButton">
+						<a type="button" class="reviewWrite" onclick='openReviewForm(${rents.historyIndex})'><i class="fas fa-edit"></i> 리뷰작성</a>
+					</div>
+				</c:if>
 			</div>
 			<hr>
 		</c:forEach>
