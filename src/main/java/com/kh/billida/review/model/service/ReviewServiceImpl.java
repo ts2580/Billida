@@ -61,18 +61,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void modifyReview(Map<String, Object> commandMap) {
 		reviewRepository.modifyReview(commandMap);
-		
 	}
 
 	@Override
 	public void deleteReview(String reviewNum) {
 		reviewRepository.deleteReview(reviewNum);
-		
 	}
 
 	@Override
 	public List<Review> getUserReviews(String userCode) {
 		return reviewRepository.getUserReviews(userCode);
+	}
+
+	@Override
+	public void updateRentHistoryReviewYn(int historyIndex) {
+		reviewRepository.updateRentHistoryReviewYn(historyIndex);
 	}
 
 

@@ -26,5 +26,6 @@ public class RentHistoryAndLocker {
 	private Date rentEnd;
 	private int rentCost;
 	private String rentPic;
+	private String reviewYn;
 
 }

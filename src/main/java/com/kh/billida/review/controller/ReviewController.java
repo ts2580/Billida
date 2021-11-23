@@ -59,13 +59,9 @@ public class ReviewController {
 		int total = reviewService.getRentTotal(userCode);
 		Paging paging = new Paging(cri, total);
 		
-		//이미 작성한 리뷰 존재하는지 확인하기 위해 리뷰들 가져오기
-		List<Review> reviews = reviewService.getUserReviews(userCode);
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("paging", paging);
-		map.put("reviews", reviews);
 		model.addAllAttributes(map);
 		
 		return "review/rent-list";
@@ -85,6 +81,7 @@ public class ReviewController {
 		commandMap.put("lockerId", rentInfo.getLockerId());//lockerId
 
 		reviewService.insertReview(commandMap);
+		reviewService.updateRentHistoryReviewYn(rentInfo.getHistoryIndex()); //렌트히스토리테이블 리뷰여부 Y로 업데이트
 		
 		return "redirect:/review/review-list";
 	}
