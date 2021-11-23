@@ -61,37 +61,17 @@
 					</form:form>
 				</div>
 
-				<div class="reply-list">
-					<table class="reply-list-table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>내용</th>
-								<th>별점</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="reply-detail">
-								<td class="reply-detail-userId">성진</td>
-								<td class="reply-detail-content">개구림</td>
-								<td class="reply-detail-score">★★★★☆</td>
-								<td class="reply-detail-date">2021/11/23</td>
-							</tr>
-							<tr class="reply-detail2">
-								<td class="reply-detail-userId">성진2</td>
-								<td class="reply-detail-content">좋은것 같기도?</td>
-								<td class="reply-detail-score">★</td>
-								<td class="reply-detail-date">2021/11/24</td>
-							</tr>
-							<tr class="reply-detail3">
-								<td class="reply-detail-userId">성진3</td>
-								<td class="reply-detail-content">사실 개구림</td>
-								<td class="reply-detail-score">★★★★☆</td>
-								<td class="reply-detail-date">2021/11/25</td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="reply">
+					<i class="far fa-smile-beam"></i> 
+					<div class="reply-contents">
+						<div class="reply-contents-userInfo">
+							<div class="reply-contents-userInfo-userId">아이디는11글자까지ㅎ</div>
+							<div class="reply-contents-userInfo-score">★★★★☆</div>
+							<div class="reply-contents-userInfo-date">2021/11/23</div>
+						</div>
+						<div class="reply-contents-reply">좋은 접근성 그리고 리뷰 내용은 200글자까지인데 다 쓰기에는 좀 많은듯</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>

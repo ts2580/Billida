@@ -40,9 +40,27 @@ public class RentalController {
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
 		// 파라미터로 받음. 개꿀
-		
 		locker = rentalService.selectLocker(lockerId);
 	
+		
+		
+		
+		// <i class="far fa-smile-beam"></i> 
+		// <i class="far fa-smile-wink"></i>
+		// <i class="far fa-meh"></i>
+		// <i class="fas fa-frown-open"></i>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		model.addAttribute("locker", locker);
 		
 	}
