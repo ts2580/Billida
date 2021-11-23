@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,11 +41,13 @@
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 시작일</td>
-								<td><input type="date" name="RentStart" value="${rental.rentStart}" /></td>
+								<td><input type="date" name="RentStart"
+									value="${rental.rentStart}" /></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 종료일</td>
-								<td><input type="date" name="RentEnd" value="${rental.rentEnd}" /></td>
+								<td><input type="date" name="RentEnd"
+									value="${rental.rentEnd}" /></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">비용</td>
@@ -59,24 +60,14 @@
 					</form:form>
 				</div>
 
-				<div class="reply">
-					<i class="far fa-smile-beam"></i> 
-					<div class="reply-contents">
-						<div class="reply-contents-userInfo">
-							<div class="reply-contents-userInfo-userId">아이디는11글자까지ㅎ</div>
-							<div class="reply-contents-userInfo-score">★★★★☆</div>
-							<div class="reply-contents-userInfo-date">2021/11/23</div>
-						</div>
-						<div class="reply-contents-reply">좋은 접근성 그리고 리뷰 내용은 200글자까지인데 다 쓰기에는 좀 많은듯</div>
-					</div>
-					
-				</div>
+				<div class="reply"></div>
+
 			</div>
 		</div>
 	</div>
 
 
-<script type="text/javascript" src = "${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script> 
+	<script type="text/javascript" src="${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script>
 
 
 </body>
