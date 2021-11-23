@@ -76,14 +76,18 @@ table{
 	display: flex;
 }
 
-.reply-contents-userInfo{
-	display: flex;
-	width:100%;
-}
-
 .fa-smile-beam{
 	font-size: 40px;
 	color:green
+}
+
+.reply-contents{
+	margin-left: 10px;
+}
+
+.reply-contents-userInfo{
+	display: flex;
+	width:100%;
 }
 
 .reply-contents-userInfo-userId{

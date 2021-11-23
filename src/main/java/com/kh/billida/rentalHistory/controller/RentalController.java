@@ -17,6 +17,7 @@ import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.service.MainService;
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
+import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 import com.kh.billida.rentalHistory.model.service.RentalService;
 
 import lombok.RequiredArgsConstructor;
@@ -42,25 +43,18 @@ public class RentalController {
 		// 파라미터로 받음. 개꿀
 		locker = rentalService.selectLocker(lockerId);
 	
-		
-		
-		
 		// <i class="far fa-smile-beam"></i> 
 		// <i class="far fa-smile-wink"></i>
 		// <i class="far fa-meh"></i>
 		// <i class="fas fa-frown-open"></i>
 		
+		// 자바스크립트 써서 동적으로 만들 떄 필요
+		// 별표 유니코드도 검색해 놓을것
 		
+		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
+		reviews = rentalService.selectReview(lockerId);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);
 		
 	}
