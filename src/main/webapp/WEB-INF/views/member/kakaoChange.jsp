@@ -61,7 +61,7 @@
 
                     <a href="/review/rent-list" class="nav__link">
                         <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">사물함 대여 현황</span>
+                        <span class="nav_name">내가 빌린 사물함</span>
                     </a>
 
                     <div href="#" class="nav__link collapse">

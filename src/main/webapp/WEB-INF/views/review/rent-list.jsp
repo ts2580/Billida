@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="rent_wrapper">
-<h1 class="title">사물함 대여 현황</h1>
+<h1 class="title">내가 빌린 사물함</h1>
 	<div class="rent_list">
 		<c:forEach items="${list}" var="rents">
 			<div class="rent_area">
