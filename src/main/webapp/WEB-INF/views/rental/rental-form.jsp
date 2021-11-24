@@ -41,11 +41,11 @@
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 시작일</td>
-								<td><input onchange="calCost()" type="date" name="RentStart" value="${rental.rentStart}" /></td>
+								<td><input onchange="rentStartFnc()" type="date" name="RentStart" value="${rental.rentStart}" min="${today}" max="${locker.rentableDateEnd}"/></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 종료일</td>
-								<td><input onchange="calCost()" type="date" name="RentEnd" value="${rental.rentEnd}"/></td>
+								<td><input onchange="rentEndFnc()" type="date" name="RentEnd" value="${rental.rentEnd}" min="${today}" max="${locker.rentableDateEnd}"/></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">비용</td>
@@ -62,10 +62,12 @@
 	</div>
 	
 	<script type="text/javascript">
-		let idArr = new Array();
+		
+	let idArr = new Array();
 		let scoreArr = new Array();
 		let dateArr = new Array();
 		let contentsArr = new Array();
+		let dateContents = null;
 		
 		<c:forEach var="reviews" items="${reviews}">
 			idArr.push('${reviews.nick}');
@@ -74,13 +76,72 @@
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
 		
-		let calCost = () => {
-			let rentStart = document.querySelector('input[name="RentStart"]').valueAsNumber;
-			let rentEnd = document.querySelector('input[name="RentEnd"]').valueAsNumber;
-			let rentCost = (rentEnd-rentStart)/1000/60/60/24*3000;
+		let commonFnc = () => {
 			
-			if(!isNaN(rentCost)){
-				document.querySelector(".cost").innerText = rentCost+"원";
+			let today = new Date();
+			let rentStart = document.querySelector('input[name="RentStart"]');
+			let rentEnd = document.querySelector('input[name="RentEnd"]');
+			
+			let rentStartToNumber = rentStart.valueAsNumber;
+			let rentEndToNumber = rentEnd.valueAsNumber;
+			let rentCost = (rentEndToNumber-rentStartToNumber)/28800+3000;
+			
+			let rentEndBeforeRentStart = false;
+			
+			if(!isNaN(rentCost) && rentEnd.valueAsDate < rentStart.valueAsDate){
+				rentEndBeforeRentStart = true;
+			};
+			
+			return{
+				rentCost,
+				rentEndBeforeRentStart
+			};
+			
+		};
+		
+		let createCostDiv = (rentCost) => {
+			let costDiv = document.querySelector(".cost"); 
+			costDiv.classList.remove("inputFail");
+			document.querySelector(".cost").innerText = rentCost+"원";
+		};
+		
+		let calDiv = () => {
+			document.querySelector(".cost").innerText = "계산중입니다.";
+		};
+		
+		let createCostDivFalse = () => {
+			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
+			let costDiv = document.querySelector(".cost"); 
+			costDiv.classList.add("inputFail");
+			costDiv.innerText = "정확한 날자를 입력해 주세요.";
+		};
+		
+		let rentStartFnc = () => {
+			
+			dateContents = commonFnc();
+			
+			if(dateContents.rentEndBeforeRentStart){
+				createCostDivFalse();
+			}else if(isNaN(dateContents.rentCost)){
+				calDiv();
+			}else{
+				createCostDiv(dateContents.rentCost);
+			};
+			
+			
+			
+		};
+		
+		let rentEndFnc = () => {
+			
+			dateContents = commonFnc();
+			
+			if(dateContents.rentEndBeforeRentStart){
+				createCostDivFalse();
+			}else if(isNaN(dateContents.rentCost)){
+				calDiv();
+			}else{
+				createCostDiv(dateContents.rentCost);
 			};
 			
 		};

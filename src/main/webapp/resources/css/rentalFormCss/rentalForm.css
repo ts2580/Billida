@@ -35,7 +35,7 @@ body{
 	margin-left: 31px;
     border: 1px solid #d9d9d9;
     height: 300px;
-    width: 350px;
+    width: 380px;
 }
 
 .price-and-time{
@@ -66,6 +66,10 @@ table{
 
 .rental-contents-title{
 	width: 110px;
+}
+
+.inputFail{
+	color: red;
 }
  
  .submitButton{
