@@ -42,8 +42,11 @@ public interface ReviewRepository {
 	@Select("select * from review where user_code = #{userCode}")
 	List<Review> getUserReviews(String userCode);
 
-	@Update("update rent_history set review_yn = 'Y' where history_index = #{historyIndex}")
-	void updateRentHistoryReviewYn(int historyIndex);
+	@Select("select history_index from review where review_num = #{reviewNum}")
+	int getHistoryIndex(String reviewNum);
+
+	@Update("update rent_history set review_yn = #{yn} where history_index = #{historyIndex}")
+	void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap);
 
 	
 }

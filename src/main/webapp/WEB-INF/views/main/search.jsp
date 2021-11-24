@@ -5,9 +5,9 @@
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../../../resources/css/search.css" rel='stylesheet' type='text/css' />
-	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
-	<link href="../../../resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
+	<link href="${contextPath}/resources/css/search.css" rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
+	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
 <div class="content">

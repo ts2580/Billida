@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
-	<script type="text/javascript" src='../../../resources/js/jquery.js'></script>
-	<link href="../../../resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
-	<link href="../../../resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
+	<link href="${contextPath}/resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
+	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
 	
 </head>
 <body>
