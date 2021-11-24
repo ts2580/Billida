@@ -43,13 +43,31 @@ public class RentalController {
 		// 파라미터로 받음. 개꿀
 		locker = rentalService.selectLocker(lockerId);
 	
+		// 이하 자바
+		
+		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것
+		
+		// view단의 userCode는 Member 테이블과 조인해서 뭐야 뭐가이렇게많아 ID나 NAME나 NICK으로 넣을것
+		
+		// 리뷰 수가 5개 이하더라도 undefined안나게 처리
+		
+		
+		
+		
+		// 이하 자바스크립트
+		
+		// 점수에 따라 아이콘 바뀌게
+		
 		// <i class="far fa-smile-beam"></i> 
 		// <i class="far fa-smile-wink"></i>
 		// <i class="far fa-meh"></i>
 		// <i class="fas fa-frown-open"></i>
+				
+		// 현재날자 이전엔 못빌리게
 		
-		// 자바스크립트 써서 동적으로 만들 떄 필요
-		// 별표 유니코드도 검색해 놓을것
+		// 기한이 현재날자 이전으로 가지 않게
+		
+		// 스코어 숫자로된거 별표로 변환, 유니코드 알아보고 쓰기
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);

@@ -69,6 +69,8 @@ table{
 }
  
  
+ 
+ 
 .reply{
 	margin-left: 31px;
 	margin-top: 15px;
@@ -83,6 +85,7 @@ table{
 
 .reply-contents{
 	margin-left: 10px;
+	width:100%;
 }
 
 .reply-contents-userInfo{
@@ -90,14 +93,14 @@ table{
 	width:100%;
 }
 
-.reply-contents-userInfo-userId{
-	width: 40%;
+.reply-contents-userInfo-userCode{
+	width: 30%;
 	font-size: 18px;
 }
 
 .reply-contents-userInfo-score{
 	color:gray;
-	 width: 50%;
+	 width: 40%;
 }
 .reply-contents-userInfo-date{
    	font-size: 15px;
@@ -107,4 +110,5 @@ table{
 
 .reply-contents-reply{
 	color:gray;
+	width: 100%;
 }

@@ -43,7 +43,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 		switch (uriArr[2]) {
 		case "review-list":
 			if(member == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR.setURL("/member/login"));
+			}
+			break;
+		case "rent-list":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR.setURL("/member/login"));
 			}
 			break;
 		default:

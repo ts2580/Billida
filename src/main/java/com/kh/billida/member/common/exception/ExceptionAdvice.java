@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 @Component
-@ControllerAdvice(basePackages = "com.kh.spring")
+@ControllerAdvice(basePackages = "com.kh.billida")
 public class ExceptionAdvice {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -41,12 +41,6 @@ public class ReviewController {
 	public String rentList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
 
 		Member member = (Member) session.getAttribute("authentication");
-
-		if (member == null) {
-			redirectAttr.addFlashAttribute("message", "로그인 후 이용 가능합니다");
-			return "redirect:/member/login";
-		}
-			
 		String userCode = member.getUserCode();
 
 		Map<String, Object> criMap = new HashMap<String, Object>();
@@ -93,16 +87,6 @@ public class ReviewController {
 	@GetMapping("review-list")
 	public String reviewList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
 		Member member = (Member) session.getAttribute("authentication");
-
-		
-		  if (member == null) { 
-			  redirectAttr.addFlashAttribute("message","로그인 후 이용 가능합니다"); 
-			  return "redirect:/member/login";
-		  }
-		 
-//		if(member == null) {
-//			throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
-//		}
 		
 		String userCode = member.getUserCode();
 		Map<String, Object> criMap = new HashMap<String, Object>();

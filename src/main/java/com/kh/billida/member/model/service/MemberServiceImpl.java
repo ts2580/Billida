@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 	private final RestTemplate http;
 
 	public void insertMember(JoinForm form) {
-		if (form.getKakaonum() == null) {
+		if (form.getKakaoNum() == null) {
 			form.setPassword(passwordEncoder.encode(form.getPassword()));
 			memberRepository.insertMember(form);
 		} else {
@@ -54,12 +54,22 @@ public class MemberServiceImpl implements MemberService {
 		} else if (storedMember.getKakaoNum() != null) {
 			return storedMember;
 		}
-
 		return null;
 
 	}
 
 	public void updateMember(JoinForm form) {
+		memberRepository.updateMember(form);
+	}
+	public void changeKakaoMember(JoinForm form, Member user) {
+		System.out.println("멤버값"+user);
+		if(form.getName()==null) {form.setName(user.getName());}
+		if(form.getName()==null) {form.setNick(user.getNick());}
+		if(form.getName()==null) {form.setPhone(user.getPhone());}
+		if(form.getName()==null) {form.setEmail(user.getEmail());}
+		if(form.getName()==null) {form.setAddress(user.getAddress());}
+		if(form.getName()==null) {form.setAddressDetail(user.getAddressDetail());}
+		if(form.getName()==null) {form.setPostCode(user.getPostCode());}
 		memberRepository.updateMember(form);
 	}
 
@@ -84,12 +94,52 @@ public class MemberServiceImpl implements MemberService {
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 		body.add("mailTemplate", "mail");
 		body.add("Id", checkUser.getId());
+		body.add("name", checkUser.getName());
+		body.add("address", checkUser.getAddress());
 		RequestEntity<MultiValueMap<String, String>> request = RequestEntity.post(Config.DOMAIN.DESC + "/mail")
 				.accept(MediaType.APPLICATION_FORM_URLENCODED).body(body);
 
 		String htmlTxt = http.exchange(request, String.class).getBody();
-		mailSender.send(checkUser.getEmail(), "회원가입을 축하합니다", htmlTxt);
+		mailSender.send(checkUser.getEmail(), "아이디 찾기", htmlTxt);
 
+	}
+
+	public Member findPasswordByEmail(Member member) {
+		System.out.println("여기는 서비스임플입니당 여기서 넘어온 멤버값은 ? : " + member);
+		Member storedMember = memberRepository.selectMemberByIdAndNameAndEmail(member.getId(), member.getName(),
+				member.getEmail());
+		System.out.println("디비에서 꺼내온값" + storedMember);
+		if (storedMember == null) {
+			return null;
+		}
+		return storedMember;
+	}
+
+	public void sendPasswordByEmail(Member checkUser, String token) {
+		System.out.println("메일보내러왔떠영ㅁ 뿌우~!");
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("mailTemplate", "mail");
+		body.add("Id", checkUser.getId());
+		body.add("name", checkUser.getName());
+		body.add("address", checkUser.getAddress());
+		body.add("persistToken", token);
+		
+		RequestEntity<MultiValueMap<String, String>> request = RequestEntity.post(Config.DOMAIN.DESC + "/mail")
+				.accept(MediaType.APPLICATION_FORM_URLENCODED).body(body);
+
+		String htmlTxt = http.exchange(request, String.class).getBody();
+		mailSender.send(checkUser.getEmail(), "비밀번호 찾기", htmlTxt);
+	}
+	public Member changePasswordByEmail(Member member) {
+		Member authMember = memberRepository.selectMemberById(member.getId());
+		System.out.println("반환하는 멤버값");
+		return authMember;
+	}
+	public void updatePasswordByEmail(JoinForm form, Member member) {
+		form.setId(member.getId());
+		form.setPassword(passwordEncoder.encode(form.getPassword()));
+		System.out.println("서비스임플에서 변경된 폼값 아이디값이 적용되야함 "+form);
+		memberRepository.updatepasswordByEmail(form);
 	}
 
 	@Override
@@ -104,5 +154,42 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+
+	@Override
+	public void updatePassword(JoinForm form) {
+		form.setPassword(passwordEncoder.encode(form.getPassword()));
+		memberRepository.updatePassword(form);
+
+	}
+
+	public void updateName(JoinForm form,Member member) {
+		form.setId(member.getId());
+		System.out.println("이까지오긴함?ㅋㅋ"+form);
+		memberRepository.updateName(form);
+	}
+
+	public void updateNick(JoinForm form, Member member) {
+		form.setId(member.getId());
+		memberRepository.updateNick(form);
+
+	}
+
+	public void updateTel(JoinForm form,Member member) {
+		form.setId(member.getId());
+		memberRepository.updateTel(form);
+
+	}
+
+	public void updateEmail(JoinForm form, Member member) {
+		form.setId(member.getId());
+		memberRepository.updateEmail(form);
+
+	}
+
+	public void updateAddress(JoinForm form, Member member) {
+		form.setId(member.getId());
+		memberRepository.updateAddress(form);
+
+	}
 
 }

@@ -184,34 +184,33 @@ footer a:link {
 </head>
 <body>
 <div class="wrapper">
-  <form action="/member/findPasswordByEmail" method="post" class="login">
-    <p class="title">Find Password</p>
-    <input name="id" id="id" type="text" placeholder="UserID" autofocus/>
-    <i class="fa fa-user"></i>
-    <input name="name" id="name" type="text" placeholder="UserName" autofocus/>
-    <i class="fa fa-user"></i>
-    <input name="email" id="email" type="email" placeholder="email" />
-    <i class="fa fa-envelope-o"></i>
-    
-		<c:if test="${not empty message}">
-			<span class="valid-msg">${message}</span>
-		</c:if>
-    <div style="display: grid;">
-    <a href="/member/signUp">Sign up</a>
-    <span style="display: flex; justify-content: space-between;">
-    <a style="margin-top:2px;" href="/member/findId">Forgot your Id?</a>
+  <form:form modelAttribute="joinForm" action="/member/changePasswordByEmail" method="post" class="login" id="changePW">
+    <p class="title">Change PW</p>
+    <%-- <input style="display: none" name="id" id="id" value="${authentication.id}">
+    <input style="display: none" name="phone" id="phone" value="${authentication.phone}">
+    <input style="display: none" name="nick"id="nick" value="${authentication.nick}">
+  --%>
+    <span>
+    <input id="password" name="password" type="password" placeholder="비밀번호는 숫자, 영문자," autofocus/>
+    <i class="fa fa-key"></i>
     </span>
-    </div>
+    <c:if test="${empty error.password}">
+         <span id="pwCheck" class="valid-msg"></span>
+    </c:if>
+    <span>
+    <input  id="passwordCheck" name="passwordCheck" type="password" placeholder=" 특수문자 조합의 8자리 이상 문자열입니다." />
+    <i class="fa fa-key"></i>
+	</span>
+	<c:if test="${empty error.password}">
+        <span id="passwordFail" class="valid-msg"></span>
+   </c:if> 
     <button>
       <i class="spinner"></i>
-      <span class="state">Send Email</span>
+      <span class="state">change Password</span>
     </button>
-  </form>
+  </form:form>
 
-  <footer><a target="blank" href="http://boudra.me/"></a></footer>
-  </p>
 </div>
-
-
+<script src="/resources/js/member/changePW.js"></script>
 </body>
 </html>

@@ -10,9 +10,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>정보 수정 </title>
-	
+  <title>회원가입 </title>
+	 <link rel="stylesheet" href="/resources/css/memberCss/backgroundPage.css">
+	 <link rel="stylesheet" href="/resources/css/memberCss/styles.css">
   <!-- Bootstrap CSS -->
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -23,158 +25,207 @@
    font-size:15px;
    margin-bottom: 5px;
 }
-    body {
-      min-height: 100vh;
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-    }
-    .input-form {
-      max-width: 680px;
-      margin-top: 80px;
-      padding: 32px;
-      background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-    }
   </style>
 </head>
 
-<body>
-  <div class="container">
-    <div class="input-form-backgroud row">
-      <div class="input-form col-md-12 mx-auto">
-      	<span style="display: flex; justify-content: space-between;">
-        	<h4 class="mb-3">회원 정보 수정</h4>
-				<c:if test="${not empty authentication.kakaoNum}">
-					<button type="button" onclick="javascript:unlinkApp();"
-						class="btn btn-primary btn-lg btn-block"
-						style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">카카오회원 탈퇴</button>
-				</c:if>
-				<c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
-					<a type="button" href="/member/delete"
-						class="btn btn-primary btn-lg btn-block"
-						style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">일반회원 탈퇴</a>
-				</c:if>
-		</span>
-		
-				<form:form modelAttribute="joinForm" class ="validation-form" action="/member/update"
-         method="post" id="update">
-          <!-- 세션에 올라와 있는 id를 안보이게 가져옴  -->
-            <input style="display: none" name="id" id="id"
-						value="${authentication.id}">
-          
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="password">변경할 비밀번호</label>
-              <input type="password" class="form-control" name="password"  id="password" placeholder="" 
-              	<c:if  test="${empty error.password}">
-            		value="${joinForm.password}"
-            	</c:if>
-               required>
-            	<c:if test="${empty error.password}">
-                      <span id="pwCheck" class="valid-msg"></span>
-                 </c:if>
-            </div>
-                <form:errors path="password" cssClass="valid-msg"/>
-            <div class="col-md-6 mb-3">
+<body id="body-pd">
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="/" class="nav__logo">home</a>
+                </div>
+                <div class="nav__list">
+                    <a href="/member/mypage" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">회원정보수정</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Messenger</span>
+                    </a>
 
-              <label for="password">비밀번호 확인</label>
-              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder=""  
-               required>
-            	<c:if test="${empty error.password}">
-                      <span id="passwordFail" class="valid-msg"></span>
-                 </c:if> 
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">시벌럼</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Analytics</span>
+                    </a>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Team</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Settings</span>
+                    </a>
+                </div>
+                <a href="#" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
             </div>
-          </div>
-          
-          
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="name">이름</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="" value="${authentication.name}" required>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="nickname">별명</label>
-              <span style="display: flex;">
-              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="${authentication.nick}" required>
-              
-            <button  type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
-                <c:if test="${empty error.nick}">
-                      <span id="nickCheck" class="valid-msg"></span>
-                 </c:if>
-                 <form:errors path="nick" cssClass="valid-msg"/>
-            </div>
-          </div>   
-                 
+        </nav>
+    </div>
+
+    <h1>Billida</h1>
+		<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<span style="display: flex; justify-content: space-between;">
+					<h4 class="mb-3">회원 정보 수정</h4> <c:if
+						test="${not empty authentication.kakaoNum}">
+						<button type="button" onclick="javascript:unlinkApp();"
+							class="btn btn-primary btn-lg btn-block"
+							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">카카오
+							회원탈퇴</button>
+					</c:if> <c:if
+						test="${empty authentication.kakaoNum &&not empty authentication.id}">
+						<a type="button" href="/member/delete"
+							class="btn btn-primary btn-lg btn-block"
+							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">일반회원
+							탈퇴</a>
+					</c:if>
+				</span>
+				<form:form  class="validation-form"
+					action="/member/changeName" method="post" id="name">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name">이름</label> <input type="text"
+								class="form-control" name="name" id="name" placeholder=""
+								value="" required>
+						</div>
+					</div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">이름 변경</button>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+
+					<form:form modelAttribute="joinForm" class="validation-form" action="/member/changeNick" method="post" id="kakaoChange">
+					<div class="mb-3">
+						<label for="nickname">별명</label> 
+						 <span style="display: flex;">
+						<input type="text"class="form-control" name="nick" id="nick" placeholder=""value="">
+							<button type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block"
+								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">중복확인</button>
+						</span>
+						<c:if test="${empty error.nick}">
+							<span id="nickCheck" class="valid-msg"></span>
+						</c:if>
+					</div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">별명 변경</button>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+
+				<form:form modelAttribute="joinForm" class="validation-form"
+					action="/member/changeTel" method="post" id="kakaoPhoneChange">
+					<div class="mb-3">
+						<label for="tel">휴대전화</label> <span style="display: flex;">
+							<input type="tel" class="form-control" id="phone" name="phone">
+							<button type="button"  class="btn btn-primary btn-lg btn-block"
+								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">전송!</button>
+						</span>
+						<c:if test="${empty error.phone}">
+							<span id="phoneCheck" class="valid-msg"></span>
+						</c:if>
+					</div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">휴대전화 변경</button>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				
+				<form:form class="validation-form"
+					action="/member/changeEmail" method="post" id="email">
+
+					<div class="mb-3">
+						<label for="email">이메일</label> <input type="email"
+							class="form-control" name="email" id="email"
+							placeholder="you@example.com" required>
+						<div class="invalid-feedback">이메일을 입력해주세요.</div>
+					</div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">이메일 변경</button>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				
+				<form:form class="validation-form"
+					action="/member/changeAddress" method="post">
+
+					 <div class="mb-3">
+			            <label for="postCode">우편번호</label>
+						<div style="display: flex;">
+			            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+			            <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+			            </div>
+			          </div>
+			
+			          <div class="mb-3">
+			            <label for="address">주소<span class="text-muted">&nbsp;</span></label>
+			            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="">
+			          </div>
+			          <div class="mb-3">
+			            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+			            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요." required>
+			          </div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">주소 변경</button>
+				</form:form>
 
 
-          <div class="mb-3">
-            <label for="tel">휴대전화</label>
-            <span style="display: flex;">
-            <input type="tel" class="form-control" id="phone" name="phone" value="${authentication.phone}"required>
-            <button type="button" " class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >전송!</button>
- 			</span>
- 			<c:if test="${empty error.phone}">
-                 <span id="phoneCheck" class="valid-msg"></span>
-            </c:if>
-          </div>
-          
-          
-           <div class="mb-3">
-            <label for="tel">휴대전화 인증번호</label>
-            <div style="display: flex;">
-            <input type="tel" class="form-control" id="tell"required>
-            <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
- 			</div>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
-          </div>
 
-          <div class="mb-3">
-            <label for="email">이메일</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" value="${authentication.email}"required>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="postCode">우편번호</label>
-			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" value="${authentication.postCode}"required>
-            <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
-            </div>
-            <div class="invalid-feedback">
-              주소를 입력해주세요.
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="address">주소<span class="text-muted">&nbsp;</span></label>
-            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" value="${authentication.address}" placeholder="주소를 입력해주세요.">
-          </div>
-          <div class="mb-3">
-            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요." value="${authentication.addressDetail}">
-          </div>
-
-         
-
-          <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
-        </form:form>
-      </div>
-    </div>    
-  </div>
-<script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
+			</div>
+		</div>
+	</div>
+ 
+      <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="/resources/js/member/main.js"></script>
+<script type="text/javascript" src="/resources/js/member/kakaochangeForm.js"></script>
+<script type="text/javascript" src="/resources/js/member/changePhoneForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function daumPost() {

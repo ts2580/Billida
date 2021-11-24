@@ -26,12 +26,11 @@ public class JoinFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		JoinForm form = (JoinForm) target;
 		System.out.println("여긴 조인폼벨리데이터!" + form);
-		if (form.getKakaonum() == null) {
+		if (form.getKakaoNum() == null) {
 
 			// 1. 아이디 존재 유무
 			boolean valid = false;
 			
-				System.out.println("아이디 돌아?");
 				
 				if (form.getId() != null) {
 					if(memberRepository.selectMemberById(form.getId()) != null) {
@@ -40,9 +39,8 @@ public class JoinFormValidator implements Validator {
 					}
 				}
 				// 2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인
-
-				valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 				if (form.getPassword() != null) {
+				valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 				if (!valid) {
 					System.out.println("조인폼벨리안임 여기들어와짐?");
 					errors.rejectValue("password", "error-password", "비밀번호는 8글자 이상의 숫자 영문자 특수문자 조합입니다.");
