@@ -1,5 +1,7 @@
 package com.kh.billida.member.model.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -191,6 +193,12 @@ public class MemberServiceImpl implements MemberService {
 		form.setId(member.getId());
 		memberRepository.updateAddress(form);
 
+	}
+
+	@Override
+	public List<Member> selectMember() {		
+		return memberRepository.selectMember();
+		
 	}
 
 }

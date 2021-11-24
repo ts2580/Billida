@@ -65,8 +65,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		case "mypage":
 			if (session.getAttribute("authentication") == null) {
 				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
-			}
-
+			}			
 			break;
 		/*
 		 * case "kakaoSignup": if (session.getAttribute("authentication") == null) {

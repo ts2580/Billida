@@ -1,6 +1,7 @@
 package com.kh.billida.member.controller;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -406,6 +407,15 @@ public class MemberController {
 		memberService.changeKakaoMember(form,user);
 		return "redirect:/";
 	
+	}
+	
+	@GetMapping("admin")
+	public String admin(Model model, HttpSession session, RedirectAttributes redirectAttr) {
+		
+		List<Member> memberList = memberService.selectMember();		
+		session.setAttribute("memberList", memberList);
+		session.setAttribute("size", memberList.size());
+		return "member/admin";
 	}
 
 }

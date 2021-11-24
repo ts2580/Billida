@@ -1,5 +1,7 @@
 package com.kh.billida.member.model.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.kh.billida.member.model.dto.Member;
@@ -28,5 +30,7 @@ public interface MemberService {
 	void changeKakaoMember(JoinForm form, Member user);
 	Member changePasswordByEmail(Member member);
 	void updatePasswordByEmail(JoinForm form, Member member);
+	List<Member> selectMember();
+	
 
 }
