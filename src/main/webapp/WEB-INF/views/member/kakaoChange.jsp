@@ -95,17 +95,16 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<span style="display: flex; justify-content: space-between;">
-					<h4 class="mb-3">회원 정보 수정</h4> <c:if
-						test="${not empty authentication.kakaoNum}">
-						<a type="button" value="카카오회원탈퇴" onclick="javascript:unlinkApp();"
+					<h4 class="mb-3">회원 정보 수정</h4> 
+					<c:if test="${not empty authentication.kakaoNum}">
+						<button type="button" onclick="javascript:unlinkApp();"
 							class="btn btn-primary btn-lg btn-block"
-							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px; "></a>
-					</c:if> <c:if
-						test="${empty authentication.kakaoNum &&not empty authentication.id}">
+							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px; ">회원탈퇴</button>
+					</c:if> 
+					<c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
 						<a type="button" href="/member/delete"
 							class="btn btn-primary btn-lg btn-block"
-							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">일반회원
-							탈퇴</a>
+							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">일반회원 탈퇴</a>
 					</c:if>
 				</span>
 				<form:form  class="validation-form"
@@ -220,13 +219,15 @@
 	</div>
  
       <!-- IONICONS -->
+      
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src='/resources/js/member/kakaoLogin.js'></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <!-- JS -->
     <script src="/resources/js/member/main.js"></script>
 <script type="text/javascript" src="/resources/js/member/kakaochangeForm.js"></script>
 <script type="text/javascript" src="/resources/js/member/changePhoneForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src='/resources/js/member/kakaoLogin.js'></script>
 <script type="text/javascript">
 function daumPost() {
 	new daum.Postcode({
