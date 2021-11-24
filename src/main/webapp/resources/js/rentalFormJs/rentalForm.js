@@ -1,32 +1,38 @@
 (() => {
 	
-	for(let i = 0; i < 5; i++){
+	let reviewNum = 0;
+	
+	if(isNaN(scoreArr[reviewNum])){
 		
+		let noReview = document.createElement("div");
+		noReview.classList.add("thereIsNoReview");
+		noReview.append("*등록된 리뷰가 없습니다*");
+		document.querySelector(".contents-form-reply").appendChild(noReview);
+	}
+	
+	while(!isNaN(scoreArr[reviewNum])){
 		
 		let starScore = ""
 		let halfStar = "☆";
 		let star = "★";
 		
-		if(scoreArr[i]*2%2 == 0){
-			for(let j=0; j <scoreArr[i]; j++){
+		if(scoreArr[reviewNum]*2%2 == 0){
+			for(let j=0; j <scoreArr[reviewNum]; j++){
 				starScore = starScore.concat(star);
 			}
 		}else{
-			for(let j=0; j <(scoreArr[i]-1); j++){
+			for(let j=0; j <(scoreArr[reviewNum]-1); j++){
 				starScore = starScore.concat(star);
 			};
 			starScore = starScore.concat(halfStar);
 		};
 		
-		
-		
-		
 		let createReply = document.createElement("div");
 		createReply.classList.add("reply");
-		createReply.classList.add("reply_"+i);
+		createReply.classList.add("reply_"+reviewNum);
 		document.querySelector(".contents-form-reply").appendChild(createReply);
 	
-		let selectReply = document.querySelector(".reply_"+i);
+		let selectReply = document.querySelector(".reply_"+reviewNum);
 	
 		let icon = document.createElement("i");
 		icon.classList.add("far");
@@ -35,40 +41,42 @@
 	
 		let rC = document.createElement("div");
 		rC.classList.add("reply-contents");
-		rC.classList.add("reply-contents_"+i);
+		rC.classList.add("reply-contents_"+reviewNum);
 		selectReply.appendChild(rC);
 	
-		let rCDiv = document.querySelector(".reply-contents_"+i);
+		let rCDiv = document.querySelector(".reply-contents_"+reviewNum);
 	
 		let rCU = document.createElement("div");
 		rCU.classList.add("reply-contents-userInfo");
-		rCU.classList.add("reply-contents-userInfo_"+i);
+		rCU.classList.add("reply-contents-userInfo_"+reviewNum);
 		rCDiv.appendChild(rCU);
 	
-		let rCUDiv = document.querySelector(".reply-contents-userInfo_"+i);
+		let rCUDiv = document.querySelector(".reply-contents-userInfo_"+reviewNum);
 	
 		let rCUU = document.createElement("div");
 		rCUU.classList.add("reply-contents-userInfo-userCode");
-		rCUU.classList.add("reply-contents-userInfo-userCode_"+i);
-		rCUU.append(idArr[i]);
+		rCUU.classList.add("reply-contents-userInfo-userCode_"+reviewNum);
+		rCUU.append(idArr[reviewNum]);
 		rCUDiv.appendChild(rCUU);
 	
 		let rCUS = document.createElement("div");
 		rCUS.classList.add("reply-contents-userInfo-score");
-		rCUS.classList.add("reply-contents-userInfo-score_"+i);
+		rCUS.classList.add("reply-contents-userInfo-score_"+reviewNum);
 		rCUS.append(starScore);
 		rCUDiv.appendChild(rCUS);
 	
 		let rCUD = document.createElement("div");
 		rCUD.classList.add("reply-contents-userInfo-date");
-		rCUD.classList.add("reply-contents-userInfo-date_"+i);
-		rCUD.append(dateArr[i]);
+		rCUD.classList.add("reply-contents-userInfo-date_"+reviewNum);
+		rCUD.append(dateArr[reviewNum]);
 		rCUDiv.appendChild(rCUD);
 	
 		let rCR = document.createElement("div");
 		rCR.classList.add("reply-contents-reply");
-		rCR.append(contentsArr[i]);
+		rCR.append(contentsArr[reviewNum]);
 		rCDiv.appendChild(rCR);
+		
+		reviewNum++;
 	};
 	
 	

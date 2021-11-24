@@ -81,6 +81,15 @@ table{
     color: #ffffff;
  }
  
+ .thereIsNoReview{
+ 	width: 120%;
+ 	font-size: 40px;
+ 	margin-left: 31px;
+ 	margin-top: 15px;
+ 	font-family: 'Single Day', cursive;
+ 	color: #ff4081;;
+ }
+ 
  
 .reply{
 	margin-left: 31px;
