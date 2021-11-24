@@ -41,13 +41,11 @@
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 시작일</td>
-								<td><input type="date" name="RentStart"
-									value="${rental.rentStart}" /></td>
+								<td><input type="date" name="RentStart" value="${rental.rentStart}" /></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 종료일</td>
-								<td><input type="date" name="RentEnd"
-									value="${rental.rentEnd}" /></td>
+								<td><input type="date" name="RentEnd" value="${rental.rentEnd}" /></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">비용</td>
@@ -59,13 +57,25 @@
 						</table>
 					</form:form>
 				</div>
-
-				<div class="reply"></div>
-
 			</div>
 		</div>
 	</div>
-
+	
+	<script type="text/javascript">
+		let idArr = new Array();
+		let scoreArr = new Array();
+		let dateArr = new Array();
+		let contentsArr = new Array();
+		
+		
+		<c:forEach var="reviews" items="${reviews}">
+			idArr.push('${reviews.userCode}');
+			scoreArr.push('${reviews.score}');
+			dateArr.push('${reviews.createDate}');
+			contentsArr.push('${reviews.content}');
+		</c:forEach>
+		
+	</script>
 
 	<script type="text/javascript" src="${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script>
 
