@@ -161,32 +161,32 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-	@Override
-	public void updateName(JoinForm form) {
+	public void updateName(JoinForm form,Member member) {
+		form.setId(member.getId());
+		System.out.println("이까지오긴함?ㅋㅋ"+form);
 		memberRepository.updateName(form);
-
 	}
 
-	@Override
-	public void updateNick(JoinForm form) {
+	public void updateNick(JoinForm form, Member member) {
+		form.setId(member.getId());
 		memberRepository.updateNick(form);
 
 	}
 
-	@Override
-	public void updateTel(JoinForm form) {
+	public void updateTel(JoinForm form,Member member) {
+		form.setId(member.getId());
 		memberRepository.updateTel(form);
 
 	}
 
-	@Override
-	public void updateEmail(JoinForm form) {
+	public void updateEmail(JoinForm form, Member member) {
+		form.setId(member.getId());
 		memberRepository.updateEmail(form);
 
 	}
 
-	@Override
-	public void updateAddress(JoinForm form) {
+	public void updateAddress(JoinForm form, Member member) {
+		form.setId(member.getId());
 		memberRepository.updateAddress(form);
 
 	}

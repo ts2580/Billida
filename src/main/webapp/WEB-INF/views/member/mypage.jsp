@@ -250,8 +250,7 @@ body {
 	<script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src='/resources/js/member/kakaoLogin.js'></script>
-	<script
-		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
 function daumPost() {
 	new daum.Postcode({

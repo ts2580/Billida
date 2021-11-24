@@ -18,11 +18,11 @@ public interface MemberService {
 	Member findIdByEmail(Member member);
 	void sendIdByEmail(Member checkUser);
 	void updatePassword(JoinForm form);
-	void updateName(JoinForm form);
-	void updateNick(JoinForm form);
-	void updateTel(JoinForm form);
-	void updateEmail(JoinForm form);
-	void updateAddress(JoinForm form);
+	void updateName(JoinForm form, Member user);
+	void updateNick(JoinForm form, Member user);
+	void updateTel(JoinForm form, Member user);
+	void updateEmail(JoinForm form, Member user);
+	void updateAddress(JoinForm form, Member user);
 	Member findPasswordByEmail(Member member);
 	void sendPasswordByEmail(Member checkUser, String token);
 	void changeKakaoMember(JoinForm form, Member user);

@@ -39,9 +39,8 @@ public class JoinFormValidator implements Validator {
 					}
 				}
 				// 2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인
-
-				valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 				if (form.getPassword() != null) {
+				valid = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", form.getPassword());
 				if (!valid) {
 					System.out.println("조인폼벨리안임 여기들어와짐?");
 					errors.rejectValue("password", "error-password", "비밀번호는 8글자 이상의 숫자 영문자 특수문자 조합입니다.");

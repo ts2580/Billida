@@ -333,60 +333,61 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@PostMapping("name")
-	public String updateName(@ModelAttribute JoinForm form, RedirectAttributes redirectAttr) {
-
-		memberService.updateName(form);
-		return "redirect:/";
+	@PostMapping("changeName")
+	public String updateName(@ModelAttribute JoinForm form, RedirectAttributes redirectAttr, HttpSession session) {
+		System.out.println(form);
+		if(form.getName()!=null) {
+		Member user = (Member) session.getAttribute("authentication");
+		System.out.println(user);
+		memberService.updateName(form,user);
+		}
+		return "redirect:/member/check";
 	}
 
-	@PostMapping("nick")
+	@PostMapping("changeNick")
 	public String updateNick(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
 		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateNick(form);
-		return "redirect:/";
+		System.out.println("씨발 답답하다"+form);
+		System.out.println(errors);
+		  model.addAttribute("error", vr.getError()); if (errors.hasErrors()) {
+		  vr.addError(errors); 
+		  return "redirect:/member/check";
+		  }
+		Member user = (Member) session.getAttribute("authentication");
+		memberService.updateNick(form,user);
+		return "redirect:/member/check";
 	}
 
-	@PostMapping("tel")
-	public String updateTel(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr) {
+	@PostMapping("changeTel")
+	public String updateTel(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr, HttpSession session) {
 		ValidateResult vr = new ValidateResult();
 		model.addAttribute("error", vr.getError());
+		System.out.println("답답하다 phone: "+form);
+		System.out.println(errors);
 		if (errors.hasErrors()) {
 			vr.addError(errors);
-			return "member/mypage";
+			return "redirect:/member/check";
 		}
-		memberService.updateTel(form);
-		return "redirect:/";
+		Member user = (Member) session.getAttribute("authentication");
+		memberService.updateTel(form,user);
+		return "redirect:/member/check";
 	}
 
-	@PostMapping("email")
-	public String updateEmail(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateEmail(form);
-		return "redirect:/";
+	@PostMapping("changeEmail")
+	public String updateEmail(@ModelAttribute JoinForm form,  HttpSession session, Model model, RedirectAttributes redirectAttr) {
+		Member user = (Member) session.getAttribute("authentication");
+		System.out.println(user);
+		memberService.updateEmail(form,user);
+		return "redirect:/member/check";
+		
 	}
 
-	@PostMapping("address")
-	public String updateAddress(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr) {
-		ValidateResult vr = new ValidateResult();
-		model.addAttribute("error", vr.getError());
-		if (errors.hasErrors()) {
-			vr.addError(errors);
-			return "member/mypage";
-		}
-		memberService.updateAddress(form);
-		return "redirect:/";
+	@PostMapping("changeAddress")
+	public String updateAddress(@ModelAttribute JoinForm form, HttpSession session, Errors errors, Model model, RedirectAttributes redirectAttr) {
+		Member user = (Member) session.getAttribute("authentication");
+		memberService.updateAddress(form,user);
+		return "redirect:/member/check";
 	}
 	@PostMapping("kakaoChange")
 	public String kakaoChange(@Validated JoinForm form, Errors errors, Member member, Model model, HttpSession session,
