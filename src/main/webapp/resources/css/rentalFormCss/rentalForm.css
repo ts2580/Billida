@@ -68,7 +68,18 @@ table{
 	width: 110px;
 }
  
- 
+ .submitButton{
+ 	margin-top: 10px;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    border: 0;
+    border-radius: 25px;
+    background: #ff4081;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+ }
  
  
 .reply{

@@ -52,7 +52,7 @@
 								<td><input type="number" placeholder="자동계산됨 입력 노필요" /></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" value="대여" /></td>
+								<td colspan="2"><input type="submit" class="submitButton"/></td>
 							</tr>
 						</table>
 					</form:form>
