@@ -11,7 +11,7 @@ public class JoinForm {
 	private String postCode;
 	private String address;
 	private String addressDetail;
-	private String kakaoNum;
+	private String kakaonum;
 	public String getId() {
 		return id;
 	}
@@ -66,17 +66,17 @@ public class JoinForm {
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
-	public String getKakaoNum() {
-		return kakaoNum;
+	public String getKakaonum() {
+		return kakaonum;
 	}
 	public void setKakaonum(String kakaonum) {
-		this.kakaoNum = kakaonum;
+		this.kakaonum = kakaonum;
 	}
 	@Override
 	public String toString() {
 		return "JoinForm [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", email="
 				+ email + ", nick=" + nick + ", postCode=" + postCode + ", address=" + address + ", addressDetail="
-				+ addressDetail + ", kakaonum=" + kakaoNum + "]";
+				+ addressDetail + ", kakaonum=" + kakaonum + "]";
 	}
 
 	

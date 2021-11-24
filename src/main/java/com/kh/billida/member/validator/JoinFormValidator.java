@@ -26,17 +26,18 @@ public class JoinFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		JoinForm form = (JoinForm) target;
 		System.out.println("여긴 조인폼벨리데이터!" + form);
-		if (form.getKakaoNum() == null) {
+		if (form.getKakaonum() == null) {
 
 			// 1. 아이디 존재 유무
 			boolean valid = false;
 			
-				
+				if(form.getPassword()!=null) {
 				if (form.getId() != null) {
 					if(memberRepository.selectMemberById(form.getId()) != null) {
 					System.out.println("안에 돌아??");
 					errors.rejectValue("Id", "error-Id", "이미 존재하는 아이디입니다.");
 					}
+				}
 				}
 				// 2. 비밀번호가 8글자 이상, 숫자 영문자 특수문자 조합인지 확인
 				if (form.getPassword() != null) {

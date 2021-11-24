@@ -173,7 +173,9 @@ public class MemberController {
 	public String kakaoSignup(@Validated JoinForm form, Errors errors, Member member, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
 		ValidateResult vr = new ValidateResult();
+		System.out.println("오너라!");
 		model.addAttribute("error", vr.getError());
+		System.out.println(errors);
 		if (errors.hasErrors()) {
 			vr.addError(errors);
 			return "member/kakaoSignup";

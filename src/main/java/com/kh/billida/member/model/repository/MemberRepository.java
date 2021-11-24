@@ -15,9 +15,9 @@ import lombok.Delegate;
 @Mapper
 public interface MemberRepository {
 
-	@Insert ("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade)"
+	@Insert ("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade,kakaonum)"
 			+ " values(USER_CODE.nextval,#{id},#{password},#{name},#{nick}"
-			+ ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01')")
+			+ ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01',#{kakaonum})")
 	void insertMember(JoinForm form);
 	
 	@Select("select * from member where id = #{id}")

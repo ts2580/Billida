@@ -28,7 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	private final RestTemplate http;
 
 	public void insertMember(JoinForm form) {
-		if (form.getKakaoNum() == null) {
+		System.out.println("카카오멤버 처음가입");
+		if (form.getKakaonum() == null) {
 			form.setPassword(passwordEncoder.encode(form.getPassword()));
 			memberRepository.insertMember(form);
 		} else {

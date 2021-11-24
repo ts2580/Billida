@@ -97,10 +97,9 @@
 				<span style="display: flex; justify-content: space-between;">
 					<h4 class="mb-3">회원 정보 수정</h4> <c:if
 						test="${not empty authentication.kakaoNum}">
-						<button type="button" onclick="javascript:unlinkApp();"
+						<a type="button" value="카카오회원탈퇴" onclick="javascript:unlinkApp();"
 							class="btn btn-primary btn-lg btn-block"
-							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px;">카카오
-							회원탈퇴</button>
+							style="width: 150px; height: 38px; margin-left: 10px; font-size: 14px; "></a>
 					</c:if> <c:if
 						test="${empty authentication.kakaoNum &&not empty authentication.id}">
 						<a type="button" href="/member/delete"
@@ -227,6 +226,7 @@
 <script type="text/javascript" src="/resources/js/member/kakaochangeForm.js"></script>
 <script type="text/javascript" src="/resources/js/member/changePhoneForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src='/resources/js/member/kakaoLogin.js'></script>
 <script type="text/javascript">
 function daumPost() {
 	new daum.Postcode({
