@@ -155,6 +155,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+
 	@Override
 	public void updatePassword(JoinForm form) {
 		form.setPassword(passwordEncoder.encode(form.getPassword()));
@@ -191,4 +192,5 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.updateAddress(form);
 
 	}
+
 }

@@ -1,63 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 태그 라이브러리 추가  -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- 스프링 폼태그 사용 가능  -->
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- 태그 라이브러리 추가  -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!-- 스프링 폼태그 사용 가능  -->
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>회원가입 </title>
+	 <link rel="stylesheet" href="/resources/css/memberCss/backgroundPage.css">
+	 <link rel="stylesheet" href="/resources/css/memberCss/styles.css">
+  <!-- Bootstrap CSS -->
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<title>회원가입</title>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
-<style>
-.valid-msg {
-	display: block;
-	color: #007bff;
-	font-size: 15px;
-	margin-bottom: 5px;
+  <style>
+  .valid-msg{
+   display:block;
+   color:#007bff;
+   font-size:15px;
+   margin-bottom: 5px;
 }
-
-body {
-	min-height: 100vh;
-	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
-		to(#1d466c));
-	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-}
-.form{
-	border: 1px solid;
-}
-
-.input-form {
-	max-width: 680px;
-	margin-top: 80px;
-	padding: 32px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);	
-}
-</style>
+  </style>
 </head>
 
-<body>
-	<div class="container">
+<body id="body-pd">
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="/" class="nav__logo">home</a>
+                </div>
+                <div class="nav__list">
+                    <a href="/member/mypage" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">회원정보수정</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Messenger</span>
+                    </a>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">시벌럼</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Analytics</span>
+                    </a>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Team</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Settings</span>
+                    </a>
+                </div>
+                <a href="#" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <h1>Billida</h1>
+		<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<span style="display: flex; justify-content: space-between;">
@@ -75,51 +109,13 @@ body {
 							탈퇴</a>
 					</c:if>
 				</span>
-				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/password" method="post" id="password">
-
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
-
-
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="password">비밀번호</label> <input type="password"
-								class="form-control" name="password" id="password"
-								placeholder="" value="">
-							<c:if test="${empty error.password}">
-								<span id="pwCheck" class="valid-msg"></span>
-							</c:if>
-						</div>
-						<form:errors path="password" cssClass="valid-msg" />
-						<div class="col-md-6 mb-3">
-
-							<label for="password">비밀번호 확인</label> <input type="password"
-								class="form-control" name="passwordCheck" id="passwordCheck"
-								placeholder="" value="">
-							<c:if test="${empty error.password}">
-								<span id="passwordFail" class="valid-msg"></span>
-							</c:if>
-						</div>
-					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">비밀번호 변경</button>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto">
-				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/name" method="post" id="name">
-
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
+				<form:form  class="validation-form"
+					action="/member/changeName" method="post" id="name">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="name">이름</label> <input type="text"
 								class="form-control" name="name" id="name" placeholder=""
-								value="">
+								value="" required>
 						</div>
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">이름 변경</button>
@@ -127,20 +123,19 @@ body {
 			</div>
 		</div>
 	</div>
+	
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				
 
-				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/nick" method="post" id="nick">
-
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
-					<div class="col-md-6 mb-3">
-						<label for="nickname">별명</label> <input type="text"
-							class="form-control" name="nick" id="nick" placeholder=""
-							value="">
+					<form:form modelAttribute="joinForm" class="validation-form" action="/member/changeNick" method="post" id="kakaoChange">
+					<div class="mb-3">
+						<label for="nickname">별명</label> 
+						 <span style="display: flex;">
+						<input type="text"class="form-control" name="nick" id="nick" placeholder=""value="">
+							<button type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block"
+								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">중복확인</button>
+						</span>
 						<c:if test="${empty error.nick}">
 							<span id="nickCheck" class="valid-msg"></span>
 						</c:if>
@@ -150,34 +145,22 @@ body {
 			</div>
 		</div>
 	</div>
+	
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 
 				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/tel" method="post" id="tel">
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
+					action="/member/changeTel" method="post" id="kakaoPhoneChange">
 					<div class="mb-3">
 						<label for="tel">휴대전화</label> <span style="display: flex;">
 							<input type="tel" class="form-control" id="phone" name="phone">
-							<button type="button" " class="btn btn-primary btn-lg btn-block"
+							<button type="button"  class="btn btn-primary btn-lg btn-block"
 								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">전송!</button>
 						</span>
 						<c:if test="${empty error.phone}">
 							<span id="phoneCheck" class="valid-msg"></span>
 						</c:if>
-					</div>
-
-
-					<div class="mb-3">
-						<label for="tel">휴대전화 인증번호</label>
-						<div style="display: flex;">
-							<input type="tel" class="form-control" id="tell"> <input
-								type="button" value="확인"
-								class="btn btn-primary btn-lg btn-block"
-								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">
-						</div>
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">휴대전화 변경</button>
 				</form:form>
@@ -188,19 +171,13 @@ body {
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				
-				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/email" method="post" id="email">
-
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
-					<div>
-						<div class="invalid-feedback">이메일을 입력해주세요.</div>
-					</div>
+				<form:form class="validation-form"
+					action="/member/changeEmail" method="post" id="email">
 
 					<div class="mb-3">
 						<label for="email">이메일</label> <input type="email"
 							class="form-control" name="email" id="email"
-							placeholder="you@example.com">
+							placeholder="you@example.com" required>
 						<div class="invalid-feedback">이메일을 입력해주세요.</div>
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">이메일 변경</button>
@@ -208,37 +185,32 @@ body {
 			</div>
 		</div>
 	</div>
+	
+	
+	
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				
-				<form:form modelAttribute="joinForm" class="validation-form"
-					action="/member/address" method="post" id="address">
+				<form:form class="validation-form"
+					action="/member/changeAddress" method="post">
 
-					<input style="display: none" name="id" id="id"
-						value="${authentication.id}">
-					<div class="mb-3">
-						<label for="postCode">우편번호</label>
+					 <div class="mb-3">
+			            <label for="postCode">우편번호</label>
 						<div style="display: flex;">
-							<input name="postCode" id="postCode" type="text"
-								class="form-control" placeholder="우편번호" readonly="readonly">
-							<input onclick="daumPost()" value="검색" type="button"
-								class="btn btn-primary btn-lg btn-block"
-								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">
-						</div>
-						<div class="invalid-feedback">주소를 입력해주세요.</div>
-					</div>
-
-					<div class="mb-3">
-						<label for="address">주소<span class="text-muted">&nbsp;</span></label>
-						<input type="text" readonly="readonly" class="form-control"
-							class="form-control" name="address" id="address"
-							placeholder="주소를 입력해주세요.">
-					</div>
-					<div class="mb-3">
-						<label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label> <input type="text" class="form-control" name="addressDetail"
-							id="addressDetail" placeholder="상세주소를 입력해주세요.">
-					</div>
+			            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+			            <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
+			            </div>
+			          </div>
+			
+			          <div class="mb-3">
+			            <label for="address">주소<span class="text-muted">&nbsp;</span></label>
+			            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="">
+			          </div>
+			          <div class="mb-3">
+			            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+			            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요." required>
+			          </div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">주소 변경</button>
 				</form:form>
 
@@ -247,11 +219,15 @@ body {
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script src='/resources/js/member/kakaoLogin.js'></script>
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript">
+ 
+      <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="/resources/js/member/main.js"></script>
+<script type="text/javascript" src="/resources/js/member/kakaochangeForm.js"></script>
+<script type="text/javascript" src="/resources/js/member/changePhoneForm.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
 function daumPost() {
 	new daum.Postcode({
 		oncomplete: function(data) {
@@ -304,7 +280,7 @@ function daumPost() {
 }
 </script>
 
-	<script>
+  <script>
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
       Array.prototype.filter.call(forms, (form) => {
@@ -319,7 +295,7 @@ function daumPost() {
     }, false);
     
   </script>
-
+  
 </body>
 
 </html>
