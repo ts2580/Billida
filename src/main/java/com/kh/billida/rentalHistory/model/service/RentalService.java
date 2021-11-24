@@ -13,6 +13,4 @@ public interface RentalService {
 	void insertRental(Rental rental);
 
 	List<ReviewForRentHistory> selectReview(Long lockerId);
- 
-
 }

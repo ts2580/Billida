@@ -21,7 +21,8 @@ public interface RentalRepository {
 	void insertRental(Rental rental);
 	// 대여번호-시퀸스/택배함번호-메인에서 파라미터로 가져오기/유저코드- 세션에서 가져오기 
 	
-	@Select("select * from (select * from review where locker_id = #{lockerId} ORDER BY history_index desc) where ROWNUM <= 5")
+	@Select("select * from (select * from review inner join member using(user_code) "
+			+ "where locker_id = #{lockerId} ORDER BY history_index desc) where ROWNUM <= 5")
 	List<ReviewForRentHistory> selectReview(Long lockerId);
 	
 	

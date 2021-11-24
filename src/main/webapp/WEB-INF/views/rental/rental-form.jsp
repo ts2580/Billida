@@ -69,13 +69,12 @@
 		
 		
 		<c:forEach var="reviews" items="${reviews}">
-			idArr.push('${reviews.userCode}');
+			idArr.push('${reviews.nick}');
 			scoreArr.push('${reviews.score}');
 			dateArr.push('${reviews.createDate}');
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
 		
-		console.dir("${authentication.name}");
 		
 	</script>
 

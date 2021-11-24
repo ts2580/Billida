@@ -45,7 +45,7 @@ public class RentalController {
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (해결)
 		
-		// view단의 userCode는 Member 테이블과 조인해서 뭐야 뭐가이렇게많아 ID나 NAME나 NICK으로 넣을것
+		// view단의 userCode는 Member 테이블과 조인해서 뭐야 뭐가이렇게많아 ID나 NAME나 NICK으로 넣을것 (nick 넣음)
 		
 		// 리뷰 수가 5개 이하더라도 undefined안나게 처리
 		
@@ -77,7 +77,6 @@ public class RentalController {
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);
-		
 		
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);

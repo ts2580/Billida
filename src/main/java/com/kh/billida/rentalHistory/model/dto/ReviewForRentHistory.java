@@ -8,6 +8,7 @@ import lombok.Data;
 public class ReviewForRentHistory {
 	
 	private String userCode;
+	private String nick;
 	private int lockerId;
 	private int score;
 	private Date createDate;
