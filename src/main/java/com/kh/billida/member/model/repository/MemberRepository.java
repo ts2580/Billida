@@ -62,5 +62,11 @@ public interface MemberRepository {
 	@Update("update member set post_code=#{postCode},address=#{address},address_detail=#{addressDetail} where id = #{id}")
 	void updateAddress(JoinForm form);
 
+	@Select("select * from member where id=#{id} and name=#{name} and email = #{email}")
+	Member selectMemberByIdAndNameAndEmail(@Param("id")String id,@Param("name")String name,@Param("email") String email);
+	
+	@Update("update member set password=#{password} where id=#{id}")
+	void updatepasswordByEmail(JoinForm form);
+
 	
 }

@@ -90,14 +90,15 @@
         </nav>
     </div>
 
-    <h1>Componentes</h1>
+    <h1>Billida</h1>
 	<div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">카카오 회원수정</h4>
-        <form:form modelAttribute="joinForm" class ="validation-form" action="/member/kakaoSignup"
-         method="post" id="kakaosignUp">
+        <form:form modelAttribute="joinForm" class ="validation-form" action="/member/kakaoChange"
+         method="post" id="kakaoSignup">
           <input style="display: none" name="id" id="id" value="${authentication.id}">
+          <input style="display: none" name="kakaonum" id="kakaonum" value="${authentication.kakaoNum}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -165,13 +166,9 @@
           </div>
 
          
-          <hr class="mb-4">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-          </div>
+
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">수정 완료</button>
         </form:form>
       </div>
     </div>    

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- 태그 라이브러리 추가  -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!-- 스프링 폼태그 사용 가능  -->
 <!DOCTYPE html>
 
 <html lang="ko" xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -248,7 +250,7 @@ p {
 																		<p
 																			style="margin: 0; font-size: 16px; text-align: center;">
 																			<strong><span style="font-size: 38px;">Hi
-																					${param.Id}, </span></strong>
+																					${param.name}</span></strong>
 																		</p>
 																		<p
 																			style="margin: 0; font-size: 16px; text-align: center;">
@@ -274,6 +276,12 @@ p {
 																			style="margin: 0; font-size: 14px; text-align: center;">
 																			<span style="font-size: 22px;">ID : ${param.Id} </span>
 																		</p>
+																		<c:if test="${not empty param.address}">
+																		<p
+																			style="margin: 0; font-size: 14px; text-align: center;">
+																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/findPasswordBy_Email/${param.persistToken}_${param.Id}">비밀번호 재설정</a></span>
+																		</p>
+																		</c:if>
 																	</div>
 																</div>
 															</td>

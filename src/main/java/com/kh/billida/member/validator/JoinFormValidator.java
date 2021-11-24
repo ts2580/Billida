@@ -26,12 +26,11 @@ public class JoinFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		JoinForm form = (JoinForm) target;
 		System.out.println("여긴 조인폼벨리데이터!" + form);
-		if (form.getKakaonum() == null) {
+		if (form.getKakaoNum() == null) {
 
 			// 1. 아이디 존재 유무
 			boolean valid = false;
 			
-				System.out.println("아이디 돌아?");
 				
 				if (form.getId() != null) {
 					if(memberRepository.selectMemberById(form.getId()) != null) {

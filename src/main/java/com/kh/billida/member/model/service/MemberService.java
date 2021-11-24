@@ -23,5 +23,10 @@ public interface MemberService {
 	void updateTel(JoinForm form);
 	void updateEmail(JoinForm form);
 	void updateAddress(JoinForm form);
+	Member findPasswordByEmail(Member member);
+	void sendPasswordByEmail(Member checkUser, String token);
+	void changeKakaoMember(JoinForm form, Member user);
+	Member changePasswordByEmail(Member member);
+	void updatePasswordByEmail(JoinForm form, Member member);
 
 }
