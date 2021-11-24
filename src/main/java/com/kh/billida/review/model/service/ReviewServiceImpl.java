@@ -74,8 +74,14 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void updateRentHistoryReviewYn(int historyIndex) {
-		reviewRepository.updateRentHistoryReviewYn(historyIndex);
+	public int getHistoryIndex(String reviewNum) {
+		return reviewRepository.getHistoryIndex(reviewNum);
+		
+	}
+
+	@Override
+	public void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap) {
+		reviewRepository.updateRentHistoryReviewYn(rentHistoryMap);
 	}
 
 

@@ -78,10 +78,14 @@ public class ReviewController {
 		commandMap.put("content", reviewForm.getContent()); //리뷰내용
 		commandMap.put("userCode", rentInfo.getUserCode());//userCode
 		commandMap.put("historyIndex", rentInfo.getHistoryIndex());//historyIndex
-		commandMap.put("lockerId", rentInfo.getLockerId());//lockerId
-
+		commandMap.put("lockerId", rentInfo.getLockerId());//lockerI
 		reviewService.insertReview(commandMap);
-		reviewService.updateRentHistoryReviewYn(rentInfo.getHistoryIndex()); //렌트히스토리테이블 리뷰여부 Y로 업데이트
+		
+		
+		Map<String, Object> rentHistoryMap = new HashMap<String, Object>();
+		rentHistoryMap.put("yn", "Y");
+		rentHistoryMap.put("historyIndex", rentInfo.getHistoryIndex());
+		reviewService.updateRentHistoryReviewYn(rentHistoryMap); //렌트히스토리테이블 리뷰여부 Y로 업데이트
 		
 		return "redirect:/review/review-list";
 	}
@@ -155,10 +159,14 @@ public class ReviewController {
 	
 	@GetMapping("delete-review")
 	public String deleteReview(String reviewNum) {
-		
-		System.out.println("리뷰넘 :  " + reviewNum);
-		
+
 		reviewService.deleteReview(reviewNum);
+		int historyIndex = reviewService.getHistoryIndex(reviewNum);
+		
+		Map<String, Object> rentHistoryMap = new HashMap<String, Object>();
+		rentHistoryMap.put("yn", "N");
+		rentHistoryMap.put("historyIndex", historyIndex);
+		reviewService.updateRentHistoryReviewYn(rentHistoryMap);
 		
 		return "redirect:/review/review-list";
 	}

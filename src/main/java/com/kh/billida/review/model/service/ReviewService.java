@@ -31,7 +31,9 @@ public interface ReviewService {
 
 	List<Review> getUserReviews(String userCode);
 
-	void updateRentHistoryReviewYn(int historyIndex);
+	int getHistoryIndex(String reviewNum);
+
+	void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap);
 
 
 
