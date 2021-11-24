@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.service.MainService;
+import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
@@ -38,20 +41,17 @@ public class RentalController {
 	public void rental(Model model, LockerForLent locker, Long lockerId){
 		// Qwerasdf1234!
 		
-		this.lockerId = lockerId;
-		locker.setLockerId(lockerId);
-		// 파라미터로 받음. 개꿀
-		locker = rentalService.selectLocker(lockerId);
-	
 		// 이하 자바
 		
-		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것
+		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (해결)
 		
 		// view단의 userCode는 Member 테이블과 조인해서 뭐야 뭐가이렇게많아 ID나 NAME나 NICK으로 넣을것
 		
 		// 리뷰 수가 5개 이하더라도 undefined안나게 처리
 		
+		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블이랑 카카오 테이블, 멤버테이블 세군데 다 DB 올라가도록
 		
+		// 아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
 		
 		
 		// 이하 자바스크립트
@@ -69,8 +69,15 @@ public class RentalController {
 		
 		// 스코어 숫자로된거 별표로 변환, 유니코드 알아보고 쓰기
 		
+		// 로그인 안했을시 로그인 하라고 경고창 띄우기
+		
+		this.lockerId = lockerId;
+		locker.setLockerId(lockerId);
+		locker = rentalService.selectLocker(lockerId);
+		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);
+		
 		
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);
@@ -78,7 +85,11 @@ public class RentalController {
 	}
 	
 	@PostMapping("rental-form")
-	public String rentalForm(Rental rental){
+	public String rentalForm(Rental rental, HttpSession session, Member member){
+		
+		member = (Member)session.getAttribute("authentication");
+		
+		String userCode = member.getUserCode();
 		
 		LocalDate rentStart = rental.getRentStart().toLocalDate();
 		LocalDate rentEnd = rental.getRentEnd().toLocalDate();
@@ -86,7 +97,7 @@ public class RentalController {
 		int rentCost = (rentEnd.getDayOfYear()-rentStart.getDayOfYear()+1)*3000;
 		
 		rental.setLockerId(lockerId);
-		rental.setUserCode(rentalService.selectLocker(lockerId).getUserCode());
+		rental.setUserCode(userCode);
 		rental.setRentCost(rentCost);
 		
 		rentalService.insertRental(rental);
