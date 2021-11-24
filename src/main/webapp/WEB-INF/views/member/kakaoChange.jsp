@@ -59,9 +59,9 @@
                         </ul>
                     </div>
 
-                    <a href="#" class="nav__link">
+                    <a href="/review/rent-list" class="nav__link">
                         <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Analytics</span>
+                        <span class="nav_name">사물함 대여 현황</span>
                     </a>
 
                     <div href="#" class="nav__link collapse">
@@ -77,9 +77,9 @@
                         </ul>
                     </div>
 
-                    <a href="#" class="nav__link">
+                    <a href="/review/review-list" class="nav__link">
                         <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Settings</span>
+                        <span class="nav_name">내가 작성한 리뷰</span>
                     </a>
                 </div>
                 <a href="#" class="nav__link">
