@@ -77,6 +77,7 @@
 		rCDiv.appendChild(rCR);
 		
 		reviewNum++;
+		
 	};
 	
 	

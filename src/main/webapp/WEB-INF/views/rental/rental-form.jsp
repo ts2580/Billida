@@ -41,15 +41,15 @@
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 시작일</td>
-								<td><input type="date" name="RentStart" value="${rental.rentStart}" /></td>
+								<td><input onchange="calCost()" type="date" name="RentStart" value="${rental.rentStart}" /></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 종료일</td>
-								<td><input type="date" name="RentEnd" value="${rental.rentEnd}" /></td>
+								<td><input onchange="calCost()" type="date" name="RentEnd" value="${rental.rentEnd}"/></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">비용</td>
-								<td><input type="number" placeholder="자동계산됨 입력 노필요" /></td>
+								<td class="cost"></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" class="submitButton"/></td>
@@ -67,7 +67,6 @@
 		let dateArr = new Array();
 		let contentsArr = new Array();
 		
-		
 		<c:forEach var="reviews" items="${reviews}">
 			idArr.push('${reviews.nick}');
 			scoreArr.push('${reviews.score}');
@@ -75,7 +74,17 @@
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
 		
-		
+		let calCost = () => {
+			let rentStart = document.querySelector('input[name="RentStart"]').valueAsNumber;
+			let rentEnd = document.querySelector('input[name="RentEnd"]').valueAsNumber;
+			let rentCost = (rentEnd-rentStart)/1000/60/60/24*3000;
+			
+			if(!isNaN(rentCost)){
+				document.querySelector(".cost").innerText = rentCost+"원";
+			};
+			
+		};
+
 	</script>
 
 	<script type="text/javascript" src="${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script>
