@@ -6,9 +6,8 @@ public class HandlableException extends RuntimeException {
 
 
 	private static final long serialVersionUID = -3930409458039432875L;
-	public ErrorCode error; //우리가 만들어놓은 이넘 
+	public ErrorCode error;
 	
-	//콘솔창 에러코드를 초기화 해주는 용도?
 	public HandlableException(ErrorCode error) {
 		this.error = error;
 		this.setStackTrace(new StackTraceElement[0]);

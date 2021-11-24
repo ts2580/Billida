@@ -25,6 +25,10 @@ let openModal = (reviewNum) => {
 	document.getElementById("reviewNum").value = reviewNum;
 }
 
+$(function(){
+		$('#modal').draggable();
+});
+
 /* 모달창에서 삭제버튼 클릭 시 href이동시켜 삭제처리 후 모달 none */
 document.getElementById("deleteYes").addEventListener("click", e => {
 		location.href = 'delete-review?reviewNum='+reviewNum.value;
@@ -45,7 +49,7 @@ modal.addEventListener("click", e => {
 })
 
 /* 모달창의 x 클릭 시 모달 none */
-const closeBtn = modal.querySelector(".close-area")
+const closeBtn = modal.querySelector("#xTitle")
 closeBtn.addEventListener("click", e => {
     modal.style.display = "none"
 })

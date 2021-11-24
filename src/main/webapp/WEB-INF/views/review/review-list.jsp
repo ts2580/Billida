@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
 	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 	<link href="${contextPath}/resources/css/reviewCss/reviewList.css" rel='stylesheet' type='text/css' />
 	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
 	<link href="${contextPath}/resources/css/modal.css" rel='stylesheet' type='text/css' />
@@ -55,7 +56,7 @@
 	
 	<div id="modal" class="modal-overlay">
         <div class="modal-window">
-        	<div class="close-area">X</div>
+        	<div class="close-area"><a id="xTitle">X</a></div>
             <div class="content">
                 <p>리뷰를 삭제하시겠습니까?</p>
                 <div class="button_area">
