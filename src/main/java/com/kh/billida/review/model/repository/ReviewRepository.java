@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.dto.Review;
 
@@ -47,6 +46,16 @@ public interface ReviewRepository {
 
 	@Update("update rent_history set review_yn = #{yn} where history_index = #{historyIndex}")
 	void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap);
+
+	List<Map<String, Object>> getMyLockerListPaging(Map<String, Object> criMap);
+
+	@Select("select count(*) from locker where user_code = #{userCode}")
+	int getLockerTotal(String userCode);
+
+	List<Map<String, Object>> getLockerReviewsPaging(Map<String, Object> criMap);
+
+	@Select("select count(*) from review where locker_id = #{lockerId}")
+	int getLockerReviewTotal(int lockerId);
 
 	
 }

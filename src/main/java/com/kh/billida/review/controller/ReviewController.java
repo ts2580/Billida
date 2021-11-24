@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
+import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.member.common.code.ErrorCode;
 import com.kh.billida.member.common.exception.HandlableException;
 import com.kh.billida.member.model.dto.Member;
@@ -153,6 +154,47 @@ public class ReviewController {
 		reviewService.updateRentHistoryReviewYn(rentHistoryMap);
 		
 		return "redirect:/review/review-list";
+	}
+	
+	@GetMapping("myLocker-list")
+	public void myLockerList(Model model, HttpSession session, RedirectAttributes redirectAttr, Criteria cri) {
+		
+		Member member = (Member) session.getAttribute("authentication");
+		
+		String userCode = member.getUserCode();
+		Map<String, Object> criMap = new HashMap<String, Object>();
+		criMap.put("pageNum", cri.getPageNum());
+		criMap.put("amount", cri.getAmount());
+		criMap.put("userCode", userCode);
+		
+		List<Map<String, Object>> lockerList = reviewService.getMyLockerListPaging(criMap);
+		
+		int total = reviewService.getLockerTotal(userCode);
+		Paging paging = new Paging(cri, total);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("lockerList", lockerList);
+		map.put("paging", paging);
+		model.addAllAttributes(map);
+		
+	}
+	
+	@GetMapping("locker-reviews")
+	public void lockerReviews(Model model, int lockerId, Criteria cri){
+		Map<String, Object> criMap = new HashMap<String, Object>();
+		criMap.put("pageNum", cri.getPageNum());
+		criMap.put("amount", cri.getAmount());
+		criMap.put("lockerId", lockerId);
+		
+		List<Map<String, Object>> lockerReviews = reviewService.getLockerReviewsPaging(criMap);
+		
+		int total = reviewService.getLockerReviewTotal(lockerId);
+		Paging paging = new Paging(cri, total);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("lockerReviews", lockerReviews);
+		map.put("paging", paging);
+		model.addAllAttributes(map);
 	}
 
 }

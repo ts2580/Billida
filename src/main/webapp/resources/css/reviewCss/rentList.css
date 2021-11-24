@@ -63,6 +63,39 @@
     position: relative;
 }
 
+.locker1{
+	display: flex;
+	flex-direction: column;
+	font-size: 12px;
+	padding-left: 30px;
+	width: 33%;
+}
+
+.locker2{
+	display: flex;
+	flex-direction: column;
+	font-size: 12px;
+	padding-left: 15px;
+	width: 33%;
+}
+
+.rent_password{
+	display: flex;
+    justify-content: flex-start;
+    font-size: 100%;
+    padding-top: 3px;
+    padding-bottom: 7px;
+}
+
+.info1{
+	position: relative;
+    padding-bottom: 7px;
+}
+
+.info2{
+	position: relative;
+}
+
 .reviewButton{
 	display: flex;
 	width: 20%;
@@ -78,6 +111,33 @@
 	color: orange;
 }
 
+
+.button_box{
+	display: flex;
+	flex-direction: column;
+	width: 15%;
+	font-size: 12px;
+	line-height: 20px;
+	cursor: pointer;
+	align-items: flex-end;
+}
+
+
+.modifyBtn, .deleteBtn{
+	width: 66px;
+}
+
+.modifyBtn:hover{
+	color: orange;
+}
+
+.deleteBtn:hover{
+	color: #00BFFF;
+}
+
+
+
+
 hr{
 	margin: 0;
 	width: 100%;
@@ -88,4 +148,12 @@ hr{
 	.rent_list{
 		width: 90%;
 	}
+}
+
+
+
+.no_search {
+	margin-top: 40px;
+	text-align: center;
+	line-height: 35px;
 }

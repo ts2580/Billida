@@ -58,5 +58,27 @@
 	where review_num = #{reviewNum}
   	</update>
   
+  	<select id="getMyLockerListPaging" resultType="map">
+  		<![CDATA[
+	  		select *
+			from(select rownum as rn, l.*
+			    from locker l where rownum <= #{pageNum} * #{amount} and user_code = #{userCode})
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+  	</select>
+  
+  <select id="getLockerReviewsPaging" resultType="map">
+   		<![CDATA[
+	  		select * 
+		    from(
+		       	select rownum as rn, r.*, m.nick, l.locker_image, l.locker_title
+		        from review r, member m, locker l where rownum <= #{pageNum} * #{amount} and m.user_code = r.user_code
+		          										and r.locker_id = l.locker_id
+	                               						and r.locker_id = #{lockerId}
+	                               						and r.deleteyn = 'N')
+		    where rn > (#{pageNum} -1) * #{amount}
+	    ]]>
+  </select>
+  
   
   </mapper>

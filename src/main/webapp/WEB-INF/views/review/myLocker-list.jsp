@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,30 +7,28 @@
 	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
 	<link href="${contextPath}/resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
 	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
-	
 </head>
 <body>
 <div class="rent_wrapper">
-<h1 class="title">내가 빌린 사물함</h1>
+<h1 class="title">내가 등록한 사물함</h1>
 	<div class="rent_list">
-		<c:forEach items="${list}" var="rents">
+		<c:forEach items="${lockerList}" var="lockers">
 			<div class="rent_area">
-				<div class="rentImg"><img class="rentImgs" src="${rents.lockerImage}"></div>
-				<div class="rent_info">
-					<div class="rent_name"> - 사물함명 : ${rents.lockerTitle}</div>
-					<div class="rent_start"> - 대여날짜 : ${rents.rentStart}</div>
-					<div class="rent_end">- 반납날짜 : ${rents.rentEnd}</div>
+				<div class="rentImg"><img class="rentImgs" src="${lockers.LOCKER_IMAGE}"></div>
+				<div class="locker1">
+					<div class="rent_name"> - 사물함명 : ${lockers.LOCKER_TITLE}</div>
+					<div class="rent_start"> - 임대시작일 : ${lockers.RENTABLE_DATE_START}</div>
+					<div class="rent_end">- 임대종료일 : ${lockers.RENTABLE_DATE_END}</div>
 				</div>
-				<c:if test="${rents.reviewYn == 'Y'}">
-					<div class="reviewButton">
-						<a type="button" class="reviewWrite"><i class="far fa-check-square"></i> 리뷰완료</a>
-					</div>
-				</c:if>	
-				<c:if test="${rents.reviewYn == 'N'}">
-					<div class="reviewButton">
-						<a type="button" class="reviewWrite" onclick='openReviewForm(${rents.historyIndex})'><i class="fas fa-edit"></i> 리뷰작성</a>
-					</div>
-				</c:if>
+				<div class="locker2">
+					<div class="rent_password"> - 비밀번호 : ${lockers.LOCKER_PASSWORD}</div>
+					<div class="info1"> - 정보1 : </div>
+					<div class="info2"> - 정보2 : </div>
+				</div>
+				<div class="button_box">
+					<a type="button" class="modifyBtn" href="#"><i class="fas fa-eraser"></i> 정보수정</a>
+					<a type="button" class="deleteBtn" href="/review/locker-reviews?lockerId=${lockers.LOCKER_ID}"><i class="fas fa-list"></i> 리뷰확인</a>
+				</div>
 			</div>
 			<hr>
 		</c:forEach>
@@ -76,7 +72,7 @@ let moveForm = $("#moveForm");
 $(".pageInfo li").on("click", function(e){
 	 e.preventDefault();
      moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-     moveForm.attr("action", "rent-list");
+     moveForm.attr("action", "myLocker-list");
      moveForm.submit();
 });
 
@@ -92,7 +88,6 @@ $(".pageInfo li").on("click", function(e){
 
 
 </script>
-
 
 </body>
 </html>

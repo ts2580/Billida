@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.kh.billida.common.paging.Criteria;
+import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.dto.Review;
 import com.kh.billida.review.model.repository.ReviewRepository;
@@ -82,6 +83,26 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap) {
 		reviewRepository.updateRentHistoryReviewYn(rentHistoryMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> getMyLockerListPaging(Map<String, Object> criMap) {
+		return reviewRepository.getMyLockerListPaging(criMap);
+	}
+
+	@Override
+	public int getLockerTotal(String userCode) {
+		return reviewRepository.getLockerTotal(userCode);
+	}
+
+	@Override
+	public List<Map<String, Object>> getLockerReviewsPaging(Map<String, Object> criMap) {
+		return reviewRepository.getLockerReviewsPaging(criMap);
+	}
+
+	@Override
+	public int getLockerReviewTotal(int lockerId) {
+		return reviewRepository.getLockerReviewTotal(lockerId);
 	}
 
 

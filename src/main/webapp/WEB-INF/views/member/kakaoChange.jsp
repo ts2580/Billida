@@ -41,9 +41,9 @@
                         <ion-icon name="home-outline" class="nav__icon"></ion-icon>
                         <span class="nav_name">회원정보수정</span>
                     </a>
-                    <a href="#" class="nav__link">
+                    <a href="/review/myLocker-list" class="nav__link">
                         <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                        <span class="nav_name">Messenger</span>
+                        <span class="nav_name">내가 등록한 사물함</span>
                     </a>
 
                     <div href="#" class="nav__link collapse">

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.billida.common.paging.Criteria;
+import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.review.model.dto.RentHistoryAndLocker;
 import com.kh.billida.review.model.dto.Review;
 
@@ -34,6 +35,14 @@ public interface ReviewService {
 	int getHistoryIndex(String reviewNum);
 
 	void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap);
+
+	List<Map<String, Object>> getMyLockerListPaging(Map<String, Object> criMap);
+
+	int getLockerTotal(String userCode);
+
+	List<Map<String, Object>> getLockerReviewsPaging(Map<String, Object> criMap);
+
+	int getLockerReviewTotal(int lockerId);
 
 
 
