@@ -52,7 +52,7 @@
 								<td class="cost"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="button" class="submitButton">빌리기</button></td>
+								<td colspan="2"><button type="submit" class="submitButton">빌리기</button></td>
 							</tr>
 						</table>
 					</form:form>
@@ -63,7 +63,9 @@
 	
 	<script type="text/javascript">
 		
-	let idArr = new Array();
+		let auth = "${authentication}";
+		
+		let idArr = new Array();
 		let scoreArr = new Array();
 		let dateArr = new Array();
 		let contentsArr = new Array();

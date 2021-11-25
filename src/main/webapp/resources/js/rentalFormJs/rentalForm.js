@@ -96,12 +96,14 @@
 	
 	let btn = document.querySelector(".submitButton");
 	
-	btn.addEventListener('click', e =>{
-		
-		alert("ss");
-		
+    if(auth == ""){
+		btn.getAttributeNode("type").value = "button";
+		btn.addEventListener('click', () =>{
+		    alert("로그인을 해야 이용 가능한 기능입니다.");
+        });
+	}
+
 	
-	});
 	
 	
 })();
