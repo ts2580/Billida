@@ -12,7 +12,7 @@ import com.kh.billida.main.model.dto.Main;
 @Mapper
 public interface MainRepository {
 
-	@Select("select locker_id, locker_image, locker_title, locker_content, locker_size, rentable_date_end from locker")
+	@Select("select user_code, locker_id, locker_image, locker_title, locker_content, locker_size, rentable_date_end from locker")
 	List<Main> selectLockerList();
 
 	List<Map<String, Object>> getListPaging(Map<String, Object> commandMap);

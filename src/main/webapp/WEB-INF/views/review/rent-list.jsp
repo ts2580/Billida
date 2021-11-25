@@ -9,7 +9,6 @@
 	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
 	<link href="${contextPath}/resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
 	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
-	
 </head>
 <body>
 <div class="rent_wrapper">
@@ -34,6 +33,11 @@
 					</div>
 				</c:if>
 			</div>
+			
+				<input type="hidden" id="userName" name="userName" value="${authentication.name}">
+				<input type="hidden" id="userEmail" name="userEmail" value="${authentication.email}">
+				<input type="hidden" id="userAddress" name="userAddress" value="${authentication.address}">
+				<input type="hidden" id="userTell" name="userTell" value="${authentication.phone}">
 			<hr>
 		</c:forEach>
 		
@@ -69,6 +73,8 @@
 	</div>
 </div>
 
+
+
 <script type="text/javascript">
 
 let moveForm = $("#moveForm");
@@ -90,6 +96,8 @@ $(".pageInfo li").on("click", function(e){
 	             });
 	 }
 
+
+	
 
 </script>
 

@@ -57,6 +57,7 @@ public class ReviewController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("paging", paging);
+		map.put("authentication", member);
 		model.addAllAttributes(map);
 		
 		return "review/rent-list";
@@ -197,11 +198,6 @@ public class ReviewController {
 		model.addAllAttributes(map);
 	}
 	
-	
-	@GetMapping("kakaopayTest")
-	public String kakaopay() {
-		return "review/kakaopayTest";
-	}
 	
 	
 
