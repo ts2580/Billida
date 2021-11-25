@@ -13,12 +13,12 @@ import com.kh.billida.main.model.dto.Main;
 @Mapper
 public interface MainRepositoryTest {
 	
-	@Insert("insert into locker(locker_id, user_code, locker_title, locker_content, locker_size, locker_password, latitude, longitude, rentable_date)"
-			+ " values(locker_id.nextval,#{userCode}, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerPassword}, #{latitude}, #{longitude}, #{rentableDate})")
+	@Insert("insert into locker(locker_id, user_code, locker_title, locker_content, locker_size, locker_password, latitude, longitude, RENTABLE_DATE_END)"
+			+ " values(locker_id.nextval,#{userCode}, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerPassword}, #{latitude}, #{longitude}, #{rentableDateEnd})")
 	int insertWithDto(Main main);
 	
-	@Insert("insert into locker(locker_id, locker_title, locker_content, locker_size, locker_image, locker_password, latitude, longitude, location, rentable_date)"
-			+ " values(locker_id.nextval, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerImage}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDate})")
+	@Insert("insert into locker(locker_id, locker_title, locker_content, locker_size, locker_image, locker_password, latitude, longitude, location, RENTABLE_DATE_END)"
+			+ " values(locker_id.nextval, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerImage}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDateEnd})")
 	int insertDummyApi(Main main);
 	
 	@Select("select * from locker")
