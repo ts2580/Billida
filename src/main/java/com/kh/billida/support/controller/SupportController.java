@@ -71,6 +71,7 @@ public class SupportController {
 	
 	
 	
+	
 	// 신고 내용 입력 후 전송
 	//@PostMapping("report-main")
 	//public String reportInsert(Support support) {
