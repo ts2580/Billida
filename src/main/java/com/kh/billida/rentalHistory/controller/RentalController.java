@@ -2,9 +2,7 @@ package com.kh.billida.rentalHistory.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.billida.main.model.dto.Main;
-import com.kh.billida.main.model.service.MainService;
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
@@ -32,8 +28,6 @@ public class RentalController {
 	
 	private final RentalService rentalService;
 	
-	private final MainService mainService;
-	
 	private Long lockerId;
 	
 	@GetMapping("rental-form")
@@ -44,12 +38,14 @@ public class RentalController {
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (처리)
 		
+		// 필드에 lockerId 처리하기?
+		
 		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블(완료)과 락커(현재상태) 카카오 테이블(마일리지 차감), 멤버테이블(마일리지 차감) 네군데 다 DB 올라가도록
 		// 		아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
 		//      일단 locker의 RENT_STATUS값 Boolean으로 바꾸면 어떤지. 
 		//		카카오 테이블의 마일리지는 멤버테이블의 마일리지값을 외래키로 가져오게 하도록 테이블 수정하면 안되는지. 테이블 두개 수정하기 귀찮음
 		
-		////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		// 이하 자바스크립트
 		
@@ -67,7 +63,7 @@ public class RentalController {
 		
 		// 점수에 따라 아이콘 바뀌게(처리)
 		
-		// review deleteYn이 N 일때만 가져오기
+		// review deleteYn이 N 일때만 가져오기(처리)
 		
 		// 빌리기 성공하면 락커테이블 스테이터스 바꾸고, 빌리기 버튼을 대여중 div로 변경 
 		

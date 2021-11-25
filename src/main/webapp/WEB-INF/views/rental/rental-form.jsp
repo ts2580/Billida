@@ -52,7 +52,7 @@
 								<td class="cost"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" class="submitButton" value="빌리기"/></td>
+								<td colspan="2"><button type="button" class="submitButton">빌리기</button></td>
 							</tr>
 						</table>
 					</form:form>

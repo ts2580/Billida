@@ -94,9 +94,14 @@
 		
 	};
 	
+	let btn = document.querySelector(".submitButton");
 	
+	btn.addEventListener('click', e =>{
+		
+		alert("ss");
+		
 	
-	
+	});
 	
 	
 })();
