@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+  <!-- 메인 리포지토리 등록  -->
+  <mapper namespace="com.kh.billida.support.model.repository.SupportRepository">
+ 
+	<insert id="reportInsertPost">
+		insert into report_board(REPORT_IDX, USER_ID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE, REPORT_RESULT)
+	 
+	 values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, SYSDATE, '0')
+	 
+	
+	</insert>
+  
+  </mapper>
