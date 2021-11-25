@@ -45,6 +45,7 @@
                 </div>
             </div>
             <div class="col-md-9">
+            	<form:form action="/support/report-main" method="post" id="locker">
                 <div class="contact-form">
                     <div class="form-group">
                         <label class="control-label col-sm-2">회원ID</label>
@@ -71,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                </form:form>
             </div>
         </div>
     </div>  

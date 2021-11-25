@@ -12,14 +12,12 @@ import com.kh.billida.support.model.dto.Support;
 @Mapper
 public interface SupportRepository {
 
-	/*
-	 * @Insert("insert into report_board(REPORT_IDX, USER_ID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE, REPORT_RESULT)"
-	 * +
-	 * "values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0'"
-	 * )
-	 */
+	@Insert
+	("insert into report_board(REPORT_IDX, USER_ID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE, REPORT_RESULT)"
+	+ " values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0')")
 	void reportInsertPost(Map<String, Object> commandMap);
 
+	
 	
 	/*
 	 * @Insert

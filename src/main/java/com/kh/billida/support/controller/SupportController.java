@@ -1,10 +1,14 @@
 package com.kh.billida.support.controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class SupportController {
 	
 	private final SupportService supportService;
-	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	// 문의&신고 페이지 접속
 	@GetMapping("support-index")
@@ -46,42 +50,24 @@ public class SupportController {
 	public String reportMainPost(Model model 
 								,@ModelAttribute Support support
 								,HttpSession session) {
+		LocalDate now = LocalDate.now();
+		
 		Map<String, Object> commandMap = new HashMap<String, Object>();
 		commandMap.put("userId", support.getUserId());
 		commandMap.put("reportTitle", support.getReportTitle());
 		commandMap.put("reportContent", support.getReportContent());
-		
+		Object put = commandMap.put("reportDate", now);
 		supportService.reportInsertPost(commandMap);
 		
-		return "report-board";
+		System.out.println(now);
+		System.out.println(commandMap);
+		return "redirect:/support/support-index";
 	}
-	/*
-	 * 
-	 * @PostMapping("upload-review")
-	public String uploadReview(Model model
-						, @ModelAttribute Review reviewForm //jsp에서 값 채워진 모델로 받아오기
-						, @SessionAttribute(value="rentHistoryLocker", required = false) RentHistoryAndLocker rentInfo
-						) {
+	
+	// 신고 게시판 접속
+	@GetMapping("report-board")
+	public void reportBoard() {}
 		
-		Map<String, Object> commandMap = new HashMap<String, Object>();
-		commandMap.put("score", reviewForm.getScore()); //별점
-		commandMap.put("content", reviewForm.getContent()); //리뷰내용
-		commandMap.put("userCode", rentInfo.getUserCode());//userCode
-		commandMap.put("historyIndex", rentInfo.getHistoryIndex());//historyIndex
-		commandMap.put("lockerId", rentInfo.getLockerId());//lockerI
-		reviewService.insertReview(commandMap);
-		
-		
-		Map<String, Object> rentHistoryMap = new HashMap<String, Object>();
-		rentHistoryMap.put("yn", "Y");
-		rentHistoryMap.put("historyIndex", rentInfo.getHistoryIndex());
-		reviewService.updateRentHistoryReviewYn(rentHistoryMap); //렌트히스토리테이블 리뷰여부 Y로 업데이트
-		
-		return "redirect:/review/review-list";
-	}
-	 * 
-	 * 
-	 */
 	
 	
 	
@@ -92,9 +78,6 @@ public class SupportController {
 	//	return "report-main";
 	//}
 	
-	// 신고 게시판 목록
-	@GetMapping("report-board")
-	public void reportBoard() {}
 	
 	
 	
