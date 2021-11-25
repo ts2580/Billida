@@ -1,30 +1,29 @@
 package com.kh.billida.locker.model.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 
 import com.kh.billida.locker.model.dto.Locker;
+import com.kh.billida.locker.model.repository.LockerRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class LockerServiceImpl implements LockerService{
 	
+	private final LockerRepository lockerRepository;
+	
+	
 	@Override
-	public List<Locker> imageList() {
-		// TODO Auto-generated method stub
-		return null;
+	public Locker selectUserCode(Long user_code) {
+		Locker locker = lockerRepository.selectUserCode(user_code);
+		return locker;
 	}
 
 	@Override
-	public void appendAttach(String[] uploadedFiles, Integer bno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeAttach(String fileName) {
-		// TODO Auto-generated method stub
+	public void insertLocker(Locker locker) {
+		lockerRepository.insertLocker(locker);
 		
 	}
 

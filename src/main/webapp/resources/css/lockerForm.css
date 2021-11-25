@@ -9,7 +9,6 @@ table{
  	border-spacing: 0 10px;
 }
 
-
 .billigi{
 	margin-top: 5px;
 	margin-left: 10%;
@@ -33,10 +32,10 @@ table{
 }
 
 .outline{
-	margin-left: 31px;
+	margin-left: 15px;
     border: 1px solid #d9d9d9;
-    height: 500px;
-    width: 350px;
+    height: 600px;
+    width: 450px;
 }
 
 .price-and-time{
@@ -44,8 +43,8 @@ table{
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #d8d8d8;
-    width: 80%;
-    margin-left: 10%;
+    width: 86%;
+    margin-left: 8%;
 }
 
 .price{
@@ -57,12 +56,12 @@ table{
 .rental-contents{
 	padding: 30px;
 	padding-top: 10px;
-	width:420px;
+	width:440px;
 }
 
 
 
-.rental-contents-title{
+.locker-contents-title{
 	width: 110px;
 }
  

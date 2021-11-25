@@ -11,11 +11,9 @@ import com.kh.billida.locker.model.dto.Locker;
 public interface LockerService {
 
 	//리스트
-	public List<Locker> imageList();
+	public Locker selectUserCode(Long user_code);
 
-	public void appendAttach(String[] uploadedFiles, Integer bno);
-
-	public void removeAttach(String fileName);
+	public void insertLocker(Locker locker);
 	
 	//보기
 	

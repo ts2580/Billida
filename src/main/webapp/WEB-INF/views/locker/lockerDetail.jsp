@@ -35,40 +35,40 @@
 						<tr>
 							<td>택배함 이름</td>
 							<td>
-								<form action="lockerTitle" method="post">
-								<input style="width: 260px" type="text" name="lockerTitle" id="lockerTitle" class="lockerTitle" placeholder="택배함 이름을 입력하세요.">
+								<form action="locker_title" method="post">
+								<input style="width: 260px" type="text" id="locker_title" class="locker_title" placeholder="택배함 이름을 입력하세요.">
 								</form>
 							</td>
 						</tr>
 						<tr>
 							<td>택배함 비밀번호</td>
 							<td>
-								<form action="lockerPassword" method="post">
-								<input style="width: 260px" type="password" name="lockerPassword" class="lockerPassword" placeholder="택배함 비밀번호를 입력하세요">
+								<form action="locker_password" method="post" id="locker_password">
+								<input style="width: 260px" type="password" class="locker_password" placeholder="택배함 비밀번호를 입력하세요">
 								</form>
 							</td>
 						</tr>
 						<tr>
 							<td>택배함 위치</td>
 							<td>
-								<form action="location" method="post">
-								<input style="width: 215px" type="text" class="location" name="location" placeholder="주소를 입력하세요."><button>입력</button>
+								<form action="location" method="post" id="location">
+								<input style="width: 215px" type="text" class="location" placeholder="주소를 입력하세요."><button>입력</button>
 								</form>
 							</td>
 						</tr>
 						<tr>
 							<td>택배함 상세위치</td>
 							<td>
-								<form action="lockerContent" method="post">
-								<input style="width: 260px" type="text" name="lockerContent" class="lockerContent" placeholder="예)00아파트 지하주차장 101번 택배함">
+								<form action="locker_content" method="post" id="locker_content">
+								<input style="width: 260px" type="text" class="locker_content" placeholder="예)00아파트 지하주차장 101번 택배함">
 								</form>
 							</td>
 						</tr>
 						<tr>
 							<td class="locker-contents-title">사이즈</td>
 							<td>
-								<form action="lockerSize" method="post">
-								<select name="lockerSize">
+								<form action="locker_size" method="post">
+								<select name="chooseSize">
 									<option value="Small">Small</option>
 									<option value="Medium">Medium</option>
 									<option value="Large">Large</option>
@@ -80,8 +80,8 @@
 						<tr>
 							<td class="locker-contents-title">이미지</td>
 							<td>
-								<form action="lockerImage" method="post" enctype="multipart/form-data">
-									<input type="file" name="lockerImage" id="lockerImage" class="upload-box upload-plus" accept="image/*">
+								<form action="locker_image" method="post" enctype="multipart/form-data">
+									<input type="file" name="files" id="locker_image" class="upload-box upload-plus" accept="image/*">
 									<div id="preview" style="max-width: 100px"></div>
 										<div class="file-edit-icon">
 											<a href="#" class="preview-edit">수정</a>
@@ -93,13 +93,13 @@
 						<tr>
 							<td class="locker-contents-title">대여 시작일</td>
 							<td style="text-align: center;">
-								<input style="width: 200px" type="date" name="rentableDateStart" min="${today}" value="${locker.rentableDateStart}" />
+								<input style="width: 200px" type="date" name="rentable_date_start" value="${locker.rentable_date_start}" />
 							</td>
 						</tr>
 						<tr>
 							<td class="locker-contents-title">대여 종료일</td>
 							<td style="text-align: center;">
-								<input style="width: 200px" type="date" name="rentableDateEnd" min="${today}" value="${locker.rentableDateEnd}" />
+								<input style="width: 200px" type="date" name="rentable_date_end" value="${locker.rentable_date_end}" />
 							</td>
 						</tr>
 						<tr>
@@ -155,15 +155,15 @@
 	console.log()
 	function handleFileSelect(event) {
 	    var input = this;
-	    console.log(input.lockerImage)
-	    if (input.lockerImage && input.lockerImage.length) {
+	    console.log(input.files)
+	    if (input.files && input.files.length) {
 	        var reader = new FileReader();
 	        this.enabled = false
 	        reader.onload = (function (e) {
 	        console.log(e)
 	            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
 	        });
-	        reader.readAsDataURL(input.lockerImage[0]);
+	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
 	$('#locker_image').change(handleFileSelect);
