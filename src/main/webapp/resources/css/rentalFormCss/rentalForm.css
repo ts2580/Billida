@@ -98,14 +98,30 @@ table{
 .reply{
 	margin-left: 31px;
 	margin-top: 15px;
-	width:150%;
+	width: 150%;
 	display: flex;
 }
 
-.fa-smile-beam{
+.far{
 	font-size: 40px;
-	color:green
 }
+
+.fa-smile-beam{
+	color: green;
+}
+
+.fa-smile-wink{
+	color: lightblue;
+}
+
+.fa-meh{
+	color: orange;
+}
+
+.fa-frown-open{
+	color: red;
+}
+
 
 .reply-contents{
 	margin-left: 10px;

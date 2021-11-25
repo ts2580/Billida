@@ -8,10 +8,9 @@ public class Test {
 
 		LocalDate Someday = LocalDate.of(2021, 11, 30);
 		
-		LocalDate Someday2 = LocalDate.of(2022, 04, 05);
+		LocalDate Someday2 = LocalDate.of(2022, 06, 12);
 		
-		System.out.println(Someday.getDayOfYear());
-		System.out.println(Someday2.getDayOfYear());
+		System.out.println();
 
 	}
 

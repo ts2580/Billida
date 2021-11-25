@@ -44,15 +44,18 @@ public class RentalController {
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (처리)
 		
-		// view단의 userCode는 Member 테이블과 조인해서 뭐야 뭐가이렇게많아 ID나 NAME나 NICK으로 넣을것 (처리)
+		// locker의 RENT_STATUS가 0일때만 빌리기 가능하도록(1이면 빌려주는중, 이런식으로 Boolean값으로 하는게 좋을듯. 왜 문자열을 넣어놨지)
 		
-		
-		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블이랑 카카오 테이블, 멤버테이블 세군데 다 DB 올라가도록
+		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블(완료)과 락커(현재상태) 카카오 테이블(마일리지 차감), 멤버테이블(마일리지 차감) 네군데 다 DB 올라가도록
 		// 		아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
+		//      일단 locker의 RENT_STATUS값 Boolean으로 바꾸면 어떤지. 
+		//		카카오 테이블의 마일리지는 멤버테이블의 마일리지값을 외래키로 가져오게 하도록 테이블 수정하면 안되는지. 테이블 두개 수정하기 귀찮음
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		// 이하 자바스크립트
+		
+		// review 테이블에 userCode 밖에 없는거 Member 테이블과 조인해서 id나 name, 훅은 nick 가져오기 (처리)
 		
 		// 스코어 숫자로된거 별표로 변환, 유니코드 알아보고 쓰기(처리)
 		
@@ -62,15 +65,11 @@ public class RentalController {
 		
 		// 현재날자 이전엔 못빌리게(처리)
 		
-		// 점수에 따라 아이콘 바뀌게
-		// 		<i class="far fa-smile-beam"></i> 
-		// 		<i class="far fa-smile-wink"></i>
-		// 		<i class="far fa-meh"></i>
-		// 		<i class="fas fa-frown-open"></i>
+		// 연도 넘어가면 비용 마이너스 찍히는것(처리)
 		
+		// 점수에 따라 아이콘 바뀌게(처리)
 		
-		
-		// 로그인 안했을시 로그인 하라고 경고창 띄우기
+		// 로그인 안했을시 500번 에러창 말고 로그인 하라고 경고창 띄운다음 stop
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);

@@ -1,8 +1,8 @@
 (() => {
 	
-	let reviewNum = 0;
+	let reviewNum = 0;	
 	
-	if(isNaN(scoreArr[reviewNum])){
+	if(scoreArr[reviewNum]){
 		
 		let noReview = document.createElement("div");
 		noReview.classList.add("thereIsNoReview");
@@ -12,16 +12,30 @@
 	
 	while(!isNaN(scoreArr[reviewNum])){
 		
+		let scoreNum = scoreArr[reviewNum];
 		let starScore = ""
 		let halfStar = "☆";
 		let star = "★";
 		
-		if(scoreArr[reviewNum]*2%2 == 0){
-			for(let j=0; j <scoreArr[reviewNum]; j++){
+		let face = null;
+		
+		if(scoreNum <= 1.5){
+			face = "fa-frown-open";
+		}else if(scoreNum <= 3){
+			face = "fa-meh";
+		}else if(scoreNum <= 4){
+			face = "fa-smile-wink";
+		}else{
+			face = "fa-smile-beam";
+		};
+		
+		
+		if(scoreNum*2%2 == 0){
+			for(let j=0; j <scoreNum; j++){
 				starScore = starScore.concat(star);
 			}
 		}else{
-			for(let j=0; j <(scoreArr[reviewNum]-1); j++){
+			for(let j=0; j <(scoreNum-1); j++){
 				starScore = starScore.concat(star);
 			};
 			starScore = starScore.concat(halfStar);
@@ -36,7 +50,7 @@
 	
 		let icon = document.createElement("i");
 		icon.classList.add("far");
-		icon.classList.add("fa-smile-beam");
+		icon.classList.add(face);
 		selectReply.appendChild(icon);
 	
 		let rC = document.createElement("div");

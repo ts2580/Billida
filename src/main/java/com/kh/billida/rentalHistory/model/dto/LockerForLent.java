@@ -19,3 +19,6 @@ public class LockerForLent {
 	private Date rentableDateEnd;
 
 }
+
+
+
