@@ -2,7 +2,7 @@
 	
 	let reviewNum = 0;	
 	
-	if(scoreArr[reviewNum]){
+	if(isNaN(scoreArr[reviewNum])){
 		
 		let noReview = document.createElement("div");
 		noReview.classList.add("thereIsNoReview");
