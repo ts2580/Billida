@@ -33,7 +33,7 @@
 					<form:form action="/rental/rental-form" method="post" class="rental-contents">
 						<table>
 							<tr>
-								<td colspan="2"><i class="fas fa-map-marker-alt"></i>${locker.location}</td>
+								<td colspan="2"><i class="fas fa-map-marker-alt"></i> ${locker.location}</td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">사이즈</td>
@@ -52,7 +52,7 @@
 								<td class="cost"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" class="submitButton"/></td>
+								<td colspan="2"><input type="submit" class="submitButton" value="빌리기"/></td>
 							</tr>
 						</table>
 					</form:form>

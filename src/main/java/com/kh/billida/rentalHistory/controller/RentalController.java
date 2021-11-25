@@ -44,8 +44,6 @@ public class RentalController {
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (처리)
 		
-		// locker의 RENT_STATUS가 0일때만 빌리기 가능하도록(1이면 빌려주는중, 이런식으로 Boolean값으로 하는게 좋을듯. 왜 문자열을 넣어놨지)
-		
 		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블(완료)과 락커(현재상태) 카카오 테이블(마일리지 차감), 멤버테이블(마일리지 차감) 네군데 다 DB 올라가도록
 		// 		아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
 		//      일단 locker의 RENT_STATUS값 Boolean으로 바꾸면 어떤지. 
@@ -69,7 +67,13 @@ public class RentalController {
 		
 		// 점수에 따라 아이콘 바뀌게(처리)
 		
+		// review deleteYn이 N 일때만 가져오기
+		
+		// 빌리기 성공하면 락커테이블 스테이터스 바꾸고, 빌리기 버튼을 대여중 div로 변경 
+		
 		// 로그인 안했을시 500번 에러창 말고 로그인 하라고 경고창 띄운다음 stop
+		
+		// 바이너리로 받아서 텍스트 클롭으로 변환해서. 
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
@@ -121,19 +125,5 @@ public class RentalController {
 		
 		return "redirect:/rental/rental-form?lockerId="+lockerId;
 	}
-
-	@GetMapping("indexLinkTest")
-	public void indexLinkTest(Model model) {
-		List<Main> mainList = new ArrayList<Main>();
-		mainList = mainService.selectLockerList(); 
-
-		Map<String, Object> commandMap = new HashMap<String, Object>();
-		commandMap.put("mainList", mainList);
-		
-		model.addAllAttributes(commandMap);
-	}
-	
-
-	
 
 }
