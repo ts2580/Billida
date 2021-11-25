@@ -52,7 +52,7 @@
 								<td class="cost"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="submit" class="submitButton">빌리기</button></td>
+								<td colspan="2"><button type="submit" class="submitButton" onclick="verifyDate()" style="cursor:pointer">빌리기</button></td>
 							</tr>
 						</table>
 					</form:form>
@@ -71,6 +71,15 @@
 		let contentsArr = new Array();
 		let dateContents = null;
 		
+		let rentStart = document.querySelector('input[name="RentStart"]');
+		let rentEnd = document.querySelector('input[name="RentEnd"]');
+		
+		let rentStartToNumber = rentStart.valueAsNumber;
+		let rentEndToNumber = rentEnd.valueAsNumber;
+		
+		let btn = document.querySelector(".submitButton");
+		let bNode = btn.getAttributeNode("type");
+		
 		<c:forEach var="reviews" items="${reviews}">
 			idArr.push('${reviews.nick}');
 			scoreArr.push('${reviews.score}');
@@ -81,16 +90,14 @@
 		let commonFnc = () => {
 			
 			let today = new Date();
-			let rentStart = document.querySelector('input[name="RentStart"]');
-			let rentEnd = document.querySelector('input[name="RentEnd"]');
 			
-			let rentStartToNumber = rentStart.valueAsNumber;
-			let rentEndToNumber = rentEnd.valueAsNumber;
+			rentStartToNumber = rentStart.valueAsNumber;
+			rentEndToNumber = rentEnd.valueAsNumber;
 			let rentCost = (rentEndToNumber-rentStartToNumber)/28800+3000;
 			
 			let rentEndBeforeRentStart = false;
 			
-			if(!isNaN(rentCost) && rentEnd.valueAsDate < rentStart.valueAsDate){
+			if(!isNaN(rentCost) && rentEndToNumber < rentStartToNumber){
 				rentEndBeforeRentStart = true;
 			};
 			
@@ -112,7 +119,6 @@
 		};
 		
 		let createCostDivFalse = () => {
-			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			let costDiv = document.querySelector(".cost"); 
 			costDiv.classList.add("inputFail");
 			costDiv.innerText = "정확한 날자를 입력해 주세요.";
@@ -130,8 +136,6 @@
 				createCostDiv(dateContents.rentCost);
 			};
 			
-			
-			
 		};
 		
 		let rentEndFnc = () => {
@@ -146,6 +150,29 @@
 				createCostDiv(dateContents.rentCost);
 			};
 			
+		};
+		
+		let verifyDate = () => {
+			
+			if(auth == ""){
+				bNode.value = "button";
+				alert("로그인을 해야 이용 가능한 기능입니다.");
+			}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber) && auth != ""){
+				bNode.value = "button";
+				alert("시작일과 종료일을 입력해주세요");
+			}else if(isNaN(rentStartToNumber) && auth != ""){
+				bNode.value = "button";
+				alert("시작일을 입력해주세요");
+			}else if(isNaN(rentEndToNumber) && auth != ""){
+				bNode.value = "button";
+				alert("종료일을 입력해주세요");
+			}else if(rentStartToNumber > rentEndToNumber){
+				bNode.value = "button";
+				alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
+			}else{
+				bNode.value = "submit";
+			};
+		
 		};
 
 	</script>
