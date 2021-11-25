@@ -221,14 +221,13 @@ public class MemberController {
 	@PostMapping("check")
 	public String passwordCheck(@ModelAttribute Member member, Errors errors, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
-
-		if (memberService.checkPassword(member.getPassword(), session)) {
-			return "member/mypage";
-		} else {
-			redirectAttr.addFlashAttribute("message", "비밀번호가 정확하지 않습니다.");
-			return "redirect:/member/check";
-		}
-
+		//빠른 테스트를 위해 잠시 주석처리
+		/*
+		 * if (memberService.checkPassword(member.getPassword(), session)) { return
+		 * "member/mypage"; } else { redirectAttr.addFlashAttribute("message",
+		 * "비밀번호가 정확하지 않습니다."); return "redirect:/member/check"; }
+		 */
+		return "member/mypage";
 	}
 
 	@GetMapping("delete")
@@ -432,6 +431,13 @@ public class MemberController {
 		List<Member> memberList = memberService.selectMember();		
 		session.setAttribute("memberList", memberList);
 		session.setAttribute("size", memberList.size());
+		return "member/admin";
+	}
+	
+	@PostMapping("searchMember")
+	public String searchMember(@ModelAttribute Member member, Model model) {
+		
+		memberService.selectMemberById(member.getId());
 		return "member/admin";
 	}
 

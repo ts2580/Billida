@@ -1,9 +1,9 @@
 package com.kh.billida.support.model.service;
 
-import com.kh.billida.support.model.dto.Support;
+import java.util.Map;
 
 public interface SupportService {
 
-	void reportInsert(Support support);
+	void reportInsertPost(Map<String, Object> commandMap);
 
 }

@@ -18,7 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +33,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.amazonaws.util.json.JSONArray;
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.main.model.dto.Main;
 
@@ -90,14 +88,14 @@ public class MainControllerTest {
 		main.setLockerPassword(1234);
 		main.setLatitude("212.33");
 		main.setLongitude("12.3333");
-		main.setRentableDate(targetDate);
+		main.setRentableDateEnd(targetDate);
 		
 		mainRepositoryTest.insertWithDto(main);
 	}
 	
 	//여성안심택배함api 
 	@Test
-	public void insertDummyApi() throws IOException, JSONException {
+	public void insertDummyApi() throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_female_safety_hdrycstdyplace_api"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=qt0%2BUr8fKiB4cFa0dxYrRkBZevm3bNeJx6NS9zc0jthKuFEFJan2kVokNKzCHQhrgb%2Bvj9Y7lxmfWreKIzMKSA%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("0", "UTF-8")); /*페이지 번호*/
@@ -169,7 +167,7 @@ public class MainControllerTest {
 			main.setLatitude(latitude);
 			main.setLongitude(longitude);
 			main.setLockerPassword(password);
-			main.setRentableDate(targetDate);
+			main.setRentableDateEnd(targetDate);
 			main.setLockerSize("L");
 			main.setLockerImage(urlList.get(i));
 			

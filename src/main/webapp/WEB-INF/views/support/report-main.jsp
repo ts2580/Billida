@@ -47,21 +47,21 @@
             <div class="col-md-9">
                 <div class="contact-form">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="fname">&nbsp&nbsp회원ID</label>
+                        <label class="control-label col-sm-2">회원ID</label>
                         <div class="col-sm-10">          
-                            <input type="text" class="form-control" id="fname" placeholder="신고할 회원의 아이디를 입력해주세요." name="fname">
+                            <input type="text" class="form-control" name = "userId" id=" fname" placeholder="신고할 회원의 아이디를 입력해주세요." >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">&nbsp&nbsp제목</label>
+                        <label class="control-label col-sm-2">제목</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" placeholder="신고할 게시글의 제목을 작성해주세요." name="email">
+                            <input type="text" class="form-control" name="reportTitle" id="report_title" placeholder="신고할 게시글의 제목을 작성해주세요." >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="comment">&nbsp&nbsp내용</label>
+                        <label class="control-label col-sm-2">내용</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="5" id="comment" placeholder="신고 내용을 상세히 작성해주세요."></textarea>
+                            <textarea class="form-control" rows="5" name="reportContent" id="comment" placeholder="신고 내용을 상세히 작성해주세요."></textarea>
                         </div>
                     </div>
                     <br>

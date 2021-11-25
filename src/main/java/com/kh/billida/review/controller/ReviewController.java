@@ -196,5 +196,13 @@ public class ReviewController {
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 	}
+	
+	
+	@GetMapping("kakaopayTest")
+	public String kakaopay() {
+		return "review/kakaopayTest";
+	}
+	
+	
 
 }

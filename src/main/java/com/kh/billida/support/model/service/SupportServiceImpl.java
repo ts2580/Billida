@@ -1,20 +1,24 @@
 package com.kh.billida.support.model.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
-import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.repository.SupportRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SupportServiceImpl {
+public class SupportServiceImpl implements SupportService {
 
 	private final SupportRepository supportRepository;
-	
-	public void reportInsert(Support support) {
-		supportRepository.reportInsert(support);
+
+	@Override
+	public void reportInsertPost(Map<String, Object> commandMap) {
+		supportRepository.reportInsertPost(commandMap);
+		
 	}
+	
 	
 }

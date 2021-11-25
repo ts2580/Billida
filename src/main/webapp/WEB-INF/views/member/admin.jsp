@@ -32,6 +32,7 @@ table.memberList td {
 </style>
 </head>
 <body>
+	<input  type="text" class="form-control" name="id" id="id" >
  <table border="1" class="memberList" style ="text-align : center">
  	<th> 아이디</th>
  	<th> 이름</th>
