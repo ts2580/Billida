@@ -43,12 +43,12 @@
    				e.preventDefault();
    				document.querySelector('#nickCheck').innerHTML = '닉네임 중복 검사를 통과하지 않았습니다.';
    			}
-   			let phoneReg = /^\d{9,11}$/;
+/*   			let phoneReg = /^\d{9,11}$/;
    			if(!phoneReg.test(phone.value)){
    				e.preventDefault();
    				document.querySelector('#phoneCheck').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
    			}
-   			
+   			*/
    		})
    	
    	})();

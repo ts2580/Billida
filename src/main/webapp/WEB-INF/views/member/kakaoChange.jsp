@@ -222,9 +222,9 @@
       
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src='/resources/js/member/kakaoLogin.js'></script>
-    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <!-- JS -->
-    <script src="/resources/js/member/main.js"></script>
+<script src="/resources/js/member/main.js"></script>
 <script type="text/javascript" src="/resources/js/member/kakaochangeForm.js"></script>
 <script type="text/javascript" src="/resources/js/member/changePhoneForm.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

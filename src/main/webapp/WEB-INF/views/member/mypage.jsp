@@ -132,7 +132,7 @@
 					<div class="mb-3">
 						<label for="nickname">별명</label> 
 						 <span style="display: flex;">
-						<input type="text"class="form-control" name="nick" id="nick" placeholder=""value="">
+						<input type="text"class="form-control" name="nick" id="nick" placeholder=""value="" required>
 							<button type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block"
 								style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">중복확인</button>
 						</span>

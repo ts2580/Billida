@@ -31,6 +31,7 @@ public interface MemberService {
 	Member changePasswordByEmail(Member member);
 	void updatePasswordByEmail(JoinForm form, Member member);
 	List<Member> selectMember();
+	Member authenticateUserAndCaptcha(Member member, String getAnswer, String answer);
 	
 
 }

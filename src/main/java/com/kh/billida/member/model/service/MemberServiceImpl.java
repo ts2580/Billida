@@ -158,7 +158,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
-	@Override
 	public void updatePassword(JoinForm form) {
 		form.setPassword(passwordEncoder.encode(form.getPassword()));
 		memberRepository.updatePassword(form);
@@ -199,6 +198,16 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectMember() {		
 		return memberRepository.selectMember();
 		
+	}
+
+	public Member authenticateUserAndCaptcha(Member member, String getAnswer, String answer) {
+		System.out.println("멤버서비스임플입니다"+getAnswer.equals(answer));
+		Member storedMember = memberRepository.selectMemberById(member.getId());
+
+		if (storedMember != null && passwordEncoder.matches(member.getPassword(), storedMember.getPassword()) && getAnswer.equals(answer)) {
+			return storedMember;
+		} 
+		return null;
 	}
 
 }

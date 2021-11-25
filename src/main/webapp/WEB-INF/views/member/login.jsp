@@ -186,10 +186,26 @@ footer a:link {
 <div class="wrapper">
   <form action="/member/login" method="post" class="login">
     <p class="title">Log in</p>
-    <input name="id" id="id" type="text" placeholder="Username" autofocus/>
+	<input name="id" id="id" type="text" placeholder="Username" autofocus/>
     <i class="fa fa-user"></i>
     <input name="password" id="password" type="password" placeholder="Password" />
     <i class="fa fa-key"></i>
+    <span class="form-group" style="display: flex;" >
+    <img id="captchaImg" title="캡차 이미지" src="captchaImg.do" alt="캡차 이미지" />
+    <div id="captchaAudio" style="display:none;"></div>
+    <span style="display: grid; justify-content: space-between; margin-left: 30px;">
+        <a onclick="javascript:refreshBtn()" class="refreshBtn">
+            <i class="fa fa-refresh fa-2x"></i>
+        </a>
+        <a onclick="javascript:audio()" class="refreshBtn">
+            <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
+        </a>
+    </span>
+    </span>
+	 <div class="form-group">
+        <input type="text" name="answer" id="answer"  class="form-control" placeholder="captcha" />
+        <i class="fa fa-lock" aria-hidden="true"></i>
+    </div>   
 		<c:if test="${not empty message}">
 			<span class="valid-msg">${message}</span>
 		</c:if>
@@ -224,7 +240,46 @@ footer a:link {
   <footer><a target="blank" href="http://boudra.me/"></a></footer>
   </p>
 </div>
+<script type="text/javascript">
+function audio(){
+    var rand = Math.random();
+    var url = 'captchaAudio.do';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'text',
+        data: 'rand=' + rand,
+        async: false,
+        success: function(resp) {
+            var uAgent = navigator.userAgent;
+            var soundUrl = 'captchaAudio.do?rand=' + rand;
+            
+            if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
+                winPlayer(soundUrl);
+            } else if (!!document.createElement('audio').canPlayType) {
+                try{
+                    new Audio(soundUrl).play();
+                } catch(e) {
+                    winPlayer(soundUrl);
+                }
+            }else {
+                window.open(soundUrl, '', 'width=1, height=1');
+            }
+        }    
+        
+    });
+    
+}
 
+function refreshBtn(type){
+    var rand = Math.random();
+    var url = "captchaImg.do?rand=" + rand;
+    $('#captchaImg').attr("src", url);
+}
+function winPlayer(objUrl){
+    $('#captchaAudio').html('<vgsound src="' + objUrl + '">');
+}
+</script>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src='/resources/js/member/kakaoLogin.js'></script>

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.member.common.SMSSender;
 import com.kh.billida.member.common.ValidateResult;
+import com.kh.billida.member.common.captcha.CaptchaUtil;
 import com.kh.billida.member.common.code.ErrorCode;
 import com.kh.billida.member.common.exception.HandlableException;
 import com.kh.billida.member.model.dto.Member;
@@ -52,7 +55,16 @@ public class MemberController {
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.addValidators(joinFormValidator);
 	}
-
+	
+	@RequestMapping(value = "captchaImg.do")
+    public void cpatchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        new CaptchaUtil().captchaImg(request, response);
+    }
+    @RequestMapping(value = "captchaAudio.do")
+    public void cpatchaAudio(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        new CaptchaUtil().captchaAudio(request, response);
+    }
+    
 	@GetMapping("signUp")
 	public void singUp(Model model) {
 		model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
@@ -113,15 +125,20 @@ public class MemberController {
 	@GetMapping("login")
 	public void login(Model model) {
 		// 카카오 로그인시 신규회원용
-		model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
+		//model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
 	}
 
 	@PostMapping("login")
-	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr) {
-		Member certifiedUser = memberService.authenticateUser(member);
+	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr, HttpServletRequest request) {
+		String getAnswer = (String) request.getSession().getAttribute("captcha");
+		String answer = request.getParameter("answer");
+		System.out.println(getAnswer);
+		System.out.println(answer);
+		Member certifiedUser = memberService.authenticateUserAndCaptcha(member,getAnswer,answer);
+		System.out.println(model);
 		System.out.println(member);
 		if (certifiedUser == null) {
-			redirectAttr.addFlashAttribute("message", "아이디나 비밀번호가 정확하지 않습니다.");
+			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.");
 			return "redirect:/member/login";
 		}
 		
