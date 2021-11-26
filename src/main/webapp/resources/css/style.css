@@ -127,6 +127,27 @@ html {
 	padding-left: 16px;
 }
 
+.mileageAndLogout{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mileage{
+	display: flex;
+	align-items: center;
+	font-size: 1.1vw;
+}
+
+.mileageImg{
+	width: 2.8vw;
+	height: 2.5vw;
+}
+
+.logOutImg{
+	width: 35px;
+	height: 35px;
+}
 /*---start-header----*/
 .header{
 	background:url(../images/border.png) repeat-x 0px 0px #FFF;

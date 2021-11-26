@@ -4,7 +4,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.mileage.model.dto.Mileage;
+import com.kh.billida.mileage.model.dto.MileageHistory;
+import com.kh.billida.mileage.model.dto.PaymentDTO;
 import com.kh.billida.mileage.model.repository.MileageRepository;
 import com.kh.billida.review.model.repository.ReviewRepository;
 
@@ -19,7 +22,6 @@ public class MileageServiceImpl implements MileageService{
 	@Override
 	public void updateMileage(Map<String, Object> commandMap) {
 		mileageRepository.updateMileage(commandMap);
-		
 	}
 
 	@Override
@@ -30,6 +32,21 @@ public class MileageServiceImpl implements MileageService{
 	@Override
 	public void insertMileage(Map<String, Object> commandMap) {
 		mileageRepository.insertMileage(commandMap);
+	}
+
+	@Override
+	public void insertPaymentInfo(PaymentDTO paymentDto) {
+		mileageRepository.insertPaymentInfo(paymentDto);
+	}
+
+	@Override
+	public void insertMileageHistoryInfo(MileageHistory mileageHistory) {
+		mileageRepository.insertMileageHistoryInfo(mileageHistory);
+	}
+
+	@Override
+	public Member selectMemberInfo(String userCode) {
+		return mileageRepository.selectMemberInfo(userCode);
 	}
 
 }

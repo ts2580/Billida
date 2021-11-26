@@ -14,7 +14,7 @@
 	  <script type="text/javascript" src="${contextPath}/resources/js/webUtil.js"></script>
 	  <script type="text/javascript" src="${contextPath}/resources/js/urlEncoder.js"></script>
       <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-      </script>
+      
       <!----webfonts---->
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
       <!----//webfonts---->
@@ -93,12 +93,16 @@
                      <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
                   </c:if>
                   
-                  <c:if test="${not empty authentication.kakaoNum}">
-                     <a href="javascript:kakaoLogout();"><img src="/resources/images/logout.png" style="width: 18%;    margin-left: 140px;"/></a>
-                  </c:if>
-                  <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
-                     <a href="/member/logout"><img src="/resources/images/logout.png" style="width: 18%; margin-left: 140px;"/></a>
-                  </c:if>
+                  <div class="mileageAndLogout">
+	                  <c:if test="${not empty authentication.kakaoNum}">
+	                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${authentication.mileage}원</a>
+	                     <a href="javascript:kakaoLogout();" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
+	                  </c:if>
+	                  <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
+	                     <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${authentication.mileage}원</a>
+	                     <a href="/member/logout" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
+	                  </c:if>
+                  </div>
                   </ul>
                </div>
             </div>

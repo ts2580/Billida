@@ -23,6 +23,10 @@
 	text-align: center;
 }
 
+.payment_form{
+	width: 100%;
+}
+
 .mileage_area{
 	display: flex;
 	flex-direction: column;
@@ -41,20 +45,28 @@
 	width: 40%;
 	justify-content: space-around;
 	padding-bottom: 20px;
-	
+	font-size: 1.1vw;
 }
 
 .cost{
 	display: flex;
 	width: 110px;
+	height: 30px;
 	border: 1px solid;
 	justify-content: center;
+	align-items: center;
 	cursor: default;
+}
+
+.cost:hover{
+	background-color: #00BFFF;
+	color: white;
 }
 
 .mileage_inputDiv{
 	display: flex;
 	padding-bottom: 20px;
+	align-items: center;
 }
 
 .recharge{
@@ -62,18 +74,27 @@
 	justify-content: center;
 	align-items: center;
 	width: 80px;
-	height: 30px;
-	border: 1px solid;
+	height: 35px;
 	border-radius: 5px;
 	cursor: pointer;
+	background-color: rgba(253, 179, 109, 1);
+}
+
+.recharge:hover{
+	background-color: rgba(248, 106, 18, 0.86);
+	color: white;
 }
 
 .mileage_btn{
 	display: flex;
 }
 
-#mileageAmount{
+#mileage{
 	width: 100px;
+	height: 22px;
+	margin-right: 5px;
+	border: none;
+	border-radius: 5px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -90,36 +111,41 @@ input[type="number"]::-webkit-inner-spin-button {
 
 <div class="mileage_wrapper">
 	<c:if test="${not empty userMileage}">
-		<div class="my_mileage">보유 마일리지 
+		<div class="my_mileage">${authentication.nick} 님 보유 마일리지
 		<br>
 		${userMileage.mileage} 원
 		</div>
 	</c:if>
 	<c:if test="${empty userMileage}">
-		<div class="my_mileage">보유 마일리지
+		<div class="my_mileage">${authentication.nick} 님 보유 마일리지
 		<br>
 		0 원
 		</div>
 	</c:if>
 	
-	<div class="mileage_area">
-		<div class="title">마일리지 충전</div>
-		<div class="cost_area">
-			<a type="button" class="cost1 cost" onclick="costInput('cost1')">5,000원</a>
-			<a type="button" class="cost2 cost" onclick="costInput('cost2')">10,000원</a>
-			<a type="button" class="cost3 cost" onclick="costInput('cost3')">50,000원</a>
-			<a type="button" class="cost4 cost" onclick="costInput('cost4')">100,000원</a>
+	<form:form modelAttribute="paymentForm" action="/mileage/update-mileage" name="payment_frm" method="post" class="payment_form">
+		<div class="mileage_area">
+			<div class="title">마일리지 충전</div>
+			<div class="cost_area">
+				<a type="button" class="cost1 cost" onclick="costInput('cost1')">5,000원</a>
+				<a type="button" class="cost2 cost" onclick="costInput('cost2')">10,000원</a>
+				<a type="button" class="cost3 cost" onclick="costInput('cost3')">50,000원</a>
+				<a type="button" class="cost4 cost" onclick="costInput('cost4')">100,000원</a>
+			</div>
+			
+			<div class="mileage_inputDiv"><input type="number" id="mileage" name="mileage" value=""/> 원</div>
+			<div class="recharge"><a type="button" class="mileage_btn" onclick="payment()">충전하기</a></div>
 		</div>
 		
-		<div class="mileage_inputDiv"><input type="number" id="mileageAmount" value=""/> 원</div>
-		<div class="recharge"><a type="button" class="mileage_btn" onclick="payment('${authentication.userCode}')">충전하기</a></div>
-	</div>
-
-	<input type="hidden" id="userName" name="userName" value="${authentication.name}">
-	<input type="hidden" id="userEmail" name="userEmail" value="${authentication.email}">
-	<input type="hidden" id="userAddress" name="userAddress" value="${authentication.address}">
-	<input type="hidden" id="userTell" name="userTell" value="${authentication.phone}">
-
+		<input type="hidden" id="userCode" name="userCode" value="${authentication.userCode}">
+		<input type="hidden" id="orderNum" name="orderNum" value="">
+		
+		
+		<input type="hidden" id="userName" name="userName" value="${authentication.name}">
+		<input type="hidden" id="userEmail" name="userEmail" value="${authentication.email}">
+		<input type="hidden" id="userAddress" name="userAddress" value="${authentication.address}">
+		<input type="hidden" id="userTell" name="userTell" value="${authentication.phone}">
+	</form:form>
 
 </div>
 
@@ -129,20 +155,20 @@ input[type="number"]::-webkit-inner-spin-button {
 function costInput(cost){
 	switch (cost) {
 	case 'cost1':
-		document.getElementById('mileageAmount').value = 5000;
-		document.querySelector("#mileageAmount").innerText = "5,000"
+		document.getElementById('mileage').value = 5000;
+		document.querySelector("#mileage").innerText = "5,000"
 		break;
 	case 'cost2':
-		document.getElementById('mileageAmount').value = 10000;
-		document.querySelector("#mileageAmount").innerText = "10,000"
+		document.getElementById('mileage').value = 10000;
+		document.querySelector("#mileage").innerText = "10,000"
 		break;
 	case 'cost3':
-		document.getElementById('mileageAmount').value = 50000;
-		document.querySelector("#mileageAmount").innerText = "50,000"
+		document.getElementById('mileage').value = 50000;
+		document.querySelector("#mileage").innerText = "50,000"
 	break;
 	case 'cost4':
-		document.getElementById('mileageAmount').value = 100000;
-		document.querySelector("#mileageAmount").innerText = "100,000"
+		document.getElementById('mileage').value = 100000;
+		document.querySelector("#mileage").innerText = "100,000"
 	break;
 
 	default:
@@ -150,10 +176,9 @@ function costInput(cost){
 	}
 }
 
-function payment(userCode){
-	let mileage = document.getElementById('mileageAmount').value;
+function payment(){
+	let mileage = document.getElementById('mileage').value;
 	
-	console.log("로그인한 유저코드 : " + userCode);
 	console.log("충전금액 : " + mileage);
 	
 	var IMP = window.IMP;
@@ -166,24 +191,28 @@ function payment(userCode){
 	    merchant_uid: 'merchant_' + new Date().getTime(), // 내 사이트에서 관리하는 주문 번호
 	    name : "마일리지 충전", 
 	    amount : mileage, //결제 가격
-	    buyer_email : document.getElementById('userEmail').value, //결제하는 사람 이메일
-	    buyer_name : document.getElementById('userName').value, //결제하는 사람 이름
-	    buyer_tel : document.getElementById('userTell').value, //결제하는 사람 번호
-	    buyer_addr : document.getElementById('userAddress').value, //결제하는 사람 주소
+	    buyer_email : "${authentication.email}", //결제하는 사람 이메일
+	    buyer_name : "${authentication.name}", //결제하는 사람 이름
+	    buyer_tel : "${authentication.phone}", //결제하는 사람 번호
+	    buyer_addr : "${authentication.address}", //결제하는 사람 주소
 	  
 	}, function(rsp) {
 			console.log(rsp);
-			console.log(userCode);
 			//결제 검증(거래고유번호 검증)
 			$.ajax({
 				type : "POST",
 				url : "/kakaopay/" + rsp.imp_uid   
 			}).done(function(data){
 				console.log(data);
+				console.log("주문번호  :" + data.response.impUid);
+				
+				const orderNum = data.response.impUid;
+				console.log("orderNum : " + orderNum);
 				
 				if(rsp.paid_amount == data.response.amount){
+					document.getElementById('orderNum').value = orderNum;
 					alert("결제가 완료되었습니다.");
-					location.href = 'update-mileage?userCode='+userCode + '&mileage=' +mileage;
+					document.payment_frm.submit();
 				}else{
 					var msg = '결제에 실패하였습니다. \n';
 			        msg += '에러내용 : ' + rsp.error_msg;
