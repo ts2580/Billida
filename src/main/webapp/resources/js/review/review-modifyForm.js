@@ -26,7 +26,6 @@ function drawStar(target){
 		 score.value = '5';
 	 }
 	 
-	 
 	let content = $('.review_textarea').val();
 	$('#counter').html("(" + content.length + " /최대 100자)"); //글자수 실시간 체크
  
