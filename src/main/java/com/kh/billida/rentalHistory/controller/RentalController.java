@@ -76,6 +76,8 @@ public class RentalController {
 		
 		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
 		
+		// 헤더로 접근하는 빌리기페이지 만들기(아 이건 못할듯)
+		
 		// 바이너리로 받아서 텍스트 클롭으로 변환해서. 
 		
 		this.lockerId = lockerId;

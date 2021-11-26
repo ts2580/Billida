@@ -1,4 +1,4 @@
-package com.kh.billida.locker.model.dto;
+package com.kh.billida.rentLocker.model.dto;
 
 import java.sql.Date;
 import lombok.Data;

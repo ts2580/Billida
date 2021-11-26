@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+body{
+	background-color: white;
+}
+
+.billigi{
+	margin-top: 5px;
+	margin-left: 10%;
+	width: 1356px;
+	height: 600px;
+}
+
+
+.title{
+	font-weight: bold;
+	font-size: 30px;
+	font-family: 'Single Day', cursive;
+	padding-top: 15px;
+	padding-left: 30px
+}
+
+.contents{
+	display: flex;
+	padding-left: 30px;
+	padding-top: 5px;
+}
+
+.pic{
+	width: 1000px;
+	clip:rect(0px 100px 100px 0px);
+}
+
+.outline{
+	margin-left: 31px;
+    border: 1px solid #d9d9d9;
+    height: 300px;
+    width: 380px;
+}
+
+.price-and-time{
+	line-height: 27px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d8d8d8;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.price{
+	font-size: 24px;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+.rental-contents{
+	padding: 30px;
+	padding-top: 10px;
+}
+
+table{
+	border-collapse: separate;
+ 	border-spacing: 0 10px;
+}
+
+
+.rental-contents-title{
+	width: 110px;
+}
+
+.inputFail{
+	color: red;
+}
+ 
+ .submitButton{
+ 	margin-top: 10px;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    border: 0;
+    border-radius: 25px;
+    background: #f64a8a;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+ }
+ 
+ .thereIsNoReview{
+ 	width: 120%;
+ 	font-size: 40px;
+ 	margin-left: 31px;
+ 	margin-top: 15px;
+ 	font-family: 'Single Day', cursive;
+ 	color: #f64a8a;
+ }
+ 
+ 
+.reply{
+	margin-left: 31px;
+	margin-top: 15px;
+	width: 150%;
+	display: flex;
+}
+
+.far{
+	font-size: 40px;
+}
+
+.fa-smile-beam{
+	color: green;
+}
+
+.fa-smile-wink{
+	color: lightblue;
+}
+
+.fa-meh{
+	color: orange;
+}
+
+.fa-frown-open{
+	color: red;
+}
+
+
+.reply-contents{
+	margin-left: 10px;
+	width:100%;
+}
+
+.reply-contents-userInfo{
+	display: flex;
+	width:100%;
+}
+
+.reply-contents-userInfo-userCode{
+	width: 30%;
+	font-size: 18px;
+}
+
+.reply-contents-userInfo-score{
+	color:gray;
+	 width: 40%;
+}
+.reply-contents-userInfo-date{
+   	font-size: 15px;
+    color:gray;
+}
+
+
+.reply-contents-reply{
+	color:gray;
+	width: 100%;
+}

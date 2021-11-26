@@ -1,4 +1,4 @@
-package com.kh.billida.rentalHistory.controller;
+package com.kh.billida.rentLocker.controller;
 
 import java.time.LocalDate;
 
