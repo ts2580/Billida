@@ -52,7 +52,7 @@ public class MainController {
 			member = mainService.isDegraded(userCode);
 			// 왜 authentication에서 받은 유저를 다시 리포지토리에서 받아올까?
 			// 부정행위해서 grade가 다운되더라도 다시 로그인하지 않는이상 authentication의 grade는 그대로임
-			// 따라서 리포지토리에 메소드 하나 파고 다시 DB서 grade받아옴;
+			// 따라서 리포지토리에 메소드 하나 파고 다시 DB서 grade받아줌;
 			
 			if(member.getGrade().equals("00")) {
 				model.addAttribute("zeroGradeMember", "zeroGradeMember");
@@ -60,9 +60,6 @@ public class MainController {
 		} catch (NullPointerException e) {
 			return "index";
 		}
-		
-		
-		
 		
 		return "index";
 	}
