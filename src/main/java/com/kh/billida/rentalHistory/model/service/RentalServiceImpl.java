@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kh.billida.rentalHistory.model.dto.LockerForLent;
+import com.kh.billida.rentalHistory.model.dto.LockerForLental;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 import com.kh.billida.rentalHistory.model.repository.RentalRepository;
@@ -18,8 +18,8 @@ public class RentalServiceImpl implements RentalService{
 	
 	private final RentalRepository rentalRepository;
 	
-	public LockerForLent selectLocker(Long lockerId) {
-		LockerForLent locker = rentalRepository.selectLocker(lockerId);
+	public LockerForLental selectLocker(Long lockerId) {
+		LockerForLental locker = rentalRepository.selectLocker(lockerId);
 		return locker;
 	}
 	

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.billida.member.model.dto.Member;
-import com.kh.billida.rentalHistory.model.dto.LockerForLent;
+import com.kh.billida.rentalHistory.model.dto.LockerForLental;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 import com.kh.billida.rentalHistory.model.service.RentalService;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("rental")
+@RequestMapping("rentalLocker")
 public class RentalController {
 	
 	private final RentalService rentalService;
@@ -33,7 +33,7 @@ public class RentalController {
 	private Long isRented;
 	
 	@GetMapping("rental-form")
-	public void rental(Model model, LockerForLent locker, Long lockerId){
+	public void rental(Model model, LockerForLental locker, Long lockerId){
 		// Qwerasdf1234!
 		
 		// 이하 자바
@@ -139,7 +139,7 @@ public class RentalController {
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
 		// 긴거 맵퍼, 짧은거 리포지토리
 		
-		return "redirect:/rental/rental-form?lockerId="+lockerId;
+		return "redirect:/rentalLocker/rental-form?lockerId="+lockerId;
 	}
 
 }

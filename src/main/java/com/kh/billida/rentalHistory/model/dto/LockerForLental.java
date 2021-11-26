@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class LockerForLent {
+public class LockerForLental {
 	
 	private Long lockerId;
 	private String userCode;

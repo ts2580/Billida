@@ -26,26 +26,27 @@
 			<div class="contents-form-reply">
 
 				<div class="outline">
-					<p class="word-of-thanks">
-						<span class="word-of-thanks-text">공간 내역을 입력해주세요.</span>
+					<p class="request-form">
+						<span class="request-form-text">공간 내역을 입력해주세요.</span>
 					</p>
-					<form:form action="/rental/rent-form" method="post" class="rent-contents">
+					<form:form action="/rentLocker/rent-form" method="post" class="rent-contents">
 						<table>
 							<tr>
 								<td class="rent-contents-text">도로명주소</td>
-								<td><input type="text" name="넣을값"/></td>
+								<td><input type="text" name="lockerContent" onchange="syncTitle()"/></td>
+								<td><input type="text" name="lockerTitle" class="display-none"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 이미지</td>
-								<td><input type="text" name="넣을값"/></td>
+								<td><input type="text" name="lockerImage"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 사이즈</td>
-								<td><input type="text" name="넣을값"/></td>
+								<td><input type="text" name="lockerSize"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 비밀번호</td>
-								<td><input type="text" name="넣을값"/></td>
+								<td><input type="text" name="lockerPassword"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">임대시작 가능일</td>
@@ -56,7 +57,7 @@
 								<td><input type="date" name="rentableDateEnd"/></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="submit" class="submitButton" onclick="verifyDate()" style="cursor:pointer">빌리기</button></td>
+								<td colspan="2"><button type="submit" class="submitButton" style="cursor:pointer">빌리기</button></td>
 							</tr>
 						</table>
 					</form:form>
@@ -68,13 +69,17 @@
 	<script type="text/javascript">
 		
 		let auth = "${authentication}";
-		let isRented = "${locker.rentStatus}";
 		
 		let rentStart = document.querySelector('input[name="rentableDateStart"]');
 		let rentEnd = document.querySelector('input[name="rentableDateEnd"]');
 		
 		let btn = document.querySelector(".submitButton");
 		let bNode = btn.getAttributeNode("type");
+		
+		let syncTitle = () => {
+			let doRoMyeongJuSo = document.querySelector('input[name="lockerContent"]').value;
+			document.querySelector('.display-none').value = doRoMyeongJuSo;
+		}
 		
 		let commonFnc = () => {
 			

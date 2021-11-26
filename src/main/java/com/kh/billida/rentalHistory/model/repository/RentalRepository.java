@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.kh.billida.rentalHistory.model.dto.LockerForLent;
+import com.kh.billida.rentalHistory.model.dto.LockerForLental;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 
@@ -15,7 +15,7 @@ import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 public interface RentalRepository {
 
 	@Select("select * from locker where LOCKER_ID=#{lockerId}")
-	LockerForLent selectLocker(Long param);
+	LockerForLental selectLocker(Long param);
 	
 	@Insert("insert into rent_history(HISTORY_INDEX, LOCKER_ID, USER_CODE, RENT_START, RENT_END, RENT_COST) "
 			+ "values(RENT_HISTORY_INDEX.nextval, #{lockerId}, #{userCode}, #{rentStart}, #{rentEnd}, #{rentCost})")

@@ -73,7 +73,7 @@
 		IdArr[i] = document.getElementsByClassName('lockerId')[i].id;
 	
 		document.getElementById(IdArr[i]).addEventListener('click',() =>{
-			location.href='/rental/rental-form?lockerId='+IdArr[i];
+			location.href='/rentalLocker/rental-form?lockerId='+IdArr[i];
 		}); 
 	};
 	

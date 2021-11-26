@@ -30,7 +30,7 @@
 					<p class="price-and-time">
 						<span class="price">3,000원</span> <span class="time">~/일</span>
 					</p>
-					<form:form action="/rental/rental-form" method="post" class="rental-contents">
+					<form:form action="/rentalLocker/rental-form" method="post" class="rental-contents">
 						<table>
 							<tr>
 								<td colspan="2"><i class="fas fa-map-marker-alt"></i> ${locker.location}</td>
@@ -65,14 +65,6 @@
 		
 		let auth = "${authentication}";
 		let isRented = "${locker.rentStatus}";
-		let rubbish = "${rubbish}";
-		
-		if(rubbish == "rubbish"){
-			location.href="/";
-		};
-		
-		
-		
 		
 		let idArr = new Array();
 		let scoreArr = new Array();
