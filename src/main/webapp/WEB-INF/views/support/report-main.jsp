@@ -69,6 +69,7 @@
                     <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default">신고접수</button>
+                            <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="background-color: blue;">신고목록조회</button>
                         </div>
                     </div>
                 </div>

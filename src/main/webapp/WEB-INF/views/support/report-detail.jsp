@@ -23,26 +23,26 @@
             <table class="table">
                 <tr>
                     <th class="success">글번호</th>
-                    <td></td>
-                    <th class="success">조회수</th>
-                    <td></td>
+                    <td><c:out value="${support.reportIdx}"/></td>
+                    <th class="success">작성일</th>
+                    <td><c:out value="${support.reportDate}"/></td>
                 </tr>
                 <tr>
                     <th class="success">작성자</th>
-                    <td></td>
-                    <th class="success">작성일</th>
-                    <td></td>
+                    <td>익명</td>
+                    <th class="success">신고대상자</th>
+                    <td><c:out value="${support.userId}"/></td>
                 </tr>
                 <tr>
                     <th class="success">제 목</th>
-                    <td colspan="3"></td>
+                    <td colspan="3"><c:out value="${support.reportTitle}"/></td>
                 </tr>
                 <tr>
                     <th class="success">글 내용</th>
-                    <td colspan="3"></td>
+                    <td colspan="3"><c:out value="${support.reportContent}"/></td>
                 </tr>
             </table>
-            <input type="button" value="목록으로 이동" onclick=""> 
+            <input type="button" value="목록으로 이동" onclick="location.href='report-board'"> 
         </div>
     </div>
 </body>

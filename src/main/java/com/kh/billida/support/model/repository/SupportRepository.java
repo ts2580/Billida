@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.kh.billida.member.validator.JoinForm;
 import com.kh.billida.rentalHistory.model.dto.Rental;
@@ -19,6 +20,10 @@ public interface SupportRepository {
 	void reportInsertPost(Map<String, Object> commandMap);
 
 	List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap);
+
+	@Select("select * from report_board where user_id = #{userId}")
+	Support reportDetailPage(String userId);
+	
 
 	
 	

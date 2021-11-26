@@ -69,6 +69,17 @@ public class SupportController {
 	@GetMapping("report-board")
 	public void reportBoard() {}
 		
+	// 신고 상세 페이지 접속
+	@GetMapping("report-detail")
+	public void reportDetail(Model model, String userId) {
+		userId = "test";
+		Map<String, Object> commandMap = supportService.reportDetailPage(userId);
+		model.addAllAttributes(commandMap);
+		System.out.println(commandMap);
+	}
+	
+	
+	
 //	@PostMapping("report-board")
 //	public String reportBoardList(Model model
 //								,@RequestParam(defaultValue="1") int currentPage
@@ -97,9 +108,6 @@ public class SupportController {
 //		
 //		return "review/rent-list";
 //			}
-	
-	@GetMapping("report-detail")
-	public void reportDetail() {}
 	
 	
 	// 신고 내용 입력 후 전송

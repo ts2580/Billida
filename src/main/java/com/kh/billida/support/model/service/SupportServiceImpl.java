@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.repository.SupportRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,11 @@ public class SupportServiceImpl implements SupportService {
 	@Override
 	public List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap) {
 		return supportRepository.getSupportListPaging(commandMap);
+	}
+
+	@Override
+	public Map<String, Object> reportDetailPage(String userId) {
+		Support support = supportRepository.reportDetailPage(userId);
+		return Map.of("support",support);
 	}
 }
