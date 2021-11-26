@@ -32,4 +32,9 @@ public class SupportServiceImpl implements SupportService {
 		Support support = supportRepository.reportDetailPage(userId);
 		return Map.of("support",support);
 	}
+
+	@Override
+	public int getSupportTotal() {
+		return supportRepository.getLockerTotal();
+	}
 }

@@ -11,4 +11,5 @@ public interface SupportService {
 
 	Map<String, Object> reportDetailPage(String userId);
 
+	int getSupportTotal();
 }

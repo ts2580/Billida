@@ -7,8 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.kh.billida.member.validator.JoinForm;
-import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.support.model.dto.Support;
 
 @Mapper
@@ -24,7 +22,8 @@ public interface SupportRepository {
 	@Select("select * from report_board where user_id = #{userId}")
 	Support reportDetailPage(String userId);
 	
-
+	@Select("select count(*) from locker")
+	int getLockerTotal();
 	
 	
 	/*
