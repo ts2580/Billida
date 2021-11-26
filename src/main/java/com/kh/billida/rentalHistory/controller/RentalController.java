@@ -44,6 +44,7 @@ public class RentalController {
 		// 		아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
 		//      일단 locker의 RENT_STATUS값 Boolean으로 바꾸면 어떤지. 
 		//		카카오 테이블의 마일리지는 멤버테이블의 마일리지값을 외래키로 가져오게 하도록 테이블 수정하면 안되는지. 테이블 두개 수정하기 귀찮음
+		//		락커테이블 PROFIT이나 RENTED_CNT, 멤버의 마일리지 기능 등은 결제기능 붙으면 그때 작업 시작할것
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -67,9 +68,13 @@ public class RentalController {
 		
 		// 로그인 안했을시 && 날자 안골랐을시 경고창 띄운다음 stop(처리)
 		
-		// 빌리기 성공하면 락커테이블 스테이터스 바꾸고, 빌리기 버튼을 대여중 div로 변경 
+		// 빌리기 성공하면 락커테이블 스테이터스 바꾸고, 빌리기 버튼을 대여중 div로 변경(처리)
 		
-		// locker 정보에 상태가 빌리는중이면 빌리기버튼을 대여중으로 바꿀것
+		// locker 정보에 상태가 빌리는중이면 빌리기버튼을 대여중으로 바꿀것(처리)
+		
+		// 매일 자정 배치 돌려서 대여기간 끝나면 락커 테이블 렌트 스테이터스 바꾸기
+		
+		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
 		
 		// 바이너리로 받아서 텍스트 클롭으로 변환해서. 
 		
@@ -86,6 +91,7 @@ public class RentalController {
 			today = locker.getRentableDateStart().toLocalDate();
 		};
 		
+		System.out.println(locker);
 		
 		model.addAttribute("today", today);
 		model.addAttribute("reviews", reviews);
@@ -109,8 +115,6 @@ public class RentalController {
 			rentdate = 365-rentStart.getDayOfYear()+rentEnd.getDayOfYear()+1;
 		};
 		
-		
-		
 		int rentCost = rentdate*3000;
 		
 		rental.setLockerId(lockerId);
@@ -118,6 +122,7 @@ public class RentalController {
 		rental.setRentCost(rentCost);
 		
 		rentalService.insertRental(rental);
+		rentalService.updateRental(lockerId);
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
 		// 긴거 맵퍼, 짧은거 리포지토리
 		

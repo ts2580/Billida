@@ -17,7 +17,9 @@ public class LockerForLent {
 	private String location;
 	private Date rentableDateStart;
 	private Date rentableDateEnd;
+	private Long rentStatus;
 
+	
 }
 
 

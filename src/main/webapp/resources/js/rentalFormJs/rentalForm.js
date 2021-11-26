@@ -2,6 +2,13 @@
 	
 	let reviewNum = 0;	
 	
+	if(isRented == 1){
+		btn.innerText = "";
+		btn.innerText = "*대여중인 보관함입니다*";
+		btn.removeAttribute("onclick");
+		bNode.value = "button";
+	}
+	
 	if(isNaN(scoreArr[reviewNum])){
 		
 		let noReview = document.createElement("div");

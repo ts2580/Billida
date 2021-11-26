@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.kh.billida.rentalHistory.model.dto.LockerForLent;
 import com.kh.billida.rentalHistory.model.dto.Rental;
@@ -24,6 +25,9 @@ public interface RentalRepository {
 	@Select("select * from (select * from review inner join member using(user_code) "
 			+ "where locker_id = #{lockerId} and deleteyn = 'N' ORDER BY history_index desc) where ROWNUM <= 5 ")
 	List<ReviewForRentHistory> selectReview(Long lockerId);
+	
+	@Update("update locker set rent_status = 1 where locker_id = #{lockerId}")
+	void updateRental(Long lockerId);
 	
 	
 }

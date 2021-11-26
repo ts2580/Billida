@@ -64,6 +64,7 @@
 	<script type="text/javascript">
 		
 		let auth = "${authentication}";
+		let isRented = "${locker.rentStatus}";
 		
 		let idArr = new Array();
 		let scoreArr = new Array();

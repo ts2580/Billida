@@ -30,6 +30,10 @@ public class RentalServiceImpl implements RentalService{
 	public List<ReviewForRentHistory> selectReview(Long lockerId) {
 		List<ReviewForRentHistory> reviews = rentalRepository.selectReview(lockerId);
 		return reviews;
+	}
+
+	public void updateRental(Long lockerId) {
+		rentalRepository.updateRental(lockerId);
 	}	
 	
 }
