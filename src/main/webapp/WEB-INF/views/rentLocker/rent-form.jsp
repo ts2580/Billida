@@ -5,8 +5,8 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="stylesheet" href="${contextPath}/resources/css/rentLockerCss/rentLockerForm.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,40 +16,44 @@
 	</div>
 
 
-	<div class="billigi">
-		<div class="title">${locker.lockerId}.${locker.lockerTitle}</div>
+	<div class="billyeojugi">
+		<a class="title">BILLADA</a><a class="title-thanks">를 이용해주셔서 감사합니다!</a>
 		<div class="contents">
-
-			<div class="pic">
-				<img src="${locker.lockerImage}">
+			<div>
+				<img class="pic" src="${contextPath}/resources/images/billyeojugi.png">
 			</div>
 
 			<div class="contents-form-reply">
 
 				<div class="outline">
-					<p class="price-and-time">
-						<span class="price">3,000원</span> <span class="time">~/일</span>
+					<p class="word-of-thanks">
+						<span class="word-of-thanks-text">공간 내역을 입력해주세요.</span>
 					</p>
-					<form:form action="/rental/rental-form" method="post" class="rental-contents">
+					<form:form action="/rental/rent-form" method="post" class="rent-contents">
 						<table>
 							<tr>
-								<td colspan="2"><i class="fas fa-map-marker-alt"></i> ${locker.location}</td>
+								<td class="rent-contents-text">도로명주소</td>
+								<td><input type="text" name="넣을값"/></td>
 							</tr>
 							<tr>
-								<td class="rental-contents-title">사이즈</td>
-								<td>${locker.lockerSize}</td>
+								<td class="rent-contents-text">택배함 이미지</td>
+								<td><input type="text" name="넣을값"/></td>
 							</tr>
 							<tr>
-								<td class="rental-contents-title">대여 시작일</td>
-								<td><input onchange="rentStartFnc()" type="date" name="RentStart" value="${rental.rentStart}" min="${today}" max="${locker.rentableDateEnd}"/></td>
+								<td class="rent-contents-text">택배함 사이즈</td>
+								<td><input type="text" name="넣을값"/></td>
 							</tr>
 							<tr>
-								<td class="rental-contents-title">대여 종료일</td>
-								<td><input onchange="rentEndFnc()" type="date" name="RentEnd" value="${rental.rentEnd}" min="${today}" max="${locker.rentableDateEnd}"/></td>
+								<td class="rent-contents-text">택배함 비밀번호</td>
+								<td><input type="text" name="넣을값"/></td>
 							</tr>
 							<tr>
-								<td class="rental-contents-title">비용</td>
-								<td class="cost"></td>
+								<td class="rent-contents-text">임대시작 가능일</td>
+								<td><input type="date" name="rentableDateStart"/></td>
+							</tr>
+							<tr>
+								<td class="rent-contents-text">임대 종료일</td>
+								<td><input type="date" name="rentableDateEnd"/></td>
 							</tr>
 							<tr>
 								<td colspan="2"><button type="submit" class="submitButton" onclick="verifyDate()" style="cursor:pointer">빌리기</button></td>
@@ -66,27 +70,11 @@
 		let auth = "${authentication}";
 		let isRented = "${locker.rentStatus}";
 		
-		let idArr = new Array();
-		let scoreArr = new Array();
-		let dateArr = new Array();
-		let contentsArr = new Array();
-		let dateContents = null;
-		
-		let rentStart = document.querySelector('input[name="RentStart"]');
-		let rentEnd = document.querySelector('input[name="RentEnd"]');
-		
-		let rentStartToNumber = rentStart.valueAsNumber;
-		let rentEndToNumber = rentEnd.valueAsNumber;
+		let rentStart = document.querySelector('input[name="rentableDateStart"]');
+		let rentEnd = document.querySelector('input[name="rentableDateEnd"]');
 		
 		let btn = document.querySelector(".submitButton");
 		let bNode = btn.getAttributeNode("type");
-		
-		<c:forEach var="reviews" items="${reviews}">
-			idArr.push('${reviews.nick}');
-			scoreArr.push('${reviews.score}');
-			dateArr.push('${reviews.createDate}');
-			contentsArr.push('${reviews.content}');
-		</c:forEach>
 		
 		let commonFnc = () => {
 			
@@ -94,7 +82,6 @@
 			
 			rentStartToNumber = rentStart.valueAsNumber;
 			rentEndToNumber = rentEnd.valueAsNumber;
-			let rentCost = (rentEndToNumber-rentStartToNumber)/28800+3000;
 			
 			let rentEndBeforeRentStart = false;
 			
@@ -103,20 +90,9 @@
 			};
 			
 			return{
-				rentCost,
 				rentEndBeforeRentStart
 			};
 			
-		};
-		
-		let createCostDiv = (rentCost) => {
-			let costDiv = document.querySelector(".cost"); 
-			costDiv.classList.remove("inputFail");
-			document.querySelector(".cost").innerText = rentCost+"원";
-		};
-		
-		let calDiv = () => {
-			document.querySelector(".cost").innerText = "계산중입니다.";
 		};
 		
 		let createCostDivFalse = () => {
@@ -131,12 +107,7 @@
 			
 			if(dateContents.rentEndBeforeRentStart){
 				createCostDivFalse();
-			}else if(isNaN(dateContents.rentCost)){
-				calDiv();
-			}else{
-				createCostDiv(dateContents.rentCost);
 			};
-			
 		};
 		
 		let rentEndFnc = () => {
@@ -145,10 +116,6 @@
 			
 			if(dateContents.rentEndBeforeRentStart){
 				createCostDivFalse();
-			}else if(isNaN(dateContents.rentCost)){
-				calDiv();
-			}else{
-				createCostDiv(dateContents.rentCost);
 			};
 			
 		};

@@ -4,20 +4,30 @@ body{
 	background-color: white;
 }
 
-.billigi{
+.billyeojugi{
 	margin-top: 5px;
 	margin-left: 10%;
 	width: 1356px;
 	height: 600px;
 }
 
+.billyeojugi *{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 
 .title{
+	top: 3px;
+	padding-left: 30px;
 	font-weight: bold;
 	font-size: 30px;
-	font-family: 'Single Day', cursive;
-	padding-top: 15px;
-	padding-left: 30px
+	color: #87cefa;
+}
+
+.title-thanks{
+	font-weight: bold;
+	margin-left: 4px;
+	font-size: 30px;
 }
 
 .contents{
@@ -27,18 +37,19 @@ body{
 }
 
 .pic{
-	width: 1000px;
-	clip:rect(0px 100px 100px 0px);
+    width: 914px;
+    height: 550px;
 }
 
 .outline{
 	margin-left: 31px;
-    border: 1px solid #d9d9d9;
-    height: 300px;
-    width: 380px;
+	margin-top: 63px;
+	border: 1px solid #d9d9d9;
+	height: 340px;
+	width: 400px;
 }
 
-.price-and-time{
+.word-of-thanks{
 	line-height: 27px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -47,15 +58,20 @@ body{
     margin-left: 10%;
 }
 
-.price{
-	font-size: 24px;
-    font-weight: bold;
-    color: #ff4081;
+.word-of-thanks-text{
+	font-size: 20px;
+	font-weight: bold;
+	color: #87cefa;
+	margin-left: 42px;
 }
 
-.rental-contents{
+.rent-contents{
 	padding: 30px;
 	padding-top: 10px;
+}
+
+input{
+	margin-left: 30px;
 }
 
 table{
@@ -64,7 +80,7 @@ table{
 }
 
 
-.rental-contents-title{
+.rent-contents-text{
 	width: 110px;
 }
 
@@ -79,76 +95,9 @@ table{
     text-align: center;
     border: 0;
     border-radius: 25px;
-    background: #f64a8a;
+    background: #87cefa;
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
  }
  
- .thereIsNoReview{
- 	width: 120%;
- 	font-size: 40px;
- 	margin-left: 31px;
- 	margin-top: 15px;
- 	font-family: 'Single Day', cursive;
- 	color: #f64a8a;
- }
- 
- 
-.reply{
-	margin-left: 31px;
-	margin-top: 15px;
-	width: 150%;
-	display: flex;
-}
-
-.far{
-	font-size: 40px;
-}
-
-.fa-smile-beam{
-	color: green;
-}
-
-.fa-smile-wink{
-	color: lightblue;
-}
-
-.fa-meh{
-	color: orange;
-}
-
-.fa-frown-open{
-	color: red;
-}
-
-
-.reply-contents{
-	margin-left: 10px;
-	width:100%;
-}
-
-.reply-contents-userInfo{
-	display: flex;
-	width:100%;
-}
-
-.reply-contents-userInfo-userCode{
-	width: 30%;
-	font-size: 18px;
-}
-
-.reply-contents-userInfo-score{
-	color:gray;
-	 width: 40%;
-}
-.reply-contents-userInfo-date{
-   	font-size: 15px;
-    color:gray;
-}
-
-
-.reply-contents-reply{
-	color:gray;
-	width: 100%;
-}

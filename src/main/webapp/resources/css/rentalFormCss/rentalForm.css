@@ -11,11 +11,14 @@ body{
 	height: 600px;
 }
 
+.billigi div{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 
 .title{
 	font-weight: bold;
 	font-size: 30px;
-	font-family: 'Single Day', cursive;
 	padding-top: 15px;
 	padding-left: 30px
 }
@@ -90,7 +93,6 @@ table{
  	font-size: 40px;
  	margin-left: 31px;
  	margin-top: 15px;
- 	font-family: 'Single Day', cursive;
  	color: #f64a8a;
  }
  

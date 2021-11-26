@@ -24,6 +24,9 @@ public class RentLockerController {
 	public void rental(Model model){
 		// Qwerasdf1234!
 		
+		// 락커 타이틀은 락커 컨텐츠값이랑 똑같게 하자. 
+		// 도로명 주소 입력하면 지번 자동 입력되게
+		
 		
 	}
 	

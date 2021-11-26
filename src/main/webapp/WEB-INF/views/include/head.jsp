@@ -68,7 +68,7 @@
                          	  <li><a href="/"><span>HOME</span></a></li>
                               <li><a href="/member/check"><span>마이페이지</span></a></li>
                               <li><a><span style="cursor:pointer">빌리기</span></a></li>
-                              <li><a><span class="billyeojugi" style="cursor:pointer">빌려주기</span></a></li>
+                              <li><a><span class="billyeojugiHeader" style="cursor:pointer">빌려주기</span></a></li>
                               <li><a href="#"><span>예약확인</span></a></li>
                               <li><a href="#"><span>문의하기</span></a></li>
                               <div class="clear"> </div>
@@ -118,7 +118,7 @@
         <script src="${contextPath}/resources/js/jquery.wookmark.js"></script>
         <script type="text/javascript">
         	
-        	document.querySelector(".billyeojugi").addEventListener('click',() =>{
+        	document.querySelector(".billyeojugiHeader").addEventListener('click',() =>{
         		location.href='/rentLocker/rent-form';
 				// 아 애는 메인컨트롤러가 아니지. 애는 딱히 컨트롤러를 안타서 데이터 받아오기 빡세네. 권한관리는 여기 말고 각 상세페이지 들어가서
         	});

@@ -5,8 +5,8 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="stylesheet" href="${contextPath}/resources/css/rentalFormCss/rentalForm.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -41,11 +41,11 @@
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 시작일</td>
-								<td><input onchange="rentStartFnc()" type="date" name="RentStart" value="${rental.rentStart}" min="${today}" max="${locker.rentableDateEnd}"/></td>
+								<td><input onchange="rentStartFnc()" type="date" name="rentStart" value="${rental.rentStart}" min="${today}" max="${locker.rentableDateEnd}"/></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">대여 종료일</td>
-								<td><input onchange="rentEndFnc()" type="date" name="RentEnd" value="${rental.rentEnd}" min="${today}" max="${locker.rentableDateEnd}"/></td>
+								<td><input onchange="rentEndFnc()" type="date" name="rentEnd" value="${rental.rentEnd}" min="${today}" max="${locker.rentableDateEnd}"/></td>
 							</tr>
 							<tr>
 								<td class="rental-contents-title">비용</td>
@@ -80,8 +80,8 @@
 		let contentsArr = new Array();
 		let dateContents = null;
 		
-		let rentStart = document.querySelector('input[name="RentStart"]');
-		let rentEnd = document.querySelector('input[name="RentEnd"]');
+		let rentStart = document.querySelector('input[name="rentStart"]');
+		let rentEnd = document.querySelector('input[name="rentEnd"]');
 		
 		let rentStartToNumber = rentStart.valueAsNumber;
 		let rentEndToNumber = rentEnd.valueAsNumber;
