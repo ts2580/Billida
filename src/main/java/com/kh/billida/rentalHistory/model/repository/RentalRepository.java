@@ -29,5 +29,8 @@ public interface RentalRepository {
 	@Update("update locker set rent_status = 1 where locker_id = #{lockerId}")
 	void updateRental(Long lockerId);
 	
+	@Update("update member set grade = '00' where user_code = #{userCode}")
+	void downGradeMember(String userCode);
+	
 	
 }

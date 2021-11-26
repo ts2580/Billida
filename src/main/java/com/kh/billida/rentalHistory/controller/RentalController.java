@@ -30,6 +30,8 @@ public class RentalController {
 	
 	private Long lockerId;
 	
+	private Long isRented;
+	
 	@GetMapping("rental-form")
 	public void rental(Model model, LockerForLent locker, Long lockerId){
 		// Qwerasdf1234!
@@ -72,17 +74,22 @@ public class RentalController {
 		
 		// locker 정보에 상태가 빌리는중이면 빌리기버튼을 대여중으로 바꿀것(처리)
 		
+		// 개발자도구에서 노드 수정시 값 제출되는것 수정
+		
 		// 매일 자정 배치 돌려서 대여기간 끝나면 락커 테이블 렌트 스테이터스 바꾸기
 		
 		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
 		
-		// 헤더로 접근하는 빌리기페이지 만들기(아 이건 못할듯)
+		// 리뷰에 페이징 적용(아 이건 못할듯)
+		
+		// 헤더로 접근하는 빌리기 페이지 만들기. 지역별 정렬(이것도 못할듯)
 		
 		// 바이너리로 받아서 텍스트 클롭으로 변환해서. 
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
 		locker = rentalService.selectLocker(lockerId);
+		isRented = locker.getRentStatus();
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);
@@ -92,9 +99,7 @@ public class RentalController {
 		if(today.getDayOfYear() < locker.getRentableDateStart().toLocalDate().getDayOfYear()) {
 			today = locker.getRentableDateStart().toLocalDate();
 		};
-		
-		System.out.println(locker);
-		
+
 		model.addAttribute("today", today);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);
@@ -122,6 +127,12 @@ public class RentalController {
 		rental.setLockerId(lockerId);
 		rental.setUserCode(userCode);
 		rental.setRentCost(rentCost);
+		
+		if(isRented == 1) {
+			rentalService.downGradeMember(userCode);
+			return "redirect:/";
+		}
+		
 		
 		rentalService.insertRental(rental);
 		rentalService.updateRental(lockerId);

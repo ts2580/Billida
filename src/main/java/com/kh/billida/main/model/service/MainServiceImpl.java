@@ -10,6 +10,7 @@ import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.repository.MainRepository;
+import com.kh.billida.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +37,11 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getTotal(Criteria cri) {
 		return mainRepository.getTotal(cri);
+	}
+	
+	// 부정유저 감지
+	public Member isDegraded(String userCode) {
+		return mainRepository.isDegraded(userCode);
 	}
 
 

@@ -18,7 +18,7 @@
 			  <div class="locker_list list1">
 			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8">
 					 <div class="locker_area">
-					 	<div class="lockerImg lockerId" id="${mains.lockerId}"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg lockerId" id="${mains.lockerId}" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -32,7 +32,7 @@
 			 <div class="list2">
 			 	<c:forEach items="${mainList}" var="mains" begin="5" end="6">
 					 <div class="locker_area">
-					 	<div class="lockerImg"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -46,7 +46,7 @@
 			 <div class="list3">
 			 	<c:forEach items="${mainList}" var="mains" begin="7" end="8">
 					 <div class="locker_area">
-					 	<div class="lockerImg"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -66,7 +66,8 @@
 <script type="text/javascript">
 
 	let IdArr = new Array();
-
+	let zeroGradeMember = "${zeroGradeMember}";
+	
 	for(let i = 0; i < 4; i++) {
 	
 		IdArr[i] = document.getElementsByClassName('lockerId')[i].id;
@@ -74,6 +75,11 @@
 		document.getElementById(IdArr[i]).addEventListener('click',() =>{
 			location.href='/rental/rental-form?lockerId='+IdArr[i];
 		}); 
+	};
+	
+	if(zeroGradeMember == "zeroGradeMember"){
+		alert("허가되지 않은 접근으로 인하여 사이트 이용이 정지되었습니다.");
+		alert("자세한 내용은 관리자에게 문의해주세요.");
 	};
 	
 	

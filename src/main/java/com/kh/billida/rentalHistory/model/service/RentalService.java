@@ -15,4 +15,7 @@ public interface RentalService {
 	List<ReviewForRentHistory> selectReview(Long lockerId);
 
 	void updateRental(Long lockerId);
+
+	void downGradeMember(String userCode);
+
 }

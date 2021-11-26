@@ -65,6 +65,14 @@
 		
 		let auth = "${authentication}";
 		let isRented = "${locker.rentStatus}";
+		let rubbish = "${rubbish}";
+		
+		if(rubbish == "rubbish"){
+			location.href="/";
+		};
+		
+		
+		
 		
 		let idArr = new Array();
 		let scoreArr = new Array();

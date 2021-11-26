@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.main.model.dto.Main;
+import com.kh.billida.member.model.dto.Member;
 
 @Mapper
 public interface MainRepository {
@@ -18,5 +19,8 @@ public interface MainRepository {
 	List<Map<String, Object>> getListPaging(Map<String, Object> commandMap);
 	
 	int getTotal(Criteria cri);
+	
+	@Select("select grade from member where user_code = #{userCode}")
+	Member isDegraded(String userCode);
 
 }
