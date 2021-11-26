@@ -65,7 +65,7 @@ public class RentalController {
 		
 		// review deleteYn이 N 일때만 가져오기(처리)
 		
-		// 로그인 안했을시 && 날자 안골랐을시 경고창 띄운다음 stop
+		// 로그인 안했을시 && 날자 안골랐을시 경고창 띄운다음 stop(처리)
 		
 		// 빌리기 성공하면 락커테이블 스테이터스 바꾸고, 빌리기 버튼을 대여중 div로 변경 
 		
