@@ -15,4 +15,15 @@
 	
 	</insert>
   
+  <select id="getSupportListPaging" resultType="com.kh.billida.support.model.dto.Support">
+		<![CDATA[
+	        select * 
+	        from(
+	        	select /*+INDEX_DESC(report_board) */ rownum as rb, r.report_idx, r.user_id, r.report_title, r.report_content, r.report_date, r.report_result
+	          	from report_board r where rownum <= #{pageNum} * #{amount} and r.user_code = #{userCode} )
+	        where rb > (#{pageNum} -1) * #{amount}
+   		]]>
+	</select>
+  
+  
   </mapper>

@@ -2,6 +2,7 @@ package com.kh.billida.support.controller;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.kh.billida.main.model.service.MainService;
-import com.kh.billida.rentalHistory.model.service.RentalService;
-import com.kh.billida.review.model.dto.RentHistoryAndLocker;
-import com.kh.billida.review.model.dto.Review;
+import com.kh.billida.common.paging.Criteria;
+import com.kh.billida.common.paging.Paging;
+import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.service.SupportService;
 
@@ -68,8 +69,37 @@ public class SupportController {
 	@GetMapping("report-board")
 	public void reportBoard() {}
 		
+//	@PostMapping("report-board")
+//	public String reportBoardList(Model model
+//								,@RequestParam(defaultValue="1") int currentPage
+//								, String search
+//								, String keyword
+//								, HttpSession session
+//								,Criteria cri) {
+//		Member member = (Member) session.getAttribute("authentication");
+//		String userCode = member.getUserCode();
+//
+//		Map<String, Object> commandMap = new HashMap<String, Object>();
+//		commandMap.put("pageNum", cri.getPageNum());
+//		commandMap.put("amount", cri.getAmount());
+//		
+//		
+//		List<Map<String, Object>> list = supportService.getSupportListPaging(commandMap);
+//		//유저코드에 해당하는 사물함대여리스트 갯수 받아오기
+//		int total = supportService.getSupportListPaging(commandMap);
+//		Paging paging = new Paging(cri, total);
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("list", list);
+//		map.put("paging", paging);
+//		map.put("authentication", member);
+//		model.addAllAttributes(map);
+//		
+//		return "review/rent-list";
+//			}
 	
-	
+	@GetMapping("report-detail")
+	public void reportDetail() {}
 	
 	
 	// 신고 내용 입력 후 전송

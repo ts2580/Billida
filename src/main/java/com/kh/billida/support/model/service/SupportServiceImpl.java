@@ -1,5 +1,6 @@
 package com.kh.billida.support.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -20,5 +21,8 @@ public class SupportServiceImpl implements SupportService {
 		
 	}
 	
-	
+	@Override
+	public List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap) {
+		return supportRepository.getSupportListPaging(commandMap);
+	}
 }

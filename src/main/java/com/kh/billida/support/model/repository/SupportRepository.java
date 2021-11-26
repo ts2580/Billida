@@ -1,5 +1,6 @@
 package com.kh.billida.support.model.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
@@ -16,6 +17,8 @@ public interface SupportRepository {
 	("insert into report_board(REPORT_IDX, USER_ID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE, REPORT_RESULT)"
 	+ " values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0')")
 	void reportInsertPost(Map<String, Object> commandMap);
+
+	List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap);
 
 	
 	
