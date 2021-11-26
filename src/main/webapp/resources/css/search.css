@@ -9,12 +9,12 @@
 
 .searchInfo a:hover {
 	text-decoration: none;
-	color: darkorange;
+	color: #eb195f;
 }
 
 .keywordInfo {
-	color: darkorange;
-	border-bottom: 1px solid darkorange;
+	color: #eb195f;
+	border-bottom: 1px solid #eb195f;
 }
 
 .no_search {

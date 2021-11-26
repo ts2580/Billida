@@ -39,7 +39,7 @@
 
 #modal .modal-window {
 	background: rgba(255, 255, 255, 1);
-	box-shadow: 0 2px 10px 0 rgba(243, 173, 130, 0.37);
+	/* box-shadow: 0 2px 10px 0 rgba(254, 169, 198, 0.37); */
 	backdrop-filter: blur(13.5px);
 	-webkit-backdrop-filter: blur(13.5px);
 	border-radius: 10px;
@@ -67,7 +67,7 @@
 	cursor: pointer;
 	text-shadow: 1px 1px 2px gray;
 	color: white;
-	background: rgba(253, 179, 109, 1);
+	background: #f76897;
 	width: 97.5%;
 	height: 14%;
 	border-top-right-radius: 7px;
@@ -97,13 +97,14 @@
 }
 
 #deleteYes {
-	background-color: rgba(253, 179, 109, 1);
+	background-color: #f76897;
+	color: white;
 	height: 35px;
 	border: none;
 }
 
 #deleteYes:hover {
-	background-color: rgba(248, 106, 18, 0.86);
+	background-color: #fc2071;
 	color: white;
 }
 

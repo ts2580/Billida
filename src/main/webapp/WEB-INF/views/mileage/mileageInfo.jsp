@@ -11,7 +11,7 @@
 <style type="text/css">
 .mileage_wrapper{
 	display: flex;
-	margin-top: 100px;
+	margin-top: 80px;
 	flex-direction: column;
 	align-items: center;
 }
@@ -21,6 +21,8 @@
 	margin-bottom: 50px;
 	font-weight: bolder;
 	text-align: center;
+	line-height: 35px;
+	padding-top: 60px;
 }
 
 .payment_form{
@@ -40,6 +42,12 @@
 	font-weight: bolder;
 }
 
+.titleImg{
+	width: 23px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
 .cost_area{
 	display: flex;
 	width: 40%;
@@ -52,10 +60,11 @@
 	display: flex;
 	width: 110px;
 	height: 30px;
-	border: 1px solid;
 	justify-content: center;
 	align-items: center;
 	cursor: default;
+	background: gainsboro;
+	border-radius: 5px;
 }
 
 .cost:hover{
@@ -73,15 +82,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 80px;
+	width: 100px;
 	height: 35px;
 	border-radius: 5px;
 	cursor: pointer;
-	background-color: rgba(253, 179, 109, 1);
+	background-color: #f64a8a;
+	color: white;
 }
 
 .recharge:hover{
-	background-color: rgba(248, 106, 18, 0.86);
+	background-color: #fc2071;
 	color: white;
 }
 
@@ -91,7 +101,7 @@
 
 #mileage{
 	width: 100px;
-	height: 22px;
+	height: 26px;
 	margin-right: 5px;
 	border: none;
 	border-radius: 5px;
@@ -125,7 +135,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	
 	<form:form modelAttribute="paymentForm" action="/mileage/update-mileage" name="payment_frm" method="post" class="payment_form">
 		<div class="mileage_area">
-			<div class="title">마일리지 충전</div>
+			<div class="title"><img src="/resources/images/dollar.png" class="titleImg"/> 마일리지 충전 <img src="/resources/images/dollar.png" class="titleImg"/> </div>
 			<div class="cost_area">
 				<a type="button" class="cost1 cost" onclick="costInput('cost1')">5,000원</a>
 				<a type="button" class="cost2 cost" onclick="costInput('cost2')">10,000원</a>
@@ -201,7 +211,7 @@ function payment(){
 			//결제 검증(거래고유번호 검증)
 			$.ajax({
 				type : "POST",
-				url : "/kakaopay/" + rsp.imp_uid   
+				url : "/paymentInfo/" + rsp.imp_uid   
 			}).done(function(data){
 				console.log(data);
 				console.log("주문번호  :" + data.response.impUid);

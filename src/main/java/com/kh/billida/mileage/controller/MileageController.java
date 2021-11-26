@@ -43,7 +43,7 @@ public class MileageController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/kakaopay/{imp_uid}")
+	@RequestMapping(value="/paymentInfo/{imp_uid}")
 	public IamportResponse<Payment> paymentByImpUid(Model model
 										, Locale locale
 										, HttpSession session

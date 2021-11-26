@@ -9,7 +9,7 @@ body{
     margin: 0 auto; 
     background-color: #fff;
     height: 500px;
-    padding: 20px;
+    padding: 11px;
     box-sizing: border-box;
 }
 
@@ -17,9 +17,10 @@ body{
 	display: flex;
 	text-align: center;
 	justify-content: center;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: bolder;
 	padding-top: 8px;
+	color:#f51862;
 }
 
 .form_area{
@@ -40,6 +41,7 @@ body{
 .reviewImg{
 	width: 150px;
 	height: 150px;
+	border-radius: 5px;
 }
 
 .review_info{
@@ -68,6 +70,8 @@ body{
 	color: red;
 	font-size: 5px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
 .starRev{
@@ -83,7 +87,7 @@ body{
 	padding: 10px 10px 11px;
 	background-color: #f4f4f4;
 	border: 1px solid #cbcbcb;
-	margin-top: 20px;
+	margin-top: 10px;
 	border-radius: 7px;
 }
 
@@ -91,6 +95,17 @@ body{
 	resize: none;
 	background-color: transparent;
 	border: none;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+#counter{
+	display: flex;
+	justify-content: flex-end;
+	color: gray;
+	font-size: 12px;
 }
 
 .cmd{
@@ -112,7 +127,8 @@ body{
 }
 
 .save{
-	background-color: rgba(253, 179, 109, 1);
+	background-color: #f64a8a;
+	color: white;
 }
 
 .cancel{
@@ -120,7 +136,7 @@ body{
 }
 
 .save:hover{
-	background-color: rgba(248, 106, 18, 0.86);
+	background-color: #fc2071;
     color: white;
 }
 
@@ -148,7 +164,7 @@ body{
     width: 0;
     position: absolute; 
     left: 0;
-    color: orange;
+    color: #f96199;
     overflow: hidden;
     pointer-events: none;
   }

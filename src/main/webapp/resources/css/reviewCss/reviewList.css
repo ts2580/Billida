@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.no_search{
+	display: flex;
+	padding-top: 20px;
+}
+
 .review_wrapper{
 	display: flex;
 	flex-direction: column;
@@ -21,6 +26,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 60%;
+	align-items: center;
 }
 
 .review_area{
@@ -36,6 +42,7 @@
 .reviewImg{
 	height: 100px;
 	width: 100px;
+	border-radius: 5px;
 }
 
 .review_box{
@@ -107,7 +114,7 @@
 }
 
 .modifyBtn:hover{
-	color: orange;
+	color: #fc2071;
 }
 
 .deleteBtn:hover{
@@ -139,7 +146,7 @@ hr{
     width: 0;
     position: absolute; 
     left: 0;
-    color: orange;
+    color: #f96199;
     overflow: hidden;
     pointer-events: none;
 }

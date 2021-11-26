@@ -37,6 +37,7 @@
 				<div class="score_msg"> </div>
 				<div class="review_contents">
 		            <textarea name="content" id="content" rows="10" class="review_textarea"></textarea>
+		            <div id="counter">(0 / 최대 100자)</div>
 		            <div class="content_msg"> </div>
 		        </div>   
 		        <div class="cmd">

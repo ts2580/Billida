@@ -74,11 +74,13 @@ html {
 .lockerImg{
 	height: 250px;
 	width: 250px;
+	border-radius: 5px;
 }
 
 .imgs{
 	height: 250px;
 	width: 250px;
+	border-radius: 5px;
 }
 
 #recommendList{
@@ -137,6 +139,7 @@ html {
 	display: flex;
 	align-items: center;
 	font-size: 1.1vw;
+	color: #494949;
 }
 
 .mileageImg{

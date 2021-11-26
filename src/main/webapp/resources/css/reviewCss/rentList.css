@@ -36,6 +36,7 @@
 .rentImg, .rentImgs{
 	height: 100px;
 	width: 100px;
+	border-radius: 5px;
 }
 
 .rent_info{
@@ -108,7 +109,7 @@
 }
 
 .reviewWrite:hover{
-	color: orange;
+	color: #f64a8a;
 }
 
 
@@ -125,10 +126,11 @@
 
 .modifyBtn, .deleteBtn{
 	width: 66px;
+	color : #494949;
 }
 
 .modifyBtn:hover{
-	color: orange;
+	color: #f64a8a;
 }
 
 .deleteBtn:hover{

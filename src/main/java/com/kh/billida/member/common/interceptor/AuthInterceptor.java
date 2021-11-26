@@ -26,6 +26,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			case "review":
 				reviewAuthorize(httpRequest, httpResponse, uriArr);
 				break;
+			case "mileage":
+				mileageAuthorize(httpRequest, httpResponse, uriArr);
+				break;
 			default:
 				break;
 			}
@@ -36,6 +39,28 @@ public class AuthInterceptor implements HandlerInterceptor {
 	}
 
 
+	private void mileageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		switch (uriArr[2]) {
+		case "update-mileage":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "mileageInfo":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		default:
+	         break;
+		}
+		
+	}
+
+
 	private void reviewAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
 		Member member = (Member) session.getAttribute("authentication");
@@ -43,12 +68,22 @@ public class AuthInterceptor implements HandlerInterceptor {
 		switch (uriArr[2]) {
 		case "review-list":
 			if(member == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR.setURL("/member/login"));
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
 			}
 			break;
 		case "rent-list":
 			if(member == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR.setURL("/member/login"));
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "myLocker-list":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "locker-reviews":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
 			}
 			break;
 		default:

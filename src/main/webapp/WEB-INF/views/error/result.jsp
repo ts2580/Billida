@@ -8,7 +8,8 @@
 	<link href="${contextPath}/resources/css/modal.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
-	<div class="top_div">
+	<%--
+	 <div class="top_div">
 		<div class="modal_wrapper">
 			<c:if test="${msg eq '접근 권한이 없는 페이지 입니다.'}"> 
 				<div id="modal" class="modal-overlay">
@@ -26,10 +27,13 @@
 			    </div>
 			</c:if>
 		</div>
-	</div>   
+	</div>    
+	--%>
 	
 	
 <script type="text/javascript">
+
+<%--
 	(function () {
 		const modal = document.getElementById("modal");
 		modal.style.display = "flex"
@@ -59,31 +63,33 @@
 		modal.style.display = "none";
 	})
 
-
 	/* 모달창의 x 클릭 시 모달 none */
 	const closeBtn = modal.querySelector("#xTitle")
 	closeBtn.addEventListener("click", e => {
 		location.href = '/';
 	    modal.style.display = "none"
 	})
+
+	--%>
+	
 	
 	<%-- 브라우저 응답 처리 --%>
-<%-- 	
-	안내창 출력
+
+	/* 안내창 출력 */
 	<c:if test="${not empty msg}">  /* msg가 존재한다면 실행 */
 		alert("${msg}");
 	</c:if>
 	
-	뒤로가기
+	/* 뒤로가기 */
 	<c:if test="${not empty back}">
 		history.back();
 	</c:if>
 	
-	페이지 이동
+	/* 페이지 이동 */
 	<c:if test="${not empty url}">
 		location.href="${url}";
 	</c:if>
-	 --%>
+	
 	
 	</script>
 
