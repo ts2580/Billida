@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +21,7 @@ import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.service.MainService;
+import com.kh.billida.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +35,7 @@ public class MainController {
 	private final MainService mainService;
 	
 	@GetMapping("/") //처음 페이지 들어갔을 때 동작하는 메서드
-	public String main(Model model) {
+	public String main(Model model, HttpSession session, Member member) {
 		
 		List<Main> mainList = new ArrayList<Main>();
 		mainList = mainService.selectLockerList();
@@ -41,7 +44,26 @@ public class MainController {
 		commandMap.put("mainList", mainList);
 		
 		model.addAllAttributes(commandMap);
-
+		
+		member = (Member)session.getAttribute("authentication");
+		
+		try {
+			String userCode = member.getUserCode();
+			member = mainService.isDegraded(userCode);
+			// 왜 authentication에서 받은 유저를 다시 리포지토리에서 받아올까?
+			// 부정행위해서 grade가 다운되더라도 다시 로그인하지 않는이상 authentication의 grade는 그대로임
+			// 따라서 리포지토리에 메소드 하나 파고 다시 DB서 grade받아옴;
+			
+			if(member.getGrade().equals("00")) {
+				model.addAttribute("zeroGradeMember", "zeroGradeMember");
+			}
+		} catch (NullPointerException e) {
+			return "index";
+		}
+		
+		
+		
+		
 		return "index";
 	}
 	

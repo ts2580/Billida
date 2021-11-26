@@ -34,6 +34,11 @@ public class RentalServiceImpl implements RentalService{
 
 	public void updateRental(Long lockerId) {
 		rentalRepository.updateRental(lockerId);
+	}
+
+	public void downGradeMember(String userCode) {
+		rentalRepository.downGradeMember(userCode);
+		
 	}	
 	
 }
