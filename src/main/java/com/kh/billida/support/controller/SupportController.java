@@ -113,11 +113,10 @@ public class SupportController {
 		
 	// 신고 상세 페이지 접속
 	@GetMapping("report-detail")
-	public void reportDetail(Model model, String userId) {
-		userId = "test";
-		Map<String, Object> commandMap = supportService.reportDetailPage(userId);
+	public void reportDetail(Model model, String reportIdx) {
+		Map<String, Object> commandMap = supportService.reportDetailPage(reportIdx);
 		model.addAllAttributes(commandMap);
-		System.out.println(commandMap);
+		System.out.println("commandMap의 값은 : " + commandMap);
 	}
 	
 	

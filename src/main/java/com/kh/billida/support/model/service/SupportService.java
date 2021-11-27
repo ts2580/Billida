@@ -11,7 +11,7 @@ public interface SupportService {
 
 	List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap);
 
-	Map<String, Object> reportDetailPage(String userId);
+	Map<String, Object> reportDetailPage(String reportIdx);
 
 	List<Map<String, Object>> getReportList(Map<String, Object> reportListMap);
 	

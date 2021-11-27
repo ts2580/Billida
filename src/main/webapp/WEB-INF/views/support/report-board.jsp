@@ -35,7 +35,7 @@
             <tr>
                 <td style="text-align: center;">${reportList.REPORT_IDX}</td>
                 <td style="text-align: center;">${reportList.USER_ID}</td>
-                <td style="text-align: center;" onclick="location.href='report-detail/${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
+                <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
                 <td style="text-align: center;">${reportList.REPORT_DATE}</td>
                 <td style="text-align: center;">${reportList.REPORT_RESULT}</td>
             </tr>

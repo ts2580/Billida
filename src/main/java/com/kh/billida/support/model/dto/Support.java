@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Support {
 	
-	private int reportIdx; // 시퀀스로 생성 - 게시글 고유번호
+	private String reportIdx; // 시퀀스로 생성 - 게시글 고유번호
 	private String userId; // 신고 대상 아이디 작성
 	private String reportTitle; // 신고글 타이틀
 	private String reportContent; // 신고글 내용
