@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,6 +59,27 @@ Logger logger = LoggerFactory.getLogger(this.getClass());
 				)
 		.andExpect(status().isOk())
 		.andDo(print());
+	}
+	
+	@Test
+	public void dummypostTest() throws Exception{
+		
+		for (int i = 0; i < 100; i++) {
+			Support support = new Support();
+			support.setReportIdx(i);
+			support.setUserId("test" + i);
+			support.setReportTitle("testTitle" + i);
+			support.setReportContent("testReportCon" + i);
+			support.setReportDate("2021-11-27");
+			support.setReportResult("0");
+			
+			mockMvc.perform(post("/support/report-main"))
+					.andExpect(status().isOk())
+					.andDo(print());
+			
+		}
+		
+	
 	}
 	
 }
