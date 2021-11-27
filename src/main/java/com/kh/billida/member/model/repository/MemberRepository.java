@@ -22,7 +22,7 @@ public interface MemberRepository {
          + ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01')")
    void insertMember(JoinForm form);
   
-   @Select("select m.*, e.mileage from member m, mileage e where m.id = #{id}")
+   @Select("select * from member where id = #{id}")
    Member selectMemberById(String id);
    
    @Select("select * from member where nick = #{nick}")
