@@ -13,7 +13,7 @@
 	<title>report-main</title>
 	<style type="text/css">
 		.contact { padding: 4%; height: 400px; }
-		.col-md-3{ background: #fdfdfe; padding: 4%; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
+		.col-md-3{ background: #fae6f5; padding: 4%; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
 		.contact-info{ margin-top:10%; }
 		.contact-info img{ margin-bottom: 15%; }
 		.contact-info h2{ margin-bottom: 10%; }
@@ -27,20 +27,18 @@
     <div class="container contact" style="padding-top: 170px;">
         <div class="row">
             <div class="col-md-3">
-                <div class="contact-info">
-                	<img src="${contextPath}/resources/images/logo.gif" title="pinbal" style="max-width: 100%; height: auto;" />
-                    <hr>
+                <div class="contact-info" style="background: #fae6f5">
                     <br>
                     <h4><b>신고하기</b></h4>
+                    <hr>
                     <br>
                     <h6 style="font-size: 13px;">
-                        · BILLIDA는 더 즐겁고 유익한 무인공유함 사이트를 만들기 위해 이용제한 조치 서비스를 취하고 있습니다.<br>
-                        · 모두가 기분 좋게 BILLIDA를 이용할 수 있도록 도와주시길 부탁드립니다.<br>
-                        · 아래의 사항에 해당되는 회원을 신고해주세요.<br><br>
-                        - 불법 및 상업게시물 작성<br>
-                        - 저작권침해 게시물<br>
-                        - 욕설 및 명예훼손<br>
-                        - 기타(상세작성)
+                        😢아래의 사항에 해당되는 회원을 신고해주세요😢<br><br>
+                        ✔ 상업성 게시물 작성<br>
+                        ✔ 불법 게시물 작성<br>
+                        ✔ 저작권침해 게시물<br>
+                        ✔ 욕설 및 명예훼손<br>
+                        ✔ 기타(상세작성)
                     </h6>
                 </div>
             </div>
@@ -68,8 +66,8 @@
                     <br>
                     <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">신고접수</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="background-color: blue;">신고목록조회</button>
+                            <button type="submit" class="btn btn-default" style="margin-right: 260px;">신고접수</button>
+                            <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="background-color: #87aff5;">신고목록조회</button>
                         </div>
                     </div>
                 </div>
