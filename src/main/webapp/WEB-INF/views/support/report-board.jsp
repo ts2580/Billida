@@ -23,21 +23,21 @@
         <table class="table">
         <thead>
             <tr style="font-size: 16px; color:  rgb(27, 37, 43);">
-                <th>No</th>
-                <th>신고받은 ID</th>
-                <th>신고글 제목</th>
-                <th>작성 일자</th>
-                <th>처리 여부</th>
+                <th style="text-align: center;">No</th>
+                <th style="text-align: center;">신고받은 ID</th>
+                <th style="text-align: center;">신고글 제목</th>
+                <th style="text-align: center;">작성 일자</th>
+                <th style="text-align: center;">처리 여부</th>
             </tr>
         </thead>
         <tbody>
 	        <c:forEach items="${getReportList}" var="reportList">
             <tr>
-                <td>${reportList.REPORT_IDX}</td>
-                <td>${reportList.USER_ID}</td>
-                <td>${reportList.REPORT_TITLE}</td>
-                <td>${reportList.REPORT_DATE}</td>
-                <td>${reportList.REPORT_RESULT}</td>
+                <td style="text-align: center;">${reportList.REPORT_IDX}</td>
+                <td style="text-align: center;">${reportList.USER_ID}</td>
+                <td style="text-align: center;" onclick="location.href='report-detail/${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
+                <td style="text-align: center;">${reportList.REPORT_DATE}</td>
+                <td style="text-align: center;">${reportList.REPORT_RESULT}</td>
             </tr>
             </c:forEach>
         </tbody>
