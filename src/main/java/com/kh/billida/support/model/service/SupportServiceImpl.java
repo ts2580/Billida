@@ -21,11 +21,6 @@ public class SupportServiceImpl implements SupportService {
 		supportRepository.reportInsertPost(commandMap);
 		
 	}
-	
-	@Override
-	public List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap) {
-		return supportRepository.getSupportListPaging(commandMap);
-	}
 
 	@Override
 	public Map<String, Object> reportDetailPage(String reportIdx) {
@@ -35,12 +30,19 @@ public class SupportServiceImpl implements SupportService {
 
 	@Override
 	public int getSupportTotal() {
-		return supportRepository.getLockerTotal();
+		return supportRepository.getSupportTotal();
 	}
 
 	@Override
 	public List<Map<String, Object>> getReportList(Map<String, Object> reportListMap) {
 		return supportRepository.getReportList(reportListMap);
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getReportListPaging(Map<String, Object> reportListMap) {
+		return supportRepository.getSupportListPaging(reportListMap);
 	}
 
 	

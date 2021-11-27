@@ -10,7 +10,6 @@
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="../cssfile/report-board.css"> <!-- css경로 재지정 -->
 	<title>report-board</title>
 	<style type="text/css">
 		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
@@ -31,8 +30,8 @@
             </tr>
         </thead>
         <tbody>
-	        <c:forEach items="${getReportList}" var="reportList">
-            <tr>
+	        <c:forEach begin="${num}" end="${num}+9" items="${getReportList}" var="reportList">
+	        <tr>
                 <td style="text-align: center;">${reportList.REPORT_IDX}</td>
                 <td style="text-align: center;">${reportList.USER_ID}</td>
                 <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
@@ -44,15 +43,44 @@
         </table>
         <br>
         <div class="pagination" style="text-align: center;">
-            <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+       	<div class="pageInfo_area">
+				<ul id="pageInfo" class="pageInfo">
+				
+					<!-- 이전페이지 버튼 -->
+                	<c:if test="${paging.prev}">
+                    	<li class="pageInfo_btn previous" href="${paging.startPage-1}">&laquo;</li>
+                	</c:if>
+				
+					<!-- 각 번호 페이지 버튼  -->
+					<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+						<li class="pageInfo_btn ${paging.cri.pageNum == num ? 'active':'' }" href="${num}">${num}</li>
+					</c:forEach>
+					
+					<!-- 다음페이지 버튼 -->
+                	<c:if test="${paging.next}">
+                    	<li class="pageInfo_btn next" href="${paging.endPage + 1 }">&raquo;</li>
+                	</c:if>
+				</ul>
+			</div>
+		</div>
+
+		<form id="moveForm" method="get">
+			<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
+			<input type="hidden" name="amount" value="${paging.cri.amount}">
+		</form>
         </div>
-    </div>
+        
+        <script type="text/javascript">
+        let moveForm = $("#moveForm");
+        
+        $(".pageInfo li").on("click", function(e){
+       	 e.preventDefault();
+            moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+            moveForm.attr("action", "report-board");
+            moveForm.submit();
+       });
+        
+        
+        </script>
 </body>
 </html>

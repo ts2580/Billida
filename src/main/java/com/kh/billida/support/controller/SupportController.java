@@ -67,43 +67,40 @@ public class SupportController {
 	
 	// 신고 게시판 접속
 		@GetMapping("report-board")
-		public String reportBoardList(Support support
-									, Model model
-									
+		public String reportBoardList(Model model
+									, Criteria cri
+									, HttpSession session
 									) {
-			
-//			//admin으로 자동 로그인
-//			HashMap<String, String> memberMap = new HashMap<String, String>();
-//			
-//			//HashMap : 데이터를 담을 자료 구조
-//			memberMap.put("id", "test0001");
-//			memberMap.put("password", "1q2w3e4r1!");
 
-//			Member authUser = memberService.authenticateUser(member);
-//			session.setAttribute("authentication", authUser); // 세션에 올려주기
-//			session.setAttribute("id", "test0001");
-//			session.setAttribute("password", "1q2w3e4r1!");
-//			member.setPassword("1q2w3e4r1!");
-			
+			//리스트 정보 입력
 			HashMap<String, Object> reportListMap = new HashMap<String, Object>();
+			//가져온 정보 출력
 			List<Map<String, Object>> getReportList = supportService.getReportList(reportListMap);
+			
 			model.addAttribute("getReportList",getReportList);
 			
+			Map<String, Object> criMap = new HashMap<String, Object>();
 			
-//			Map<String, Object> criMap = new HashMap<String, Object>();
-//			criMap.put("pageNum", cri.getPageNum());
-//			criMap.put("amount", cri.getAmount());
-//			
-//			List<Map<String, Object>> reportList = supportService.getSupportListPaging(criMap);
-//			
-//			int total = supportService.getSupportTotal();
-//			Paging paging = new Paging(cri, total);
-//			
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			map.put("reportList", reportList);
-//			map.put("paging", paging);
-//			model.addAllAttributes(map);
-//			session.setAttribute("reportList", reportList);
+			criMap.put("pageNum", cri.getPageNum());
+			criMap.put("amount", cri.getAmount());
+			model.addAttribute(criMap);
+			//List<Map<String, Object>> list = supportService.getReportListPaging(criMap);
+			
+			//리포트의 게시글 수를 total에 받아옴
+			int total = supportService.getSupportTotal();
+			Paging paging = new Paging(cri, total);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("list", getReportList);
+			map.put("paging", paging);
+			model.addAllAttributes(map);
+			//session.setAttribute("reportList", getReportList);
+			logger.info("reportListMap : " + reportListMap);
+			logger.info("getReportList : " + getReportList);
+			logger.info("criMap : "+ criMap);
+			//logger.info("getReportListPaging : " + getReportListPaging);
+			logger.info("paging : " + paging);
+			
 			
 			return "support/report-board";
 			
