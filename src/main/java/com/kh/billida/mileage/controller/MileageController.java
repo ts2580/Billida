@@ -80,15 +80,15 @@ public class MileageController {
 	public void mileageInfo(Model model, HttpSession session) {
 		Member member = (Member) session.getAttribute("authentication");
 		
-		Member memberInfo = mileageService.selectMemberInfo(member.getUserCode()); //마일리지 새롭게 충전한 후 헤드에 보여주기 위해 새로 멤버 가져오기
+		//Member memberInfo = mileageService.selectMemberInfo(member.getUserCode()); //마일리지 새롭게 충전한 후 헤드에 보여주기 위해 새로 멤버 가져오기
 		
 		Mileage userMileage = mileageService.selectUserMileage(member.getUserCode()); //내 마일리지 정보 가져오기
-		if(userMileage == null) {
-			model.addAttribute("authentication", memberInfo);
-		}
+//		if(userMileage == null) {
+//			model.addAttribute("authentication", memberInfo);
+//		}
 		
 		model.addAttribute("userMileage", userMileage);
-		model.addAttribute("authentication", memberInfo);
+		//model.addAttribute("authentication", memberInfo);
 		
 	}
 

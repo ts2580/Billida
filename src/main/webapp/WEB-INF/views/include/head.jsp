@@ -95,11 +95,21 @@
                   
                   <div class="mileageAndLogout">
 	                  <c:if test="${not empty authentication.kakaoNum}">
-	                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${authentication.mileage}원</a>
+		                  <c:if test="${not empty userMileage}">
+		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${userMileage.mileage}원</a>
+		                  </c:if>
+		                  <c:if test="${empty userMileage}">
+		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> 0원</a>
+		                  </c:if>
 	                     <a href="javascript:kakaoLogout();" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
 	                  </c:if>
 	                  <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
-	                     <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${authentication.mileage}원</a>
+	                     <c:if test="${not empty userMileage}">
+		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> ${userMileage.mileage}원</a>
+		                  </c:if>
+		                  <c:if test="${empty userMileage}">
+		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> 0원</a>
+		                  </c:if>
 	                     <a href="/member/logout" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
 	                  </c:if>
                   </div>

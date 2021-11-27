@@ -73,5 +73,8 @@ public interface MemberRepository {
    @Select("select * from member")
    List<Member> selectMember();
 
+   @Select("select m.*, e.mileage from member m, mileage e where m.id = #{id} and m.user_code = e.user_code")
+   Member selectMileageInfo(String id);
+
    
 }
