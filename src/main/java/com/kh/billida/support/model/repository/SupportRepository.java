@@ -19,8 +19,8 @@ public interface SupportRepository {
 
 	List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap);
 
-	@Select("select * from report_board where user_id = #{userId}")
-	Support reportDetailPage(String userId);
+	@Select("select * from report_board where REPORT_IDX = #{reportIdx}")
+	Support reportDetailPage(String reportIdx);
 	
 	@Select("select count(*) from locker")
 	int getLockerTotal();

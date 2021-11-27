@@ -28,8 +28,8 @@ public class SupportServiceImpl implements SupportService {
 	}
 
 	@Override
-	public Map<String, Object> reportDetailPage(String userId) {
-		Support support = supportRepository.reportDetailPage(userId);
+	public Map<String, Object> reportDetailPage(String reportIdx) {
+		Support support = supportRepository.reportDetailPage(reportIdx);
 		return Map.of("support",support);
 	}
 
