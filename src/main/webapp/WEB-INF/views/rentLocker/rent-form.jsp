@@ -66,7 +66,7 @@
 								<td><input type="date" name="rentableDateEnd"/></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="submit" class="submitButton">빌리기</button></td>
+								<td colspan="2"><button type="submit" class="submitButton">빌려주기</button></td>
 							</tr>
 						</table>
 					</form:form>
