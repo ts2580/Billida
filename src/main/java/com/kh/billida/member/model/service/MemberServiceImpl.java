@@ -210,4 +210,9 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Override
+	public Member selectMileageInfo(String id) {
+		return memberRepository.selectMileageInfo(id);
+	}
+
 }

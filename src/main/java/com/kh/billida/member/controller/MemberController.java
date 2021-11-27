@@ -142,8 +142,11 @@ public class MemberController {
 			return "redirect:/member/login";
 		}
 		
+		Member userMileage = memberService.selectMileageInfo(certifiedUser.getId()); //헤드에 띄워줄 마일리지 정보 가져오기 위한 코드
+		
 		session.setAttribute("authentication", certifiedUser); // 세션에 올려주기
 		session.setAttribute("Id", member.getId());
+		session.setAttribute("userMileage", userMileage);
 		logger.debug(certifiedUser.toString());
 		return "redirect:/";
 	}
