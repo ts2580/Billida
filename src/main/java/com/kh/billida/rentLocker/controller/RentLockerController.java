@@ -24,6 +24,7 @@ public class RentLockerController {
 	@GetMapping("rent-form")
 	public void rental(Model model){
 		// Qwerasdf1234!
+		// devU01TX0FVVEgyMDIxMTEyODAxMzQzNDExMTk2MjQ=
 		
 		// 하드코딩으로 DB 연결(완료)
 		
@@ -41,7 +42,6 @@ public class RentLockerController {
 	public String rentalForm(HttpSession session, Member member, Locker locker){
 		
 		// member = (Member)session.getAttribute("authentication");
-		
 		// locker.setUserCode(member.getUserCode());
 		
 		locker.setUserCode("108");
@@ -49,6 +49,16 @@ public class RentLockerController {
 		rentLockerService.insertLocker(locker);
 		return "redirect:/rentLocker/rent-form";
 	}
+	
+	@GetMapping("jusoPopup")
+	public void jusoPopup(){};
+	
+	@PostMapping("jusoPopup")
+	public void jusoPopup(String resultType){
+		
+		System.out.println(resultType);
+		
+	};
 	
 	
 }
