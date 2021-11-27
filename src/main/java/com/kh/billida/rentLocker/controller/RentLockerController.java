@@ -46,19 +46,10 @@ public class RentLockerController {
 		
 		locker.setUserCode("108");
 		
+		System.out.println(locker);
+		
 		rentLockerService.insertLocker(locker);
 		return "redirect:/rentLocker/rent-form";
-	}
-	
-	@GetMapping("jusoPopup")
-	public void jusoPopup(){};
-	
-	@PostMapping("jusoPopup")
-	public void jusoPopup(String resultType){
-		
-		System.out.println(resultType);
-		
-	};
-	
+	}	
 	
 }
