@@ -25,6 +25,8 @@ public interface SupportRepository {
 	@Select("select count(*) from locker")
 	int getLockerTotal();
 	
+	@Select("select * from report_board order by report_idx desc")
+	List<Map<String, Object>> getReportList(Map<String, Object> reportListMap);
 	
 	/*
 	 * @Insert

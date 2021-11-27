@@ -24,42 +24,22 @@
         <thead>
             <tr style="font-size: 16px; color:  rgb(27, 37, 43);">
                 <th>No</th>
-                <th>작성자ID</th>
-                <th>신고글제목</th>
-                <th>작성일자</th>
+                <th>신고받은 ID</th>
+                <th>신고글 제목</th>
+                <th>작성 일자</th>
+                <th>처리 여부</th>
             </tr>
         </thead>
         <tbody>
+	        <c:forEach items="${getReportList}" var="reportList">
             <tr>
-                <td>5</td>
-                <td>tester00</td>
-                <td>욕설글 신고합니다.</td>
-                <td>21-11-12</td>
+                <td>${reportList.REPORT_IDX}</td>
+                <td>${reportList.USER_ID}</td>
+                <td>${reportList.REPORT_TITLE}</td>
+                <td>${reportList.REPORT_DATE}</td>
+                <td>${reportList.REPORT_RESULT}</td>
             </tr>
-            <tr>
-                <td>4</td>
-                <td>tester01</td>
-                <td>불량회원 신고합니다.</td>
-                <td>21-11-11</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>tjrwls1212</td>
-                <td>이런 것도 신고할 수 있나요?</td>
-                <td>21-11-10</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>wldmsdl33</td>
-                <td>이 사람 좀 이상해요!!!</td>
-                <td>21-11-10</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>fnqlwkqk88</td>
-                <td>신고합니다.</td>
-                <td>21-11-08</td>
-            </tr>
+            </c:forEach>
         </tbody>
         </table>
         <br>

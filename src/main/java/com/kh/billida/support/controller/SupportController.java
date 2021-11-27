@@ -67,10 +67,10 @@ public class SupportController {
 	
 	// 신고 게시판 접속
 		@GetMapping("report-board")
-		public String reportBoardList(Model model
-									, Criteria cri
-									, Member member
-									, HttpSession session) {
+		public String reportBoardList(Support support
+									, Model model
+									
+									) {
 			
 //			//admin으로 자동 로그인
 //			HashMap<String, String> memberMap = new HashMap<String, String>();
@@ -85,20 +85,25 @@ public class SupportController {
 //			session.setAttribute("password", "1q2w3e4r1!");
 //			member.setPassword("1q2w3e4r1!");
 			
-			Map<String, Object> criMap = new HashMap<String, Object>();
-			criMap.put("pageNum", cri.getPageNum());
-			criMap.put("amount", cri.getAmount());
+			HashMap<String, Object> reportListMap = new HashMap<String, Object>();
+			List<Map<String, Object>> getReportList = supportService.getReportList(reportListMap);
+			model.addAttribute("getReportList",getReportList);
 			
-			List<Map<String, Object>> reportList = supportService.getSupportListPaging(criMap);
 			
-			int total = supportService.getSupportTotal();
-			Paging paging = new Paging(cri, total);
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("reportList", reportList);
-			map.put("paging", paging);
-			model.addAllAttributes(map);
-			session.setAttribute("reportList", reportList);
+//			Map<String, Object> criMap = new HashMap<String, Object>();
+//			criMap.put("pageNum", cri.getPageNum());
+//			criMap.put("amount", cri.getAmount());
+//			
+//			List<Map<String, Object>> reportList = supportService.getSupportListPaging(criMap);
+//			
+//			int total = supportService.getSupportTotal();
+//			Paging paging = new Paging(cri, total);
+//			
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("reportList", reportList);
+//			map.put("paging", paging);
+//			model.addAllAttributes(map);
+//			session.setAttribute("reportList", reportList);
 			
 			return "support/report-board";
 			

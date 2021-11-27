@@ -37,4 +37,15 @@ public class SupportServiceImpl implements SupportService {
 	public int getSupportTotal() {
 		return supportRepository.getLockerTotal();
 	}
+
+	@Override
+	public List<Map<String, Object>> getReportList(Map<String, Object> reportListMap) {
+		return supportRepository.getReportList(reportListMap);
+	}
+
+	
+
+
+
+
 }
