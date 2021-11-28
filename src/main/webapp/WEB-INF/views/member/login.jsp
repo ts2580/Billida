@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href="/" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'
 	rel='stylesheet' type='text/css'>
@@ -191,7 +192,7 @@ footer a:link {
     <input name="password" id="password" type="password" placeholder="Password" />
     <i class="fa fa-key"></i>
     <span class="form-group" style="display: flex;" >
-    <img id="captchaImg" title="캡차 이미지" src="captchaImg.do" alt="캡차 이미지" />
+    <img id="captchaImg" title="캡차 이미지" src="/member/captchaImg.do" />
     <div id="captchaAudio" style="display:none;"></div>
     <span style="display: grid; justify-content: space-between; margin-left: 30px;">
         <a onclick="javascript:refreshBtn()" class="refreshBtn">
@@ -243,7 +244,7 @@ footer a:link {
 <script type="text/javascript">
 function audio(){
     var rand = Math.random();
-    var url = 'captchaAudio.do';
+    var url = '/member/captchaAudio.do';
     $.ajax({
         url: url,
         type: 'POST',
@@ -252,7 +253,7 @@ function audio(){
         async: false,
         success: function(resp) {
             var uAgent = navigator.userAgent;
-            var soundUrl = 'captchaAudio.do?rand=' + rand;
+            var soundUrl = '/member/captchaAudio.do?rand=' + rand;
             
             if(uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
                 winPlayer(soundUrl);
@@ -273,7 +274,7 @@ function audio(){
 
 function refreshBtn(type){
     var rand = Math.random();
-    var url = "captchaImg.do?rand=" + rand;
+    var url = "/member/captchaImg.do?rand=" + rand;
     $('#captchaImg').attr("src", url);
 }
 function winPlayer(objUrl){

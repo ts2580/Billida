@@ -34,12 +34,14 @@ import com.kh.billida.member.common.ValidateResult;
 import com.kh.billida.member.common.captcha.CaptchaUtil;
 import com.kh.billida.member.common.code.ErrorCode;
 import com.kh.billida.member.common.exception.HandlableException;
+import com.kh.billida.member.common.sessionManager.SessionConfig;
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.member.model.service.MemberService;
 import com.kh.billida.member.validator.JoinForm;
 import com.kh.billida.member.validator.JoinFormValidator;
 
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
@@ -56,7 +58,7 @@ public class MemberController {
 		webDataBinder.addValidators(joinFormValidator);
 	}
 	
-	@RequestMapping(value = "captchaImg.do")
+	@GetMapping("captchaImg.do")
     public void cpatchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
         new CaptchaUtil().captchaImg(request, response);
     }
@@ -69,6 +71,7 @@ public class MemberController {
 	public void singUp(Model model) {
 		model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
 	}
+	
 
 	@PostMapping("/message")
 	public @ResponseBody String testMessage(String phonNumber) {
@@ -127,7 +130,18 @@ public class MemberController {
 		// 카카오 로그인시 신규회원용
 		//model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
 	}
-
+	@PostMapping("checkForDuplicateSessions")
+	public String login(HttpServletRequest request, HttpSession session, RedirectAttributes rttr) throws Exception {
+		String id = request.getParameter("id");
+		if(id != null){
+			String userId = SessionConfig.getSessionidCheck("login_id", id);
+			System.out.println(id + " : " +userId);
+			session.setMaxInactiveInterval(60 * 60);
+			session.setAttribute("login_id", id);
+			return "redirect:/";//로그인되었을 경우 가야하는 경로
+		}
+		return "redirect:/member/login";//아니라면 가야하는 경우
+	}
 	@PostMapping("login")
 	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr, HttpServletRequest request) {
 		String getAnswer = (String) request.getSession().getAttribute("captcha");
@@ -141,7 +155,13 @@ public class MemberController {
 			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.");
 			return "redirect:/member/login";
 		}
-		
+		//중복로그인 방지용
+		String id = certifiedUser.getId();
+		String userId = SessionConfig.getSessionidCheck("login_id", id);
+		System.out.println(id + " : " +userId);
+		session.setMaxInactiveInterval(60 * 60);
+		session.setAttribute("login_id", id);
+		//여기까지
 		session.setAttribute("authentication", certifiedUser); // 세션에 올려주기
 		session.setAttribute("Id", member.getId());
 		logger.debug(certifiedUser.toString());
@@ -151,6 +171,7 @@ public class MemberController {
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("authentication");
+		session.removeAttribute("login_id");
 		session.removeAttribute("Id");
 		return "redirect:/";
 	}
@@ -438,6 +459,27 @@ public class MemberController {
 	public String searchMember(@ModelAttribute Member member, Model model) {
 		
 		memberService.selectMemberById(member.getId());
+		return "member/admin";
+	}
+	
+	@PostMapping("gradeUp")
+	@ResponseBody
+	public String memberGradeUp(@ModelAttribute Member member, Model model) {
+		
+		if(member.getGrade() == "00") {
+		memberService.updateGradeUpById(member.getId());
+		}
+		return "member/admin";
+	}
+	
+	@PostMapping("gradeDown")
+	@ResponseBody
+	public String memberGradeDown(@ModelAttribute Member member, Model model) {
+		System.out.println(member.toString());
+		if(member.getGrade() == "01") {
+			memberService.updateGradeUpById(member.getId());
+			}
+		memberService.updateGradeDownById(member.getId());
 		return "member/admin";
 	}
 

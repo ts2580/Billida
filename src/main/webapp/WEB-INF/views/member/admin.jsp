@@ -4,35 +4,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a91d097e5c5d9764f91631e0ac40e115"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
 table.memberList {
-  border-collapse: separate;
-  border-spacing: 1px;
-  text-align: center;
-  line-height: 1.5;
-  margin: 20px 10px;
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: center;
+	line-height: 1.5;
+	margin: 20px 10px;
 }
+
 table.memberList th {
-  width: 155px;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  vertical-align: top;
-  color: #fff;
-  background: #6495ED ;
+	width: 155px;
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #6495ED;
 }
+
 table.memberList td {
-  width: 155px;
-  padding: 10px;
-  vertical-align: center;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
+	width: 155px;
+	padding: 10px;
+	vertical-align: center;
+	border-bottom: 1px solid #ccc;
+	background: #eee;
 }
 </style>
 </head>
 <body>
-	<input  type="text" class="form-control" name="id" id="id" >
+	<form:form modelAttribute="member" class ="validation-form" action="/member/searchMember"
+         method="post" id="searchMember">
+        <label> 아이디 검색 : </label>
+		<input  type="text" class="form-control" name="id" id="id" >
+	</form:form>
  <table border="1" class="memberList" style ="text-align : center">
  	<th> 아이디</th>
  	<th> 이름</th>
@@ -51,10 +70,37 @@ table.memberList td {
  		<c:when test="${memberList.grade eq '99'}"><c:out value="운영자"/></c:when>
  		</c:choose>
  		</td>
- 		<td><img src="/resources/images/up.png"><img src="/resources/images/down.png"></td>
+ 		<td>
+ 			<a onclick= "gradeUp(${memberList.id},${memberList.grade});"><img src="/resources/images/approved.png"></a>
+ 			<a id = 'gradeDown' href="#" onclick= "gradeDown('${memberList.id}','${memberList.grade}');">gradeDown<img src="/resources/images/rejected.png"></a>
+ 			
+ 		</td>
  	</tr>
  	</c:forEach>
  
  </table>
+ <script type="text/javascript">
+
+	
+ 	function gradeDown(id,grade){
+ 		var newForm = document.createElement('form');
+ 		newForm.name = 'gradeDown';
+ 		newForm.method = 'post';
+ 		newForm.action = 'gradeDown';
+ 		
+ 		
+ 		var input = document.createElement('input');
+ 		input.setAttribute("class", 'gradeDown');
+ 		input.setAttribute("id", id);
+ 		input.setAttribute("grade", grade);
+ 		
+ 		newForm.appendChild(input);
+ 		document.body.appendChild(newForm);
+ 		console.log(newForm);
+ 		newForm.submit();
+ 	}
+ 	
+ 	
+ </script>
 </body>
 </html>

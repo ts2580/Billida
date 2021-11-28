@@ -4,12 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.billida.main.model.service.MainService;
 import com.kh.billida.member.common.code.ErrorCode;
 import com.kh.billida.member.common.exception.HandlableException;
 import com.kh.billida.member.model.dto.Member;
@@ -21,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class AuthInterceptor implements HandlerInterceptor {
-	
+
 	private final MileageService mileageService;
 
 	@Override
