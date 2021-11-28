@@ -12,8 +12,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<title>report-main</title>
 	<style type="text/css">
+		body {background: #87cefa1f }
 		.contact { padding: 4%; height: 400px; }
-		.col-md-3{ background: #fae6f5; padding: 4%; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
+		.col-md-3{ background: #87cefa; padding: 4%; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; }
 		.contact-info{ margin-top:10%; }
 		.contact-info img{ margin-bottom: 15%; }
 		.contact-info h2{ margin-bottom: 10%; }
@@ -27,13 +28,13 @@
     <div class="container contact" style="padding-top: 170px;">
         <div class="row">
             <div class="col-md-3">
-                <div class="contact-info" style="background: #fae6f5">
+                <div class="contact-info" style="background: #87cefa">
                     <br>
-                    <h4><b>신고하기</b></h4>
+                    <h4><b>　신고하기</b></h4>
                     <hr>
                     <br>
                     <h6 style="font-size: 13px;">
-                        😢아래의 사항에 해당되는 회원을 신고해주세요😢<br><br>
+                        😢아래의 사항에 해당되는 회원을 신고해주세요😢<br><br><br><br>
                         ✔ 상업성 게시물 작성<br>
                         ✔ 불법 게시물 작성<br>
                         ✔ 저작권침해 게시물<br>

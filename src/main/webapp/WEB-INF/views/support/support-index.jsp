@@ -11,7 +11,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<title>support-index</title>
-	<style type="text/css">
+	<style type="text/css">	
+		body {background: #87cefa1f }
 		.how-section1 { margin-top:-15%; padding: 20%; }
 		.how-section1 h4{ color: #e09f48; font-weight: bold; font-size: 30px; }
 		.how-section1 .subheading{ color: #755a32; font-size: 20px; }

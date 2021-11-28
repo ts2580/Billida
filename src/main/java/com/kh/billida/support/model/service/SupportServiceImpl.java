@@ -51,6 +51,12 @@ public class SupportServiceImpl implements SupportService {
 		return supportRepository.selectPage(paging);
 	}
 
+	@Override
+	public void reportAddResult() {
+		supportRepository.reportAddResult();
+		
+	}
+
 
 
 

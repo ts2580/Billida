@@ -20,5 +20,7 @@ public interface SupportService {
 
 	List<Support> selectPage(Paging paging);
 
+	void reportAddResult();
+
 	
 }
