@@ -210,4 +210,15 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Override
+	public void updateGradeUpById(String id) {		
+		memberRepository.updateGradeUpById(id);
+	}
+
+	@Override
+	public void updateGradeDownById(String id) {
+		memberRepository.updateGradeDownById(id);
+		
+	}
+
 }

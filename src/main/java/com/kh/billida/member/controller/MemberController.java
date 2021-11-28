@@ -40,6 +40,7 @@ import com.kh.billida.member.validator.JoinForm;
 import com.kh.billida.member.validator.JoinFormValidator;
 
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
@@ -438,6 +439,27 @@ public class MemberController {
 	public String searchMember(@ModelAttribute Member member, Model model) {
 		
 		memberService.selectMemberById(member.getId());
+		return "member/admin";
+	}
+	
+	@PostMapping("gradeUp")
+	@ResponseBody
+	public String memberGradeUp(@ModelAttribute Member member, Model model) {
+		
+		if(member.getGrade() == "00") {
+		memberService.updateGradeUpById(member.getId());
+		}
+		return "member/admin";
+	}
+	
+	@PostMapping("gradeDown")
+	@ResponseBody
+	public String memberGradeDown(@ModelAttribute Member member, Model model) {
+		System.out.println(member.toString());
+		if(member.getGrade() == "01") {
+			memberService.updateGradeUpById(member.getId());
+			}
+		memberService.updateGradeDownById(member.getId());
 		return "member/admin";
 	}
 
