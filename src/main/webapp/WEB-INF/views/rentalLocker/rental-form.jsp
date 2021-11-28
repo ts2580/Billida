@@ -89,7 +89,7 @@
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
 		
-		const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+		let b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 			  const byteCharacters = atob(b64Data);
 			  const byteArrays = [];
 

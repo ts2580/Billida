@@ -35,22 +35,18 @@ public class RentLockerController {
 		
 		// 로그인 유무에 따른 권한(처리)
 		
+		// 이미지 바이너리로 받아서 텍스트 클롭으로 변환하고 비트어레이로 보내(약간 다르긴 하지만 처리)
+		
+		// 사진 교체시 하단에 div 하나 더 파지말고 원래 있던거 교체하도록
+		
 		// 임의로 auth값 넣었을때 진행됨. 이떄 어떻게 처리하지. 자바단에서 잡아야하는데. userCode 안넘어왔는데 진행시 강등시켜 post에서 처리
 		
 		// 각 폼 입력 필터 && 빈칸 유무에 따른 제약 추가
 		
 		// 상세주소 꼭 입력하도록 해
 		
-		// 이미지 바이너리로 받아서 텍스트 클롭으로 변환하고 비트어레이로 보내. 
+		
 	}
-	
-	@GetMapping("testImg")
-	public void testImg(String img64){
-		System.out.println(img64);
-	}
-	
-	@PostMapping("testImg")
-	public void testImg(Locker locker){}
 	
 	@PostMapping("rent-form")
 	public String rentalForm(HttpSession session, Member member, Locker locker){
