@@ -24,29 +24,40 @@ public class RentLockerController {
 	@GetMapping("rent-form")
 	public void rental(Model model){
 		// Qwerasdf1234!
-		// devU01TX0FVVEgyMDIxMTEyODAxMzQzNDExMTk2MjQ=
 		
 		// 하드코딩으로 DB 연결(완료)
 		
-		// 락커 타이틀은 락커 컨텐츠값(도로명주소) 적절히 잘라서(완료). 
+		// 지번이랑 위도경도는 필요한가? 몰라 걍 넣어(처리) 
 		
-		// 지번이랑 위도경도는 필요한가?
+		// 도로명 주소 입력하면 지번 자동 입력되게(처리)
 		
-		// 비밀번호엔 숫자만 들어가고 길이제한 주자
+		// 도로명 주소 입력하면 좌표 자동 입력되게(처리)
 		
-		// 도로명 주소 입력하면 지번 자동 입력되게
+		// 로그인 유무에 따른 권한(처리)
+		
+		// 임의로 auth값 넣었을때 진행됨. 이떄 어떻게 처리하지. 자바단에서 잡아야하는데. userCode 안넘어왔는데 진행시 강등시켜 post에서 처리
+		
+		// 각 폼 입력 필터 && 빈칸 유무에 따른 제약 추가
+		
+		// 상세주소 꼭 입력하도록 해
+		
+		// 이미지 바이너리로 받아서 텍스트 클롭으로 변환하고 비트어레이로 보내. 
+	}
+	
+	@GetMapping("testImg")
+	public void testImg(){
+		Long a = null;
+	      if(a == null) {
+	         a = 0L;
+	      };
 		
 	}
 	
 	@PostMapping("rent-form")
 	public String rentalForm(HttpSession session, Member member, Locker locker){
 		
-		// member = (Member)session.getAttribute("authentication");
-		// locker.setUserCode(member.getUserCode());
-		
-		locker.setUserCode("108");
-		
-		System.out.println(locker);
+		member = (Member)session.getAttribute("authentication");
+		locker.setUserCode(member.getUserCode());
 		
 		rentLockerService.insertLocker(locker);
 		return "redirect:/rentLocker/rent-form";

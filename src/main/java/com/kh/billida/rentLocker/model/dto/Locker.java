@@ -21,5 +21,6 @@ public class Locker {
 	private float latitude;
 	private float longitude;
 	private Long rentedCnt;
+	private byte[] imgToBlob;
 	
 }
