@@ -13,11 +13,13 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<title>report-board</title>
 	<style type="text/css">
+		body {background: #87cefa1f }
 		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
 	</style>
 </head>
 <body>
     <div class="well">
+    	<br><br><br>
         <h3>신고글 목록</h3>
         <hr>
         <table class="table">

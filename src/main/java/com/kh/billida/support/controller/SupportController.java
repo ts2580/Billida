@@ -42,9 +42,7 @@ public class SupportController {
 
 	// 신고 페이지 접속
 	@GetMapping("report-main")
-	public void reportMain() {
-		
-	}
+	public void reportMain() {}
 	
 	// 신고 페이지 작성 후 DB에 전송
 	@PostMapping("report-main")
@@ -120,7 +118,14 @@ public class SupportController {
 	public void reportDetail(Model model, String reportIdx) {
 		Map<String, Object> commandMap = supportService.reportDetailPage(reportIdx);
 		model.addAllAttributes(commandMap);
-		System.out.println("commandMap의 값은 : " + commandMap);
+	}
+	
+	// 신고 상세 페이지에서 '신고처리등록' 클릭시 0->1로 변경
+	@PostMapping("report-addResult")
+	public String reportAddResult () {
+		supportService.reportAddResult();
+		System.out.println("돌아가라 대굴대굴");
+		return "redirect:/support/report-board";
 	}
 	
 	

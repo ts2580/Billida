@@ -11,7 +11,7 @@ import com.kh.billida.support.model.repository.SupportRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service 
 @RequiredArgsConstructor
 public class SupportServiceImpl implements SupportService {
 
@@ -49,6 +49,12 @@ public class SupportServiceImpl implements SupportService {
 	@Override
 	public List<Support> selectPage(Paging paging){
 		return supportRepository.selectPage(paging);
+	}
+
+	@Override
+	public void reportAddResult() {
+		supportRepository.reportAddResult();
+		
 	}
 
 
