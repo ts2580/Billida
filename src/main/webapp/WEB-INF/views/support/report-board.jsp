@@ -35,11 +35,11 @@
         <tbody>
 	        <c:forEach items="${list}" var="reportList">
 	        <tr>
-                <td style="text-align: center;">${reportList.REPORT_IDX}</td>
-                <td style="text-align: center;">${reportList.USER_ID}</td>
-                <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
-                <td style="text-align: center;">${reportList.REPORT_DATE}</td>
-                <td style="text-align: center;">${reportList.REPORT_RESULT}</td>
+                <td style="text-align: center;">${reportList.reportIdx}</td>
+                <td style="text-align: center;">${reportList.userId}</td>
+                <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.reportIdx}'">${reportList.reportTitle}</td>
+                <td style="text-align: center;">${reportList.reportDate}</td>
+                <td style="text-align: center;">${reportList.reportResult}</td>
             </tr>
             </c:forEach>
         </tbody>

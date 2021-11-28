@@ -19,9 +19,6 @@ public interface SupportRepository {
 	+ " values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0')")
 	void reportInsertPost(Map<String, Object> commandMap);
 
-	@Select("select * from(select /*+INDEX_DESC(report_board) */ rownum as rb, r.report_idx, r.user_id, r.report_title, r.report_content, r.report_date, r.report_result"
-			+ " from report_board r where rownum <= #{pageNum} * #{amount} order by report_idx desc )"
-			+ "	where rb > (#{pageNum} -1) * #{amount}")
 	List<Map<String, Object>> getReportListPaging(Map<String, Object> criMap);
 
 	@Select("select * from report_board where REPORT_IDX = #{reportIdx}")
@@ -29,7 +26,6 @@ public interface SupportRepository {
 	
 	@Select("select count(*)report_idx from report_board")
 	int getSupportTotal();
-	
 	
 	@Select("select * from report_board order by report_idx desc")
 	List<Map<String, Object>> getReportList(Map<String, Object> reportListMap);

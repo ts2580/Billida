@@ -6,50 +6,15 @@
     
   <!-- 메인 리포지토리 등록  -->
   <mapper namespace="com.kh.billida.support.model.repository.SupportRepository">
- 
-	<insert id="reportInsertPost">
-		insert into report_board(REPORT_IDX, USER_ID, REPORT_TITLE, REPORT_CONTENT, REPORT_DATE, REPORT_RESULT)
-	 
-	 values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0')
-	 
-	
-	</insert>
-    <select id="getReportList" resultType="com.kh.billida.support.model.dto.Support">
+
+	<select id="getReportListPaging" resultType="com.kh.billida.support.model.dto.Support">
 		<![CDATA[
-	        select * from report_board
+		select *
+		from(select rownum as rb, report_idx, user_id, report_title, report_content, report_date, report_result
+				from (select * from report_board order by report_idx desc) report_board where rownum <= #{pageNum} * #{amount})
+		where rb > (#{pageNum} -1) * #{amount}
    		]]>
 	</select>
-	
-	<select id="getSupportTotal" >
-		<![CDATA[
-			select count(*)report_idx from report_board
-			]]>
-	</select>
-  
-<!--   <select id="getReportListPaging" resultType="com.kh.billida.support.model.dto.Support">
-		<![CDATA[
-	        select * 
-	        from(
-	        	select /*+INDEX_DESC(report_board) */ rownum as rb, r.report_idx, r.user_id, r.report_title, r.report_content, r.report_date, r.report_result
-	          	from report_board r where rownum <= #{pageNum} * #{amount} order by report_idx desc )
-	        where rb > (#{pageNum} -1) * #{amount}
-   		]]>
-	</select> -->
-  
-  <select id="selectPage" resultType="com.kh.billida.support.model.dto.Support">
-  		select * 
-  			from (
-  					select rownum rn, A.*
-  							from(
-  								select *
-  								from report_board
-  								order by report_idx desc
-  								) A
-  							)
-			where rn between #{startPage} and #{endPage}   
-  
-  
-  </select>
-  
+
   
   </mapper>
