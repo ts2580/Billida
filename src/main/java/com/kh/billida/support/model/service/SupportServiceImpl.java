@@ -42,8 +42,8 @@ public class SupportServiceImpl implements SupportService {
 
 
 	@Override
-	public List<Map<String, Object>> getReportListPaging(Map<String, Object> reportListMap) {
-		return supportRepository.getSupportListPaging(reportListMap);
+	public List<Map<String, Object>> getReportListPaging(Map<String, Object> criMap) {
+		return supportRepository.getReportListPaging(criMap);
 	}
 
 	@Override

@@ -66,44 +66,40 @@ public class SupportController {
 	// 신고 게시판 접속
 		@GetMapping("report-board")
 		public String reportBoardList(Model model
-									, Support support
 									, Criteria cri
 									, HttpSession session
 									) {
 
-			//리스트 정보 입력
-			HashMap<String, Object> reportListMap = new HashMap<String, Object>();
-			//가져온 정보 출력
-			List<Map<String, Object>> getReportList = supportService.getReportList(reportListMap);
-			
-			model.addAttribute("getReportList",getReportList);
-			
-			
-			
-			
-			
+			//페이지 정보 입력받을 criMap생성
 			Map<String, Object> criMap = new HashMap<String, Object>();
-			
+			// pageNum에 cri.getPgeNum() 입력
 			criMap.put("pageNum", cri.getPageNum());
+			// amount에 cri.getAmount()입력
 			criMap.put("amount", cri.getAmount());
-			model.addAttribute(criMap);
-			//List<Map<String, Object>> list = supportService.getReportListPaging(criMap);
+			//criMap에 정보 추가
+			
+			//가져온 정보 입력
+			List<Map<String, Object>> getReportListPaging = supportService.getReportListPaging(criMap);
 			
 			//리포트의 게시글 수를 total에 받아옴
 			int total = supportService.getSupportTotal();
 			
+			//페이징 호출 후 cri값, total값 입력
 			Paging paging = new Paging(cri, total);
 			
-			List<Support> selectPage = supportService.selectPage(paging);
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("list", selectPage);
+			//List<Map<String, Object>> selectPage = supportService.getReportListPaging(map);
+			//list에 reportListMap정보 입력
+			map.put("list", getReportListPaging);
+			//paging에 paging정보 입력
 			map.put("paging", paging);
+			//map에 정보 입력
 			model.addAllAttributes(map);
-			//session.setAttribute("reportList", getReportList);
-			logger.info("selectPage : " + selectPage);
-			logger.info("getReportList : " + getReportList);
+			//session.setAttribute("reportList", getReportListPaging);
+			//logger.info("selectPage : " + selectPage);
+			//logger.info("getReportList : " + getReportList);
 			logger.info("criMap : "+ criMap);
-			//logger.info("getReportListPaging : " + getReportListPaging);
+			logger.info("getReportListPaging : " + getReportListPaging);
 			logger.info("paging : " + paging);
 			
 			

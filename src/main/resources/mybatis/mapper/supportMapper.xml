@@ -26,7 +26,7 @@
 			]]>
 	</select>
   
-  <select id="getReportListPaging" resultType="com.kh.billida.support.model.dto.Support">
+<!--   <select id="getReportListPaging" resultType="com.kh.billida.support.model.dto.Support">
 		<![CDATA[
 	        select * 
 	        from(
@@ -34,7 +34,7 @@
 	          	from report_board r where rownum <= #{pageNum} * #{amount} order by report_idx desc )
 	        where rb > (#{pageNum} -1) * #{amount}
    		]]>
-	</select>
+	</select> -->
   
   <select id="selectPage" resultType="com.kh.billida.support.model.dto.Support">
   		select * 

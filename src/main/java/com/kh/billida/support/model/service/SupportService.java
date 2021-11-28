@@ -10,7 +10,7 @@ public interface SupportService {
 
 	void reportInsertPost(Map<String, Object> commandMap);
 
-	List<Map<String, Object>> getReportListPaging(Map<String, Object> reportListMap);
+	List<Map<String, Object>> getReportListPaging(Map<String, Object> criMap);
 
 	Map<String, Object> reportDetailPage(String reportIdx);
 
