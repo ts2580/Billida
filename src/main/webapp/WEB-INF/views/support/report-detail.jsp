@@ -12,12 +12,15 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<title>report-detail</title>
 	<style type="text/css">
+		body {background: #87cefa1f }
 		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
 	</style>
 </head>
 <body>
     <div class="well">
+    	<br><br><br>
         <h3 style="text-align: center;">신고글 상세 페이지</h3>
+        <br><br>
         <br>
         <div class="table table-responsive">
             <table class="table">
@@ -42,7 +45,10 @@
                     <td colspan="3"><c:out value="${support.reportContent}"/></td>
                 </tr>
             </table>
-            <input type="button" value="목록으로 이동" onclick="location.href='report-board'"> 
+            <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="margin-right: 555px;">목록으로이동</button>
+			<form action="/support/report-addResult" method="post" style="display: inline;">
+				<button type="submit" class="btn btn-default">신고처리등록</button>
+			</form>
         </div>
     </div>
 </body>

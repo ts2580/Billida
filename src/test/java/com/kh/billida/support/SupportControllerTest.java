@@ -64,17 +64,15 @@ Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Test
 	public void dummypostTest() throws Exception{
 		
-		for (int i = 0; i < 100; i++) {
-			Support support = new Support();
-			support.setReportIdx(i);
-			support.setUserId("test" + i);
-			support.setReportTitle("testTitle" + i);
-			support.setReportContent("testReportCon" + i);
-			support.setReportDate("2021-11-27");
-			support.setReportResult("0");
-			
-			mockMvc.perform(post("/support/report-main"))
-					.andExpect(status().isOk())
+		for (long i = 0; i < 100; i++) {
+			mockMvc.perform(post("/support/report-main")
+					.param("userId", "test"+ i)
+					.param("reportTitle", "testTitle" + i)
+					.param("reportContent", "testReportCon" + i)
+					.param("reportDate", "2021-11-27")
+					.param("reportResult", "0")
+					)
+					.andExpect(status().is3xxRedirection())
 					.andDo(print());
 			
 		}

@@ -5,12 +5,13 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.repository.SupportRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service 
 @RequiredArgsConstructor
 public class SupportServiceImpl implements SupportService {
 
@@ -21,11 +22,6 @@ public class SupportServiceImpl implements SupportService {
 		supportRepository.reportInsertPost(commandMap);
 		
 	}
-	
-	@Override
-	public List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap) {
-		return supportRepository.getSupportListPaging(commandMap);
-	}
 
 	@Override
 	public Map<String, Object> reportDetailPage(String reportIdx) {
@@ -35,7 +31,7 @@ public class SupportServiceImpl implements SupportService {
 
 	@Override
 	public int getSupportTotal() {
-		return supportRepository.getLockerTotal();
+		return supportRepository.getSupportTotal();
 	}
 
 	@Override
@@ -43,7 +39,23 @@ public class SupportServiceImpl implements SupportService {
 		return supportRepository.getReportList(reportListMap);
 	}
 
-	
+
+
+	@Override
+	public List<Map<String, Object>> getReportListPaging(Map<String, Object> reportListMap) {
+		return supportRepository.getSupportListPaging(reportListMap);
+	}
+
+	@Override
+	public List<Support> selectPage(Paging paging){
+		return supportRepository.selectPage(paging);
+	}
+
+	@Override
+	public void reportAddResult() {
+		supportRepository.reportAddResult();
+		
+	}
 
 
 

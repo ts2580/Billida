@@ -34,6 +34,8 @@ public interface MemberService {
 	Member authenticateUserAndCaptcha(Member member, String getAnswer, String answer);
 	void updateGradeUpById(String id);
 	void updateGradeDownById(String id);
+	Member selectMileageInfo(String id);
+
 	
 
 }

@@ -17,10 +17,12 @@ import lombok.Delegate;
 @Mapper
 public interface MemberRepository {
 
+
 	@Insert("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade)"
 			+ " values(USER_CODE.nextval,#{id},#{password},#{name},#{nick}"
 			+ ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01')")
 	void insertMember(JoinForm form);
+
 
 	@Select("select m.*, e.mileage from member m, mileage e where m.id = #{id}")
 	Member selectMemberById(String id);
@@ -34,6 +36,7 @@ public interface MemberRepository {
 	@Insert("insert into member(user_code,id,nick,email,grade,kakaonum)"
 			+ " values(USER_CODE.nextval,#{id},'?',#{email},'01',#{kakaonum})")
 	void insertkakaoMember(JoinForm form);
+
 
 	@Update("UPDATE member SET name=#{name},nick=#{nick},phone=#{phone},email=#{email},post_code=#{postCode},address=#{address},address_detail=#{addressDetail} where id = #{id}")
 	void updateMember(JoinForm form);
@@ -79,5 +82,9 @@ public interface MemberRepository {
 	
 	@Update("update member set grade='00' where id=#{id}")
 	void updateGradeDownById(String id);
+
+
+   @Select("select m.*, e.mileage from member m, mileage e where m.id = #{id} and m.user_code = e.user_code")
+   Member selectMileageInfo(String id);
 
 }

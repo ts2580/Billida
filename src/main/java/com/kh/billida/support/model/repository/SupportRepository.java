@@ -6,7 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 
 @Mapper
@@ -17,28 +19,25 @@ public interface SupportRepository {
 	+ " values(REPORT_IDX.nextval, #{userId}, #{reportTitle}, #{reportContent}, #{reportDate}, '0')")
 	void reportInsertPost(Map<String, Object> commandMap);
 
-	List<Map<String, Object>> getSupportListPaging(Map<String, Object> commandMap);
+	@Select("select * from(select /*+INDEX_DESC(report_board) */ rownum as rb, r.report_idx, r.user_id, r.report_title, r.report_content, r.report_date, r.report_result"
+			+ " from report_board r where rownum <= #{pageNum} * #{amount} order by report_idx desc )"
+			+ "	where rb > (#{pageNum} -1) * #{amount}")
+	List<Map<String, Object>> getSupportListPaging(Map<String, Object> reportList);
 
 	@Select("select * from report_board where REPORT_IDX = #{reportIdx}")
 	Support reportDetailPage(String reportIdx);
 	
-	@Select("select count(*) from locker")
-	int getLockerTotal();
+	@Select("select count(*)report_idx from report_board")
+	int getSupportTotal();
+	
 	
 	@Select("select * from report_board order by report_idx desc")
 	List<Map<String, Object>> getReportList(Map<String, Object> reportListMap);
-	
-	/*
-	 * @Insert
-	 * ("insert into member(user_code,id,password,name,nick,phone,post_code,address,address_detail,email,grade)"
-	 * + " values(USER_CODE.nextval,#{id},#{password},#{name},#{nick}" +
-	 * ",#{phone},#{postCode},#{address},#{addressDetail},#{email},'01')") void
-	 * insertMember(JoinForm form);
-	 * 
-	 * @Insert("insert into rent_history(HISTORY_INDEX, LOCKER_ID, USER_CODE, RENT_START, RENT_END, RENT_COST) "
-	 * +
-	 * "values(RENT_HISTORY_INDEX.nextval, #{lockerId}, #{userCode}, #{rentStart}, #{rentEnd}, #{rentCost})"
-	 * ) void insertRental(Rental rental); // 대여번호-시퀸스/택배함번호-메인에서 파라미터로 가져오기/유저코드-
-	 * 세션에서 가져오기
-	 */	
+
+	@Select("select * from ( select rownum rn, A.* from( select * from report_board order by report_idx desc) A) where rn between #{startPage} and #{endPage}")
+	List<Support> selectPage(Paging paging);
+
+	@Update("update report_board set REPORT_RESULT = 1 where ")
+	void reportAddResult();
+
 }

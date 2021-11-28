@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.juso{
+	margin-left: 1100px;
+	margin-top: -128px;
+}
+
 body{
 	background-color: white;
 }
@@ -7,7 +12,7 @@ body{
 .billyeojugi{
 	margin-top: 5px;
 	margin-left: 10%;
-	width: 1356px;
+	width: 1500px;
 	height: 600px;
 }
 
@@ -37,15 +42,15 @@ body{
 }
 
 .pic{
-    width: 914px;
+    width: 890px;
     height: 550px;
 }
 
 .outline{
-	margin-left: 31px;
-	margin-top: 63px;
+	margin-left: 101px;
+	margin-top: -52px;
 	border: 1px solid #d9d9d9;
-	height: 340px;
+	height: 450px;
 	width: 400px;
 }
 
@@ -59,23 +64,13 @@ body{
 }
 
 .rent-contents{
-	padding: 30px;
-	padding-top: 10px;
+	padding-top: 2px;
+	padding-left: 47px
 }
 
-.request-form-text{
-	font-size: 20px;
-	font-weight: bold;
-	color: #87cefa;
-	margin-left: 42px;
-}
-
-.rent-contents-text{
-	width: 110px;
-}
-
-.display-none{
-	display: none;
+table{
+	border-collapse: separate;
+ 	border-spacing: 0 10px;
 }
 
 
@@ -83,9 +78,37 @@ input{
 	margin-left: 30px;
 }
 
-table{
-	border-collapse: separate;
- 	border-spacing: 0 10px;
+#map{
+	width:402px; 
+	height:150px; 
+	margin-top:10px; 
+	margin-left: 101px;
+	display: flex;
+}
+
+.request-form-text{
+	font-size: 20px;
+	font-weight: bold;
+	color: #87cefa;
+	margin-left: 50px;
+}
+
+.rent-contents-text{
+	width: 110px;
+}
+
+.rent-contents-juso > input:nth-child(2), input:nth-child(3){
+	margin-top: 10px;
+}
+
+.jusoBtn{
+	color: #ffffff;
+    width: 80px;
+    height: 24px;
+    background: #87cefa;
+    border-radius: 25px;
+    border: 0;
+    cursor:pointer;
 }
 
 
@@ -104,5 +127,6 @@ table{
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
+    cursor:pointer;
  }
  

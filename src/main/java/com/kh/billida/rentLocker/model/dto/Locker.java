@@ -18,8 +18,8 @@ public class Locker {
 	private Date rentableDateEnd;
 	private String rentStatus;
 	private Long profit;
-	private Long latitude;
-	private Long longitude;
+	private float latitude;
+	private float longitude;
 	private Long rentedCnt;
 	
 }
