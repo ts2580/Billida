@@ -211,8 +211,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void updateGradeUpById(String id) {		
+		memberRepository.updateGradeUpById(id);
+	}
+
+	@Override
+	public void updateGradeDownById(String id) {
+		memberRepository.updateGradeDownById(id);
+	}	
+
 	public Member selectMileageInfo(String id) {
 		return memberRepository.selectMileageInfo(id);
+
 	}
 
 }
