@@ -56,7 +56,7 @@ public class MemberController {
 		webDataBinder.addValidators(joinFormValidator);
 	}
 	
-	@RequestMapping(value = "captchaImg.do")
+	@GetMapping("captchaImg.do")
     public void cpatchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
         new CaptchaUtil().captchaImg(request, response);
     }
