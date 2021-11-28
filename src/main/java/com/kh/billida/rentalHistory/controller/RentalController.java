@@ -126,7 +126,7 @@ public class RentalController {
 		
 		rental.setLockerId(lockerId);
 		rental.setUserCode(userCode);
-		rental.setRentCost(rentCost);
+		rental.setRentCost(Long.valueOf(rentCost));
 		
 		if(isRented == 1) {
 			rentalService.downGradeMember(userCode);

@@ -18,7 +18,7 @@ public class LockerForLental {
 	private Date rentableDateStart;
 	private Date rentableDateEnd;
 	private Long rentStatus;
-
+	private byte[] imgToBlob;
 	
 }
 

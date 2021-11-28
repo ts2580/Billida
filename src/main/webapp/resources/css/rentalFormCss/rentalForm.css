@@ -31,7 +31,6 @@ body{
 
 .pic{
 	width: 1000px;
-	clip:rect(0px 100px 100px 0px);
 }
 
 .outline{

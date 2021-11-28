@@ -9,7 +9,7 @@ public class ReviewForRentHistory {
 	
 	private String userCode;
 	private String nick;
-	private int lockerId;
+	private Long lockerId;
 	private float score;
 	private Date createDate;
 	private Date updateDate;

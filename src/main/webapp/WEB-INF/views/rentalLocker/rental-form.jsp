@@ -20,8 +20,8 @@
 		<div class="title">${locker.lockerId}.${locker.lockerTitle}</div>
 		<div class="contents">
 
-			<div class="pic">
-				<img src="${locker.lockerImage}">
+			<div>
+				<img class="pic" src="${locker.lockerImage}" >
 			</div>
 
 			<div class="contents-form-reply">
@@ -65,6 +65,8 @@
 		
 		let auth = "${authentication}";
 		let isRented = "${locker.rentStatus}";
+		let lockerImage = "${locker.lockerImage}";
+		let blob = null;
 		
 		let idArr = new Array();
 		let scoreArr = new Array();
@@ -87,6 +89,15 @@
 			dateArr.push('${reviews.createDate}');
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
+		
+		if(lockerImage == ""){
+			
+			blob = "${locker.imgToBlob}";
+	
+			// const blobUrl = URL.createObjectURL(blob);	
+			// document.querySelector(".pic").src = blobUrl;
+			
+		}
 		
 		let commonFnc = () => {
 			

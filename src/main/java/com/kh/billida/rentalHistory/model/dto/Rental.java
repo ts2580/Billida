@@ -7,12 +7,12 @@ import lombok.Data;
 @Data
 public class Rental {
 	
-	private long historyIndex;
+	private Long historyIndex;
 	private Long lockerId;
 	private String userCode;
 	private Date rentStart;
 	private Date rentEnd;
-	private int rentCost;
+	private Long rentCost;
 	private String rentPic;
 
 }

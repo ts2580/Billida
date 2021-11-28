@@ -48,7 +48,7 @@
 							<tr>
 								<td class="rent-contents-text">택배함 이미지</td>
 								<td><input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/></td>
-								<td><input type="hidden" name="imgToBlob" id="imgToBlob"/></td>
+								<td><input type="hidden" name="imgToBlob" id="imgToBlob" style="display:none"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 사이즈</td>
@@ -123,7 +123,6 @@
 	// Blob까지만 바꿔도 뭐 작동은 잘 하지만 이렇게 byte64문자열로 시작해서 blob값으로 바꾼 이 객체는 퍼포먼스가 그렇게 좋다고는 못함
 	// 따라서 한큐에 다 인코딩하는것보단 byteCharacters를 통해 더 잘게 잘라주면서 작업치면 훨씬 효율적임 
 	
-	
 	function setThumbnail(event) { 
 		let reader = new FileReader(); 
 		
@@ -138,7 +137,8 @@
 			
 			const contentType = 'image/png';
 			const blob = b64toBlob(base64Img[1], contentType);
-			document.getElementById("imgToBlob").value = blob;
+			
+			document.getElementById("imgToBlob").value = base64Img[1];
 			
 			const blobUrl = URL.createObjectURL(blob);	
 			img.src = blobUrl;
@@ -147,10 +147,8 @@
 		// readAsDataURL에 대해 더 알아볼것
 	};
 	
-	
-	
-
-	let auth = "${authentication}";
+	// let auth = "${authentication}";
+	let auth = 12;
 	let btn = document.querySelector(".submitButton");
 	let bNode = btn.getAttributeNode("type");
 	
