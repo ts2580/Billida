@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<title>report-board</title>
@@ -30,13 +31,13 @@
             </tr>
         </thead>
         <tbody>
-	        <c:forEach begin="${num}" end="${num}+9" items="${getReportList}" var="reportList">
+	        <c:forEach items="${list}" var="reportList">
 	        <tr>
-                <td style="text-align: center;">${reportList.REPORT_IDX}</td>
-                <td style="text-align: center;">${reportList.USER_ID}</td>
-                <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.REPORT_IDX}'">${reportList.REPORT_TITLE}</td>
-                <td style="text-align: center;">${reportList.REPORT_DATE}</td>
-                <td style="text-align: center;">${reportList.REPORT_RESULT}</td>
+                <td style="text-align: center;">${reportList.reportIdx}</td>
+                <td style="text-align: center;">${reportList.userId}</td>
+                <td style="text-align: center;" onclick="location.href='report-detail?reportIdx=${reportList.reportIdx}'">${reportList.reportTitle}</td>
+                <td style="text-align: center;">${reportList.reportDate}</td>
+                <td style="text-align: center;">${reportList.reportResult}</td>
             </tr>
             </c:forEach>
         </tbody>

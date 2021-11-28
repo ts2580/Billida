@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 
 @Mapper
@@ -31,5 +32,8 @@ public interface SupportRepository {
 	
 	@Select("select * from report_board order by report_idx desc")
 	List<Map<String, Object>> getReportList(Map<String, Object> reportListMap);
+
+	@Select("select * from ( select rownum rn, A.* from( select * from report_board order by report_idx desc) A) where rn between #{startPage} and #{endPage}")
+	List<Support> selectPage(Paging paging);
 
 }

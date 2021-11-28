@@ -68,6 +68,7 @@ public class SupportController {
 	// 신고 게시판 접속
 		@GetMapping("report-board")
 		public String reportBoardList(Model model
+									, Support support
 									, Criteria cri
 									, HttpSession session
 									) {
@@ -79,6 +80,10 @@ public class SupportController {
 			
 			model.addAttribute("getReportList",getReportList);
 			
+			
+			
+			
+			
 			Map<String, Object> criMap = new HashMap<String, Object>();
 			
 			criMap.put("pageNum", cri.getPageNum());
@@ -88,14 +93,16 @@ public class SupportController {
 			
 			//리포트의 게시글 수를 total에 받아옴
 			int total = supportService.getSupportTotal();
+			
 			Paging paging = new Paging(cri, total);
 			
+			List<Support> selectPage = supportService.selectPage(paging);
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("list", getReportList);
+			map.put("list", selectPage);
 			map.put("paging", paging);
 			model.addAllAttributes(map);
 			//session.setAttribute("reportList", getReportList);
-			logger.info("reportListMap : " + reportListMap);
+			logger.info("selectPage : " + selectPage);
 			logger.info("getReportList : " + getReportList);
 			logger.info("criMap : "+ criMap);
 			//logger.info("getReportListPaging : " + getReportListPaging);

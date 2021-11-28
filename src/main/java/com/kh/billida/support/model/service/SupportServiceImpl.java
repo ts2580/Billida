@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.repository.SupportRepository;
 
@@ -45,7 +46,10 @@ public class SupportServiceImpl implements SupportService {
 		return supportRepository.getSupportListPaging(reportListMap);
 	}
 
-	
+	@Override
+	public List<Support> selectPage(Paging paging){
+		return supportRepository.selectPage(paging);
+	}
 
 
 

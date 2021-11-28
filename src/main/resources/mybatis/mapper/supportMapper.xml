@@ -36,5 +36,20 @@
    		]]>
 	</select>
   
+  <select id="selectPage" resultType="com.kh.billida.support.model.dto.Support">
+  		select * 
+  			from (
+  					select rownum rn, A.*
+  							from(
+  								select *
+  								from report_board
+  								order by report_idx desc
+  								) A
+  							)
+			where rn between #{startPage} and #{endPage}   
+  
+  
+  </select>
+  
   
   </mapper>
