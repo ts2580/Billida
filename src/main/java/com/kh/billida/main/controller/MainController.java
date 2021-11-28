@@ -22,6 +22,8 @@ import com.kh.billida.common.paging.Paging;
 import com.kh.billida.main.model.dto.Main;
 import com.kh.billida.main.model.service.MainService;
 import com.kh.billida.member.model.dto.Member;
+import com.kh.billida.mileage.model.dto.Mileage;
+import com.kh.billida.mileage.model.service.MileageService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +35,7 @@ public class MainController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private final MainService mainService;
+	private final MileageService mileageService;
 	
 	@GetMapping("/") //처음 페이지 들어갔을 때 동작하는 메서드
 	public String main(Model model, HttpSession session, Member member) {
