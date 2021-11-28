@@ -17,10 +17,10 @@ import com.kh.billida.mileage.model.service.MileageService;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
 public class AuthInterceptor implements HandlerInterceptor {
 
-	private final MileageService mileageService;
+	@Autowired
+	private MileageService mileageService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest httpRequest, HttpServletResponse httpResponse, Object handler) {
