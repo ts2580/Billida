@@ -21,12 +21,12 @@
 	<task:annotation-driven/>
 	<!--중복로그인  -->
 	
-  	<interceptors>
+<!--   	<interceptors>
 		<interceptor>
-		<mapping path="/**" />
+		<mapping path="/*" />
 		<beans:bean class="com.kh.billida.member.common.sessionManager.LoginInterceptor" />
 		</interceptor>
-	</interceptors> 
+	</interceptors>  -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

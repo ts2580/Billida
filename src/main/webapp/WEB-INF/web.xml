@@ -13,9 +13,9 @@
 	</listener>
 	
 	<!-- 중복로그인 -->
-	<listener>
+<!-- 	<listener>
 		<listener-class>com.kh.billida.member.common.sessionManager.SessionConfig</listener-class>
-	</listener>
+	</listener> -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
