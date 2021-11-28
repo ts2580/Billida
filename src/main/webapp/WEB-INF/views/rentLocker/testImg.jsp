@@ -45,6 +45,9 @@
 		  return blob;
 	}
 	
+	let aaa = null;
+	let bbb = null;
+	
 	function setThumbnail(event) { 
 		let reader = new FileReader(); 
 		
@@ -61,9 +64,9 @@
 			const blob = b64toBlob(base64Img[1], contentType);
 			const blobUrl = URL.createObjectURL(blob);	
 			
-			document.querySelector('input[name="imgToClob"]').value = base64Img[1];
-			
-			document.querySelector('.rent-contents').getAttributeNode("action") = "/rentLocker/testImg?img64="+base64Img[1];
+			aaa = base64Img[1];
+			bbb = base64Img;
+	
 			
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 

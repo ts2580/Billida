@@ -99,7 +99,8 @@ public class RentalController {
 		if(today.getDayOfYear() < locker.getRentableDateStart().toLocalDate().getDayOfYear()) {
 			today = locker.getRentableDateStart().toLocalDate();
 		};
-
+		
+		
 		model.addAttribute("today", today);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);

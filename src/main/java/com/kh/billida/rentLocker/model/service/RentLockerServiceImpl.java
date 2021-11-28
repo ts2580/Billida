@@ -17,6 +17,17 @@ public class RentLockerServiceImpl implements RentLockerService{
 		rentLockerRepository.insertLocker(locker);
 	}
 	
+	public Long selectInsertedLocker() {
+		
+		return rentLockerRepository.selectInsertedLocker();
+	}
+	
+	public void insertClob(Locker locker) {
+		rentLockerRepository.insertClob(locker);
+	}
+
+	
+	
 
 	
 	

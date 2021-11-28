@@ -48,7 +48,7 @@
 							<tr>
 								<td class="rent-contents-text">택배함 이미지</td>
 								<td><input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/></td>
-								<td><input type="hidden" name="imgToBlob" id="imgToBlob" style="display:none"/></td>
+								<td><input type="hidden" name="imgToClob" id="imgToClob" style="display:none"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 사이즈</td>
@@ -138,7 +138,7 @@
 			const contentType = 'image/png';
 			const blob = b64toBlob(base64Img[1], contentType);
 			
-			document.getElementById("imgToBlob").value = base64Img[1];
+			document.getElementById("imgToClob").value = base64Img[1];
 			
 			const blobUrl = URL.createObjectURL(blob);	
 			img.src = blobUrl;
@@ -147,8 +147,7 @@
 		// readAsDataURL에 대해 더 알아볼것
 	};
 	
-	// let auth = "${authentication}";
-	let auth = 12;
+	let auth = "${authentication}";
 	let btn = document.querySelector(".submitButton");
 	let bNode = btn.getAttributeNode("type");
 	

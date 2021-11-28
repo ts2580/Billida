@@ -55,11 +55,15 @@ public class RentLockerController {
 	@PostMapping("rent-form")
 	public String rentalForm(HttpSession session, Member member, Locker locker){
 		
-		// member = (Member)session.getAttribute("authentication");
-		// locker.setUserCode(member.getUserCode());
-		
-		locker.setUserCode("108");
+		member = (Member)session.getAttribute("authentication");
+		locker.setUserCode(member.getUserCode());
 		rentLockerService.insertLocker(locker);
+		
+		Long insertedLockerId = rentLockerService.selectInsertedLocker();
+		locker.setImgToClob(locker.getImgToClob());
+		locker.setLockerId(insertedLockerId);
+		
+		rentLockerService.insertClob(locker);
 		return "redirect:/rentLocker/rent-form";
 	}	
 	

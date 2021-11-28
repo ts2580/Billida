@@ -11,5 +11,9 @@ public interface RentLockerService {
 
 	void insertLocker(Locker locker);
 
+	void insertClob(Locker locker);
+
+	Long selectInsertedLocker();
+
 }
 
