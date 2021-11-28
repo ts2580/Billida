@@ -143,7 +143,7 @@ input[type="number"]::-webkit-inner-spin-button {
 				<a type="button" class="cost4 cost" onclick="costInput('cost4')">100,000원</a>
 			</div>
 			
-			<div class="mileage_inputDiv"><input type="number" id="mileage" name="mileage" value=""/> 원</div>
+			<div class="mileage_inputDiv"><input type="number" id="mileage" name="mileage" value="" readonly="readonly"/> 원</div>
 			<div class="recharge"><a type="button" class="mileage_btn" onclick="payment()">충전하기</a></div>
 		</div>
 		
