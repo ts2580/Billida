@@ -18,9 +18,14 @@
 			<div class="rent_area">
 				<div class="rentImg"><img class="rentImgs" src="${rents.lockerImage}"></div>
 				<div class="rent_info">
-					<div class="rent_name"> - 사물함명 : ${rents.lockerTitle}</div>
-					<div class="rent_start"> - 대여날짜 : ${rents.rentStart}</div>
-					<div class="rent_end">- 반납날짜 : ${rents.rentEnd}</div>
+					<div class="rent_name"><a class="afont"> - 사물함명 :&nbsp;</a>${rents.lockerTitle}</div>
+					<div class="rent_location"><a class="afont"> - 주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : </a>${rents.lockerContent}</div>
+					<div class="rent_password"><a class="afont"> - 비밀번호 :&nbsp;</a>${rents.lockerPassword}</div>
+				</div>
+				<div class="rent_info2">
+					<div class="rent_start"><a class="afont"> - 대여날짜 : </a>${rents.rentStart}</div>
+					<div class="rent_end"><a class="afont"> - 반납날짜 : </a>${rents.rentEnd}</div>
+					<div class="rent_cost"><a class="afont"> - 대여금액 : </a>${rents.rentCost}원</div>
 				</div>
 				<c:if test="${rents.reviewYn == 'Y'}">
 					<div class="reviewButton">

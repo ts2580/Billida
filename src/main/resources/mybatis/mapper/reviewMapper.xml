@@ -24,7 +24,7 @@
 		<![CDATA[
 	        select * 
 	        from(
-	        	select /*+INDEX_DESC(rent_history) */ rownum as rn, r.rent_cost, r.history_index, r.rent_start, r.rent_end, l.locker_title, l.locker_image, r.review_yn, l.user_code
+	        	select rownum as rn, r.rent_cost, r.history_index, r.rent_start, r.rent_end, r.review_yn, l.locker_title, l.locker_content, l.locker_image, l.user_code, l.locker_password
 	          	from rent_history r, locker l where rownum <= #{pageNum} * #{amount} and r.user_code = #{userCode} 
 	          										and r.locker_id = l.locker_id)
 	        where rn > (#{pageNum} -1) * #{amount}
@@ -53,9 +53,9 @@
   	</select>
   	
   	<update id="modifyReview">
-  	update review
-	set score = #{score}, content = #{content}, update_date = SYSDATE
-	where review_num = #{reviewNum}
+	  	update review
+		set score = #{score}, content = #{content}, update_date = SYSDATE
+		where review_num = #{reviewNum}
   	</update>
   
   	<select id="getMyLockerListPaging" resultType="map">

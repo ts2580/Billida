@@ -39,12 +39,12 @@
 	border-radius: 5px;
 }
 
-.rent_info{
+.rent_info, .locker1{
 	display: flex;
 	flex-direction: column;
 	font-size: 12px;
 	padding-left: 30px;
-	width: 60%;
+	width: 40%;
 }
 
 .rent_name {
@@ -55,6 +55,25 @@
     padding-bottom: 7px;
 }
 
+.rent_location{
+	position: relative;
+    padding-bottom: 7px;
+}
+
+.rent_password{
+	display: flex;
+    justify-content: flex-start;
+    font-size: 100%;
+}
+
+.rent_info2, .locker2{
+	display: flex;
+	flex-direction: column;
+	font-size: 12px;
+	padding-left: 10px;
+	width: 30%;
+}
+
 .rent_start {
     position: relative;
     padding-bottom: 7px;
@@ -62,31 +81,13 @@
 
 .rent_end {
     position: relative;
-}
-
-.locker1{
-	display: flex;
-	flex-direction: column;
-	font-size: 12px;
-	padding-left: 30px;
-	width: 33%;
-}
-
-.locker2{
-	display: flex;
-	flex-direction: column;
-	font-size: 12px;
-	padding-left: 15px;
-	width: 33%;
-}
-
-.rent_password{
-	display: flex;
-    justify-content: flex-start;
-    font-size: 100%;
-    padding-top: 3px;
     padding-bottom: 7px;
 }
+
+.rent_cost, .rent_profit{
+	 position: relative;
+}
+
 
 .info1{
 	position: relative;
@@ -99,7 +100,7 @@
 
 .reviewButton{
 	display: flex;
-	width: 20%;
+	width: 10%;
 	justify-content: flex-end;
 }
 
@@ -158,4 +159,8 @@ hr{
 	margin-top: 40px;
 	text-align: center;
 	line-height: 35px;
+}
+
+.afont{
+	font-weight: bolder;
 }
