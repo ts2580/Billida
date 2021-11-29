@@ -37,15 +37,15 @@ public class SupportController {
 	private final SupportService supportService;
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	// ¹®ÀÇ&½Å°í ÆäÀÌÁö Á¢¼Ó
+	// ë¬¸ì˜&ì‹ ê³  í˜ì´ì§€ ì ‘ì†
 	@GetMapping("support-index")
 	public void supportIndex() {}
 
-	// ½Å°í ÆäÀÌÁö Á¢¼Ó
+	// ì‹ ê³  í˜ì´ì§€ ì ‘ì†
 	@GetMapping("report-main")
 	public void reportMain() {}
 	
-	// ½Å°í ÆäÀÌÁö ÀÛ¼º ÈÄ DB¿¡ Àü¼Û
+	// ì‹ ê³  í˜ì´ì§€ ì‘ì„± í›„ DBì— ì „ì†¡
 	@PostMapping("report-main")
 	public String reportMainPost(Model model 
 								,@ModelAttribute Support support
@@ -64,37 +64,37 @@ public class SupportController {
 		return "redirect:/support/support-index";
 	}
 	
-	// ½Å°í °Ô½ÃÆÇ Á¢¼Ó
+	// ì‹ ê³  ê²Œì‹œíŒ ì ‘ì†
 		@GetMapping("report-board")
 		public String reportBoardList(Model model
 									, Criteria cri
 									, HttpSession session
 									) {
 
-			//ÆäÀÌÁö Á¤º¸ ÀÔ·Â¹ŞÀ» criMap»ı¼º
+			//í˜ì´ì§€ ì •ë³´ ì…ë ¥ë°›ì„ criMapìƒì„±
 			Map<String, Object> criMap = new HashMap<String, Object>();
-			// pageNum¿¡ cri.getPgeNum() ÀÔ·Â
+			// pageNumì— cri.getPgeNum() ì…ë ¥
 			criMap.put("pageNum", cri.getPageNum());
-			// amount¿¡ cri.getAmount()ÀÔ·Â
+			// amountì— cri.getAmount()ì…ë ¥
 			criMap.put("amount", cri.getAmount());
-			//criMap¿¡ Á¤º¸ Ãß°¡
+			//criMapì— ì •ë³´ ì¶”ê°€
 			
-			//°¡Á®¿Â Á¤º¸ ÀÔ·Â
+			//ê°€ì ¸ì˜¨ ì •ë³´ ì…ë ¥
 			List<Map<String, Object>> getReportListPaging = supportService.getReportListPaging(criMap);
 			
-			//¸®Æ÷Æ®ÀÇ °Ô½Ã±Û ¼ö¸¦ total¿¡ ¹Ş¾Æ¿È
+			//ë¦¬í¬íŠ¸ì˜ ê²Œì‹œê¸€ ìˆ˜ë¥¼ totalì— ë°›ì•„ì˜´
 			int total = supportService.getSupportTotal();
 			
-			//ÆäÀÌÂ¡ È£Ãâ ÈÄ cri°ª, total°ª ÀÔ·Â
+			//í˜ì´ì§• í˜¸ì¶œ í›„ criê°’, totalê°’ ì…ë ¥
 			Paging paging = new Paging(cri, total);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			//List<Map<String, Object>> selectPage = supportService.getReportListPaging(map);
-			//list¿¡ reportListMapÁ¤º¸ ÀÔ·Â
+			//listì— reportListMapì •ë³´ ì…ë ¥
 			map.put("list", getReportListPaging);
-			//paging¿¡ pagingÁ¤º¸ ÀÔ·Â
+			//pagingì— pagingì •ë³´ ì…ë ¥
 			map.put("paging", paging);
-			//map¿¡ Á¤º¸ ÀÔ·Â
+			//mapì— ì •ë³´ ì…ë ¥
 			model.addAllAttributes(map);
 
 			logger.info("criMap : "+ criMap);
@@ -106,18 +106,18 @@ public class SupportController {
 		}
 
 		
-	// ½Å°í »ó¼¼ ÆäÀÌÁö Á¢¼Ó
+	// ì‹ ê³  ìƒì„¸ í˜ì´ì§€ ì ‘ì†
 	@GetMapping("report-detail")
 	public void reportDetail(Model model, String reportIdx) {
 		Map<String, Object> commandMap = supportService.reportDetailPage(reportIdx);
 		model.addAllAttributes(commandMap);
 	}
 	
-	// ½Å°í »ó¼¼ ÆäÀÌÁö¿¡¼­ '½Å°íÃ³¸®µî·Ï' Å¬¸¯½Ã 0->1·Î º¯°æ
+	// ì‹ ê³  ìƒì„¸ í˜ì´ì§€ì—ì„œ 'ì‹ ê³ ì²˜ë¦¬ë“±ë¡' í´ë¦­ì‹œ 0->1ë¡œ ë³€ê²½
 	@PostMapping("report-addResult")
 	public String reportAddResult () {
 		supportService.reportAddResult();
-		System.out.println("µ¹¾Æ°¡¶ó ´ë±¼´ë±¼");
+		System.out.println("ëŒì•„ê°€ë¼ ëŒ€êµ´ëŒ€êµ´");
 		return "redirect:/support/report-board";
 	}
 	
@@ -139,7 +139,7 @@ public class SupportController {
 //		
 //		
 //		List<Map<String, Object>> list = supportService.getSupportListPaging(commandMap);
-//		//À¯ÀúÄÚµå¿¡ ÇØ´çÇÏ´Â »ç¹°ÇÔ´ë¿©¸®½ºÆ® °¹¼ö ¹Ş¾Æ¿À±â
+//		//ìœ ì €ì½”ë“œì— í•´ë‹¹í•˜ëŠ” ì‚¬ë¬¼í•¨ëŒ€ì—¬ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ ë°›ì•„ì˜¤ê¸°
 //		int total = supportService.getSupportListPaging(commandMap);
 //		Paging paging = new Paging(cri, total);
 //		
@@ -153,7 +153,7 @@ public class SupportController {
 //			}
 	
 	
-	// ½Å°í ³»¿ë ÀÔ·Â ÈÄ Àü¼Û
+	// ì‹ ê³  ë‚´ìš© ì…ë ¥ í›„ ì „ì†¡
 	//@PostMapping("report-main")
 	//public String reportInsert(Support support) {
 	//	supportService.reportInsert(support);
