@@ -46,6 +46,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			case "mileage":
 				mileageAuthorize(httpRequest, httpResponse, uriArr);
 				break;
+			case "support":
+				supportAuthorize(httpRequest, httpResponse, uriArr);
+				break;	
 			default:
 				break;
 			}
@@ -53,6 +56,37 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 		// 다음 인터셉터 또는 컨트롤러에게 요청을 전달
 		return true;
+	}
+
+
+	private void supportAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		switch (uriArr[2]) {
+		case "report-board":
+			if(member == null || member.getGrade().equals("01") || member.getGrade().equals("00")) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "report-detail":
+			if(member == null || member.getGrade().equals("01") || member.getGrade().equals("00")) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "report-main":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		case "support-index":
+			if(member == null) {
+				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+			}
+			break;
+		default:
+	         break;
+		}
 	}
 
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
@@ -36,15 +37,15 @@ public class SupportController {
 	private final SupportService supportService;
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	// ë¬¸ì˜&ì‹ ê³  í˜ì´ì§€ ì ‘ì†
+	// ¹®ÀÇ&½Å°í ÆäÀÌÁö Á¢¼Ó
 	@GetMapping("support-index")
 	public void supportIndex() {}
 
-	// ì‹ ê³  í˜ì´ì§€ ì ‘ì†
+	// ½Å°í ÆäÀÌÁö Á¢¼Ó
 	@GetMapping("report-main")
 	public void reportMain() {}
 	
-	// ì‹ ê³  í˜ì´ì§€ ì‘ì„± í›„ DBì— ì „ì†¡
+	// ½Å°í ÆäÀÌÁö ÀÛ¼º ÈÄ DB¿¡ Àü¼Û
 	@PostMapping("report-main")
 	public String reportMainPost(Model model 
 								,@ModelAttribute Support support
@@ -63,64 +64,60 @@ public class SupportController {
 		return "redirect:/support/support-index";
 	}
 	
-	// ì‹ ê³  ê²Œì‹œíŒ ì ‘ì†
+	// ½Å°í °Ô½ÃÆÇ Á¢¼Ó
 		@GetMapping("report-board")
 		public String reportBoardList(Model model
 									, Criteria cri
 									, HttpSession session
 									) {
 
-			//í˜ì´ì§€ ì •ë³´ ì…ë ¥ë°›ì„ criMapìƒì„±
+			//ÆäÀÌÁö Á¤º¸ ÀÔ·Â¹ŞÀ» criMap»ı¼º
 			Map<String, Object> criMap = new HashMap<String, Object>();
-			// pageNumì— cri.getPgeNum() ì…ë ¥
+			// pageNum¿¡ cri.getPgeNum() ÀÔ·Â
 			criMap.put("pageNum", cri.getPageNum());
-			// amountì— cri.getAmount()ì…ë ¥
+			// amount¿¡ cri.getAmount()ÀÔ·Â
 			criMap.put("amount", cri.getAmount());
-			//criMapì— ì •ë³´ ì¶”ê°€
+			//criMap¿¡ Á¤º¸ Ãß°¡
 			
-			//ê°€ì ¸ì˜¨ ì •ë³´ ì…ë ¥
+			//°¡Á®¿Â Á¤º¸ ÀÔ·Â
 			List<Map<String, Object>> getReportListPaging = supportService.getReportListPaging(criMap);
 			
-			//ë¦¬í¬íŠ¸ì˜ ê²Œì‹œê¸€ ìˆ˜ë¥¼ totalì— ë°›ì•„ì˜´
+			//¸®Æ÷Æ®ÀÇ °Ô½Ã±Û ¼ö¸¦ total¿¡ ¹Ş¾Æ¿È
 			int total = supportService.getSupportTotal();
 			
-			//í˜ì´ì§• í˜¸ì¶œ í›„ criê°’, totalê°’ ì…ë ¥
+			//ÆäÀÌÂ¡ È£Ãâ ÈÄ cri°ª, total°ª ÀÔ·Â
 			Paging paging = new Paging(cri, total);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			//List<Map<String, Object>> selectPage = supportService.getReportListPaging(map);
-			//listì— reportListMapì •ë³´ ì…ë ¥
+			//list¿¡ reportListMapÁ¤º¸ ÀÔ·Â
 			map.put("list", getReportListPaging);
-			//pagingì— pagingì •ë³´ ì…ë ¥
+			//paging¿¡ pagingÁ¤º¸ ÀÔ·Â
 			map.put("paging", paging);
-			//mapì— ì •ë³´ ì…ë ¥
+			//map¿¡ Á¤º¸ ÀÔ·Â
 			model.addAllAttributes(map);
-			//session.setAttribute("reportList", getReportListPaging);
-			//logger.info("selectPage : " + selectPage);
-			//logger.info("getReportList : " + getReportList);
+
 			logger.info("criMap : "+ criMap);
 			logger.info("getReportListPaging : " + getReportListPaging);
 			logger.info("paging : " + paging);
 			
-			
 			return "support/report-board";
 			
-			
-			
 		}
+
 		
-	// ì‹ ê³  ìƒì„¸ í˜ì´ì§€ ì ‘ì†
+	// ½Å°í »ó¼¼ ÆäÀÌÁö Á¢¼Ó
 	@GetMapping("report-detail")
 	public void reportDetail(Model model, String reportIdx) {
 		Map<String, Object> commandMap = supportService.reportDetailPage(reportIdx);
 		model.addAllAttributes(commandMap);
 	}
 	
-	// ì‹ ê³  ìƒì„¸ í˜ì´ì§€ì—ì„œ 'ì‹ ê³ ì²˜ë¦¬ë“±ë¡' í´ë¦­ì‹œ 0->1ë¡œ ë³€ê²½
+	// ½Å°í »ó¼¼ ÆäÀÌÁö¿¡¼­ '½Å°íÃ³¸®µî·Ï' Å¬¸¯½Ã 0->1·Î º¯°æ
 	@PostMapping("report-addResult")
 	public String reportAddResult () {
 		supportService.reportAddResult();
-		System.out.println("ëŒì•„ê°€ë¼ ëŒ€êµ´ëŒ€êµ´");
+		System.out.println("µ¹¾Æ°¡¶ó ´ë±¼´ë±¼");
 		return "redirect:/support/report-board";
 	}
 	
@@ -142,7 +139,7 @@ public class SupportController {
 //		
 //		
 //		List<Map<String, Object>> list = supportService.getSupportListPaging(commandMap);
-//		//ìœ ì €ì½”ë“œì— í•´ë‹¹í•˜ëŠ” ì‚¬ë¬¼í•¨ëŒ€ì—¬ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ ë°›ì•„ì˜¤ê¸°
+//		//À¯ÀúÄÚµå¿¡ ÇØ´çÇÏ´Â »ç¹°ÇÔ´ë¿©¸®½ºÆ® °¹¼ö ¹Ş¾Æ¿À±â
 //		int total = supportService.getSupportListPaging(commandMap);
 //		Paging paging = new Paging(cri, total);
 //		
@@ -156,7 +153,7 @@ public class SupportController {
 //			}
 	
 	
-	// ì‹ ê³  ë‚´ìš© ì…ë ¥ í›„ ì „ì†¡
+	// ½Å°í ³»¿ë ÀÔ·Â ÈÄ Àü¼Û
 	//@PostMapping("report-main")
 	//public String reportInsert(Support support) {
 	//	supportService.reportInsert(support);

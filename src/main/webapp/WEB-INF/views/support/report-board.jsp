@@ -45,6 +45,7 @@
         </tbody>
         </table>
         <br>
+        <br>
         <div class="pagination" style="text-align: center;">
        	<div class="pageInfo_area">
 				<ul id="pageInfo" class="pageInfo">
