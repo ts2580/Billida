@@ -8,14 +8,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-
 @WebListener
 public class SessionConfig implements HttpSessionListener {
 
@@ -38,7 +30,8 @@ public class SessionConfig implements HttpSessionListener {
 		System.out.println("remove userId : " + userId);
 		if(userId != null && userId.length() > 0){
 			sessions.get(userId).invalidate();
-			sessions.remove(userId);    		
+			sessions.remove(userId);
+			
 		}
 	}
 	

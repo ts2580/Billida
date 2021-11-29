@@ -131,18 +131,6 @@ public class MemberController {
 		// 카카오 로그인시 신규회원용
 		//model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
 	}
-	@PostMapping("checkForDuplicateSessions")
-	public String login(HttpServletRequest request, HttpSession session, RedirectAttributes rttr) throws Exception {
-		String id = request.getParameter("id");
-		if(id != null){
-			String userId = SessionConfig.getSessionidCheck("login_id", id);
-			System.out.println(id + " : " +userId);
-			session.setMaxInactiveInterval(60 * 60);
-			session.setAttribute("login_id", id);
-			return "redirect:/";//로그인되었을 경우 가야하는 경로
-		}
-		return "redirect:/member/login";//아니라면 가야하는 경우
-	}
 	@PostMapping("login")
 	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr, HttpServletRequest request) {
 		String getAnswer = (String) request.getSession().getAttribute("captcha");
@@ -183,8 +171,17 @@ public class MemberController {
 		member = memberService.selectMemberById(form.getId());
 		System.out.println("컨트롤러처음" + member);
 		if (member != null && member.getName() != null) {
+			//중복로그인 방지용
 			Member certifiedUser = memberService.authenticateUser(member);
+			String id = certifiedUser.getId();
+			String userId = SessionConfig.getSessionidCheck("login_id", id);
+			System.out.println(id + " : " +userId);
+			session.setMaxInactiveInterval(60 * 60);
+			session.setAttribute("login_id", id);
+			//여기까지
+			certifiedUser = memberService.authenticateUser(member);
 			session.setAttribute("authentication", certifiedUser);
+			session.setAttribute("check", userId);
 			return "redirect:/";
 		}
 

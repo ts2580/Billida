@@ -49,6 +49,11 @@
       <!---//End-click-drop-down-menu----->
    </head>
    <body>
+   <c:if test="${not empty check}">
+     <script type="text/javascript">
+     alert("중복 로그인되었습니다.\n사용중이신 계정의 연결을 끊습니다.");
+     </script>
+    </c:if>
       <!---start-wrap---->
          <!---start-header---->
          <div class="header">
