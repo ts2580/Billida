@@ -211,12 +211,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updateGradeUpById(String id) {		
+	public void updateGradeUpById(String id) {	
+		System.out.println("등급올라가는중");
 		memberRepository.updateGradeUpById(id);
 	}
 
 	@Override
 	public void updateGradeDownById(String id) {
+		System.out.println("등급떨어지는중");
 		memberRepository.updateGradeDownById(id);
 	}	
 

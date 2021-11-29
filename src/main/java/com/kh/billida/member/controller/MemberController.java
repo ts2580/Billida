@@ -1,5 +1,6 @@
 package com.kh.billida.member.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -456,31 +457,35 @@ public class MemberController {
 	}
 	
 	@PostMapping("searchMember")
-	public String searchMember(@ModelAttribute Member member, Model model) {
+	public String searchMember(@ModelAttribute Member member,HttpSession session, Model model) {
 		
-		memberService.selectMemberById(member.getId());
-		return "member/admin";
-	}
-	
-	@PostMapping("gradeUp")
-	@ResponseBody
-	public String memberGradeUp(@ModelAttribute Member member, Model model) {
-		
-		if(member.getGrade() == "00") {
-		memberService.updateGradeUpById(member.getId());
+		Member findMember = memberService.selectMemberById(member.getId());
+		if(findMember != null) {
+			List<Member> memberList = new ArrayList<Member>();
+			memberList.add(findMember);
+			session.setAttribute("memberList", memberList);
+			session.setAttribute("size", memberList.size());
+			return "member/admin";
 		}
 		return "member/admin";
 	}
 	
-	@PostMapping("gradeDown")
-	@ResponseBody
-	public String memberGradeDown(@ModelAttribute Member member, Model model) {
+	@PostMapping("gradeUp")	
+	public String memberGradeUp(@ModelAttribute Member member, Model model) {
+		
+		if(member.getGrade().equals("00")) {
+		memberService.updateGradeUpById(member.getId());
+		}
+		return "redirect:/member/admin";
+	}
+	
+	@PostMapping("gradeDown")	
+	public String memberGradeDown(@ModelAttribute Member member, Model model, RedirectAttributes redirectAttr) {
 		System.out.println(member.toString());
-		if(member.getGrade() == "01") {
-			memberService.updateGradeUpById(member.getId());
-			}
-		memberService.updateGradeDownById(member.getId());
-		return "member/admin";
+		if(member.getGrade().equals("01")) {			
+			memberService.updateGradeDownById(member.getId());
+			}		
+		return "redirect:/member/admin";
 	}
 
 }

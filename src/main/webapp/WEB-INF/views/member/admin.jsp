@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,9 @@ table.memberList td {
 <body>
 	<form:form modelAttribute="member" class ="validation-form" action="/member/searchMember"
          method="post" id="searchMember">
-        <label> 아이디 검색 : </label>
+        <label> 아이디 : </label>
 		<input  type="text" class="form-control" name="id" id="id" >
+		<button> 검색 </button>
 	</form:form>
  <table border="1" class="memberList" style ="text-align : center">
  	<th> 아이디</th>
@@ -71,9 +73,20 @@ table.memberList td {
  		</c:choose>
  		</td>
  		<td>
- 			<a onclick= "gradeUp(${memberList.id},${memberList.grade});"><img src="/resources/images/approved.png"></a>
- 			<a id = 'gradeDown' href="#" onclick= "gradeDown('${memberList.id}','${memberList.grade}');">gradeDown<img src="/resources/images/rejected.png"></a>
- 			
+ 			<form:form modelAttribute="member" action="/member/gradeUp" method="post" id="gradeUp">
+         		<input style="display: none" name="id" id="id" value="${memberList.id}">
+         		<input style="display: none" name="grade" id="grade" value="${memberList.grade}">
+         		<button>
+         		<img src="/resources/images/approved.png">
+         		</button>
+         	</form:form>
+ 			<form:form modelAttribute="member" action="/member/gradeDown" method="post" id="gradeDown">
+         		<input style="display: none" name="id" id="id" value="${memberList.id}">
+         		<input style="display: none" name="grade" id="grade" value="${memberList.grade}">
+         		<button>
+         		<img src="/resources/images/rejected.png">
+         		</button>
+         	</form:form>
  		</td>
  	</tr>
  	</c:forEach>
@@ -82,23 +95,7 @@ table.memberList td {
  <script type="text/javascript">
 
 	
- 	function gradeDown(id,grade){
- 		var newForm = document.createElement('form');
- 		newForm.name = 'gradeDown';
- 		newForm.method = 'post';
- 		newForm.action = 'gradeDown';
- 		
- 		
- 		var input = document.createElement('input');
- 		input.setAttribute("class", 'gradeDown');
- 		input.setAttribute("id", id);
- 		input.setAttribute("grade", grade);
- 		
- 		newForm.appendChild(input);
- 		document.body.appendChild(newForm);
- 		console.log(newForm);
- 		newForm.submit();
- 	}
+ 
  	
  	
  </script>
