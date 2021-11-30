@@ -71,7 +71,8 @@
 		const scoreArr = new Array();
 		const dateArr = new Array();
 		const contentsArr = new Array();
-		const dateContents = null;
+		
+		let dateContents = null;
 		
 		let rentStart = document.querySelector('input[name="rentStart"]');
 		let rentEnd = document.querySelector('input[name="rentEnd"]');

@@ -76,6 +76,8 @@ public class RentalController {
 		
 		// 개발자도구에서 노드 수정시 값 제출되는것 수정(처리) 
 		
+		// 대여 종료일 지난 보관함 처리 
+		
 		// 임시로 때운 auth 관련 제한 제대로 구현하기
 		
 		// view단에 있는 스크립트들 다 js파일로 보내기
@@ -86,9 +88,9 @@ public class RentalController {
 		
 		// 위치 버튼 누르면 카카오맵으로 위치 띄워주기
 		
-		// 리뷰에 페이징 적용(아 이건 못할듯)
+		// 리뷰에 페이징 적용
 		
-		// 헤더로 접근하는 빌리기 페이지 만들기. 지역별 정렬(이것도 못할듯)
+		// 헤더로 접근하는 빌리기 페이지 만들기. 지역별 정렬
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);

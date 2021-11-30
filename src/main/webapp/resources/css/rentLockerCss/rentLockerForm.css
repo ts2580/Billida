@@ -41,7 +41,7 @@ body{
 	padding-top: 5px;
 }
 
-.pic{
+.pic, .base64Img{
     width: 890px;
     height: 550px;
 }
@@ -79,14 +79,33 @@ table{
  	border-spacing: 0 10px;
 }
 
-
 input{
 	margin-left: 30px;
 }
 
+.jusoBtn{
+	color: #ffffff;
+    width: 80px;
+    height: 24px;
+    background: #87cefa;
+    border-radius: 25px;
+    border: 0;
+    cursor:pointer;
+}
+
+label{
+	margin-left: 30px;
+	background-color: #87cefa;
+	color: #ffffff;
+	border-radius: 25px;
+	width: 172px;
+	display:inline-block;
+	padding-left: 20px;
+}
+
 select {
     margin-left: 30px;
-    width: 188px;
+    width: 193px;
 }
 
 #map{
@@ -110,21 +129,6 @@ select {
 
 .rent-contents-juso > input:nth-child(2), input:nth-child(3){
 	margin-top: 10px;
-}
-
-.jusoBtn{
-	color: #ffffff;
-    width: 80px;
-    height: 24px;
-    background: #87cefa;
-    border-radius: 25px;
-    border: 0;
-    cursor:pointer;
-}
-
-
-.inputFail{
-	color: red;
 }
  
  .submitButton{
