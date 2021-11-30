@@ -52,7 +52,7 @@
 								<td class="cost"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="submit" class="submitButton" onclick="verifyDate()" style="cursor:pointer">빌리기</button></td>
+								<td colspan="2"><button type="button" class="submitButton" onclick="verifyDate()" style="cursor:pointer">빌리기</button></td>
 							</tr>
 						</table>
 					</form:form>
@@ -63,15 +63,15 @@
 	
 	<script type="text/javascript">
 		
-		let auth = "${authentication}";
+		const auth = "${authentication}";
 		const isRented = "${locker.rentStatus}";
-		let lockerImage = "${locker.lockerImage}";
+		const lockerImage = "${locker.lockerImage}";
 		
-		let idArr = new Array();
-		let scoreArr = new Array();
-		let dateArr = new Array();
-		let contentsArr = new Array();
-		let dateContents = null;
+		const idArr = new Array();
+		const scoreArr = new Array();
+		const dateArr = new Array();
+		const contentsArr = new Array();
+		const dateContents = null;
 		
 		let rentStart = document.querySelector('input[name="rentStart"]');
 		let rentEnd = document.querySelector('input[name="rentEnd"]');
@@ -89,7 +89,7 @@
 			contentsArr.push('${reviews.content}');
 		</c:forEach>
 		
-		let b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+		const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 			  const byteCharacters = atob(b64Data);
 			  const byteArrays = [];
 
@@ -123,7 +123,7 @@
 			
 		}
 		
-		let commonFnc = () => {
+		const commonFnc = () => {
 			
 			let today = new Date();
 			
@@ -144,23 +144,23 @@
 			
 		};
 		
-		let createCostDiv = (rentCost) => {
+		const createCostDiv = (rentCost) => {
 			let costDiv = document.querySelector(".cost"); 
 			costDiv.classList.remove("inputFail");
 			document.querySelector(".cost").innerText = rentCost+"원";
 		};
 		
-		let calDiv = () => {
+		const calDiv = () => {
 			document.querySelector(".cost").innerText = "계산중입니다.";
 		};
 		
-		let createCostDivFalse = () => {
+		const createCostDivFalse = () => {
 			let costDiv = document.querySelector(".cost"); 
 			costDiv.classList.add("inputFail");
 			costDiv.innerText = "정확한 날자를 입력해 주세요.";
 		};
 		
-		let rentStartFnc = () => {
+		const rentStartFnc = () => {
 			
 			dateContents = commonFnc();
 			
@@ -174,7 +174,7 @@
 			
 		};
 		
-		let rentEndFnc = () => {
+		const rentEndFnc = () => {
 			
 			dateContents = commonFnc();
 			
@@ -188,22 +188,17 @@
 			
 		};
 		
-		let verifyDate = () => {
+		const verifyDate = () => {
 			
 			if(auth == ""){
-				bNode.value = "button";
 				alert("로그인을 해야 이용 가능한 기능입니다.");
 			}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber) && auth != ""){
-				bNode.value = "button";
-				alert("시작일과 종료일을 입력해주세요");
+				alert("대여 시작일과 종료일을 입력해주세요");
 			}else if(isNaN(rentStartToNumber) && auth != ""){
-				bNode.value = "button";
-				alert("시작일을 입력해주세요");
+				alert("대여 시작일을 입력해주세요");
 			}else if(isNaN(rentEndToNumber) && auth != ""){
-				bNode.value = "button";
-				alert("종료일을 입력해주세요");
+				alert("대여 종료일을 입력해주세요");
 			}else if(rentStartToNumber > rentEndToNumber){
-				bNode.value = "button";
 				alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			}else{
 				bNode.value = "submit";
