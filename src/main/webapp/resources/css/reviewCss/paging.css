@@ -10,7 +10,7 @@
 	justify-content: center;
 	float: left;
 	font-size: 15px;
-	padding: 8px 16px;
+	padding: 6px 14px;
 	border-radius: 35%;
 	width: 6px;
 	cursor: pointer;
@@ -35,9 +35,9 @@ li:visited {
 	text-decoration: none;
 }
 
-.active {
+/* .active {
 	background-color: #cdd5ec;
-}
+} */
 
 .pageInfo_wrap {
 	display: flex;

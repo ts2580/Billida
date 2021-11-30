@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
+.common_div{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 735px;
+}
+
+
 .rent_wrapper{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 80px;
+	width: 100%;
+	height: 735px;
 }
 
 .title{
@@ -20,7 +31,7 @@
 .rent_list{
 	display: flex;
 	flex-direction: column;
-	width: 60%;
+	width: 80%;
 }
 
 .rent_area{
@@ -34,8 +45,8 @@
 }
 
 .rentImg, .rentImgs{
-	height: 100px;
-	width: 100px;
+	height: 110px;
+	width: 110px;
 	border-radius: 5px;
 }
 
@@ -43,21 +54,20 @@
 	display: flex;
 	flex-direction: column;
 	font-size: 12px;
-	padding-left: 30px;
-	width: 40%;
+	padding-left: 35px;
+	width: 43%;
 }
 
 .rent_name {
     display: flex;
     justify-content: flex-start;
     font-size: 100%;
-    padding-top: 3px;
-    padding-bottom: 7px;
+    padding-bottom: 9px;
 }
 
 .rent_location{
 	position: relative;
-    padding-bottom: 7px;
+    padding-bottom: 9px;
 }
 
 .rent_password{
@@ -71,17 +81,17 @@
 	flex-direction: column;
 	font-size: 12px;
 	padding-left: 10px;
-	width: 30%;
+	width: 33%;
 }
 
 .rent_start {
     position: relative;
-    padding-bottom: 7px;
+    padding-bottom: 9px;
 }
 
 .rent_end {
     position: relative;
-    padding-bottom: 7px;
+    padding-bottom: 9px;
 }
 
 .rent_cost, .rent_profit{
@@ -100,7 +110,7 @@
 
 .reviewButton{
 	display: flex;
-	width: 10%;
+	width: 12%;
 	justify-content: flex-end;
 }
 
@@ -164,3 +174,4 @@ hr{
 .afont{
 	font-weight: bolder;
 }
+
