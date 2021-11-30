@@ -135,8 +135,9 @@ public class SupportController {
 		criMap.put("pageNum", cri.getPageNum());
 		// amount에 cri.getAmount()입력
 		criMap.put("amount", cri.getAmount());
-		//criMap에 정보 추가
+		//criMap에 keyword 추가
 		criMap.put("keyword", keyword);
+		//criMap에 searchOption 추가
 		criMap.put("searchOption", searchOption);
 			
 		//각 페이지에 들어갈 게시물들 정보 뽑아오기
@@ -146,10 +147,10 @@ public class SupportController {
 		Map<String, Object> map = new HashMap<String, Object>();
 			
 		//리포트의 게시글 수를 total에 받아옴
-		int total = supportService.getSupportTotal();
+		int getSearchTotal = supportService.getSearchTotal();
 			
 		//페이징 호출 후 cri값, total값 입력
-		Paging paging = new Paging(cri, total);
+		Paging paging = new Paging(cri, getSearchTotal);
 			
 		map.put("list", list);
 		map.put("paging", paging);
@@ -158,7 +159,7 @@ public class SupportController {
 		logger.info("list : " + list);
 		logger.info("paging : " + paging);
 		logger.info("map : " + map);
-			
+		System.out.println("---------------------------------------------------");	
 		return "support/report-board-search";
 
 			

@@ -26,7 +26,7 @@
     	]]>
 	</select>
 	
-		<sql id="search">
+	<sql id="search">
 		<choose>
 			<when test = "searchOption == 'all'">
 				and 
@@ -38,5 +38,21 @@
 			</otherwise>
 		</choose>
 	</sql>		
+  
+  	<select id="getSearchTotal" resultType="int">
+		select count(*)report_idx from report_board
+			<choose>
+				<when test="title eq empty"/>
+				<when test="searchOption eq empty"/>
+				<when test="searchOption == 'all'">
+					where user_id like '%'||#{keyword}||'%' 
+					or report_title like '%'||#{keyword}||'%' 
+				</when>
+				<otherwise>
+					${searchOption} like '%'||#{keyword}||'%'
+				</otherwise>
+			</choose>
+	</select>
+  
   
   </mapper>

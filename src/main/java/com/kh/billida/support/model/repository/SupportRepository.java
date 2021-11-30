@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 
@@ -37,5 +38,7 @@ public interface SupportRepository {
 	void reportAddResult();
 
 	List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap);
+
+	int getSearchTotal();
 	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 import com.kh.billida.support.model.repository.SupportRepository;
@@ -60,6 +61,11 @@ public class SupportServiceImpl implements SupportService {
 	@Override
 	public List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap) {
 		return supportRepository.getListPagingforSearch(criMap);
+	}
+
+	@Override
+	public int getSearchTotal() {
+		return supportRepository.getSearchTotal();
 	}
 
 

@@ -3,6 +3,7 @@ package com.kh.billida.support.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.billida.common.paging.Criteria;
 import com.kh.billida.common.paging.Paging;
 import com.kh.billida.support.model.dto.Support;
 
@@ -23,6 +24,8 @@ public interface SupportService {
 	void reportAddResult();
 
 	List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap);
+
+	int getSearchTotal();
 
 	
 }

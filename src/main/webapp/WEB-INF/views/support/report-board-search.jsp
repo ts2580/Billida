@@ -11,7 +11,7 @@
     <link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<title>report-board</title>
+	<title>report-board-search</title>
 	<style type="text/css">
 		body {background: #87cefa1f }
 		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
@@ -68,7 +68,7 @@
 				
 					<!-- 각 번호 페이지 버튼  -->
 					<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-						<li class="pageInfo_btn ${paging.cri.pageNum == num ? 'active':'' }" href="${num}">${num}</li>
+						<li class="pageInfo_btn ${paging.cri.pageNum == num ? "active":"" }" href="${num}">${num}</li>
 					</c:forEach>
 					
 					<!-- 다음페이지 버튼 -->
@@ -82,6 +82,7 @@
 		<form id="moveForm" method="get">
 			<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
 			<input type="hidden" name="amount" value="${paging.cri.amount}">
+			<input type="hidden" name="keyword" value="${paging.cri.keyword}">
 		</form>
         </div>
         
@@ -91,7 +92,7 @@
         $(".pageInfo li").on("click", function(e){
        	 e.preventDefault();
             moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-            moveForm.attr("action", "report-board");
+            moveForm.attr("action", "report-board-search");
             moveForm.submit();
        });
         
