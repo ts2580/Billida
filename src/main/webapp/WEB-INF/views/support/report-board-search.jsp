@@ -14,7 +14,8 @@
 	<title>report-board-search</title>
 	<style type="text/css">
 		body {background: #87cefa1f }
-		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+		.well {padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+		form {margin: 0 0 10px;}
 	</style>
 </head>
 <body>
@@ -44,20 +45,25 @@
             </c:forEach>
         </tbody>
         </table>
-        <br>
-        <br>
-        <div class="pagination" style="text-align: center;">
         	<div>
-        	<form method="post" action="/support/report-board-search">
+        	<form style="display: flex; align-items: flex-start; flex-direction: row; justify-content: space-evenly;" method="post" action="/support/report-board-search">
+        	<div>	
         		<select name="searchOption">
         			<option value="all" <c:out value="${searchMap.searchOption == 'all'?'selected':''}"/> >전체조회</option>
 					<option value="user_id" <c:out value="${searchMap.searchOption == 'user_id'?'selected':'' }"/>>아이디</option>
 					<option value="report_title" <c:out value="${searchMap.searchOption == 'report_title'?'selected':'' }"/>>제목</option>
         		</select>
-        		<input name="keyword" value="${searchMap.keyword}">
+        	</div>
+        	<div>
+        		<input style="width: 380px;" name="keyword" value="${searchMap.keyword}">
+        	</div>
+        	<div>
         		<input type="submit" value="검색">
+        	</div>
         	</form>
         	</div>
+        <div class="pagination" style="text-align: center;">
+        	
        	<div class="pageInfo_area">
 				<ul id="pageInfo" class="pageInfo">
 				
