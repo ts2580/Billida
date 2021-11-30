@@ -36,8 +36,8 @@
 							<tr>
 								<td class="rent-contents-text">택배함 주소</td>
 								<td class="rent-contents-juso">
-									<input type="text" id="roadAddrPart1" placeholder="주소" onchange="sync()">
-									<input type="text" id="roadAddrPart2" placeholder="상세주소" onchange="sync()">
+									<input type="text" id="roadAddrPart1" onchange="sync()">
+									<input type="text" id="roadAddrPart2" placeholder="상세주소를 입력해주세요" onchange="sync()">
 									<input type="button" class="jusoBtn" onclick="juSo()" value="주소 검색">
 								</td>
 								<td><input type="text" name="lockerContent" id="lockerContent" style="display:none"></td>
@@ -52,7 +52,13 @@
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 사이즈</td>
-								<td><input type="text" name="lockerSize"/></td>
+								<td>
+									<select name="lockerSize">
+    									<option value="30(X) X 30(Y) X 55(Z)">30(X) X 30(Y) X 55(Z) cm</option>
+    									<option value="45(X) X 55(Y) X 55(Z)">45(X) X 55(Y) X 55(Z) cm</option>
+   							 			<option value="75(X) X 75(Y) X 55(Z)">75(X) X 75(Y) X 55(Z) cm</option>
+  									</select>
+								</td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">택배함 비밀번호</td>
@@ -60,7 +66,7 @@
 							</tr>
 							<tr>
 								<td class="rent-contents-text">임대시작 가능일</td>
-								<td><input type="date" name="rentableDateStart"/></td>
+								<td><input type="date" name="rentableDateStart" min="${today}"/></td>
 							</tr>
 							<tr>
 								<td class="rent-contents-text">임대 종료일</td>
@@ -84,6 +90,7 @@
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b3d2bd52763449a074cc0c982030b6bf&libraries=services"></script>
 	<script type="text/javascript">
 	
+	
 	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 		  const byteCharacters = atob(b64Data);
 		  const byteArrays = [];
@@ -105,7 +112,7 @@
 	}
 	
 	
-	function setThumbnail(event) { 
+	const setThumbnail = (event) => { 
 		let reader = new FileReader(); 
 		
 		reader.onload = function(event){ 
@@ -129,22 +136,21 @@
 		// readAsDataURL에 대해 더 알아볼것
 	};
 	
-	let auth = "${authentication}";
-	let btn = document.querySelector(".submitButton");
-	let bNode = btn.getAttributeNode("type");
+	const auth = "${authentication}";
+	const btn = document.querySelector(".submitButton");
+	const bNode = btn.getAttributeNode("type");
 	
 	let verify = () => {
 		
-		if(auth == ""){
-			bNode.value = "button";
+		/* if(auth == ""){
 			alert("로그인을 해야 이용 가능한 기능입니다.");
 		}else{
 			bNode.value = "submit";
-		};
+		}; */
 	
 	};
 	
-	let sync = () => {
+	const sync = () => {
 		let roadAddrPart1 =  document.getElementById("roadAddrPart1").value;
 		let roadAddrPart2 =  document.getElementById("roadAddrPart2").value;
 		document.getElementById("lockerContent").value = roadAddrPart1 +" "+ roadAddrPart2;
@@ -163,7 +169,7 @@
         map: map
     });
 	
-	function juSo() {
+    const juSo = () => {
         new daum.Postcode({
         	oncomplete: function(data) {
                 var addr = '';
