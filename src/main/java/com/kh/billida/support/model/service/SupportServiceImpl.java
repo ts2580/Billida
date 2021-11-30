@@ -64,8 +64,8 @@ public class SupportServiceImpl implements SupportService {
 	}
 
 	@Override
-	public int getSearchTotal() {
-		return supportRepository.getSearchTotal();
+	public int getSearchTotal(Map<String, Object> criMap) {
+		return supportRepository.getSearchTotal(criMap);
 	}
 
 

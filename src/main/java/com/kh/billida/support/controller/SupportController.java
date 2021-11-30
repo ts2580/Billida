@@ -147,7 +147,7 @@ public class SupportController {
 		Map<String, Object> map = new HashMap<String, Object>();
 			
 		//리포트의 게시글 수를 total에 받아옴
-		int getSearchTotal = supportService.getSearchTotal();
+		int getSearchTotal = supportService.getSearchTotal(criMap);
 			
 		//페이징 호출 후 cri값, total값 입력
 		Paging paging = new Paging(cri, getSearchTotal);
@@ -157,8 +157,10 @@ public class SupportController {
 		model.addAllAttributes(map);
 		
 		logger.info("list : " + list);
+		logger.info("getSearchTotal : " + getSearchTotal);
 		logger.info("paging : " + paging);
 		logger.info("map : " + map);
+		logger.info("criMap : " + criMap);
 		System.out.println("---------------------------------------------------");	
 		return "support/report-board-search";
 

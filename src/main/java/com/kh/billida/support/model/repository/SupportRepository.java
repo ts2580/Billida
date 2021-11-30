@@ -39,6 +39,6 @@ public interface SupportRepository {
 
 	List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap);
 
-	int getSearchTotal();
+	int getSearchTotal(Map<String, Object> criMap);
 	
 }

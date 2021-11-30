@@ -42,8 +42,6 @@
   	<select id="getSearchTotal" resultType="int">
 		select count(*)report_idx from report_board
 			<choose>
-				<when test="title eq empty"/>
-				<when test="searchOption eq empty"/>
 				<when test="searchOption == 'all'">
 					where user_id like '%'||#{keyword}||'%' 
 					or report_title like '%'||#{keyword}||'%' 
