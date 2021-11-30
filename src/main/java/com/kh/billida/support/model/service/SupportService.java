@@ -22,5 +22,7 @@ public interface SupportService {
 
 	void reportAddResult();
 
+	List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap);
+
 	
 }

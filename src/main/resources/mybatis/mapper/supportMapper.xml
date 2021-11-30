@@ -15,6 +15,28 @@
 		where rb > (#{pageNum} -1) * #{amount}
    		]]>
 	</select>
-
+	
+	
+	<select id="getListPagingforSearch" resultType="com.kh.billida.support.model.dto.Support">
+		<![CDATA[
+	        select * 
+	        from(select rownum as rb, report_idx, user_id, report_title, report_content, report_date, report_result
+	                from (select * from report_board order by report_idx desc) report_board where rownum <= #{pageNum} * #{amount}]]> <include refid="search"/><![CDATA[)
+	        where rb > (#{pageNum}-1) * #{amount}
+    	]]>
+	</select>
+	
+		<sql id="search">
+		<choose>
+			<when test = "searchOption == 'all'">
+				and 
+					(user_id like '%'||#{keyword}||'%' 
+					 or report_title like '%'||#{keyword}||'%')
+			</when>			
+			<otherwise>
+				and (${searchOption} like '%'||#{keyword}||'%')
+			</otherwise>
+		</choose>
+	</sql>		
   
   </mapper>

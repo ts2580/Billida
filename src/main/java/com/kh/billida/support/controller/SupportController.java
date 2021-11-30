@@ -122,43 +122,48 @@ public class SupportController {
 	}
 	
 	
-	
-//	@PostMapping("report-board")
-//	public String reportBoardList(Model model
-//								,@RequestParam(defaultValue="1") int currentPage
-//								, String search
-//								, String keyword
-//								, HttpSession session
-//								,Criteria cri) {
-//		Member member = (Member) session.getAttribute("authentication");
-//		String userCode = member.getUserCode();
-//
-//		Map<String, Object> commandMap = new HashMap<String, Object>();
-//		commandMap.put("pageNum", cri.getPageNum());
-//		commandMap.put("amount", cri.getAmount());
-//		
-//		
-//		List<Map<String, Object>> list = supportService.getSupportListPaging(commandMap);
-//		//유저코드에 해당하는 사물함대여리스트 갯수 받아오기
-//		int total = supportService.getSupportListPaging(commandMap);
-//		Paging paging = new Paging(cri, total);
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("list", list);
-//		map.put("paging", paging);
-//		map.put("authentication", member);
-//		model.addAllAttributes(map);
-//		
-//		return "review/rent-list";
-//			}
-	
-	
-	// 신고 내용 입력 후 전송
-	//@PostMapping("report-main")
-	//public String reportInsert(Support support) {
-	//	supportService.reportInsert(support);
-	//	return "report-main";
-	//}
+	//메인페이지에서 검색어 입력 시 수행되는 메서드
+	@RequestMapping("report-board-search")
+	public String reportBoardListSearch(Model model
+										, Criteria cri
+										, @RequestParam(defaultValue = "all") String searchOption
+										, @RequestParam(defaultValue = "") String keyword) {
+			
+		//페이지 정보 입력받을 criMap생성
+		Map<String, Object> criMap = new HashMap<String, Object>();
+		// pageNum에 cri.getPgeNum() 입력
+		criMap.put("pageNum", cri.getPageNum());
+		// amount에 cri.getAmount()입력
+		criMap.put("amount", cri.getAmount());
+		//criMap에 정보 추가
+		criMap.put("keyword", keyword);
+		criMap.put("searchOption", searchOption);
+			
+		//각 페이지에 들어갈 게시물들 정보 뽑아오기
+		List<Map<String, Object>> list = supportService.getListPagingforSearch(criMap);
+			
+		//맵에 담은 후 모델에 전달
+		Map<String, Object> map = new HashMap<String, Object>();
+			
+		//리포트의 게시글 수를 total에 받아옴
+		int total = supportService.getSupportTotal();
+			
+		//페이징 호출 후 cri값, total값 입력
+		Paging paging = new Paging(cri, total);
+			
+		map.put("list", list);
+		map.put("paging", paging);
+		model.addAllAttributes(map);
+		
+		logger.info("list : " + list);
+		logger.info("paging : " + paging);
+		logger.info("map : " + map);
+			
+		return "support/report-board-search";
+
+			
+		}
+
 	
 	
 	

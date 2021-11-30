@@ -57,6 +57,11 @@ public class SupportServiceImpl implements SupportService {
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap) {
+		return supportRepository.getListPagingforSearch(criMap);
+	}
+
 
 
 

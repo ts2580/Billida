@@ -36,4 +36,6 @@ public interface SupportRepository {
 	@Update("update report_board set REPORT_RESULT = 1 where ")
 	void reportAddResult();
 
+	List<Map<String, Object>> getListPagingforSearch(Map<String, Object> criMap);
+	
 }
