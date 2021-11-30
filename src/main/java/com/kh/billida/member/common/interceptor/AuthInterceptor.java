@@ -65,7 +65,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		
 		switch (uriArr[2]) {
 		case "report-board":
-			if(member == null || member.getGrade().equals("01") || member.getGrade().equals("00")) {
+			if(member == null) {
 				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
 			}
 			break;

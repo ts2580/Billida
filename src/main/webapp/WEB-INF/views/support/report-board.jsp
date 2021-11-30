@@ -14,7 +14,8 @@
 	<title>report-board</title>
 	<style type="text/css">
 		body {background: #87cefa1f }
-		.well { padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+		.well {padding-top: 100px;  width: 800px; position: absolute; left: 50%; transform: translateX(-50%); }
+		form {margin: 0 0 10px;}
 	</style>
 </head>
 <body>
@@ -44,9 +45,25 @@
             </c:forEach>
         </tbody>
         </table>
-        <br>
-        <br>
+        	<div>
+        	<form style="display: flex; align-items: flex-start; flex-direction: row; justify-content: space-evenly;" method="post" action="/support/report-board-search">
+        	<div>	
+        		<select name="searchOption">
+        			<option value="all" <c:out value="${searchMap.searchOption == 'all'?'selected':''}"/> >전체조회</option>
+					<option value="user_id" <c:out value="${searchMap.searchOption == 'user_id'?'selected':'' }"/>>아이디</option>
+					<option value="report_title" <c:out value="${searchMap.searchOption == 'report_title'?'selected':'' }"/>>제목</option>
+        		</select>
+        	</div>
+        	<div>
+        		<input style="width: 380px;" name="keyword" value="${searchMap.keyword}">
+        	</div>
+        	<div>
+        		<input type="submit" value="검색">
+        	</div>
+        	</form>
+        	</div>
         <div class="pagination" style="text-align: center;">
+        	
        	<div class="pageInfo_area">
 				<ul id="pageInfo" class="pageInfo">
 				
@@ -57,7 +74,7 @@
 				
 					<!-- 각 번호 페이지 버튼  -->
 					<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-						<li class="pageInfo_btn ${paging.cri.pageNum == num ? 'active':'' }" href="${num}">${num}</li>
+						<li class="pageInfo_btn ${paging.cri.pageNum == num ? "active":"" }" href="${num}">${num}</li>
 					</c:forEach>
 					
 					<!-- 다음페이지 버튼 -->
@@ -71,6 +88,7 @@
 		<form id="moveForm" method="get">
 			<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
 			<input type="hidden" name="amount" value="${paging.cri.amount}">
+			<input type="hidden" name="keyword" value="${paging.cri.keyword}">
 		</form>
         </div>
         

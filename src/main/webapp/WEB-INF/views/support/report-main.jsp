@@ -67,7 +67,7 @@
                     <br>
                     <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default" style="margin-right: 260px;">신고접수</button>
+                            <button name="report" type="submit" class="btn btn-default" style="margin-right: 260px;" onclick="alert('신고가 접수되었습니다.\n감사합니다.')">신고접수</button>
                             <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="background-color: #87aff5;">신고목록조회</button>
                         </div>
                     </div>
@@ -75,6 +75,14 @@
                 </form:form>
             </div>
         </div>
-    </div>  
+    </div>
+    <script type="text/javascript">
+    $(".report").on("click", function(e){
+      	 e.preventDefault();
+           
+      });
+    
+    </script>
+      
 </body>
 </html>
