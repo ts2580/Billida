@@ -4,7 +4,7 @@
 <html>
 <head>
 	<%@ include file="/WEB-INF/views/include/head.jsp" %>
-	<%@ include file="/WEB-INF/views/review/navbar.jsp" %>
+	<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
 	<link href="${contextPath}/resources/css/reviewCss/rentList.css" rel='stylesheet' type='text/css' />
 	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />

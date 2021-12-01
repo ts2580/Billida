@@ -20,7 +20,7 @@ body{
 	font-size: 16px;
 	font-weight: bolder;
 	padding-top: 8px;
-	color:#f51862;
+	color:#5cbefb;
 }
 
 .form_area{
@@ -127,7 +127,7 @@ textarea:focus {
 }
 
 .save{
-	background-color: #f64a8a;
+	background-color: #87cefa;
 	color: white;
 }
 
@@ -136,7 +136,7 @@ textarea:focus {
 }
 
 .save:hover{
-	background-color: #fc2071;
+	background-color: #1e91ff;
     color: white;
 }
 
@@ -164,7 +164,7 @@ textarea:focus {
     width: 0;
     position: absolute; 
     left: 0;
-    color: #f96199;
+    color: #ffce00;
     overflow: hidden;
     pointer-events: none;
   }

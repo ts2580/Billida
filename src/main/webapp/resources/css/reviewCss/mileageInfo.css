@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+.common_div{
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.mileage_wrapper{
+	display: flex;
+	margin-top: 80px;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 730px;
+}
+
+.my_mileage{
+	display: flex;
+	margin-bottom: 50px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 35px;
+	padding-top: 60px;
+}
+
+.payment_form{
+	width: 100%;
+}
+
+.mileage_area{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.title{
+	display: flex;
+	padding-bottom: 20px;
+	font-weight: bolder;
+}
+
+.titleImg{
+	width: 23px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.cost_area{
+	display: flex;
+	width: 40%;
+	justify-content: space-around;
+	padding-bottom: 20px;
+	font-size: 1.1vw;
+}
+
+.cost{
+	display: flex;
+	width: 110px;
+	height: 30px;
+	justify-content: center;
+	align-items: center;
+	cursor: default;
+	background: gainsboro;
+	border-radius: 5px;
+}
+
+.cost:hover{
+	background-color: #00BFFF;
+	color: white;
+}
+
+.mileage_inputDiv{
+	display: flex;
+	padding-bottom: 20px;
+	align-items: center;
+}
+
+.recharge{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 35px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #87cefa;
+	color: white;
+}
+
+.recharge:hover{
+	background-color: #1e91ff;
+	color: white;
+}
+
+.mileage_btn{
+	display: flex;
+}
+
+#mileage{
+	width: 100px;
+	height: 26px;
+	margin-right: 5px;
+	border: none;
+	border-radius: 5px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

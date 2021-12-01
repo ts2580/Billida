@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-
-
-
-
-
-
 /* GOOGLE FONTS */
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"); */
 
@@ -29,7 +23,7 @@
 }
 
 /* BASE */
-.l-navbar *, ::before, ::after {
+.container *, ::before, ::after {
     box-sizing: border-box;
 }
 
@@ -56,7 +50,8 @@ body {
     transition: .5s;
     z-index: var(--z-fixed);
     margin-top: 73px;
-    width: 44px;
+    width: 41px;
+    font-size: 14px;
 }
 
 /* NAV */
@@ -78,8 +73,9 @@ body {
 
 .nav__toggle {
     font-size: 1.25rem;
-    padding: .75rem;
     cursor: pointer;
+    padding-left: 13px;
+    padding-right: 14px;
 }
 
 .nav__logo {
@@ -113,8 +109,13 @@ body {
     cursor: pointer;
 }
 
+.nav__list a:hover{
+	background-color: #8cc8ec;
+}
+
+
 .nav__link:hover {
-    background-color: var(--first-color);
+    background-color: #8cc8ec;
 }
 
 .nav__icon {
@@ -137,7 +138,7 @@ body {
 
 /* Active links menu */
 .active {
-    background-color: blue;
+    background-color: #4faae2;
 }
 
 /* COLLAPSE */
@@ -173,4 +174,8 @@ body {
 .rotate {
     transform: rotate(180deg);
     transition: .5s;
+}
+
+.navIcons{
+	font-size: 16px;
 }
