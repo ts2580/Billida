@@ -75,7 +75,7 @@
                               <li><a><span style="cursor:pointer">빌리기</span></a></li>
                               <li><a><span class="billyeojugiHeader" style="cursor:pointer">빌려주기</span></a></li>
                               <li><a href="#"><span>예약확인</span></a></li>
-                              <li><a href="#"><span>문의하기</span></a></li>
+                              <li><a href="/support/support-index"><span>문의하기</span></a></li>
                               <div class="clear"> </div>
                            </ul>
                         </div>
