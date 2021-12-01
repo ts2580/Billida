@@ -35,9 +35,9 @@ body{
 
 .outline{
 	margin-left: 31px;
-    border: 1px solid #d9d9d9;
-    height: 300px;
-    width: 380px;
+	border: 1px solid #d9d9d9;
+	height: 330px;
+	width: 380px;
 }
 
 .price-and-time{
@@ -70,21 +70,27 @@ table{
 	width: 110px;
 }
 
+.map:hover {
+  color: lightskyblue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 .inputFail{
 	color: red;
 }
  
  .submitButton{
- 	margin-top: 10px;
-    width: 300px;
-    height: 30px;
-    text-align: center;
-    border: 0;
-    border-radius: 25px;
-    background: #f64a8a;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
+ 	margin-top: 20px;
+ 	width: 300px;
+ 	height: 30px;
+ 	text-align: center;
+ 	border: 0;
+ 	border-radius: 25px;
+ 	background: #f64a8a;
+ 	font-size: 18px;
+ 	font-weight: bold;
+ 	color: #ffffff;
  }
  
  .thereIsNoReview{

@@ -13,12 +13,14 @@ public class LockerForLental {
 	private String lockerContent;
 	private String lockerImage;
 	private String lockerSize;
-	private Long lockerPassword;
+	private String lockerPassword;
 	private String location;
 	private Date rentableDateStart;
 	private Date rentableDateEnd;
 	private Long rentStatus;
 	private String imgToClob;
+	private float latitude;
+	private float longitude;
 	
 }
 

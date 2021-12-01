@@ -32,6 +32,10 @@ public class RentalController {
 	
 	private Long isRented;
 	
+	private float latitude;
+	
+	private float longitude;
+	
 	@GetMapping("rental-form")
 	public void rental(Model model, LockerForLental locker, Long lockerId){
 		// Qwerasdf1234!
@@ -76,6 +80,12 @@ public class RentalController {
 		
 		// 개발자도구에서 노드 수정시 값 제출되는것 수정(처리) 
 		
+		// 주소 클릭시 map 띄우기(처리)
+		
+		// GET http://localhost:9090/0 404 처리 
+		
+		// 컨트롤러 코드 정리
+		
 		// 대여 종료일 지난 보관함 처리 
 		
 		// 임시로 때운 auth 관련 제한 제대로 구현하기
@@ -95,6 +105,9 @@ public class RentalController {
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
 		locker = rentalService.selectLocker(lockerId);
+		
+		latitude = locker.getLatitude();
+		longitude = locker.getLongitude();
 		isRented = locker.getRentStatus();
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
@@ -111,6 +124,13 @@ public class RentalController {
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);
 		
+	}
+	
+	@GetMapping("map")
+	public void map(Model model){
+		
+		model.addAttribute("latitude", latitude);
+		model.addAttribute("longitude", longitude);
 	}
 	
 	@PostMapping("rental-form")

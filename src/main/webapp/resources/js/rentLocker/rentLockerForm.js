@@ -24,7 +24,7 @@
 	rentableDateEnd.setAttribute("min", today);
 	
     
-    document.querySelector(".jusoBtn").addEventListener('click', event => {
+    document.querySelector(".jusoBtn").addEventListener('click', () => {
 		new daum.Postcode({
         	oncomplete: function(data) {
                 
@@ -60,8 +60,6 @@
                });
              }
         }).open();
-		
-		
 	});
     
     document.querySelector("#image").addEventListener('change', event => {
