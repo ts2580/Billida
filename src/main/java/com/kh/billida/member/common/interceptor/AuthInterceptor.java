@@ -76,12 +76,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 			break;
 		case "report-main":
 			if(member == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED.setURL("/member/login"));
 			}
 			break;
 		case "support-index":
 			if(member == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED.setURL("/member/login"));
 			}
 			break;
 		default:
