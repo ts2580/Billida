@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +46,6 @@ public class RentalController {
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (처리)
 		
-		// 필드에 lockerId 처리하기?
-		
 		// 프로시저 하나 파서 빌리기하면 렌트히스토리 테이블(완료)과 락커(현재상태) 카카오 테이블(마일리지 차감), 멤버테이블(마일리지 차감) 네군데 다 DB 올라가도록
 		// 		아님 귀찮으면 카카오 테이블, 멤버테이블 sql구문 하나씩 더 만들어서 처리할까
 		//      일단 locker의 RENT_STATUS값 Boolean으로 바꾸면 어떤지. 
@@ -82,21 +82,19 @@ public class RentalController {
 		
 		// 주소 클릭시 map 띄우기(처리)
 		
-		// GET http://localhost:9090/0 404 처리 
+		// GET http://localhost:9090/0 404 처리 (내가 담당한 페이지에선 함)
 		
-		// 컨트롤러 코드 정리
+		// 컨트롤러 코드 정리(대충 함)
 		
-		// 대여 종료일 지난 보관함 처리 
+		// view단에 있는 스크립트들 다 js파일로 보내기(처리) 
 		
-		// 임시로 때운 auth 관련 제한 제대로 구현하기
+		// 위치 버튼 누르면 카카오맵으로 위치 띄워주기(처리)
 		
-		// view단에 있는 스크립트들 다 js파일로 보내기
+		// 매 0시 배치로 대여 종료일 지난 보관함 대여상태를 대여중(1)에서 대여가능(0)으로(처리)  
 		
-		// 매일 자정 배치 돌려서 대여기간 끝나면 락커 테이블 렌트 스테이터스 바꾸기
+		// 임시로 때운 auth 관련 제한 인터셉터에 등록할까 말까.
 		
 		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
-		
-		// 위치 버튼 누르면 카카오맵으로 위치 띄워주기
 		
 		// 리뷰에 페이징 적용
 		
@@ -128,6 +126,14 @@ public class RentalController {
 		
 	}
 	
+	@Scheduled(cron = "55 59 23 * * *")
+	public void returnBatch() {
+		
+		LocalDate today = LocalDate.now();
+		rentalService.returnBatch(today);
+		
+	};
+	
 	@GetMapping("map")
 	public void map(Model model){
 		
@@ -135,6 +141,7 @@ public class RentalController {
 		model.addAttribute("longitude", longitude);
 	}
 	
+	@Transactional
 	@PostMapping("rental-form")
 	public String rentalForm(Rental rental, HttpSession session, Member member){
 		

@@ -1,5 +1,6 @@
 package com.kh.billida.rentalHistory.model.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -39,6 +40,12 @@ public class RentalServiceImpl implements RentalService{
 	public void downGradeMember(String userCode) {
 		rentalRepository.downGradeMember(userCode);
 		
-	}	
+	}
+
+	public void returnBatch(LocalDate today) {
+		rentalRepository.returnBatch(today);
+		
+	}
+
 	
 }

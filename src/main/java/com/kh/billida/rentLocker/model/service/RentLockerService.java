@@ -2,6 +2,8 @@
 package com.kh.billida.rentLocker.model.service;
 
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 
 import com.kh.billida.rentLocker.model.dto.Locker;
@@ -14,6 +16,8 @@ public interface RentLockerService {
 	void insertClob(Locker locker);
 
 	Long selectInsertedLocker();
+
+	void returnBatch(LocalDate today);
 
 }
 

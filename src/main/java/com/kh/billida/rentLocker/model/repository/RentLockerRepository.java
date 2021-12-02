@@ -1,5 +1,7 @@
 package com.kh.billida.rentLocker.model.repository;
 
+import java.time.LocalDate;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,6 +25,9 @@ public interface RentLockerRepository {
 	
 	@Update("update locker set IMG_TO_CLOB = #{imgToClob} where LOCKER_ID = #{lockerId}")
 	void insertClob(Locker locker);
+
+	@Update("update locker set RENT_STATUS = 3 where RENTABLE_DATE_END = #{today}")
+	void returnBatch(LocalDate today);
 
 	
 		

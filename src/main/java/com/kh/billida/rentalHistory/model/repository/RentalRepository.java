@@ -1,5 +1,6 @@
 package com.kh.billida.rentalHistory.model.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -30,6 +31,10 @@ public interface RentalRepository {
 	
 	@Update("update member set grade = '00' where user_code = #{userCode}")
 	void downGradeMember(String userCode);
+	
+	@Update("MERGE INTO LOCKER L USING RENT_HISTORY R ON(L.LOCKER_ID = R.LOCKER_ID) "
+			+ "WHEN MATCHED THEN UPDATE SET RENT_STATUS = 0 WHERE RENT_END = #{today}")
+	void returnBatch(LocalDate today);
 	
 	
 }

@@ -1,5 +1,6 @@
 package com.kh.billida.rentalHistory.model.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.kh.billida.rentalHistory.model.dto.LockerForLental;
@@ -17,5 +18,7 @@ public interface RentalService {
 	void updateRental(Long lockerId);
 
 	void downGradeMember(String userCode);
+
+	void returnBatch(LocalDate today);
 
 }
