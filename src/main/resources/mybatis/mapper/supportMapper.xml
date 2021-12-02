@@ -47,7 +47,7 @@
 					or report_title like '%'||#{keyword}||'%' 
 				</when>
 				<otherwise>
-					${searchOption} like '%'||#{keyword}||'%'
+					where ${searchOption} like '%'||#{keyword}||'%'
 				</otherwise>
 			</choose>
 	</select>
