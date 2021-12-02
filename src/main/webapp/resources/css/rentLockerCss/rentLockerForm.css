@@ -43,13 +43,11 @@ body{
 
 .pic, .base64Img{
     width: 890px;
-    height: 550px;
 }
 
 .contents-form-reply{
-	position: fixed;
-	margin-left: 900px;
-	margin-top: 50px;
+    margin-top: 50px;
+    
 }
 
 .outline{
