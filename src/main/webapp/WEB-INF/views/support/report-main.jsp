@@ -49,25 +49,25 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">회원ID</label>
                         <div class="col-sm-10">          
-                            <input type="text" class="form-control" name = "userId" id=" fname" placeholder="신고할 회원의 아이디를 입력해주세요." >
+                            <input type="text" class="form-control" name = "userId" id=" fname" placeholder="신고할 회원의 아이디를 입력해주세요." required="required">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">제목</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="reportTitle" id="report_title" placeholder="신고할 게시글의 제목을 작성해주세요." >
+                            <input type="text" class="form-control" name="reportTitle" id="report_title" placeholder="신고할 게시글의 제목을 작성해주세요." required="required">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">내용</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="5" name="reportContent" id="comment" placeholder="신고 내용을 상세히 작성해주세요."></textarea>
+                            <textarea class="form-control" rows="5" name="reportContent" id="comment" placeholder="신고 내용을 상세히 작성해주세요."required="required"></textarea>
                         </div>
                     </div>
                     <br>
                     <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button name="report" type="submit" class="btn btn-default" style="margin-right: 260px;" onclick="alert('신고가 접수되었습니다.\n감사합니다.')">신고접수</button>
+                            <button name="report" type="submit" class="btn btn-default" style="margin-right: 260px;" onclick="alert('각각의 데이터를 입력하지 않을 경우 신고가 접수되지 않습니다.\n감사합니다.')">신고접수</button>
                             <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="background-color: #87aff5;">신고목록조회</button>
                         </div>
                     </div>
