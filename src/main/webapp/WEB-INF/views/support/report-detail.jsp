@@ -47,7 +47,9 @@
             </table>
             <button type="button" class="btn btn-default" onclick="location.href='report-board'" style="margin-right: 555px;">목록으로이동</button>
 			<form action="/support/report-addResult" method="post" style="display: inline;">
-				<button type="submit" class="btn btn-default">신고처리등록</button>
+				<!-- 
+				<button type="submit" class="btn btn-default">신고처리등록</button> 
+				-->
 			</form>
         </div>
     </div>
