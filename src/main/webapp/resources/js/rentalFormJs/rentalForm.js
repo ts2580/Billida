@@ -40,8 +40,9 @@
 	document.querySelector(".map").setAttribute("onclick", "window.open('/rentalLocker/map', '_blank', "
 		+ "'width=500px, height=500px, toolbars=no, scrollbars=no, left=" + leftX + "px, top="+ topY +"px'); return false;");
 	
-	document.querySelector('input[name="rentStart"]').addEventListener('input', () => {
-		
+	
+	const commonFnc = () => {
+			
 		let rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
 		let rentCost = (rentEndToNumber-rentStartToNumber)/28800+3000;
@@ -51,12 +52,12 @@
 		if(!isNaN(rentCost) && rentEndToNumber < rentStartToNumber){
 			rentEndBeforeRentStart = true;
 		};
-		
+			
 		let costDiv = document.querySelector(".cost"); 
 			
 		if(rentEndBeforeRentStart){
 			costDiv.classList.add("inputFail");
-			costDiv.innerText = "정확한 날자를 입력해 주세요.";
+				costDiv.innerText = "정확한 날자를 입력해 주세요.";
 		}else if(isNaN(rentCost)){
 			costDiv.classList.remove("inputFail");
 			costDiv.innerText = "계산중입니다.";
@@ -64,36 +65,18 @@
 			costDiv.classList.remove("inputFail");
 			costDiv.innerText = rentCost+"원";
 		};
+	};
 	
+	
+	
+	document.querySelector('input[name="rentStart"]').addEventListener('input', () => {
+		commonFnc();
 	});
 	
 	document.querySelector('input[name="rentEnd"]').addEventListener('input', () => {
 		
 		// 따로 따로 안걸어주면 rentStart랑 rentEnd 동시에 클릭한것처럼 값이 들어가서 꼬임
-		
-		rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
-		rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
-		let rentCost = (rentEndToNumber-rentStartToNumber)/28800+3000;
-			
-		let rentEndBeforeRentStart = false;
-			
-		if(!isNaN(rentCost) && rentEndToNumber < rentStartToNumber){
-			rentEndBeforeRentStart = true;
-		};
-		
-		let costDiv = document.querySelector(".cost"); 
-			
-		if(rentEndBeforeRentStart){
-			costDiv.classList.add("inputFail");
-			costDiv.innerText = "정확한 날자를 입력해 주세요.";
-		}else if(isNaN(rentCost)){
-			costDiv.classList.remove("inputFail");
-			costDiv.innerText = "계산중입니다.";
-		}else{
-			costDiv.classList.remove("inputFail");
-			costDiv.innerText = rentCost+"원";
-		};
-	
+		commonFnc();
 	});
 	
 	
@@ -103,18 +86,18 @@
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
 		
 		if(auth == ""){
-				alert("로그인을 해야 이용 가능한 기능입니다.");
-			}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber) && auth != ""){
-				alert("대여 시작일과 종료일을 입력해주세요");
-			}else if(isNaN(rentStartToNumber) && auth != ""){
-				alert("대여 시작일을 입력해주세요");
-			}else if(isNaN(rentEndToNumber) && auth != ""){
-				alert("대여 종료일을 입력해주세요");
-			}else if(rentStartToNumber > rentEndToNumber){
-				alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
-			}else{
-				document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
-			};
+			alert("로그인을 해야 이용 가능한 기능입니다.");
+		}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber) && auth != ""){
+			alert("대여 시작일과 종료일을 입력해주세요");
+		}else if(isNaN(rentStartToNumber) && auth != ""){
+			alert("대여 시작일을 입력해주세요");
+		}else if(isNaN(rentEndToNumber) && auth != ""){
+			alert("대여 종료일을 입력해주세요");
+		}else if(rentStartToNumber > rentEndToNumber){
+			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
+		}else{
+			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
+		};
 	
 	
 	});

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="../../../resources/images/favicon.ico" />
 <link rel="stylesheet" href="${contextPath}/resources/css/rentalFormCss/map.css">
-<title>Insert title here</title>
+<title>보관함 위치</title>
 </head>
 <body>
 

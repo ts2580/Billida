@@ -49,8 +49,8 @@
 
                         let coords = new daum.maps.LatLng(result.y, result.x);
                         
-                        document.querySelector('input[name="latitude"]').value = result.x;
-                        document.querySelector('input[name="longitude"]').value = result.y;
+                        document.querySelector('input[name="longitude"]').value = result.x;
+                        document.querySelector('input[name="latitude"]').value = result.y;
                         
                         mapContainer.style.display = "block";
                         map.relayout();

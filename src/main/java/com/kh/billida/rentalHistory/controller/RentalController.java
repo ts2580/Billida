@@ -39,7 +39,7 @@ public class RentalController {
 	@GetMapping("rental-form")
 	public void rental(Model model, LockerForLental locker, Long lockerId){
 		// Qwerasdf1234!
-		
+
 		// 이하 자바
 		
 		// **** rentHistory에 들어가는 userCode값은 locker에서 이제는 auth?에서 가져올것 (처리)
@@ -109,6 +109,8 @@ public class RentalController {
 		latitude = locker.getLatitude();
 		longitude = locker.getLongitude();
 		isRented = locker.getRentStatus();
+		
+		
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);
