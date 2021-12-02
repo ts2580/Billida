@@ -46,7 +46,7 @@
         </tbody>
         </table>
         	<div>
-        	<form style="display: flex; align-items: flex-start; flex-direction: row; justify-content: space-evenly;" method="post" action="/support/report-board-search">
+        	<form style="display: flex; align-items: flex-start; flex-direction: row; justify-content: space-evenly;" method="post" action="/support/report-board">
         	<div>	
         		<select name="searchOption">
         			<option value="all" <c:out value="${searchMap.searchOption == 'all'?'selected':''}"/> >전체조회</option>
