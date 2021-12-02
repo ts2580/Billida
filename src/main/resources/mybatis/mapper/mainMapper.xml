@@ -9,10 +9,10 @@
 	<select id="getListPaging" resultType="com.kh.billida.main.model.dto.Main">
 		<![CDATA[
         
-	        select locker_id, user_code, locker_title, locker_content, locker_image, locker_size, locker_password, location, rentable_date_end from(
-	        
+	        select locker_id, user_code, locker_title, locker_content, locker_image, locker_size, locker_password, location, rentable_date_end, img_to_clob
+	        from(
 	                select /*+INDEX_DESC(locker) */ rownum as rn, locker_id, user_code, locker_title, locker_content, locker_image,
-	                								locker_size, locker_password, location, rentable_date_end
+	                								locker_size, locker_password, location, rentable_date_end, img_to_clob
 	                  
 	                from locker where rownum <= #{pageNum} * #{amount} and 
 	                				(locker_title like '%'||#{keyword}||'%' 

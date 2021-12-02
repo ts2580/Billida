@@ -16,9 +16,9 @@
 	<div class="rent_wrapper">
 	<h1 class="title">내가 빌린 사물함</h1>
 		<div class="rent_list">
-			<c:forEach items="${list}" var="rents">
+			<c:forEach items="${list}" var="rents" varStatus="status">
 				<div class="rent_area">
-					<div class="rentImg"><img class="rentImgs" src="${rents.lockerImage}"></div>
+					<div class="rentImg"><img class="rentImgs img${status.index}" src="${rents.lockerImage}"></div>
 					<div class="rent_info">
 						<div class="rent_name"><a class="afont"> - 사물함명 :&nbsp;</a>${rents.lockerTitle}</div>
 						<div class="rent_location"><a class="afont"> - 주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : </a>${rents.lockerContent}</div>
@@ -102,7 +102,42 @@ $(".pageInfo li").on("click", function(e){
 	             });
 	 }
 
+let lockerImage = null;
+	
+	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+		  const byteCharacters = atob(b64Data);
+		  const byteArrays = [];
 
+		  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+		    const byteNumbers = new Array(slice.length);
+		    for (let i = 0; i < slice.length; i++) {
+		      byteNumbers[i] = slice.charCodeAt(i);
+		    }
+
+		    const byteArray = new Uint8Array(byteNumbers);
+		    byteArrays.push(byteArray);
+		  }
+
+		  const blob = new Blob(byteArrays, {type: contentType});
+		  return blob;
+	}
+	
+	<c:forEach var="lockerImg" items="${list}" varStatus="status">
+		lockerImage = "${lockerImg.lockerImage}";
+		if(lockerImage == "0"){
+			const contentType = 'image/png';
+			
+			const base64 = "${lockerImg.imgToClob}";
+
+			const blob = b64toBlob(base64, contentType);
+			
+			const blobUrl = URL.createObjectURL(blob);	
+			console.log(blobUrl);
+			document.querySelector(".img${status.index}").src = blobUrl;
+		}
+	</c:forEach>
 	
 
 </script>

@@ -24,7 +24,7 @@
 		<![CDATA[
 	        select * 
 	        from(
-	        	select rownum as rn, r.rent_cost, r.history_index, r.rent_start, r.rent_end, r.review_yn, l.locker_title, l.locker_content, l.locker_image, l.user_code, l.locker_password
+	        	select rownum as rn, r.rent_cost, r.history_index, r.rent_start, r.rent_end, r.review_yn, l.locker_title, l.locker_content, l.locker_image, l.img_to_clob, l.user_code, l.locker_password
 	          	from rent_history r, locker l where rownum <= #{pageNum} * #{amount} and r.user_code = #{userCode} 
 	          										and r.locker_id = l.locker_id)
 	        where rn > (#{pageNum} -1) * #{amount}
@@ -35,7 +35,7 @@
   		<![CDATA[
 	  		select * 
 		    from(
-		       	select /*+INDEX_DESC(rent_history) */ rownum as rn, r.*, m.nick, l.locker_image, l.locker_title
+		       	select /*+INDEX_DESC(rent_history) */ rownum as rn, r.*, m.nick, l.locker_image, l.img_to_clob, l.locker_title
 		        from review r, member m, locker l where rownum <= #{pageNum} * #{amount} and m.user_code = l.user_code
 		          										and r.locker_id = l.locker_id
 	                               						and r.user_code = #{userCode}
@@ -45,7 +45,7 @@
   	</select>
   	
   	<select id="selectReviewInfo" resultType="map">
-  		select r.*, l.locker_image, l.locker_title, h.rent_start, h.rent_end
+  		select r.*, l.locker_image, l.img_to_clob, l.locker_title, h.rent_start, h.rent_end
 		from review r, locker l, rent_history h
 		where l.locker_id = r.locker_id
 		and r.history_index = h.history_index
@@ -71,7 +71,7 @@
    		<![CDATA[
 	  		select * 
 		    from(
-		       	select rownum as rn, r.*, m.nick, l.locker_image, l.locker_title
+		       	select rownum as rn, r.*, m.nick, l.locker_image, l.img_to_clob, l.locker_title
 		        from review r, member m, locker l where rownum <= #{pageNum} * #{amount} and m.user_code = r.user_code
 		          										and r.locker_id = l.locker_id
 	                               						and r.locker_id = #{lockerId}

@@ -20,7 +20,7 @@
 		<div class="form_area">
 			<form:form modelAttribute="review" action="/review/modify-review" method="post" id="frm_review" name="frm_review">
 				<div class="review_area">
-					<div class="reviewImg"><img class="reviewImg" src="${reviewInfo.LOCKER_IMAGE}"></div>
+					<div class="reviewImg"><img class="reviewImg imgs" src="${reviewInfo.LOCKER_IMAGE}"></div>
 					<div class="review_info">
 						<span class="locker_title">- 사물함명 : ${reviewInfo.LOCKER_TITLE}</span>
 						<span class="rent_start">- 대여날짜 : ${reviewInfo.RENT_START}</span>
@@ -60,6 +60,46 @@
 </div>
 
 <script type="text/javascript" src="${contextPath}/resources/js/review/review-modifyForm.js"></script>
+<script type="text/javascript">
+
+let lockerImage = null;
+
+const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+	  const byteCharacters = atob(b64Data);
+	  const byteArrays = [];
+
+	  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+	    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+	    const byteNumbers = new Array(slice.length);
+	    for (let i = 0; i < slice.length; i++) {
+	      byteNumbers[i] = slice.charCodeAt(i);
+	    }
+
+	    const byteArray = new Uint8Array(byteNumbers);
+	    byteArrays.push(byteArray);
+	  }
+
+	  const blob = new Blob(byteArrays, {type: contentType});
+	  return blob;
+}
+
+
+lockerImage =  "${reviewInfo.LOCKER_IMAGE}";
+if(lockerImage == "0"){
+	const contentType = 'image/png';
+	
+	const base64 = "${reviewInfo.IMG_TO_CLOB}";
+
+	const blob = b64toBlob(base64, contentType);
+	
+	const blobUrl = URL.createObjectURL(blob);	
+
+	document.querySelector(".imgs").src = blobUrl;
+}
+
+
+</script>
 
 </body>
 </html>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
 
 </head>
 <body>
@@ -16,9 +17,9 @@
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
 			  <div class="locker_list list1">
-			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8">
+			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg lockerId" id="${mains.lockerId}" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg lockerId" id="${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -30,9 +31,9 @@
 			 </div>
 			 
 			 <div class="list2">
-			 	<c:forEach items="${mainList}" var="mains" begin="5" end="6">
+			 	<c:forEach items="${mainList}" var="mains" begin="5" end="6" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -44,9 +45,9 @@
 			 </div>
 			 
 			 <div class="list3">
-			 	<c:forEach items="${mainList}" var="mains" begin="7" end="8">
+			 	<c:forEach items="${mainList}" var="mains" begin="7" end="8" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -82,6 +83,48 @@
 		alert("자세한 내용은 관리자에게 문의해주세요.");
 	};
 	
+	
+	let lockerImage = null;
+	
+	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+		  const byteCharacters = atob(b64Data);
+		  const byteArrays = [];
+
+		  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+		    const byteNumbers = new Array(slice.length);
+		    for (let i = 0; i < slice.length; i++) {
+		      byteNumbers[i] = slice.charCodeAt(i);
+		    }
+
+		    const byteArray = new Uint8Array(byteNumbers);
+		    byteArrays.push(byteArray);
+		  }
+
+		  const blob = new Blob(byteArrays, {type: contentType});
+		  return blob;
+	}
+	
+	<c:forEach var="lockerImg" items="${mainList}" begin="5" end="8" varStatus="status">
+		lockerImage =  "${lockerImg.lockerImage}";
+		if(lockerImage == "0"){
+			const contentType = 'image/png';
+			
+			const base64 = "${lockerImg.imgToClob}";
+
+			const blob = b64toBlob(base64, contentType);
+			
+			const blobUrl = URL.createObjectURL(blob);	
+			
+			var imgs = document.querySelectorAll(".img${status.index}");
+			for (var i = 0; i < imgs.length; i++) {
+				  var item = imgs.item(i);
+				  item.src = blobUrl;
+			}
+		}
+	</c:forEach>
+
 	
      /* $.ajax({
                 method: "GET",

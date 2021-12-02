@@ -25,9 +25,9 @@
 			</div>
 			</c:if>
 			
-			<c:forEach items="${list}" var="lockerList">
+			<c:forEach items="${list}" var="lockerList" varStatus="status">
 				<div class="locker_area">
-					<div class="lockerImg" ><img class="imgs" src="${lockerList.lockerImage}"></div>
+					<div class="lockerImg" ><img class="imgs img${status.index}" src="${lockerList.lockerImage}"></div>
 					<div class="locker_name">${lockerList.lockerTitle}</div>
 					<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${lockerList.lockerContent}</div>
 					<div class="locker_info">
@@ -80,6 +80,46 @@
 	     moveForm.attr("action", "/search");
 	     moveForm.submit();
 	});
+	
+
+	let lockerImage = null;
+	
+	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+		  const byteCharacters = atob(b64Data);
+		  const byteArrays = [];
+
+		  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+		    const byteNumbers = new Array(slice.length);
+		    for (let i = 0; i < slice.length; i++) {
+		      byteNumbers[i] = slice.charCodeAt(i);
+		    }
+
+		    const byteArray = new Uint8Array(byteNumbers);
+		    byteArrays.push(byteArray);
+		  }
+
+		  const blob = new Blob(byteArrays, {type: contentType});
+		  return blob;
+	}
+	
+	<c:forEach var="lockerImg" items="${list}" varStatus="status">
+		lockerImage =  "${lockerImg.lockerImage}";
+		if(lockerImage == "0"){
+			const contentType = 'image/png';
+			
+			const base64 = "${lockerImg.imgToClob}";
+
+			const blob = b64toBlob(base64, contentType);
+			
+			const blobUrl = URL.createObjectURL(blob);	
+			console.log(blobUrl);
+			document.querySelector(".img${status.index}").src = blobUrl;
+		}
+	</c:forEach>
+	
+	
 
 </script>
 

@@ -16,9 +16,9 @@
 	<div class="review_wrapper">
 	<h1 class="title">내가 작성한 리뷰</h1>
 		<ul class="review_list">
-			<c:forEach items="${list}" var="reviews">
+			<c:forEach items="${list}" var="reviews" varStatus="status">
 				<li class="review_area">
-					<div class="reviewImg"><img class="reviewImg" src="${reviews.LOCKER_IMAGE}"></div>
+					<div class="reviewImg"><img class="reviewImg img${status.index}" src="${reviews.LOCKER_IMAGE}"></div>
 						<div class="review_box">
 							<div class="nameNick">
 								<span class="review_name">${reviews.LOCKER_TITLE}</span>
@@ -100,6 +100,47 @@
 	</div>
 </div>
 <script type="text/javascript" src="${contextPath}/resources/js/review/review-list.js"></script>
+<script type="text/javascript">
+
+let lockerImage = null;
+
+const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+	  const byteCharacters = atob(b64Data);
+	  const byteArrays = [];
+
+	  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+	    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+	    const byteNumbers = new Array(slice.length);
+	    for (let i = 0; i < slice.length; i++) {
+	      byteNumbers[i] = slice.charCodeAt(i);
+	    }
+
+	    const byteArray = new Uint8Array(byteNumbers);
+	    byteArrays.push(byteArray);
+	  }
+
+	  const blob = new Blob(byteArrays, {type: contentType});
+	  return blob;
+}
+
+<c:forEach var="lockerImg" items="${list}" varStatus="status">
+	lockerImage = "${lockerImg.LOCKER_IMAGE}";
+	if(lockerImage == "0"){
+		const contentType = 'image/png';
+		
+		const base64 = "${lockerImg.IMG_TO_CLOB}";
+
+		const blob = b64toBlob(base64, contentType);
+		
+		const blobUrl = URL.createObjectURL(blob);	
+		
+		document.querySelector(".img${status.index}").src = blobUrl;
+	}
+</c:forEach>
+
+</script>
+
 
 </body>
 </html>

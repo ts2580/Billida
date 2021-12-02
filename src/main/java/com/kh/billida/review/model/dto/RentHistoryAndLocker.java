@@ -20,6 +20,7 @@ public class RentHistoryAndLocker {
 	private LocalDate rentableDateEnd; //임대종료
 	private String latitude; //위도
 	private String longitude; //경도
+	private String imgToClob;
 	
 	private int historyIndex;
 	private Date rentStart;
