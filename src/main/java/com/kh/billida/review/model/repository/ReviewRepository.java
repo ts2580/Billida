@@ -21,7 +21,6 @@ public interface ReviewRepository {
 	List<Integer> findReviewList(String userCode);
 
 	@Select("select count(*) from rent_history where user_code = #{userCode}")
-
 	int getRentTotal(String userCode);
 
 	List<Map<String, Object>> getRentListPaging(Map<String, Object> criMap);
@@ -38,9 +37,6 @@ public interface ReviewRepository {
 	@Update("update review set deleteyn = 'Y' where review_num = #{reviewNum}")
 	void deleteReview(String reviewNum);
 
-	@Select("select * from review where user_code = #{userCode}")
-	List<Review> getUserReviews(String userCode);
-
 	@Select("select history_index from review where review_num = #{reviewNum}")
 	int getHistoryIndex(String reviewNum);
 
@@ -54,7 +50,7 @@ public interface ReviewRepository {
 
 	List<Map<String, Object>> getLockerReviewsPaging(Map<String, Object> criMap);
 
-	@Select("select count(*) from review where locker_id = #{lockerId}")
+	@Select("select count(*) from review where locker_id = #{lockerId} and deleteyn = 'N'")
 	int getLockerReviewTotal(int lockerId);
 
 	

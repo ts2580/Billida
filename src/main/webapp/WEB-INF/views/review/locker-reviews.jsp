@@ -14,10 +14,10 @@
 <body id="body-pd">
 <div class="common_div">
 	<div class="review_wrapper">
-	<h1 class="title">내 사물함 리뷰</h1>
+	<h1 class="title">내 보관함 리뷰</h1>
 		<ul class="review_list">
 		
-			<c:if test="${empty lockerReviews}">
+			<c:if test="${empty list}">
 				<div class="no_search">등록된 리뷰가 없습니다.</div>
 			</c:if>
 			
@@ -81,6 +81,7 @@
 			<form id="moveForm" method="get">
 				<input type="hidden" name="pageNum" value="${paging.cri.pageNum}">
 				<input type="hidden" name="amount" value="${paging.cri.amount}">
+				<input type="hidden" name="lockerId" value="${lockerId}">
 			</form>
 	</div>
 </div>
@@ -96,27 +97,15 @@ $(".pageInfo li").on("click", function(e){
      moveForm.submit();
 });
 
-let lockerImage = null;
+var list = new Array();
+var clobList = new Array();
 
-const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-	  const byteCharacters = atob(b64Data);
-	  const byteArrays = [];
+<c:forEach var="lockerImg" items="${list}" varStatus="status">
+	list.push("${lockerImg.lockerImage}");
+	clobList.push("${lockerImg.imgToClob}");
+</c:forEach>
 
-	  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-	    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-	    const byteNumbers = new Array(slice.length);
-	    for (let i = 0; i < slice.length; i++) {
-	      byteNumbers[i] = slice.charCodeAt(i);
-	    }
-
-	    const byteArray = new Uint8Array(byteNumbers);
-	    byteArrays.push(byteArray);
-	  }
-
-	  const blob = new Blob(byteArrays, {type: contentType});
-	  return blob;
-}
+/* let lockerImage = null;
 
 <c:forEach var="lockerImg" items="${list}" varStatus="status">
 	lockerImage = "${lockerImg.lockerImage}";
@@ -124,7 +113,7 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 		const contentType = 'image/png';
 		
 		const base64 = "${lockerImg.imgToClob}";
-		console.log("base64 : " + base64);
+		
 		const blob = b64toBlob(base64, contentType);
 		
 		const blobUrl = URL.createObjectURL(blob);	
@@ -132,7 +121,10 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 		document.querySelector(".img${status.index}").src = blobUrl;
 	}
 </c:forEach>
-
+ */
+ 
 </script>
+<script type="text/javascript" src="${contextPath}/resources/js/review/imageEncoding.js"></script>
+
 </body>
 </html>

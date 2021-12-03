@@ -46,7 +46,7 @@
 	width: 400px;
 	height: 200px;
 	position: relative;
-	/* top: -70px; */
+	top: 70px;
 }
 
 #modal .title {
@@ -67,7 +67,7 @@
 	cursor: pointer;
 	text-shadow: 1px 1px 2px gray;
 	color: white;
-	background: #f76897;
+	background: #87cefa;
 	width: 97.5%;
 	height: 14%;
 	border-top-right-radius: 7px;
@@ -97,14 +97,14 @@
 }
 
 #deleteYes {
-	background-color: #f76897;
+	background-color: #87cefa;
 	color: white;
 	height: 35px;
 	border: none;
 }
 
 #deleteYes:hover {
-	background-color: #fc2071;
+	background-color: #1e91ff;
 	color: white;
 }
 

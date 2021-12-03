@@ -70,14 +70,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> getUserReviews(String userCode) {
-		return reviewRepository.getUserReviews(userCode);
-	}
-
-	@Override
 	public int getHistoryIndex(String reviewNum) {
 		return reviewRepository.getHistoryIndex(reviewNum);
-		
 	}
 
 	@Override

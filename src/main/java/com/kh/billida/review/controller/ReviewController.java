@@ -106,7 +106,7 @@ public class ReviewController {
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 		session.setAttribute("reviewList", list);
-		System.out.println("컨트롤러 리뷰리스트 : " + map);
+		
 		return "review/review-list";
 	}
 	
@@ -181,20 +181,20 @@ public class ReviewController {
 	}
 	
 	@GetMapping("locker-reviews")
-	public void lockerReviews(Model model, int lockerId, Criteria cri){
+	public void lockerReviews(Model model, String lockerId, Criteria cri){
 		Map<String, Object> criMap = new HashMap<String, Object>();
 		criMap.put("pageNum", cri.getPageNum());
 		criMap.put("amount", cri.getAmount());
-		criMap.put("lockerId", lockerId);
+		criMap.put("lockerId", Integer.parseInt(lockerId));
 		
 		List<Map<String, Object>> lockerReviews = reviewService.getLockerReviewsPaging(criMap);
-		
-		int total = reviewService.getLockerReviewTotal(lockerId);
+		int total = reviewService.getLockerReviewTotal(Integer.parseInt(lockerId));
 		Paging paging = new Paging(cri, total);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", lockerReviews);
 		map.put("paging", paging);
+		map.put("lockerId", lockerId);
 		model.addAllAttributes(map);
 	}
 	

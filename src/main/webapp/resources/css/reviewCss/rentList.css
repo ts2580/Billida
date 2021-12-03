@@ -8,6 +8,10 @@
 	height: 100%;
 }
 
+.no_search{
+	display: flex;
+	padding-top: 20px;
+}
 
 .rent_wrapper{
 	display: flex;

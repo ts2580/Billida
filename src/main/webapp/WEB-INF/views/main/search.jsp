@@ -21,7 +21,7 @@
 			<c:if test="${empty list}">
 			<div class="no_search">검색 결과가 없습니다.
 			<br>
-		 	다른 검색어로 사물함을 찾아보세요.
+		 	다른 검색어로 보관함을 찾아보세요.
 			</div>
 			</c:if>
 			

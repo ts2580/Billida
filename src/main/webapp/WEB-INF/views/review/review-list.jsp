@@ -16,6 +16,10 @@
 	<div class="review_wrapper">
 	<h1 class="title">내가 작성한 리뷰</h1>
 		<ul class="review_list">
+			<c:if test="${empty list}">
+				<div class="no_search">작성한 리뷰가 없습니다.</div>
+			</c:if>
+		
 			<c:forEach items="${list}" var="reviews" varStatus="status">
 				<li class="review_area">
 					<div class="reviewImg"><img class="reviewImg img${status.index}" src="${reviews.lockerImage}"></div>
@@ -100,47 +104,19 @@
 	</div>
 </div>
 <script type="text/javascript" src="${contextPath}/resources/js/review/review-list.js"></script>
+
 <script type="text/javascript">
 
-let lockerImage = null;
-
-const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-	  const byteCharacters = atob(b64Data);
-	  const byteArrays = [];
-
-	  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-	    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-	    const byteNumbers = new Array(slice.length);
-	    for (let i = 0; i < slice.length; i++) {
-	      byteNumbers[i] = slice.charCodeAt(i);
-	    }
-
-	    const byteArray = new Uint8Array(byteNumbers);
-	    byteArrays.push(byteArray);
-	  }
-
-	  const blob = new Blob(byteArrays, {type: contentType});
-	  return blob;
-}
+var list = new Array();
+var clobList = new Array();
 
 <c:forEach var="lockerImg" items="${list}" varStatus="status">
-	lockerImage = "${lockerImg.lockerImage}";
-	if(lockerImage == "0"){
-		const contentType = 'image/png';
-		
-		const base64 = "${lockerImg.imgToClob}";
-		console.log("base64 : " + base64);
-		const blob = b64toBlob(base64, contentType);
-		
-		const blobUrl = URL.createObjectURL(blob);	
-		
-		document.querySelector(".img${status.index}").src = blobUrl;
-	}
+	list.push("${lockerImg.lockerImage}");
+	clobList.push("${lockerImg.imgToClob}");
 </c:forEach>
 
 </script>
-
+<script type="text/javascript" src="${contextPath}/resources/js/review/imageEncoding.js"></script>
 
 </body>
 </html>

@@ -13,13 +13,17 @@
 <body id="body-pd">
 <div class="common_div">
 	<div class="rent_wrapper">
-	<h1 class="title">내가 등록한 사물함</h1>
+	<h1 class="title">내가 등록한 보관함</h1>
 		<div class="rent_list">
+			<c:if test="${empty list}">
+				<div class="no_search">등록된 보관함이 없습니다.</div>
+			</c:if>
+		
 			<c:forEach items="${list}" var="lockers" varStatus="status">
 				<div class="rent_area">
 					<div class="rentImg"><img class="rentImgs img${status.index}" src="${lockers.lockerImage}"></div>
 					<div class="locker1">
-						<div class="rent_name"><a class="afont"> - 사물함명 :&nbsp;</a>${lockers.lockerTitle}</div>
+						<div class="rent_name"><a class="afont"> - 보관함명 :&nbsp;</a>${lockers.lockerTitle}</div>
 						<div class="rent_location"><a class="afont"> - 주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : </a>${lockers.lockerContent}</div>
 						<div class="rent_password"><a class="afont"> - 비밀번호 :&nbsp;</a>${lockers.lockerPassword}</div>
 					</div>
@@ -89,43 +93,16 @@ $(".pageInfo li").on("click", function(e){
 	             });
 	 }
 
-let lockerImage = null;
-	
-	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-		  const byteCharacters = atob(b64Data);
-		  const byteArrays = [];
+var list = new Array();
+var clobList = new Array();
 
-		  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-		    const slice = byteCharacters.slice(offset, offset + sliceSize);
+<c:forEach var="lockerImg" items="${list}" varStatus="status">
+	list.push("${lockerImg.lockerImage}");
+	clobList.push("${lockerImg.imgToClob}");
+</c:forEach>
 
-		    const byteNumbers = new Array(slice.length);
-		    for (let i = 0; i < slice.length; i++) {
-		      byteNumbers[i] = slice.charCodeAt(i);
-		    }
-
-		    const byteArray = new Uint8Array(byteNumbers);
-		    byteArrays.push(byteArray);
-		  }
-
-		  const blob = new Blob(byteArrays, {type: contentType});
-		  return blob;
-	}
-	
-	<c:forEach var="lockerImg" items="${list}" varStatus="status">
-		lockerImage = "${lockerImg.lockerImage}";
-		if(lockerImage == "0"){
-			const contentType = 'image/png';
-			
-			const base64 = "${lockerImg.imgToClob}";
-			console.log("base64 : " + base64);
-			const blob = b64toBlob(base64, contentType);
-			
-			const blobUrl = URL.createObjectURL(blob);	
-			
-			document.querySelector(".img${status.index}").src = blobUrl;
-		}
-	</c:forEach>
 </script>
+<script type="text/javascript" src="${contextPath}/resources/js/review/imageEncoding.js"></script>
 
 </body>
 </html>

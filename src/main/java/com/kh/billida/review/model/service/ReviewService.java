@@ -30,8 +30,6 @@ public interface ReviewService {
 
 	void deleteReview(String reviewNum);
 
-	List<Review> getUserReviews(String userCode);
-
 	int getHistoryIndex(String reviewNum);
 
 	void updateRentHistoryReviewYn(Map<String, Object> rentHistoryMap);

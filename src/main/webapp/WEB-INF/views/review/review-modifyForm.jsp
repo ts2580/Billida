@@ -22,7 +22,7 @@
 				<div class="review_area">
 					<div class="reviewImg"><img class="reviewImg imgs" src="${list.lockerImage}"></div>
 					<div class="review_info">
-						<span class="locker_title">- 사물함명 : ${list.lockerTitle}</span>
+						<span class="locker_title">- 보관함명 : ${list.lockerTitle}</span>
 						<span class="rent_start">- 대여날짜 : ${list.rentStart}</span>
 						<span class="rent_end">- 반납날짜 : ${list.rentEnd}</span>
 					</div>
