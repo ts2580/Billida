@@ -55,7 +55,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Map<String, Object> selectReviewInfo(String reviewNum) {
+	public RentHistoryAndLocker selectReviewInfo(String reviewNum) {
 		return reviewRepository.selectReviewInfo(reviewNum);
 	}
 

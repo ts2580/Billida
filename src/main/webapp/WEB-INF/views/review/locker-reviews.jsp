@@ -21,36 +21,36 @@
 				<div class="no_search">등록된 리뷰가 없습니다.</div>
 			</c:if>
 			
-			<c:forEach items="${lockerReviews}" var="reviews" varStatus="status">
+			<c:forEach items="${list}" var="reviews" varStatus="status">
 				<li class="review_area">
-					<div class="reviewImg"><img class="reviewImg img${status.index}" src="${reviews.LOCKER_IMAGE}"></div>
+					<div class="reviewImg"><img class="reviewImg img${status.index}" src="${reviews.lockerImage}"></div>
 						<div class="review_box">
 							<div class="nameNick">
-								<span class="review_name">${reviews.LOCKER_TITLE}</span>
-								<span class="review_nick"> [작성자] ${reviews.NICK}</span>
+								<span class="review_name">${reviews.lockerTitle}</span>
+								<span class="review_nick"> [작성자] ${reviews.nick}</span>
 							</div>
 							<div class="review_info">
 								<div class="starRev">
 									<span class="star">
 									★★★★★
 										<c:choose>
-											<c:when test="${reviews.SCORE eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
-											<c:when test="${reviews.SCORE eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
+											<c:when test="${reviews.score eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
 										</c:choose>
 									</span>
 								</div>		
-								<span class="review_content">${reviews.CONTENT}</span>
+								<span class="review_content">${reviews.content}</span>
 							</div>
 						</div>
-					<div class="review_date">${reviews.UPDATE_DATE}</div>
+					<div class="review_date">${reviews.updateDate}</div>
 				</li>
 				<hr>
 			</c:forEach>
@@ -118,13 +118,13 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 	  return blob;
 }
 
-<c:forEach var="lockerImg" items="${lockerReviews}" varStatus="status">
-	lockerImage = "${lockerImg.LOCKER_IMAGE}";
+<c:forEach var="lockerImg" items="${list}" varStatus="status">
+	lockerImage = "${lockerImg.lockerImage}";
 	if(lockerImage == "0"){
 		const contentType = 'image/png';
 		
-		const base64 = "${lockerImg.IMG_TO_CLOB}";
-
+		const base64 = "${lockerImg.imgToClob}";
+		console.log("base64 : " + base64);
 		const blob = b64toBlob(base64, contentType);
 		
 		const blobUrl = URL.createObjectURL(blob);	

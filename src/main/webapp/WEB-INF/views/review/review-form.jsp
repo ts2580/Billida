@@ -20,11 +20,11 @@
 		<div class="form_area">
 			<form:form modelAttribute="review" action="/review/upload-review" method="post" id="frm_review" name="frm_review">
 				<div class="review_area">
-					<div class="reviewImg"><img class="reviewImg imgs" src="${reviewInfo.lockerImage}"></div>
+					<div class="reviewImg"><img class="reviewImg imgs" src="${list.lockerImage}"></div>
 					<div class="review_info">
-						<span class="locker_title">- 사물함명 : ${reviewInfo.lockerTitle}</span>
-						<span class="rent_start">- 대여날짜 : ${reviewInfo.rentStart}</span>
-						<span class="rent_end">- 반납날짜 : ${reviewInfo.rentEnd}</span>
+						<span class="locker_title">- 사물함명 : ${list.lockerTitle}</span>
+						<span class="rent_start">- 대여날짜 : ${list.rentStart}</span>
+						<span class="rent_end">- 반납날짜 : ${list.rentEnd}</span>
 					</div>
 				</div>
 				<div class="starRev">
@@ -74,15 +74,15 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 }
 
 
-lockerImage = "${reviewInfo.lockerImage}";
+lockerImage = "${list.lockerImage}";
 if(lockerImage == "0"){
 	const contentType = 'image/png';
 	
-	const base64 = "${reviewInfo.imgToClob}";
+	const base64 = "${list.imgToClob}";
 	console.log("리뷰폼 클롭 : " + base64);
 
 	const blob = b64toBlob(base64, contentType);
-	
+	console.log("base64 : " + base64);
 	const blobUrl = URL.createObjectURL(blob);	
 	console.log("리뷰폼 : " + blobUrl);
 	document.querySelector(".imgs").src = blobUrl;

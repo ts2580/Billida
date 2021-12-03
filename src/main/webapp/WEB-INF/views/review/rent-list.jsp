@@ -132,7 +132,7 @@ let lockerImage = null;
 			const base64 = "${lockerImg.imgToClob}";
 
 			const blob = b64toBlob(base64, contentType);
-			
+			console.log("base64 : " + base64);
 			const blobUrl = URL.createObjectURL(blob);	
 			console.log(blobUrl);
 			document.querySelector(".img${status.index}").src = blobUrl;

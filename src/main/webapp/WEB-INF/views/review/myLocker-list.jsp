@@ -15,22 +15,22 @@
 	<div class="rent_wrapper">
 	<h1 class="title">내가 등록한 사물함</h1>
 		<div class="rent_list">
-			<c:forEach items="${lockerList}" var="lockers" varStatus="status">
+			<c:forEach items="${list}" var="lockers" varStatus="status">
 				<div class="rent_area">
-					<div class="rentImg"><img class="rentImgs img${status.index}" src="${lockers.LOCKER_IMAGE}"></div>
+					<div class="rentImg"><img class="rentImgs img${status.index}" src="${lockers.lockerImage}"></div>
 					<div class="locker1">
-						<div class="rent_name"><a class="afont"> - 사물함명 :&nbsp;</a>${lockers.LOCKER_TITLE}</div>
-						<div class="rent_location"><a class="afont"> - 주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : </a>${lockers.LOCKER_CONTENT}</div>
-						<div class="rent_password"><a class="afont"> - 비밀번호 :&nbsp;</a>${lockers.LOCKER_PASSWORD}</div>
+						<div class="rent_name"><a class="afont"> - 사물함명 :&nbsp;</a>${lockers.lockerTitle}</div>
+						<div class="rent_location"><a class="afont"> - 주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : </a>${lockers.lockerContent}</div>
+						<div class="rent_password"><a class="afont"> - 비밀번호 :&nbsp;</a>${lockers.lockerPassword}</div>
 					</div>
 					<div class="locker2">
-						<div class="rent_start"><a class="afont"> - 임대시작일 : </a>${lockers.RENTABLE_DATE_START}</div>
-						<div class="rent_end"><a class="afont"> - 임대종료일 : </a>${lockers.RENTABLE_DATE_END}</div>
-						<div class="rent_profit"><a class="afont"> - 수&nbsp;&nbsp;&nbsp;익&nbsp;&nbsp;&nbsp;금 : </a>${lockers.PROFIT}원</div>
+						<div class="rent_start"><a class="afont"> - 임대시작일 : </a>${lockers.rentableDateStart}</div>
+						<div class="rent_end"><a class="afont"> - 임대종료일 : </a>${lockers.rentableDateEnd}</div>
+						<div class="rent_profit"><a class="afont"> - 수&nbsp;&nbsp;&nbsp;익&nbsp;&nbsp;&nbsp;금 : </a>${lockers.profit}원</div>
 					</div>
 					<div class="button_box">
 						<a type="button" class="modifyBtn" href="#"><i class="fas fa-eraser"></i> 정보수정</a>
-						<a type="button" class="deleteBtn" href="/review/locker-reviews?lockerId=${lockers.LOCKER_ID}"><i class="fas fa-list"></i> 리뷰확인</a>
+						<a type="button" class="deleteBtn" href="/review/locker-reviews?lockerId=${lockers.lockerId}"><i class="fas fa-list"></i> 리뷰확인</a>
 					</div>
 				</div>
 				<hr>
@@ -111,13 +111,13 @@ let lockerImage = null;
 		  return blob;
 	}
 	
-	<c:forEach var="lockerImg" items="${lockerList}" varStatus="status">
-		lockerImage = "${lockerImg.LOCKER_IMAGE}";
+	<c:forEach var="lockerImg" items="${list}" varStatus="status">
+		lockerImage = "${lockerImg.lockerImage}";
 		if(lockerImage == "0"){
 			const contentType = 'image/png';
 			
-			const base64 = "${lockerImg.IMG_TO_CLOB}";
-
+			const base64 = "${lockerImg.imgToClob}";
+			console.log("base64 : " + base64);
 			const blob = b64toBlob(base64, contentType);
 			
 			const blobUrl = URL.createObjectURL(blob);	

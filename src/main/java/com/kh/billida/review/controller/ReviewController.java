@@ -106,7 +106,7 @@ public class ReviewController {
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 		session.setAttribute("reviewList", list);
-		
+		System.out.println("컨트롤러 리뷰리스트 : " + map);
 		return "review/review-list";
 	}
 	
@@ -115,28 +115,28 @@ public class ReviewController {
 
 		RentHistoryAndLocker reviewInfo = reviewService.selectRentInfo(historyIndex);
 		
-		model.addAttribute("reviewInfo", reviewInfo);
+		model.addAttribute("list", reviewInfo);
 		session.setAttribute("rentHistoryLocker", reviewInfo);
 	}
 
 	@GetMapping("review-modifyForm") //review-modify?reviewNum=리뷰번호
 	public void modifyReview(Model model, String reviewNum, HttpSession session) {
 		
-		Map<String, Object> reviewInfo = reviewService.selectReviewInfo(reviewNum);
-		model.addAttribute("reviewInfo", reviewInfo);
+		RentHistoryAndLocker reviewInfo = reviewService.selectReviewInfo(reviewNum);
+		model.addAttribute("list", reviewInfo);
 		session.setAttribute("modifyFormInfo", reviewInfo);
 	}
 	
 	@PostMapping("modify-review")
 	public String modifyReview(Model model
 						, @ModelAttribute Review reviewForm
-						, @SessionAttribute(value="modifyFormInfo", required = false) Map<String,Object> modifyInfo
+						, @SessionAttribute(value="modifyFormInfo", required = false) RentHistoryAndLocker modifyInfo
 						) {
 		
 		Map<String, Object> commandMap = new HashMap<String, Object>();
 		commandMap.put("score", (float)reviewForm.getScore()); //별점
 		commandMap.put("content", reviewForm.getContent()); //리뷰내용
-		commandMap.put("reviewNum", modifyInfo.get("REVIEW_NUM")); //리뷰넘버
+		commandMap.put("reviewNum", modifyInfo.getReviewNum()); //리뷰넘버
 		
 		reviewService.modifyReview(commandMap);
 		
@@ -174,7 +174,7 @@ public class ReviewController {
 		Paging paging = new Paging(cri, total);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("lockerList", lockerList);
+		map.put("list", lockerList);
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 		
@@ -193,7 +193,7 @@ public class ReviewController {
 		Paging paging = new Paging(cri, total);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("lockerReviews", lockerReviews);
+		map.put("list", lockerReviews);
 		map.put("paging", paging);
 		model.addAllAttributes(map);
 	}

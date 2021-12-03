@@ -31,7 +31,7 @@
    		]]>
 	</select>
   
-  	<select id="getReviewListPaging" resultType="map">
+  	<select id="getReviewListPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
   		<![CDATA[
 	  		select * 
 		    from(
@@ -44,7 +44,7 @@
 	    ]]>
   	</select>
   	
-  	<select id="selectReviewInfo" resultType="map">
+  	<select id="selectReviewInfo" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
   		select r.*, l.locker_image, l.img_to_clob, l.locker_title, h.rent_start, h.rent_end
 		from review r, locker l, rent_history h
 		where l.locker_id = r.locker_id
@@ -58,7 +58,7 @@
 		where review_num = #{reviewNum}
   	</update>
   
-  	<select id="getMyLockerListPaging" resultType="map">
+  	<select id="getMyLockerListPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
   		<![CDATA[
 	  		select *
 			from(select rownum as rn, l.*
@@ -67,7 +67,7 @@
 		]]>
   	</select>
   
-  <select id="getLockerReviewsPaging" resultType="map">
+  <select id="getLockerReviewsPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
    		<![CDATA[
 	  		select * 
 		    from(

@@ -31,7 +31,7 @@ public interface ReviewRepository {
 	@Select("select count(*) from review where user_code = #{userCode} and deleteyn = 'N'")
 	int getReviewTotal(String userCode);
 
-	Map<String, Object> selectReviewInfo(String reviewNum);
+	RentHistoryAndLocker selectReviewInfo(String reviewNum);
 
 	void modifyReview(Map<String, Object> commandMap);
 

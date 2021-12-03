@@ -20,34 +20,34 @@
 		<div class="form_area">
 			<form:form modelAttribute="review" action="/review/modify-review" method="post" id="frm_review" name="frm_review">
 				<div class="review_area">
-					<div class="reviewImg"><img class="reviewImg imgs" src="${reviewInfo.LOCKER_IMAGE}"></div>
+					<div class="reviewImg"><img class="reviewImg imgs" src="${list.lockerImage}"></div>
 					<div class="review_info">
-						<span class="locker_title">- 사물함명 : ${reviewInfo.LOCKER_TITLE}</span>
-						<span class="rent_start">- 대여날짜 : ${reviewInfo.RENT_START}</span>
-						<span class="rent_end">- 반납날짜 : ${reviewInfo.RENT_END}</span>
+						<span class="locker_title">- 사물함명 : ${list.lockerTitle}</span>
+						<span class="rent_start">- 대여날짜 : ${list.rentStart}</span>
+						<span class="rent_end">- 반납날짜 : ${list.rentEnd}</span>
 					</div>
 				</div>
 				<div class="starRev">
 					<span class="star">
 						★★★★★
 						<c:choose>
-							<c:when test="${reviewInfo.SCORE eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
-							<c:when test="${reviewInfo.SCORE eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '0.5'}"><span id="star" style="width: 10%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '1'}"><span id="star" style="width: 20%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '1.5'}"><span id="star" style="width: 30%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '2'}"><span id="star" style="width: 40%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '2.5'}"><span id="star" style="width: 50%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '3'}"><span id="star" style="width: 60%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '3.5'}"><span id="star" style="width: 70%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '4'}"><span id="star" style="width: 80%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '4.5'}"><span id="star" style="width: 90%">★★★★★</span></c:when>
+							<c:when test="${list.score eq '5'}"><span id="star" style="width: 100%">★★★★★</span></c:when>
 						</c:choose>
 						<input type="range" oninput="drawStar(this)" value="0" step="0.5" min="0" max="5" name="score" id="score"/>
 					</span>
 				</div>
 				<div class="score_msg"> </div>
 				<div class="review_contents">
-		            <textarea name="content" id="content" rows="10" class="review_textarea">${reviewInfo.CONTENT}</textarea>
+		            <textarea name="content" id="content" rows="10" class="review_textarea">${list.content}</textarea>
 		            <div id="counter">(0 / 최대 100자)</div>
 		            <div class="content_msg"> </div>
 		        </div>   
@@ -85,12 +85,12 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 }
 
 
-lockerImage =  "${reviewInfo.LOCKER_IMAGE}";
+lockerImage =  "${list.lockerImage}";
 if(lockerImage == "0"){
 	const contentType = 'image/png';
 	
-	const base64 = "${reviewInfo.IMG_TO_CLOB}";
-
+	const base64 = "${list.imgToClob}";
+	console.log("base64 : " + base64);
 	const blob = b64toBlob(base64, contentType);
 	
 	const blobUrl = URL.createObjectURL(blob);	
