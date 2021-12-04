@@ -216,8 +216,8 @@ footer a:link {
     <div style="display: grid;">
     <a href="/member/signUp">Sign up</a>
     <span style="display: flex; justify-content: space-between;">
-    <a style="margin-top:2px;" href="#">Forgot your id?</a>
-    <a style="margin-top:2px;" href="#">Forgot your password?</a>
+    <a style="margin-top:2px;" href="/member/findId">Forgot your id?</a>
+    <a style="margin-top:2px;" href="/member/findPassword">Forgot your password?</a>
     </span>
     </div>
     <button>

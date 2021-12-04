@@ -209,7 +209,7 @@ public class MemberController {
 			//여기까지
 			certifiedUser = memberService.authenticateUser(member);
 			session.setAttribute("authentication", certifiedUser);
-			session.setAttribute("check", userId);
+			session.setAttribute("check", id);
 			return "redirect:/";
 		}
 
@@ -311,7 +311,7 @@ public class MemberController {
 		System.out.println(member);
 		List<Member> checkUser = memberService.findIdByEmail(member);
 		if (checkUser.isEmpty()) {
-			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 아이디찾기가 불가능합니다.");
+			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 빌리다에서 아이디 찾기가 불가능합니다.");
 			return "redirect:/member/findId";
 		}
 		for (Member members : checkUser) {
@@ -333,7 +333,7 @@ public class MemberController {
 			RedirectAttributes redirectAttr) {
 		List<Member> checkUser = memberService.findIdByEmail(member);
 		if (checkUser.isEmpty()) {
-			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 아이디찾기가 불가능합니다.");
+			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 빌리다에서 비밀번호 찾기가 불가능합니다.");
 			return "redirect:/member/findPassword";
 		}
 		for (Member members : checkUser) {
