@@ -41,12 +41,10 @@
 				</span>
 				<form:form  class="validation-form"
 					action="/member/changeName" method="post" id="name">
-					<div class="row">
-						<div class="col-md-6 mb-3">
+					<div class="mb-3">
 							<label for="name">이름</label> <input type="text"
 								class="form-control" name="name" id="name" placeholder=""
 								value="" required>
-						</div>
 					</div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">이름 변경</button>
 				</form:form>
@@ -97,26 +95,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto">
-				
-				<form:form class="validation-form"
-					action="/member/changeEmail" method="post" id="email">
-
-					<div class="mb-3">
-						<label for="email">이메일</label> <input type="email"
-							class="form-control" name="email" id="email"
-							placeholder="you@example.com" required>
-						<div class="invalid-feedback">이메일을 입력해주세요.</div>
-					</div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">이메일 변경</button>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	
-	
 	
 	<div class="container">
 		<div class="input-form-backgroud row">
@@ -128,18 +106,18 @@
 					 <div class="mb-3">
 			            <label for="postCode">우편번호</label>
 						<div style="display: flex;">
-			            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+			            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호"  required>
 			            <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
 			            </div>
 			          </div>
 			
 			          <div class="mb-3">
-			            <label for="address">주소<span class="text-muted">&nbsp;</span></label>
-			            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="">
+			            <label for="address">주소</label>
+			            <input type="text" required class="form-control" class="form-control" name="address" id="address" placeholder="">
 			          </div>
 			          <div class="mb-3">
-			            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-			            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요." required>
+			            <label for="address2">상세주소<span class="text-muted">(필수 아님)</span></label>
+			            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요.">
 			          </div>
 					<button class="btn btn-primary btn-lg btn-block" type="submit">주소 변경</button>
 				</form:form>

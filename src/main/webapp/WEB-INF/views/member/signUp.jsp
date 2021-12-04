@@ -117,7 +117,6 @@
             <label for="tel">휴대전화</label>
             <span style="display: flex;">
             <input type="tel" class="form-control" id="phone" name="phone"required>
-            <button type="button" " class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >전송!</button>
  			</span>
  			<c:if test="${empty error.phone}">
                  <span id="phoneCheck" class="valid-msg"></span>
@@ -125,17 +124,6 @@
           </div>
           
           
-           <div class="mb-3">
-            <label for="tel">휴대전화 인증번호</label>
-            <div style="display: flex;">
-            <input type="tel" class="form-control" id="tell"required>
-            <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
- 			</div>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
-          </div>
-
           <div class="mb-3">
             <label for="email">이메일</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
@@ -147,7 +135,7 @@
           <div class="mb-3">
             <label for="postCode">우편번호</label>
 			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호"  required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
             </div>
             <div class="invalid-feedback">
@@ -157,7 +145,7 @@
 
           <div class="mb-3">
             <label for="address">주소<span class="text-muted">&nbsp;</span></label>
-            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요.">
+            <input type="text" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요." required>
           </div>
           <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
