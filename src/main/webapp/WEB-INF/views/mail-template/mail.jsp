@@ -15,7 +15,7 @@
 * {
 	box-sizing: border-box;
 }
-
+a { text-decoration:none } 
 body {
 	margin: 0;
 	padding: 0;
@@ -247,6 +247,7 @@ p {
 																<div style="font-family: sans-serif">
 																	<div
 																		style="font-size: 12px; mso-line-height-alt: 18px; color: #191919; line-height: 1.5; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
+																		<c:if test="${not empty param.name}">
 																		<p
 																			style="margin: 0; font-size: 16px; text-align: center;">
 																			<strong><span style="font-size: 38px;">Hi
@@ -257,6 +258,8 @@ p {
 																			<strong><span style="font-size: 38px;">welcome
 																					to Billida!</span></strong>
 																		</p>
+																		</c:if>
+																		
 																	</div>
 																</div>
 															</td>
@@ -272,10 +275,20 @@ p {
 																<div style="font-family: sans-serif">
 																	<div
 																		style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #191919; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
+																		<c:if test="${not empty param.Id}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
 																			<span style="font-size: 22px;">ID : ${param.Id} </span>
 																		</p>
+																		</c:if>
+																		<c:if test="${not empty param.NewId}">
+																		<p
+																			style="margin: 0; font-size: 14px; text-align: center;">
+																			<span style="font-size: 22px;">환영합니다. ${param.NewId}님 버튼을 눌러 가입을 완료해주세요!</span>
+																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/signUpImpl/${param.persistToken}">welcome to bilida!</a></span>
+																			
+																		</p>
+																		</c:if>
 																		<c:if test="${not empty param.address}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">

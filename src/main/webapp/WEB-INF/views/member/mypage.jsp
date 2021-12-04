@@ -16,6 +16,7 @@
 </head>
 
 <body id="body-pd">
+
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -35,7 +36,7 @@
               <label for="nickname">별명 &nbsp;:&nbsp; ${authentication.nick}</label>              
             </div>
           </div>   
-                 
+  
 
 
           <div class="mb-3">
@@ -66,6 +67,7 @@
       </div>
     </div>    
   </div>
+
 
 
 

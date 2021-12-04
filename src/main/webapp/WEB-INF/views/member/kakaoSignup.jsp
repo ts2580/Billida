@@ -15,35 +15,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	 <link rel="stylesheet" href="/resources/css/memberCss/kakaoSignup.css">
 
-  <style>
-  .valid-msg{
-   display:block;
-   color:#007bff;
-   font-size:15px;
-   margin-bottom: 5px;
-}
-    body {
-      min-height: 100vh;
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-    }
-    .input-form {
-      max-width: 680px;
-      margin-top: 80px;
-      padding: 32px;
-      background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-    }
-  </style>
 </head>
 
 <body>
@@ -54,6 +27,7 @@
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/kakaoSignup"
          method="post" id="kakaosignUp">
           <input style="display: none" name="id" id="id" value="${authentication.id}">
+          <input style="display: none" name="kakaonum" id="kakaonum" value="${authentication.kakaoNum}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -78,7 +52,6 @@
             <label for="tel">휴대전화</label>
             <span style="display: flex;">
             <input type="tel" class="form-control" id="phone" name="phone"required>
-            <button type="button" " class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >전송!</button>
  			</span>
  			<c:if test="${empty error.phone}">
                  <span id="phoneCheck" class="valid-msg"></span>
@@ -86,34 +59,29 @@
              <form:errors path="phone" cssClass="valid-msg"/>
           </div>
           
+
           
-           <div class="mb-3">
-            <label for="tel">휴대전화 인증번호</label>
-            <div style="display: flex;">
-            <input type="tel" class="form-control" id="tell"required>
-            <input type="button" value="확인" class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
- 			</div>
-          </div>
-
           <div class="mb-3">
-            <label for="email">이메일</label>
+            <label>이메일</label>
+            <div style="display: flex;">
             <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
             </div>
+                <c:if test="${empty error.email}">
+                      <span id="emailCheck" class="valid-msg"></span>
+                 </c:if>
+                  <form:errors path="email" cssClass="valid-msg"/>
           </div>
-
           <div class="mb-3">
             <label for="postCode">우편번호</label>
 			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" readonly="readonly" required>
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호"  required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
             </div>
           </div>
 
           <div class="mb-3">
             <label for="address">주소<span class="text-muted">&nbsp;</span></label>
-            <input type="text" readonly="readonly" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요.">
+            <input type="text" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요." required>
           </div>
           <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>

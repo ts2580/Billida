@@ -96,9 +96,9 @@ public class RentalController {
 		
 		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
 		
-		// 리뷰에 페이징 적용
-		
 		// 헤더로 접근하는 빌리기 페이지 만들기. 지역별 정렬
+		
+		// 검색페이지 자바스크립트로 링크 달아두기
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
@@ -169,13 +169,12 @@ public class RentalController {
 			return "redirect:/";
 		}
 		
-		
 		rentalService.insertRental(rental);
 		rentalService.updateRental(lockerId);
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
 		// 긴거 맵퍼, 짧은거 리포지토리
 		
-		return "redirect:/rentalLocker/rental-form?lockerId="+lockerId;
+		return "redirect:/review/rent-list";
 	}
 
 }

@@ -19,6 +19,14 @@
 		.how-section1 .row { margin-top: 10%; }
 		.how-img { text-align: center; }
 		.how-img img{ width: 40%; }
+		.logo img {
+    display: inline-block;
+    height: 70px;
+    padding-top: 13px;
+    width: 180px;
+    height: 73px;
+    margin-top: 3px;
+}
 	</style>
 </head>
 <body>

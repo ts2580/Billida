@@ -21,6 +21,7 @@ public class RentHistoryAndLocker {
 	private String latitude; //위도
 	private String longitude; //경도
 	private String imgToClob;
+	private int profit;
 	
 	private int historyIndex;
 	private Date rentStart;
@@ -28,5 +29,14 @@ public class RentHistoryAndLocker {
 	private int rentCost;
 	private String rentPic;
 	private String reviewYn;
+	
+	private String nick;
+	
+	private String reviewNum;
+	private String content;
+	private float score;
+	private LocalDate createDate;
+	private LocalDate updateDate;
+	private String deleteyn;
 
 }

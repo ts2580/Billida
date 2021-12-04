@@ -43,7 +43,6 @@ function unlinkApp() {
 		url: '/v1/user/unlink',
 		success: function(response) {
 			console.log(response);
-			alert('success: ' + JSON.stringify(response));
 			alert("카카오 계정 연결이 끊겼습니다.");
 			location.href="/member/delete";
       	},

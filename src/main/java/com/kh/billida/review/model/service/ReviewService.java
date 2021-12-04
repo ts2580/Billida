@@ -24,13 +24,11 @@ public interface ReviewService {
 
 	int getReviewTotal(String userCode);
 
-	Map<String, Object> selectReviewInfo(String reviewNum);
+	RentHistoryAndLocker selectReviewInfo(String reviewNum);
 
 	void modifyReview(Map<String, Object> commandMap);
 
 	void deleteReview(String reviewNum);
-
-	List<Review> getUserReviews(String userCode);
 
 	int getHistoryIndex(String reviewNum);
 

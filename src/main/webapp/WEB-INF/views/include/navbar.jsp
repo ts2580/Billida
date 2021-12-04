@@ -28,11 +28,11 @@
                     </a>
                     <a href="/review/myLocker-list" class="">
                         <i class="fas fa-archive navIcons"></i>
-                        <span class="nav_name">내가 등록한 사물함</span>
+                        <span class="nav_name">내가 등록한 보관함</span>
                     </a>
                     <a href="/review/rent-list" class="">
                         <i class="fas fa-door-open navIcons"></i>
-                        <span class="nav_name">내가 빌린 사물함</span>
+                        <span class="nav_name">내가 빌린 보관함</span>
                     </a>
                     <a href="/review/review-list" class="">
                         <i class="fas fa-edit navIcons"></i>

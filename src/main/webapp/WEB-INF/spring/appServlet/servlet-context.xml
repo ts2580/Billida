@@ -20,7 +20,6 @@
 	<!-- 배치 어노테이션 추가 -->
 	<task:annotation-driven/>
 	<!--중복로그인  -->
-	
 <!--   	<interceptors>
 		<interceptor>
 		<mapping path="/*" />

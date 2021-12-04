@@ -80,22 +80,28 @@
 	});
 	
 	
-	document.querySelector('.submitButton').addEventListener('click', () => {	
+	document.querySelector('.submitButton').addEventListener('click', (event) => {	
 		
 		let rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
 		
 		if(auth == ""){
 			alert("로그인을 해야 이용 가능한 기능입니다.");
+			location.href = 'http://localhost:9090/member/login';
 		}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber) && auth != ""){
 			alert("대여 시작일과 종료일을 입력해주세요");
+			event.preventDefault();
 		}else if(isNaN(rentStartToNumber) && auth != ""){
 			alert("대여 시작일을 입력해주세요");
+			event.preventDefault();
 		}else if(isNaN(rentEndToNumber) && auth != ""){
 			alert("대여 종료일을 입력해주세요");
+			event.preventDefault();
 		}else if(rentStartToNumber > rentEndToNumber){
 			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
+			event.preventDefault();
 		}else{
+			alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
 	

@@ -41,12 +41,15 @@
    		document.querySelector('#kakaosignUp').addEventListener('submit', e => {
    			
    			let phoneReg = /^\d{9,11}$/;
-			
+			let emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
    			if(!phoneReg.test(phone.value)){
    				e.preventDefault();
    				document.querySelector('#phoneCheck').innerHTML = '휴대폰 번호는 9~11자리의 숫자입니다.';
    			}
-   			
+   			if(!emailReg.test(email.value)){
+   				e.preventDefault();
+   				document.querySelector('#emailCheck').innerHTML = '이메일 형식을 확인해주세요.';
+   			}
    			if(confirmNick != nick.value){
    				e.preventDefault();
    				document.querySelector('#nickCheck').innerHTML = '닉네임 중복 검사를 통과하지 않았습니다.';

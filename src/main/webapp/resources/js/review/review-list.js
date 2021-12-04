@@ -1,9 +1,13 @@
 let moveForm = $("#moveForm");
 
 $(".pageInfo li").on("click", function(e){
+	 //li태그의 동작 멈춤
 	 e.preventDefault();
+	 //form태그 내부의 pageNum과 관련된 <input>태그의 value 속성값에, 클릭한 li태그의 페이지 번호 삽입시킴
      moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+     //form태그 action속성 추가 및 경로 추가
      moveForm.attr("action", "review-list");
+     //form태그 서버로 전송
      moveForm.submit();
 });
 

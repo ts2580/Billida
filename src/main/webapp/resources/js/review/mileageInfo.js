@@ -37,10 +37,10 @@ function payment(){
 	    merchant_uid: 'merchant_' + new Date().getTime(), // 내 사이트에서 관리하는 주문 번호
 	    name : "마일리지 충전", 
 	    amount : mileage, //결제 가격
-	    buyer_email : "${authentication.email}", //결제하는 사람 이메일
-	    buyer_name : "${authentication.name}", //결제하는 사람 이름
-	    buyer_tel : "${authentication.phone}", //결제하는 사람 번호
-	    buyer_addr : "${authentication.address}", //결제하는 사람 주소
+	    buyer_email : document.getElementById('userEmail').value, //결제하는 사람 이메일
+	    buyer_name : document.getElementById('userName').value, //결제하는 사람 이름
+	    buyer_tel : document.getElementById('userTell').value, //결제하는 사람 번호
+	    buyer_addr : document.getElementById('userAddress').value, //결제하는 사람 주소
 	  
 	}, function(rsp) {
 			console.log(rsp);

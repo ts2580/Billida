@@ -8,8 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="${contextPath}/resources/css/reviewCss/paging.css" rel="stylesheet" type="text/css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<title>report-main</title>
 	<style type="text/css">
 		body {background: #87cefa1f }
@@ -22,6 +24,14 @@
 		.contact-form label{ font-weight:600; }
 		.contact-form button{ background: #d14b4b; color: #fff; font-weight: 600; width: 25%; }
 		.contact-form button:focus{ box-shadow:none; }
+		.logo img {
+    display: inline-block;
+    height: 70px;
+    padding-top: 13px;
+    width: 180px;
+    height: 73px;
+    margin-top: 3px;
+}
 	</style>
 </head>
 <body>

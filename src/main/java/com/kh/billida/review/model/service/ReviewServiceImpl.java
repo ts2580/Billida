@@ -55,7 +55,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Map<String, Object> selectReviewInfo(String reviewNum) {
+	public RentHistoryAndLocker selectReviewInfo(String reviewNum) {
 		return reviewRepository.selectReviewInfo(reviewNum);
 	}
 
@@ -70,14 +70,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> getUserReviews(String userCode) {
-		return reviewRepository.getUserReviews(userCode);
-	}
-
-	@Override
 	public int getHistoryIndex(String reviewNum) {
 		return reviewRepository.getHistoryIndex(reviewNum);
-		
 	}
 
 	@Override
