@@ -18,7 +18,7 @@
                     <a href="/" class="nav__logo">home</a>
                 </div>
                 <div class="nav__list">
-                    <a href="/member/mypage" class="">
+                    <a href="/member/change" class="">
                         <i class="fas fa-user-edit navIcons"></i>
                         <span class="nav_name">회원정보수정</span>
                     </a>
