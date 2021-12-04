@@ -56,7 +56,7 @@
           
             <label for="id">아이디</label>
             <span class="mb-3" style="display: flex;" >
-            <input type="text" class="form-control" name="id" id="id" placeholder="영어+숫자를 혼합해 사용해주세요" 
+            <input type="text" class="form-control" name="id" id="id" placeholder="영문소문자 또는 영문소문자+숫자,5-11글자를 입력해주세요" 
             	<c:if  test="${empty error.Id}">
             		value="${joinForm.id}"
             	</c:if>
@@ -125,11 +125,15 @@
           
           
           <div class="mb-3">
-            <label for="email">이메일</label>
+            <label>이메일</label>
+            <div style="display: flex;">
             <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
+            <button  type="button" id="btnEmailCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
             </div>
+                <c:if test="${empty error.email}">
+                      <span id="emailCheck" class="valid-msg"></span>
+                 </c:if>
+                  <form:errors path="email" cssClass="valid-msg"/>
           </div>
 
           <div class="mb-3">
@@ -137,9 +141,6 @@
 			<div style="display: flex;">
             <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호"  required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
-            </div>
-            <div class="invalid-feedback">
-              주소를 입력해주세요.
             </div>
           </div>
 

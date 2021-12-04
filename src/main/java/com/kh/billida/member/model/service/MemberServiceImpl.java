@@ -30,7 +30,6 @@ public class MemberServiceImpl implements MemberService {
 	private final RestTemplate http;
 
 	public void insertMember(JoinForm form) {
-		System.out.println("카카오멤버 처음가입");
 		if (form.getKakaonum() == null) {
 			form.setPassword(passwordEncoder.encode(form.getPassword()));
 			memberRepository.insertMember(form);
@@ -48,6 +47,10 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectMemberByNick(String nick) {
 		return memberRepository.selectMemberByNick(nick);
 	}
+	public List<Member> selectMemberByEmail(String email) {
+		return memberRepository.selectMemberByEmail(email);
+	}
+
 
 	public Member authenticateUser(Member member) {
 		Member storedMember = memberRepository.selectMemberById(member.getId());
@@ -81,10 +84,10 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-	public Member findIdByEmail(Member member) {
+	public List<Member> findIdByEmail(Member member) {
 		System.out.println("여까지는 옵니까?");
 		System.out.println("멤버서비스임플에서 멤버값" + member);
-		Member storedMember = memberRepository.selectMemberByNameAndEmail(member.getName(), member.getEmail());
+		List<Member> storedMember = memberRepository.selectMemberByNameAndEmail(member.getName(), member.getEmail());
 		System.out.println("저장된값" + storedMember);
 		if (storedMember == null) {
 			return null;
@@ -107,9 +110,9 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-	public Member findPasswordByEmail(Member member) {
+	public List<Member> findPasswordByEmail(Member member) {
 		System.out.println("여기는 서비스임플입니당 여기서 넘어온 멤버값은 ? : " + member);
-		Member storedMember = memberRepository.selectMemberByIdAndNameAndEmail(member.getId(), member.getName(),
+		List<Member> storedMember = memberRepository.selectMemberByIdAndNameAndEmail(member.getId(), member.getName(),
 				member.getEmail());
 		System.out.println("디비에서 꺼내온값" + storedMember);
 		if (storedMember == null) {
@@ -226,5 +229,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepository.selectMileageInfo(id);
 
 	}
+
 
 }

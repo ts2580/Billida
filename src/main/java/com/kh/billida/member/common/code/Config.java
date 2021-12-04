@@ -3,9 +3,9 @@ package com.kh.billida.member.common.code;
 public enum Config {
 	//DOMAIN("https://pclass.ga")
 	DOMAIN("http://localhost:9090"),
-	COMPANY_EMAIL("dlrlwjd1313@gmail.com"),
+	COMPANY_EMAIL("pclassgyu@gmail.com"),
 	SMTP_AUTHENTICATION_ID("pclassgyu@gmail.com"),
-	SMTP_AUTHENTICATION_PASSWORD("asdf7797"),
+	SMTP_AUTHENTICATION_PASSWORD("1q2w3e4r1!"),
 	//UPLOAD_PATH("C:\\CODE\\");배포경로 미리 생각해두기.
 	UPLOAD_PATH("C:\\CODE\\upload\\");
 	

@@ -12,10 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -42,7 +39,6 @@ import com.kh.billida.member.validator.JoinForm;
 import com.kh.billida.member.validator.JoinFormValidator;
 
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequiredArgsConstructor
@@ -113,7 +109,17 @@ public class MemberController {
 			return "disable";
 		}
 	}
-
+	@GetMapping("email-check")
+	@ResponseBody
+	public String emailCheck(String email) {
+		List<Member> memberList = memberService.selectMemberByEmail(email);
+		if (memberList.isEmpty()) {
+			return "available";
+		} else {
+			return "disable";
+		}
+	}
+	
 	@GetMapping("nick-check")
 	@ResponseBody
 	public String nickCheck(String nick) {
@@ -281,16 +287,18 @@ public class MemberController {
 	@PostMapping("findIdByEmail")
 	public String findIdByEmail(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr) {
 		System.out.println(member);
-		Member checkUser = memberService.findIdByEmail(member);
-		if (checkUser == null) {
-			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요");
+		List<Member> checkUser = memberService.findIdByEmail(member);
+		if (checkUser.isEmpty()) {
+			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 아이디찾기가 불가능합니다.");
 			return "redirect:/member/findId";
 		}
-		checkUser.setName(member.getName());
-		checkUser.setEmail(member.getEmail());
-		System.out.println("리포지토리에서 불러온 아이디값" + checkUser);
-		memberService.sendIdByEmail(checkUser);
-
+		for (Member members : checkUser) {
+			if(members.getKakaoNum()==null) {
+				System.out.println(members);
+				memberService.sendIdByEmail(members);
+			}
+		}
+		
 		return "redirect:/";
 	}
 
@@ -301,17 +309,19 @@ public class MemberController {
 	@PostMapping("findPasswordByEmail")
 	public String findPasswordByEmail(Model model, Member member, HttpSession session,
 			RedirectAttributes redirectAttr) {
-		System.out.println(member);
-		Member checkUser = memberService.findPasswordByEmail(member);
-		if (checkUser == null) {
-			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요");
+		List<Member> checkUser = memberService.findIdByEmail(member);
+		if (checkUser.isEmpty()) {
+			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.<br>카카오회원은 아이디찾기가 불가능합니다.");
 			return "redirect:/member/findPassword";
 		}
-		System.out.println("리포지토리에서 불러온 아이디값" + checkUser);
-		String token = UUID.randomUUID().toString();
-		session.setAttribute("persistToken", token);
-		memberService.sendPasswordByEmail(checkUser, token);
-
+		for (Member members : checkUser) {
+			if(members.getKakaoNum()==null) {
+				System.out.println(members);
+				String token = UUID.randomUUID().toString();
+				session.setAttribute("persistToken", token);
+				memberService.sendPasswordByEmail(members, token);
+			}
+		}
 		return "redirect:/";
 	}
 

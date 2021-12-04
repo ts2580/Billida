@@ -17,7 +17,7 @@ public interface MemberService {
 	void updateMember(JoinForm form);
 	boolean checkPassword(String password, HttpSession session);
 	void deleteMember(String userCode);
-	Member findIdByEmail(Member member);
+	List<Member> findIdByEmail(Member member);
 	void sendIdByEmail(Member checkUser);
 	void updatePassword(JoinForm form);
 	void updateName(JoinForm form, Member user);
@@ -25,7 +25,7 @@ public interface MemberService {
 	void updateTel(JoinForm form, Member user);
 	void updateEmail(JoinForm form, Member user);
 	void updateAddress(JoinForm form, Member user);
-	Member findPasswordByEmail(Member member);
+	List<Member> findPasswordByEmail(Member member);
 	void sendPasswordByEmail(Member checkUser, String token);
 	void changeKakaoMember(JoinForm form, Member user);
 	Member changePasswordByEmail(Member member);
@@ -35,7 +35,6 @@ public interface MemberService {
 	void updateGradeUpById(String id);
 	void updateGradeDownById(String id);
 	Member selectMileageInfo(String id);
-
-	
+	List<Member> selectMemberByEmail(String email);
 
 }

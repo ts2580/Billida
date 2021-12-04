@@ -56,9 +56,14 @@ public class JoinFormValidator implements Validator {
 			}
 			// 4. 닉네임 존재유무
 			if (form.getNick() != null) {
-				System.out.println("끝까지도나?");
 				if(memberRepository.selectMemberByNick(form.getNick()) != null) {
 					errors.rejectValue("nick", "error-nick", "이미 존재하는 닉네임입니다.");
+				}
+			}
+			// 5. 이메일 존재유무
+			if (form.getEmail() != null) {
+				if(!(memberRepository.selectMemberByEmail(form.getEmail())).isEmpty()) {
+					errors.rejectValue("email", "error-email", "이미 존재하는 이메일입니다.");
 				}
 			}
 

@@ -46,8 +46,8 @@ public interface MemberRepository {
 
 	// @Select("select id from member where name=#{name} and email = #{email}")
 	// Member selectMemberByNameAndEmail(Member member);
-	@Select("select id from member where name=#{name} and email = #{email}")
-	Member selectMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
+	@Select("select id,email,name,kakaonum from member where name=#{name} and email = #{email}")
+	List<Member> selectMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
 
 	@Update("update member set password=#{password} where id = #{id}")
 	void updatePassword(JoinForm form);
@@ -68,7 +68,7 @@ public interface MemberRepository {
 	void updateAddress(JoinForm form);
 
 	@Select("select * from member where id=#{id} and name=#{name} and email = #{email}")
-	Member selectMemberByIdAndNameAndEmail(@Param("id") String id, @Param("name") String name,
+	List<Member> selectMemberByIdAndNameAndEmail(@Param("id") String id, @Param("name") String name,
 			@Param("email") String email);
 
 	@Update("update member set password=#{password} where id=#{id}")
@@ -86,5 +86,8 @@ public interface MemberRepository {
 
    @Select("select m.*, e.mileage from member m, mileage e where m.id = #{id} and m.user_code = e.user_code")
    Member selectMileageInfo(String id);
+   
+   @Select("select * from member where email = #{email}")
+   List<Member> selectMemberByEmail(String email);
 
 }

@@ -10,7 +10,7 @@
    	(()=>{
 		let confirmId = '';
    		//영문소문자 또는 영문소문자+숫자,5-11글자
-		let idReg = /^[a-z]{5,11}$|^[a-z0-9]{5,11}$/;
+		let idReg =/^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$/;
 
    		document.querySelector("#btnIdCheck").addEventListener('click', e => {
    			
@@ -21,7 +21,6 @@
    			if(Id){ /*userId가 null이 아니라면*/
 				if(!idReg.test(id.value)){
 					e.preventDefault();
-					alert("아이디는 영문소문자 또는 영문소문자+숫자로 이루어진 \n 5-11글자 입니다.");
 					document.querySelector('#idCheck').innerHTML = '아이디는 영문소문자 또는 영문소문자+숫자로 이루어진 5-11글자 입니다.';
 				}else{
 					fetch('/member/id-check?id=' + Id)
@@ -47,7 +46,7 @@
    		})
 					
 			
-			let confirmNick = '';
+					let confirmNick = '';
 			   		let nickReg = /[a-zA-Z0-9가-힣]{2,10}/;
 			   		
 					document.querySelector("#btnNickCheck").addEventListener('click', e => {
@@ -76,20 +75,50 @@
 								})	
 							}
 						}
-			   		})   		
+			   		})
+		let confirmEmail = '';
+		let emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		
+   		document.querySelector("#btnEmailCheck").addEventListener('click', e => {
+   			let emailAddress = email.value;
+   			if(emailAddress){
+					if(!emailReg.test(email.value)){
+					e.preventDefault();
+					document.querySelector('#emailCheck').innerHTML = '이메일을 확인해주세요.';
+				}else{
+   				fetch('/member/email-check?email=' + emailAddress)
+   				.then(response => {
+					if(!response.ok)
+						throw new Error(`${response.statusText} : ${response.status}`);
+						return response.text();
+				}).then(text => {	
+   					if(text == 'available'){
+   						document.querySelector('#emailCheck').innerHTML = '사용 가능한 이메일 입니다.';
+   						confirmEmail = emailAddress;
+   					}else if(text == 'disable'){
+   						document.querySelector('#emailCheck').innerHTML = '이미 가입된 이메일 입니다.';
+   					}
+   				}).catch(error => {
+					document.querySelector('#emailCheck').innerHTML = error;
+				})
+   			} 
+   		  }
+   		})		
    				
    		
    		document.querySelector('#signUp').addEventListener('submit', e => {
    			
    			let pwReg = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
    			let phoneReg = /^\d{9,11}$/;
-   			
 			
    			if(confirmId != id.value){
    				e.preventDefault();
    				document.querySelector('#idCheck').innerHTML = '아이디 중복 검사를 통과하지 않았습니다.';
    			}
-
+			if(confirmEmail != email.value){
+   				e.preventDefault();
+   				document.querySelector('#emailCheck').innerHTML = '이메일 중복 검사를 통과하지 않았습니다.';
+   			}
    			if(!pwReg.test(password.value)){
    				e.preventDefault();
 				//alert("비밀번호는 숫자, 영문자, 특수문자 조합의 \n 8자리 이상 문자열입니다.");
@@ -114,7 +143,10 @@
    			}
    			
    			
-   			
+   			if(confirmId == id.value && emailReg.test(email.value) && pwReg.test(password.value) 
+   			&& password.value == passwordCheck.value&& confirmNick == nick.value
+   			&& phoneReg.test(phone.value) && confirmEmail == email.value){
+				alert("입력하신 메일을 통해 회원가입이 마무리됩니다.");
+   			}
    		})
-   	
    	})();
