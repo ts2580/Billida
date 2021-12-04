@@ -187,6 +187,9 @@ footer a:link {
 <div class="wrapper">
   <form action="/member/login" method="post" class="login">
     <p class="title">Log in</p>
+    <c:if test="${not empty welcome}">
+			<span class="valid-msg">${welcome}</span>
+		</c:if>
 	<input name="id" id="id" type="text" placeholder="Username" autofocus/>
     <i class="fa fa-user"></i>
     <input name="password" id="password" type="password" placeholder="Password" />

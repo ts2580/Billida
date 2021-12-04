@@ -36,5 +36,6 @@ public interface MemberService {
 	void updateGradeDownById(String id);
 	Member selectMileageInfo(String id);
 	List<Member> selectMemberByEmail(String email);
+	void authenticateByEmail(JoinForm form, String token);
 
 }

@@ -84,8 +84,7 @@ public class MemberController {
 	}
 
 	@PostMapping("signUp")
-	public String signUp(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
-			RedirectAttributes redirectAttr) {
+	public String signUp(@Validated JoinForm form, Errors errors, Model model, HttpSession session) {
 
 		ValidateResult vr = new ValidateResult();
 		model.addAttribute("error", vr.getError());
@@ -94,9 +93,32 @@ public class MemberController {
 			vr.addError(errors);
 			return "member/signUp";
 		}
-		memberService.insertMember(form);
+		String token = UUID.randomUUID().toString();
+	    session.setAttribute("persistUser", form);
+	    session.setAttribute("persistToken", token);
+	      
+	    memberService.authenticateByEmail(form, token);
+	    //redirectAttr.addFlashAttribute("message","이메일이 발송되었습니다.");
+		//memberService.insertMember(form);
 		return "redirect:/";
 	}
+	   @GetMapping("signUpImpl/{token}")
+	   public String joinImpl(@PathVariable String token
+	                  ,@SessionAttribute(value = "persistToken", required = false) String persistToken
+	                  ,@SessionAttribute(value = "persistUser", required = false) JoinForm form
+	                  ,HttpSession session
+	                  ,RedirectAttributes redirectAttrs) {
+	      
+	      if(!token.equals(persistToken)) {
+	         throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
+	      }
+	      
+	      memberService.insertMember(form);
+	      redirectAttrs.addFlashAttribute("welcome","회원가입을 환영합니다. 로그인 해 주세요");
+	      session.removeAttribute("persistToken");
+	      session.removeAttribute("persistUser");
+	      return "redirect:/member/login";
+	   }
 
 	@GetMapping("id-check")
 	@ResponseBody
