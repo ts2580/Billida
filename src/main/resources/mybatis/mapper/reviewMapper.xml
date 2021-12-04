@@ -68,7 +68,7 @@
 		]]>
   	</select>
   
-  <select id="getLockerReviewsPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
+   <select id="getLockerReviewsPaging" resultType="com.kh.billida.review.model.dto.RentHistoryAndLocker">
    		<![CDATA[
    			select * 
 			from(
@@ -80,7 +80,7 @@
 			    where rownum <= #{pageNum} * #{amount})
 			where rn > (#{pageNum} -1) * #{amount}
 	    ]]>
-  </select>
+   </select>
   
   
   </mapper>

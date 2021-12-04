@@ -79,12 +79,11 @@ if(lockerImage == "0"){
 	const contentType = 'image/png';
 	
 	const base64 = "${list.imgToClob}";
-	console.log("리뷰폼 클롭 : " + base64);
-
+	
 	const blob = b64toBlob(base64, contentType);
-	console.log("base64 : " + base64);
+
 	const blobUrl = URL.createObjectURL(blob);	
-	console.log("리뷰폼 : " + blobUrl);
+	
 	document.querySelector(".imgs").src = blobUrl;
 }
 

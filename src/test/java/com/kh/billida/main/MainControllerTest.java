@@ -65,7 +65,7 @@ public class MainControllerTest {
 		main.setLockerTitle("testLock");
 		main.setLockerContent("seoulo");
 		main.setLockerSize("M");
-		main.setLockerPassword(1234);
+		main.setLockerPassword("1234");
 		main.setLocation("seoul");
 		main.setLatitude("212.33");
 		main.setLongitude("12.3333");
@@ -85,7 +85,7 @@ public class MainControllerTest {
 		main.setLockerTitle("testLocker4");
 		main.setLockerContent("seoulo");
 		main.setLockerSize("M");
-		main.setLockerPassword(1234);
+		main.setLockerPassword("1234");
 		main.setLatitude("212.33");
 		main.setLongitude("12.3333");
 		main.setRentableDateEnd(targetDate);
@@ -133,7 +133,7 @@ public class MainControllerTest {
 		String address;
 		String latitude;
 		String longitude;
-		int password;
+		String password;
 		LocalDate targetDate = LocalDate.of(2021, 12, 25); //대여가능날짜 임시 지정
 		
 		Main main = new Main();
@@ -157,7 +157,7 @@ public class MainControllerTest {
 			address = obj.getString("lnmadr");
 			latitude = obj.getString("latitude");
 			longitude = obj.getString("longitude");
-			password = obj.getInt("insttCode");
+			password = obj.getString("insttCode");
 			//System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
 			
 			//main.setUserCode("1");

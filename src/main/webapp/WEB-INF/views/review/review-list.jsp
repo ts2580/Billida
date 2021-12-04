@@ -78,17 +78,14 @@
 		<div class="pageInfo_wrap">
 				<div class="pageInfo_area">
 					<ul id="pageInfo" class="pageInfo">
-					
 						<!-- 이전페이지 버튼 -->
 	                	<c:if test="${paging.prev}">
 	                    	<li class="pageInfo_btn previous" href="${paging.startPage-1}">&laquo;</li>
 	                	</c:if>
-					
 						<!-- 각 번호 페이지 버튼  -->
 						<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
 							<li class="pageInfo_btn ${paging.cri.pageNum == num ? "active":"" }" href="${num}">${num}</li>
 						</c:forEach>
-						
 						<!-- 다음페이지 버튼 -->
 	                	<c:if test="${paging.next}">
 	                    	<li class="pageInfo_btn next" href="${paging.endPage + 1 }">&raquo;</li>

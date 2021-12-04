@@ -26,7 +26,6 @@
 			0 원
 			</div>
 		</c:if>
-		
 		<form:form modelAttribute="paymentForm" action="/mileage/update-mileage" name="payment_frm" method="post" class="payment_form">
 			<div class="mileage_area">
 				<div class="title"><img src="/resources/images/dollar.png" class="titleImg"/> 마일리지 충전 <img src="/resources/images/dollar.png" class="titleImg"/> </div>
@@ -36,15 +35,12 @@
 					<a type="button" class="cost3 cost" onclick="costInput('cost3')">50,000원</a>
 					<a type="button" class="cost4 cost" onclick="costInput('cost4')">100,000원</a>
 				</div>
-				
 				<div class="mileage_inputDiv"><input type="number" id="mileage" name="mileage" value="" readonly="readonly"/> 원</div>
 				<div class="recharge"><a type="button" class="mileage_btn" onclick="payment()">충전하기</a></div>
 			</div>
 			
 			<input type="hidden" id="userCode" name="userCode" value="${authentication.userCode}">
 			<input type="hidden" id="orderNum" name="orderNum" value="">
-			
-			
 			<input type="hidden" id="userName" name="userName" value="${authentication.name}">
 			<input type="hidden" id="userEmail" name="userEmail" value="${authentication.email}">
 			<input type="hidden" id="userAddress" name="userAddress" value="${authentication.address}">
