@@ -93,8 +93,8 @@
                <div class="user">
                   <ul>
                   <c:if test="${empty authentication}">
-                     <li><a href="/member/login"><img src="${contextPath}/resources/images/login1.png" style="width: 28%; margin-right: 28px;"/></a>
-                     <a href="/member/signUp"><img src="${contextPath}/resources/images/signup1.png" style="width: 28%"/></a></li>
+                     <li><a href="/member/login"><img src="${contextPath}/resources/images/login1.png" style="width: 26%; margin-right: 28px;"/></a>
+                     <a href="/member/signUp"><img src="${contextPath}/resources/images/signup1.png" style="width: 26%"/></a></li>
                   </c:if>
                   
                   <div class="mileageAndLogout">
