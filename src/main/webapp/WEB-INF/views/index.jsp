@@ -5,13 +5,21 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
+<style type="text/css">
 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+</style>
 </head>
 <body>
 		<div class="content">
 			<div class="wrapper">
 			 <div class="main" role="main">
 			 	<img class="mainImg" src="${contextPath}/resources/images/main1.jpg">
+			 	<div class="mainText">
+			 		<a id="firstText">"비대면으로 편하게!"</a>
+			 		<a id="secondText">안전하고, 합리적인 비용으로 보관함을 이용하세요.</a>
+			 	</div>
 			 </div>
 			 
 			 <a id="recommendList">추천 사물함 리스트</a>
