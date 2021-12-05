@@ -10,7 +10,10 @@
 
 .no_search{
 	display: flex;
-	padding-top: 20px;
+	margin-top: 40px;
+	text-align: center;
+	line-height: 35px;
+	justify-content: center;
 }
 
 .review_wrapper{

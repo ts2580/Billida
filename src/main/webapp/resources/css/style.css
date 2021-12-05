@@ -150,6 +150,7 @@ html {
 .logOutImg{
 	width: 35px;
 	height: 35px;
+	padding-right: 20px;
 }
 /*---start-header----*/
 .header{
@@ -288,7 +289,7 @@ a.boxclose{
 /*--userinfo--*/
 .userinfo{
 	float: right;
-	width: 15%;
+	width: 16%;
 	margin-top: 0.3em;
 	padding-top: 16px;
 }
@@ -895,6 +896,12 @@ span.mail a:hover{
 		}
 }
 
+@media only screen and (max-width:860px) and (min-width:768px) {
+	.top-searchbar {
+		width: 35%;
+	}
+}
+
 /*--//End-media Quries for 1024px-monitors-*/
 /*--media Quries for 768px-monitors-*/
 @media only screen and (max-width:768px) and (min-width:640px) {	
@@ -920,7 +927,7 @@ span.mail a:hover{
 		padding: 0.6em 1.2em;
 	}
 	.top-searchbar {
-		width: 29%;
+		width: 32%;
 	}
 	a.boxclose {
 		right: 1em;

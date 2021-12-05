@@ -93,8 +93,8 @@
                <div class="user">
                   <ul>
                   <c:if test="${empty authentication}">
-                     <li><a href="/member/login"><img src="${contextPath}/resources/images/login.png" style="width: 18%"/></a>
-                     <a href="/member/signUp"><img src="${contextPath}/resources/images/signup.png" style="width: 18%"/></a></li>
+                     <li><a href="/member/login"><img src="${contextPath}/resources/images/login1.png" style="width: 28%; margin-right: 28px;"/></a>
+                     <a href="/member/signUp"><img src="${contextPath}/resources/images/signup1.png" style="width: 28%"/></a></li>
                   </c:if>
                   
                   <div class="mileageAndLogout">
@@ -105,7 +105,7 @@
 		                  <c:if test="${empty userMileage}">
 		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> 0원</a>
 		                  </c:if>
-	                     <a href="javascript:kakaoLogout();" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
+	                     <a href="javascript:kakaoLogout();" class="logOutImg"><img src="/resources/images/logout1.png" class="logOutImg"/></a>
 	                  </c:if>
 	                  <c:if test="${empty authentication.kakaoNum &&not empty authentication.id}">
 	                     <c:if test="${not empty userMileage}">
@@ -114,7 +114,7 @@
 		                  <c:if test="${empty userMileage}">
 		                  	 <a href="/mileage/mileageInfo" class="mileage"><img src="/resources/images/money.png" class="mileageImg"/> 0원</a>
 		                  </c:if>
-	                     <a href="/member/logout" class="logOutImg"><img src="/resources/images/logout.png" class="logOutImg"/></a>
+	                     <a href="/member/logout" class="logOutImg"><img src="/resources/images/logout1.png" class="logOutImg"/></a>
 	                  </c:if>
                   </div>
                   </ul>

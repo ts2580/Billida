@@ -8,11 +8,6 @@
 	height: 100%;
 }
 
-.no_search{
-	display: flex;
-	padding-top: 20px;
-}
-
 .rent_wrapper{
 	display: flex;
 	flex-direction: column;
@@ -167,12 +162,12 @@ hr{
 	}
 }
 
-
-
 .no_search {
+	display: flex;
 	margin-top: 40px;
 	text-align: center;
 	line-height: 35px;
+	justify-content: center;
 }
 
 .afont{
