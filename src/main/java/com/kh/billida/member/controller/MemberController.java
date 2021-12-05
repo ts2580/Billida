@@ -261,7 +261,7 @@ public class MemberController {
 		if (user.getKakaoNum() == null) {
 			return "member/check";
 		}
-		return "member/kakaoChange";
+		return "member/mypage";
 	}
 
 	
