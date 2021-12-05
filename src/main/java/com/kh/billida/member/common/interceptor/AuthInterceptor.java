@@ -49,6 +49,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 			case "support":
 				supportAuthorize(httpRequest, httpResponse, uriArr);
 				break;	
+			case "rentLocker":
+				rentAuthorize(httpRequest, httpResponse, uriArr);
+				break;
+			case "rentalLocker":
+				rentalAuthorize(httpRequest, httpResponse, uriArr);
+				break;
 			default:
 				break;
 			}
@@ -198,6 +204,24 @@ public class AuthInterceptor implements HandlerInterceptor {
 		default:
 			break;
 		}
+	}
+	
+	private void rentAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		if(member == null && uriArr[2].equals("rent-form")) {
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED.setURL("/member/login"));
+			};		
+	}
+	
+	private void rentalAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		if(member == null && uriArr[2].equals("rental-form")) {
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED.setURL("/member/login"));
+		};
 	}
 
 }

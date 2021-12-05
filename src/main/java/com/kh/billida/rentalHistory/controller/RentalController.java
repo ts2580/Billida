@@ -158,7 +158,7 @@ public class RentalController {
 			rentdate = 365-rentStart.getDayOfYear()+rentEnd.getDayOfYear()+1;
 		};
 		
-		int rentCost = rentdate*3000;
+		int rentCost = rentdate*500;
 		
 		rental.setLockerId(lockerId);
 		rental.setUserCode(userCode);
@@ -173,6 +173,36 @@ public class RentalController {
 		rentalService.updateRental(lockerId);
 		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
 		// 긴거 맵퍼, 짧은거 리포지토리
+		
+		
+		// 빌린놈 -
+		
+		// 빌려준놈 +
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		return "redirect:/review/rent-list";
 	}

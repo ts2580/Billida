@@ -128,11 +128,7 @@
 		
 		const  isWrongDate = Boolean(rentableDateStartValue > rentableDateEndValue);
 		
-		if(auth == ""){
-			alert("로그인을 해야 이용 가능한 기능입니다.");
-			location.href = 'http://localhost:9090/member/login';
-			event.preventDefault();
-		}else if(document.querySelector('input[name="lockerTitle"]').value == ""){
+		if(document.querySelector('input[name="lockerTitle"]').value == ""){
 			alert("보관함 이름을 입력해주세요");
 			event.preventDefault();
 		}else if(document.querySelector('input[name="lockerContent"]').value == " "){
@@ -157,7 +153,7 @@
 			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			event.preventDefault();
 		}else{
-			alert("보관함 빌려주기기 완료되었습니다. \n이용해주셔서 감사합니다.");
+			alert("보관함 빌려주기가 완료되었습니다. \n이용해주셔서 감사합니다.");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
      });

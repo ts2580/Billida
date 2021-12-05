@@ -28,7 +28,7 @@
 
 				<div class="outline">
 					<p class="price-and-time">
-						<span class="price">3,000원</span> <span class="time">~/일</span>
+						<span class="price">500원</span> <span class="time">~/일</span>
 					</p>
 					<form:form action="/rentalLocker/rental-form" method="post" class="rental-contents">
 						<table>
@@ -67,7 +67,6 @@
 	<script type="text/javascript">
 	
 	
-		const auth = "${authentication}";
 		const isRented = "${locker.rentStatus}";
 		const lockerImage = "${locker.lockerImage}";
 		const base64 = "${locker.imgToClob}";

@@ -58,11 +58,7 @@ public class RentLockerController {
 		
 		// 매일 0시에 대여 기간 종료된 락커 상태 3(대여종료)으로(처리)
 		
-		// 마이페이지 rownum이든 rank 든 적용해서 순서대로 퍼오는거(부탁...해볼까...?)
-		
 		// 고해상도 이미지 업로드 할 경우 저해상도로 인코딩
-		
-		// 메인이나 검색창에 락커 상태가 3(대여종료)일경우 노출 안되도록 처리 협의
 		
 		LocalDate today = LocalDate.now();
 		
