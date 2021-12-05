@@ -284,12 +284,12 @@ p {
 																		<c:if test="${not empty param.NewId}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
-																			<span style="font-size: 22px;">환영합니다. ${param.NewId}님 버튼을 눌러 가입을 완료해주세요!</span>
+																			<span style="font-size: 22px;">환영합니다. ${param.NewId}님 버튼을 눌러 가입을 완료해주세요!<br></span>
 																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/signUpImpl/${param.persistToken}">welcome to bilida!</a></span>
 																			
 																		</p>
 																		</c:if>
-																		<c:if test="${not empty param.address}">
+																		<c:if test="${not empty param.check}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
 																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/findPasswordBy_Email/${param.persistToken}_${param.Id}">비밀번호 재설정</a></span>

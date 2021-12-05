@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.cache.CacheKey;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -142,9 +143,9 @@ public class MemberServiceImpl implements MemberService {
 		body.add("mailTemplate", "mail");
 		body.add("Id", checkUser.getId());
 		body.add("name", checkUser.getName());
-		body.add("address", checkUser.getAddress());
+		body.add("check", "체크");
 		body.add("persistToken", token);
-
+		System.out.println(checkUser.getAddress());
 		RequestEntity<MultiValueMap<String, String>> request = RequestEntity.post(Config.DOMAIN.DESC + "/mail")
 				.accept(MediaType.APPLICATION_FORM_URLENCODED).body(body);
 
