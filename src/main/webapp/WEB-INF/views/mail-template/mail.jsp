@@ -71,8 +71,8 @@ p {
 <body style="background-color: #f9f9f9; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
 	<table border="0" cellpadding="0" cellspacing="0" class="nl-container"
 		role="presentation"
-		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f9f9f9;"
-		width="100%">
+		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f9f9f9;
+		width:100%; display: flex; justify-content: center;">
 		<tbody>
 			<tr>
 				<td>
@@ -284,7 +284,9 @@ p {
 																		<c:if test="${not empty param.NewId}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
-																			<span style="font-size: 22px;">환영합니다. ${param.NewId}님 버튼을 눌러 가입을 완료해주세요!<br></span>
+																			<span style="font-size: 22px; display: flex; flex-direction: column;">환영합니다. 
+																			<br>
+																			${param.NewId}님 버튼을 눌러 가입을 완료해주세요!</span>
 																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/signUpImpl/${param.persistToken}">welcome to bilida!</a></span>
 																			
 																		</p>
@@ -361,7 +363,7 @@ p {
 
 					<table align="center" border="0" cellpadding="0" cellspacing="0"
 						class="row row-13" role="presentation"
-						style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+						style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width:100%; display: flex; justify-content: center; background-color: #f9f9f9">
 						<tbody>
 							<tr>
 								<td>
