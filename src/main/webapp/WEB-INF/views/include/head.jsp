@@ -73,7 +73,7 @@
                          	  <li><a href="/"><span>HOME</span></a></li>
                               <li><a href="/member/check"><span>마이페이지</span></a></li>
                               <li><a><span class="billyeojugiHeader" style="cursor:pointer">빌려주기</span></a></li>
-                              <li><a href="#"><span>예약확인</span></a></li>
+                              <li><a href="/review/rent-list"><span>대여목록</span></a></li>
                               <li><a href="/support/support-index"><span>문의하기</span></a></li>
                               <div class="clear"> </div>
                            </ul>
@@ -85,7 +85,7 @@
             </div>            
             <div class="top-searchbar">
                <form action="/search" method="get">
-                  <input type="text" name="keyword" required="required" value="${paging.cri.keyword}" placeholder="지역, 사물함명으로 찾아보세요."/>
+                  <input type="text" name="keyword" required="required" value="${paging.cri.keyword}" placeholder="지역, 보관함명으로 찾아보세요."/>
                   <input class="search_area" type="submit" value="" />
                </form>
             </div>
