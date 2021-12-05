@@ -1,5 +1,6 @@
 (() => {
 	
+	rentCost = null;
 	
 	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 		const byteCharacters = atob(b64Data);
@@ -45,7 +46,7 @@
 			
 		let rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
-		let rentCost = (rentEndToNumber-rentStartToNumber)/4800+500;
+		rentCost = (rentEndToNumber-rentStartToNumber)/172800+500;
 			
 		let rentEndBeforeRentStart = false;
 			
@@ -97,6 +98,9 @@
 		}else if(rentStartToNumber > rentEndToNumber){
 			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			event.preventDefault();
+		}else if(RantalMileage == "" || RantalMileage < rentCost){
+			alert("마일리지가 부족합니다. \n마일리지를 충전해주세요.");
+			location.href = 'http://localhost:9090/mileage/mileageInfo';
 		}else{
 			alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";

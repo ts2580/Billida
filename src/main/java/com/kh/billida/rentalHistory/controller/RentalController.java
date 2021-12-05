@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.billida.member.model.dto.Member;
+import com.kh.billida.rentalHistory.model.dto.LessorMileage;
 import com.kh.billida.rentalHistory.model.dto.LockerForLental;
+import com.kh.billida.rentalHistory.model.dto.Mileage;
 import com.kh.billida.rentalHistory.model.dto.Rental;
 import com.kh.billida.rentalHistory.model.dto.ReviewForRentHistory;
 import com.kh.billida.rentalHistory.model.service.RentalService;
@@ -39,7 +41,7 @@ public class RentalController {
 	private float longitude;
 	
 	@GetMapping("rental-form")
-	public void rental(Model model, LockerForLental locker, Long lockerId){
+	public void rental(Model model, LockerForLental locker, Long lockerId, Member member, HttpSession session){
 		// Qwerasdf1234!
 
 		// 이하 자바
@@ -92,13 +94,17 @@ public class RentalController {
 		
 		// 매 0시 배치로 대여 종료일 지난 보관함 대여상태를 대여중(1)에서 대여가능(0)으로(처리)  
 		
-		// 임시로 때운 auth 관련 제한 인터셉터에 등록할까 말까.
+		// 임시로 때운 auth 관련 제한 인터셉터에 등록할까 말까.(등록함)
 		
-		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리
+		// 멤버에서 결제관련 처리 끝나면 마일리지 받아오고, 부족시 예외사항 처리(처리)
 		
-		// 헤더로 접근하는 빌리기 페이지 만들기. 지역별 정렬
+		// post로 들어오는 빌려주기 보낼때 프로시저로(처리)
 		
-		// 검색페이지 자바스크립트로 링크 달아두기
+		// 검색결과창에 링크달기
+		
+		member = (Member)session.getAttribute("authentication");
+		
+		String userCode = member.getUserCode();
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
@@ -119,6 +125,14 @@ public class RentalController {
 			today = locker.getRentableDateStart().toLocalDate();
 		};
 		
+		Mileage RantalMileage = new Mileage();
+		RantalMileage.setUserCode(userCode);
+		
+		Long RantalMileageCost = rentalService.selectRentalMileage(RantalMileage);
+		
+		if(RantalMileageCost != null) {
+			model.addAttribute("RantalMileage", RantalMileageCost);
+		};
 		
 		model.addAttribute("today", today);
 		model.addAttribute("reviews", reviews);
@@ -143,7 +157,7 @@ public class RentalController {
 	
 	@Transactional
 	@PostMapping("rental-form")
-	public String rentalForm(Rental rental, HttpSession session, Member member){
+	public String rentalForm(Rental rental, HttpSession session, Member member, Model model){
 		
 		member = (Member)session.getAttribute("authentication");
 		
@@ -160,6 +174,7 @@ public class RentalController {
 		
 		int rentCost = rentdate*500;
 		
+		// 대여 내역 업데이트 & 보관함 상태 업데이트
 		rental.setLockerId(lockerId);
 		rental.setUserCode(userCode);
 		rental.setRentCost(Long.valueOf(rentCost));
@@ -169,42 +184,44 @@ public class RentalController {
 			return "redirect:/";
 		}
 		
-		rentalService.insertRental(rental);
-		rentalService.updateRental(lockerId);
-		// 맵핑하고 맵퍼에서 처리하는거랑 리포지토리에서 처리하는거랑 무슨 차이였지
-		// 긴거 맵퍼, 짧은거 리포지토리
+		// rentalService.insertRental(rental);
+		// rentalService.updateRental(lockerId);	
+		rentalService.insertAndUpdateRental(rental);
+		// 프로시저
 		
 		
-		// 빌린놈 -
+		// 빌린사람 마일리지 -
+		Mileage RantalMileage = new Mileage();
+		RantalMileage.setUserCode(userCode);
+		RantalMileage.setMileage(rentCost);
 		
-		// 빌려준놈 +
-		
-		
-		
-		
-		
-		
-		
-		
+		// rentalService.selectRentalMileage(userCode);
+		// rentalService.updateRentalMileage(RantalMileage);
+		rentalService.selectAndUpdateRentalMileage(RantalMileage);
+		// 프로시저
 		
 		
+		// 빌려준사람 마일리지 +
+		LessorMileage lessorMileage = new LessorMileage();
+		lessorMileage.setLockerId(lockerId);
+		lessorMileage.setMileage(rentCost);
 		
+		// Mileage RantMileage = rentalService.selectLessorMileage(lockerId);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// if(RantMileage == null) {
+		// 	rentalService.insertLessorMileage(lessor);
+		// 	RantMileage = rentalService.selectLessorMileage(lessor);
+		// }
+			
+		// RantMileage.setMileage(RantMileage.getMileage() + rentCost);
+		// rentalService.updateLessorMileage(RantMileage);
+		rentalService.selectAndUpdateLessorMileage(lessorMileage);
 		
 		return "redirect:/review/rent-list";
 	}
+	
+	
+	
+	
 
 }
