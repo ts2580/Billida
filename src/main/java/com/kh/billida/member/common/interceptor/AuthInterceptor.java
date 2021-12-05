@@ -147,24 +147,54 @@ public class AuthInterceptor implements HandlerInterceptor {
 	private void memberAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
 		switch (uriArr[2]) {
-		
-		case "mypage":
-			if (session.getAttribute("authentication") == null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
+				
+		case "login":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
 			}			
 			break;
-		/*
-		 * case "kakaoSignup": if (session.getAttribute("authentication") == null) {
-		 * throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR); }
-		 * 
-		 * break;
-		 */
-		/*
-		 * case "kakaoLogin": if (session.getAttribute("authentication") == null) {
-		 * throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR); }
-		 * 
-		 * break;
-		 */
+		case "signUp":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
+			}			
+			break;
+		case "kakaoSignup":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
+			}			
+			break;
+		case "changePasswordByEmail":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
+			}			
+			break;
+		case "findId":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
+			}			
+			break;
+		case "findPassword":
+			if (session.getAttribute("authentication") != null) {
+				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
+			}			
+			break;
+		case "mypage":
+			if (session.getAttribute("authentication") == null) {
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
+			}			
+			break;
+		case "change":
+			if (session.getAttribute("authentication") == null) {
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
+			}			
+			break;
+		case "kakaoChange":
+			if (session.getAttribute("authentication") == null) {
+				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
+			}			
+			break;
+			
+			
 		default:
 			break;
 		}

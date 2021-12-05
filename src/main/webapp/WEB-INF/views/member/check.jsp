@@ -12,6 +12,7 @@
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
  <link href="/resources/css/memberCss/find.css" rel='stylesheet' type='text/css' />
+ <link rel="shortcut icon" type="image/x-icon" href="../../../resources/images/favicon.ico" />
 <title>Insert title here</title>
 </head>
 <body>

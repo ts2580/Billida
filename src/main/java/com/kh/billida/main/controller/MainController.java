@@ -60,6 +60,9 @@ public class MainController {
 			if(member.getGrade().equals("00")) {
 				model.addAttribute("zeroGradeMember", "zeroGradeMember");
 			}
+			if(member.getGrade().equals("99")) {
+				model.addAttribute("admin","admin");
+			}
 		} catch (NullPointerException e) {
 			return "index";
 		}

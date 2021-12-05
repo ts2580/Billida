@@ -10,6 +10,7 @@ public enum ErrorCode {
 	UNAUTHORIZED_PAGE_ERROR("접근 권한이 없는 페이지 입니다."),
 	FAILED_FILE_UPLOAD_ERROR("파일업로드에 실패하였습니다."),
 	USER_LOGIN_NEEDED("로그인이 필요한 기능입니다."),
+	WRONG_PATH_ERROR("잘못 된 경로로 접근하셨습니다."),
 	REDIRECT("");
 	
 	public final String MESSAGE;

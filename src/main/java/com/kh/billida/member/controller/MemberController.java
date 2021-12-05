@@ -479,6 +479,10 @@ public class MemberController {
 	@GetMapping("admin")
 	public String admin(Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		
+		if(session.getAttribute("admin") == null) {
+			return "redirect:/";
+		}
+		
 		List<Member> memberList = memberService.selectMember();		
 		session.setAttribute("memberList", memberList);
 		session.setAttribute("size", memberList.size());
