@@ -50,9 +50,11 @@
    </head>
    <body>
    <c:if test="${not empty check}">
-     <script type="text/javascript">
-     alert("중복 로그인되었습니다.\n사용중이신 계정의 연결을 끊습니다.");
-     </script>
+   	<script>
+   	alert("중복 로그인되었습니다\n 기존 로그인된 세션을 만료시킵니다.");
+    <c:set var="name" value="${check}" />
+   	<c:remove var="check" />
+	</script>
     </c:if>
       <!---start-wrap---->
          <!---start-header---->

@@ -1,7 +1,6 @@
 package com.kh.billida.member.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -180,6 +179,7 @@ public class MemberController {
 		session.setAttribute("login_id", id);
 		//여기까지
 		session.setAttribute("authentication", certifiedUser); // 세션에 올려주기
+		session.setAttribute("check", userId);
 		session.setAttribute("Id", member.getId());
 		logger.debug(certifiedUser.toString());
 		return "redirect:/";
@@ -209,8 +209,8 @@ public class MemberController {
 			//여기까지
 			certifiedUser = memberService.authenticateUser(member);
 			session.setAttribute("authentication", certifiedUser);
-			session.setAttribute("check", id);
-			return "redirect:/";
+			session.setAttribute("check", userId);
+						return "redirect:/";
 		}
 
 		System.out.println("여긴 멤버컨트롤러 처음" + form.toString());
