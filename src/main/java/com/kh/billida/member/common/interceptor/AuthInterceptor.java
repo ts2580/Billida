@@ -165,11 +165,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
 			}			
 			break;
-		case "changePasswordByEmail":
-			if (session.getAttribute("authentication") != null) {
-				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
-			}			
-			break;
 		case "findId":
 			if (session.getAttribute("authentication") != null) {
 				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);

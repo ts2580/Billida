@@ -42,7 +42,7 @@
 					<form:form  class="validation-form"
 						action="/member/changeName" method="post" id="name">
 						<div class="mb-3">							
-								<label for="name">이름</label> <input type="text"
+								<label for="name">이름</label> <input type="text" maxlength="12"
 									class="form-control" name="name" id="name" placeholder=""
 									value="" required>							
 						</div>
@@ -60,7 +60,7 @@
 						<div class="mb-3">
 							<label for="nickname">별명</label> 
 							 <span style="display: flex;">
-							<input type="text"class="form-control" name="nick" id="nick" placeholder=""value="" required>
+							<input type="text"class="form-control" name="nick" id="nick" maxlength="12" placeholder=""value="" required>
 								<button type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block"
 									style="width: 120px; height: 38px; margin-left: 10px; font-size: 14px;">중복확인</button>
 							</span>
@@ -83,8 +83,10 @@
 						<div class="mb-3">
 							<label for="tel">휴대전화</label> 
 								<input type="tel" class="form-control" id="phone" name="phone">			
-							
 						</div>
+						<c:if test="${empty error.phone}">
+							<span id="phoneCheck" class="valid-msg"></span>
+						</c:if>
 						<button class="btn btn-primary btn-lg btn-block" type="submit">휴대전화 변경</button>
 					</form:form>
 				</div>

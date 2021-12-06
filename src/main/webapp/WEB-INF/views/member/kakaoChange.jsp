@@ -40,7 +40,7 @@
 				<form:form  class="validation-form"
 					action="/member/changeName" method="post" id="name">
 						<div class="col-md-6 mb-3">
-							<label for="name">이름</label> <input type="text"
+							<label for="name">이름</label> <input type="text" maxlength="12"
 								class="form-control" name="name" id="name" placeholder=""
 								value="" required>
 						</div>
