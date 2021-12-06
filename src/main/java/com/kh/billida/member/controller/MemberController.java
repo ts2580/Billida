@@ -210,7 +210,7 @@ public class MemberController {
 			certifiedUser = memberService.authenticateUser(member);
 			session.setAttribute("authentication", certifiedUser);
 			session.setAttribute("check", userId);
-						return "redirect:/";
+			return "redirect:/";
 		}
 
 		System.out.println("여긴 멤버컨트롤러 처음" + form.toString());
@@ -247,6 +247,8 @@ public class MemberController {
 		}
 		System.out.println("폼에 들어가나?" + form);
 		memberService.updateMember(form);
+		Member certifiedUser = memberService.authenticateUser(member);
+		session.setAttribute("authentication", certifiedUser);
 		return "redirect:/";
 	}
 
