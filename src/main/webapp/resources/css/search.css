@@ -27,6 +27,8 @@ hr{
 	margin: 0;
 	width: 98%;
 	padding-bottom: 25px;
-	border-left: hidden;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
 }
 
