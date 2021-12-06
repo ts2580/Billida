@@ -411,7 +411,7 @@ public class MemberController {
 		System.out.println(user);
 		memberService.updateName(form,user);
 		}
-		return "redirect:/member/check";
+		return "redirect:/member/mypage";
 	}
 
 	@PostMapping("changeNick")
@@ -426,7 +426,7 @@ public class MemberController {
 		  }
 		Member user = (Member) session.getAttribute("authentication");
 		memberService.updateNick(form,user);
-		return "redirect:/member/check";
+		return "redirect:/member/mypage";
 	}
 
 	@PostMapping("changeTel")
@@ -441,7 +441,7 @@ public class MemberController {
 		}
 		Member user = (Member) session.getAttribute("authentication");
 		memberService.updateTel(form,user);
-		return "redirect:/member/check";
+		return "redirect:/member/mypage";
 	}
 
 	@PostMapping("changeEmail")
@@ -449,7 +449,7 @@ public class MemberController {
 		Member user = (Member) session.getAttribute("authentication");
 		System.out.println(user);
 		memberService.updateEmail(form,user);
-		return "redirect:/member/check";
+		return "redirect:/member/mypage";
 		
 	}
 
@@ -457,7 +457,7 @@ public class MemberController {
 	public String updateAddress(@ModelAttribute JoinForm form, HttpSession session, Errors errors, Model model, RedirectAttributes redirectAttr) {
 		Member user = (Member) session.getAttribute("authentication");
 		memberService.updateAddress(form,user);
-		return "redirect:/member/check";
+		return "redirect:/member/mypage";
 	}
 	@PostMapping("kakaoChange")
 	public String kakaoChange(@Validated JoinForm form, Errors errors, Member member, Model model, HttpSession session,
@@ -478,8 +478,8 @@ public class MemberController {
 	
 	@GetMapping("admin")
 	public String admin(Model model, HttpSession session, RedirectAttributes redirectAttr) {
-		
-		if(session.getAttribute("admin") == null) {
+		Member member = (Member) session.getAttribute("authentication");
+		if(!member.getGrade().equals("99")) {
 			return "redirect:/";
 		}
 		
@@ -522,8 +522,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("mypage")
-	public void mypage() {
-	
+	public void mypage(HttpSession session, Model model, RedirectAttributes redirectAttr) {
+		Member user = (Member) session.getAttribute("authentication");
+		Member member= memberService.selectMemberById(user.getId());
+		System.out.println(member.toString());
+		session.setAttribute("authentication", member);
 	}
 	
 	@GetMapping("change")

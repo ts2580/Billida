@@ -20,17 +20,16 @@
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3">${authentication.id}님의 개인정보</h4>
+        <h4 class="mb-3">${authentication.name}님의 개인정보</h4>
         <form:form modelAttribute="joinForm" class ="validation-form" action="/member/signUp"
          method="post" id="signUp">
-          
+          <c:if	test="${empty authentication.kakaoNum}">
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="name">이름 &nbsp;:&nbsp; ${authentication.name}</label>
-              
+              <label for="name">아이디 &nbsp;:&nbsp; ${authentication.id}</label>              
             </div>
           </div>
-          
+          </c:if>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="nickname">별명 &nbsp;:&nbsp; ${authentication.nick}</label>              

@@ -58,7 +58,7 @@ public class MainController {
 			// 따라서 리포지토리에 메소드 하나 파고 다시 DB서 grade받아줌;
 			
 			if(member.getGrade().equals("00")) {
-				model.addAttribute("zeroGradeMember", "zeroGradeMember");
+				model.addAttribute("zeroGradeMember", "zeroGradeMember");				
 			}
 			if(member.getGrade().equals("99")) {
 				model.addAttribute("admin","admin");

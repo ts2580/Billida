@@ -152,6 +152,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 	private void memberAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
 		switch (uriArr[2]) {
 				
 		case "login":
@@ -160,11 +161,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 			}			
 			break;
 		case "signUp":
-			if (session.getAttribute("authentication") != null) {
-				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
-			}			
-			break;
-		case "kakaoSignup":
 			if (session.getAttribute("authentication") != null) {
 				throw new HandlableException(ErrorCode.WRONG_PATH_ERROR);
 			}			
@@ -198,8 +194,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 			if (session.getAttribute("authentication") == null) {
 				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
 			}			
-			break;
-			
+			break;			
 			
 		default:
 			break;
