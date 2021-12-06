@@ -183,7 +183,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		case "mypage":
 			if (session.getAttribute("authentication") == null) {
 				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
-			}			
+			}
 			break;
 		case "change":
 			if (session.getAttribute("authentication") == null) {
@@ -194,8 +194,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 			if (session.getAttribute("authentication") == null) {
 				throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
 			}			
-			break;			
-			
+			break;
+		case "check":
+			 if(member.getGrade().equals("00")) {
+				 throw new HandlableException(ErrorCode.STOP_ID.setURL("/support/support-index"));
+			 }
+			 break;
 		default:
 			break;
 		}

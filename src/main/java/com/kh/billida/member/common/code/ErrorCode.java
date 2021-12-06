@@ -11,6 +11,7 @@ public enum ErrorCode {
 	FAILED_FILE_UPLOAD_ERROR("파일업로드에 실패하였습니다."),
 	USER_LOGIN_NEEDED("로그인이 필요한 기능입니다."),
 	WRONG_PATH_ERROR("잘못된 경로로 접근하셨습니다."),
+	STOP_ID("정지된 회원입니다.문의 게시판만 접근이 가능합니다."),
 	REDIRECT("");
 	
 	public final String MESSAGE;
