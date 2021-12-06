@@ -86,7 +86,13 @@
 		let rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
 		
-		if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber)){
+		if(isRented == 1){
+			let btn = document.querySelector(".submitButton");
+			btn.innerText = "";
+			btn.innerText = "*대여중인 보관함입니다*";
+			alert("대여중인 보관함입니다");
+			event.preventDefault();
+		}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber)){
 			alert("대여 시작일과 종료일을 입력해주세요");
 			event.preventDefault();
 		}else if(isNaN(rentStartToNumber)){
@@ -111,14 +117,6 @@
 		
 		
 	let reviewNum = 0;	
-	
-	if(isRented == 1){
-		
-		let btn = document.querySelector(".submitButton");
-		btn.innerText = "";
-		btn.innerText = "*대여중인 보관함입니다*";
-		btn.removeAttribute("onclick");
-	}
 	
 	if(isNaN(scoreArr[reviewNum])){
 		

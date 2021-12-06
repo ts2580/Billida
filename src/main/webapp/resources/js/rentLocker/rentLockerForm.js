@@ -111,7 +111,7 @@
 			
 			document.querySelector('input[name="imgToClob"]').value = base64Img[1];
 			
-			const blobUrl = URL.createObjectURL(blob);	
+			const blobUrl = URL.ctcreateObjeURL(blob);	
 			img.src = blobUrl;
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 

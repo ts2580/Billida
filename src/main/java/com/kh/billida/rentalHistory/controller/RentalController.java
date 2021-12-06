@@ -100,6 +100,8 @@ public class RentalController {
 		
 		// post로 들어오는 빌려주기 보낼때 프로시저로(처리)
 		
+		// 로그인 페이지에 이름 넣어주기
+		
 		// 검색결과창에 링크달기
 		
 		member = (Member)session.getAttribute("authentication");
@@ -157,7 +159,7 @@ public class RentalController {
 	
 	@Transactional
 	@PostMapping("rental-form")
-	public String rentalForm(Rental rental, HttpSession session, Member member, Model model){
+	public String rentalForm(Rental rental, HttpSession session, Member member){
 		
 		member = (Member)session.getAttribute("authentication");
 		
