@@ -191,7 +191,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			}			
 			break;
 		case "check":
-			 if(member.getGrade().equals("00")) {
+			 if(member==null) {
+				 throw new HandlableException(ErrorCode.USER_LOGIN_NEEDED);
+			 }else if(member.getGrade().equals("00")){
 				 throw new HandlableException(ErrorCode.STOP_ID.setURL("/support/support-index"));
 			 }
 			 break;
