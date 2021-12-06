@@ -33,7 +33,6 @@
 						<div class="rent_profit"><a class="afont"> - 수&nbsp;&nbsp;&nbsp;익&nbsp;&nbsp;&nbsp;금 : </a>${lockers.profit}원</div>
 					</div>
 					<div class="button_box">
-						<a type="button" class="modifyBtn" href="#"><i class="fas fa-eraser"></i> 정보수정</a>
 						<a type="button" class="deleteBtn" href="/review/locker-reviews?lockerId=${lockers.lockerId}"><i class="fas fa-list"></i> 리뷰확인</a>
 					</div>
 				</div>

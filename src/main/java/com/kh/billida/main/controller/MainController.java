@@ -40,8 +40,12 @@ public class MainController {
 	@GetMapping("/") //처음 페이지 들어갔을 때 동작하는 메서드
 	public String main(Model model, HttpSession session, Member member) {
 		
+		List<Object> lockerIds = mainService.getLockerIds(); //리뷰의 별점 높은 순서로 4개의 락커번호 뽑아옴
+
 		List<Main> mainList = new ArrayList<Main>();
-		mainList = mainService.selectLockerList();
+		for (Object lockerId : lockerIds) {
+			mainList.addAll(mainService.selectLockerList(lockerId));
+		}
 
 		Map<String, Object> commandMap = new HashMap<String, Object>();
 		commandMap.put("mainList", mainList);

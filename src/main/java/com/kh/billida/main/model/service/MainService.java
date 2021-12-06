@@ -9,13 +9,15 @@ import com.kh.billida.member.model.dto.Member;
 
 public interface MainService {
 
-	List<Main> selectLockerList();
+	List<Main> selectLockerList(Object lockerId);
 
 	List<Map<String, Object>> getListPaging(Map<String, Object> commandMap);
 	
 	int getTotal(Criteria cri);
 
 	Member isDegraded(String userCode);
+
+	List<Object> getLockerIds();
 
 
 }

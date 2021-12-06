@@ -21,8 +21,8 @@ public class MainServiceImpl implements MainService {
 	private final MainRepository mainRepository;
 
 	@Override
-	public List<Main> selectLockerList() {
-		List<Main> mainList = mainRepository.selectLockerList();
+	public List<Main> selectLockerList(Object lockerId) {
+		List<Main> mainList = mainRepository.selectLockerList(lockerId);
 		return mainList;
 	}
 
@@ -42,6 +42,11 @@ public class MainServiceImpl implements MainService {
 	// 부정유저 감지
 	public Member isDegraded(String userCode) {
 		return mainRepository.isDegraded(userCode);
+	}
+
+	@Override
+	public List<Object> getLockerIds() {
+		return mainRepository.getLockerIds();
 	}
 
 

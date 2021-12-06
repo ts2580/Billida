@@ -25,7 +25,7 @@
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
 			  <div class="locker_list list1">
-			 	<c:forEach items="${mainList}" var="mains" begin="5" end="8" varStatus="status">
+			 	<c:forEach items="${mainList}" var="mains" begin="0" end="3" varStatus="status">
 					 <div class="locker_area">
 					 	<div class="lockerImg lockerId" id="${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
@@ -39,7 +39,7 @@
 			 </div>
 			 
 			 <div class="list2">
-			 	<c:forEach items="${mainList}" var="mains" begin="5" end="6" varStatus="status">
+			 	<c:forEach items="${mainList}" var="mains" begin="0" end="1" varStatus="status">
 					 <div class="locker_area">
 					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
@@ -53,7 +53,7 @@
 			 </div>
 			 
 			 <div class="list3">
-			 	<c:forEach items="${mainList}" var="mains" begin="7" end="8" varStatus="status">
+			 	<c:forEach items="${mainList}" var="mains" begin="2" end="3" varStatus="status">
 					 <div class="locker_area">
 					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
