@@ -86,7 +86,8 @@
 		</c:forEach>
 	
 	</script>
-
+	
+	<script type="text/javascript" src="${contextPath}/resources/js/common/changeBase64ToBlob.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/rentalFormJs/rentalForm.js"></script>
 
 

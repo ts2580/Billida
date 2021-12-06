@@ -105,7 +105,9 @@
 	const today = "${today}"
 	
 	</script>
+	<script type="text/javascript" src="${contextPath}/resources/js/common/changeBase64ToBlob.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/rentLocker/rentLockerForm.js"></script>
+	
 
 </body>
 </html>
