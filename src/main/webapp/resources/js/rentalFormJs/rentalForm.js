@@ -80,6 +80,12 @@
 		commonFnc();
 	});
 	
+	if(isRented == 1){
+			let btn = document.querySelector(".submitButton");
+			btn.innerText = "";
+			btn.innerText = "*대여중인 보관함입니다*";
+	}
+	
 	
 	document.querySelector('.submitButton').addEventListener('click', (event) => {	
 		
@@ -87,9 +93,6 @@
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
 		
 		if(isRented == 1){
-			let btn = document.querySelector(".submitButton");
-			btn.innerText = "";
-			btn.innerText = "*대여중인 보관함입니다*";
 			alert("대여중인 보관함입니다");
 			event.preventDefault();
 		}else if(isNaN(rentStartToNumber) && isNaN(rentEndToNumber)){
@@ -111,8 +114,6 @@
 			alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
-	
-	
 	});
 		
 		
