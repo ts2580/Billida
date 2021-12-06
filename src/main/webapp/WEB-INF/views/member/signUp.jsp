@@ -29,7 +29,7 @@
           
             <label for="id">아이디</label>
             <span class="mb-3" style="display: flex;" >
-            <input type="text" class="form-control" name="id" id="id" placeholder="영문소문자 또는 영문소문자+숫자,5-11글자를 입력해주세요" 
+            <input type="text" class="form-control" name="id" id="id" placeholder="영문소문자 또는 영문소문자+숫자,5-11글자를 입력해주세요" maxlength="20"
             	<c:if  test="${empty error.Id}">
             		value="${joinForm.id}"
             	</c:if>
@@ -44,7 +44,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="password">비밀번호</label>
-              <input type="password" class="form-control" name="password"  id="password" placeholder="" 
+              <input type="password" class="form-control" name="password"  id="password" placeholder="" maxlength="100"
               	<c:if  test="${empty error.password}">
             		value="${joinForm.password}"
             	</c:if>
@@ -57,7 +57,7 @@
             <div class="col-md-6 mb-3">
 
               <label for="password">비밀번호 확인</label>
-              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder=""  
+              <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder=""  maxlength="100"
               required>
             	<c:if test="${empty error.password}">
                       <span id="passwordFail" class="valid-msg"></span>
@@ -69,12 +69,12 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" name="name" id="name" placeholder="" value="" maxlength="12" required>
             </div>
             <div class="col-md-6 mb-3">
               <label for="nickname">별명</label>
               <span style="display: flex;">
-              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" required>
+              <input type="text" class="form-control" name="nick" id="nick" placeholder="" value="" maxlength="20" required>
               
             <button  type="button" id="btnNickCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
                 <c:if test="${empty error.nick}">
@@ -89,7 +89,7 @@
           <div class="mb-3">
             <label for="tel">휴대전화</label>
             <span style="display: flex;">
-            <input type="tel" class="form-control" id="phone" name="phone"required>
+            <input type="tel" class="form-control" id="phone" name="phone" maxlength="15" required>
  			</span>
  			<c:if test="${empty error.phone}">
                  <span id="phoneCheck" class="valid-msg"></span>
@@ -100,7 +100,7 @@
           <div class="mb-3">
             <label>이메일</label>
             <div style="display: flex;">
-            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" maxlength="40" required>
             <button  type="button" id="btnEmailCheck" class="btn btn-primary btn-lg btn-block" style=" width: 120px; height:38px; margin-left: 10px; font-size: 13px;" >중복확인</button> </span>
             </div>
                 <c:if test="${empty error.email}">
@@ -112,18 +112,18 @@
           <div class="mb-3">
             <label for="postCode">우편번호</label>
 			<div style="display: flex;">
-            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호"  required>
+            <input  name="postCode" id="postCode" type="text" class="form-control" placeholder="우편번호" maxlength="20" required>
             <input onclick="daumPost()" value="검색" type="button"  class="btn btn-primary btn-lg btn-block" style="width: 120px; height:38px; margin-left: 10px; font-size: 14px;" >
             </div>
           </div>
 
           <div class="mb-3">
             <label for="address">주소<span class="text-muted">&nbsp;</span></label>
-            <input type="text" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요." required>
+            <input type="text" class="form-control" class="form-control" name="address" id="address" placeholder="주소를 입력해주세요." maxlength= "150" required>
           </div>
           <div class="mb-3">
             <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요.">
+            <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="상세주소를 입력해주세요." maxlength="150">
           </div>
 
          
