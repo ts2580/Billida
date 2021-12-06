@@ -11,17 +11,12 @@
 
 </style>
 </head>
-<body>
+<body class="backgroundWhite">
 		<div class="content">
-			<div class="wrapper">
-			 <div class="main" role="main">
-			 	<img class="mainImg" src="${contextPath}/resources/images/main1.jpg">
-			 	<div class="mainText">
-			 		<a id="firstText">"비대면으로 편하게!"</a>
-			 		<a id="secondText">안전하고, 합리적인 비용으로 보관함을 이용하세요.</a>
-			 	</div>
-			 </div>
-			 
+			<video autoplay loop muted preload="none" class="mainMp4">
+  				<source src="${contextPath}/resources/images/bannerM.mp4" type="video/mp4">
+			</video>
+			<div class="wrapper">	 
 			 <a id="recommendList">추천 사물함 리스트</a>
 			 
 			  <div class="locker_list list1">

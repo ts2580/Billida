@@ -100,9 +100,15 @@ public class RentalController {
 		
 		// post로 들어오는 빌려주기 보낼때 프로시저로(처리)
 		
+		// 검색결과창에 링크달기(처리)
+		
+		// 배너 바꾸기(처리)
+		
+		// 테스트 페이지 하나 파기
+		
 		// 로그인 페이지에 이름 넣어주기
 		
-		// 검색결과창에 링크달기
+		
 		
 		member = (Member)session.getAttribute("authentication");
 		

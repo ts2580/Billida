@@ -9,8 +9,8 @@
 	<script type="text/javascript" src='${contextPath}/resources/js/jquery.js'></script>
 	<link href="${contextPath}/resources/css/reviewCss/paging.css" rel='stylesheet' type='text/css' />
 </head>
-<body>
-<div class="content">
+<body style="background-color:white">
+<div class="content" style="background-color:white">
 	<div class="searchInfo">
 		<a class="keywordInfo">${paging.cri.keyword} </a> (으)로 검색한 결과입니다.
 	</div>
@@ -27,7 +27,7 @@
 			
 			<c:forEach items="${list}" var="lockerList" varStatus="status">
 				<div class="locker_area">
-					<div class="lockerImg" ><img class="imgs img${status.index}" src="${lockerList.lockerImage}"></div>
+					<div class="lockerImg" id="${lockerList.lockerId}"><img class="imgs img${status.index}" src="${lockerList.lockerImage}"></div>
 					<div class="locker_name">${lockerList.lockerTitle}</div>
 					<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${lockerList.lockerContent}</div>
 					<div class="locker_info">
@@ -118,6 +118,17 @@
 			document.querySelector(".img${status.index}").src = blobUrl;
 		}
 	</c:forEach>
+	
+	let IdArr = new Array();
+	
+	for(let i = 0; i < 4; i++) {
+		
+		IdArr[i] = document.getElementsByClassName('lockerImg')[i].id;
+	
+		document.getElementById(IdArr[i]).addEventListener('click',() =>{
+			location.href='/rentalLocker/rental-form?lockerId='+IdArr[i];
+		}); 
+	};
 	
 	
 
