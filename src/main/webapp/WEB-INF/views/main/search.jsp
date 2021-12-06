@@ -27,7 +27,7 @@
 			
 			<c:forEach items="${list}" var="lockerList" varStatus="status">
 				<div class="locker_area">
-					<div class="lockerImg" id="${lockerList.lockerId}"><img class="imgs img${status.index}" src="${lockerList.lockerImage}"></div>
+					<div class="lockerImg" id="${lockerList.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${lockerList.lockerImage}"></div>
 					<div class="locker_name">${lockerList.lockerTitle}</div>
 					<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${lockerList.lockerContent}</div>
 					<div class="locker_info">
