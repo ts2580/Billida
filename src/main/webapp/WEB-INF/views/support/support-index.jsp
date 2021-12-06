@@ -19,6 +19,11 @@
 		.how-section1 .row { margin-top: 10%; }
 		.how-img { text-align: center; }
 		.how-img img{ width: 40%; }
+		.logOutImg {
+    width: 35px;
+    height: 35px;
+    padding-right: 0px;
+}
 		.logo img {
     display: inline-block;
     height: 70px;
@@ -27,6 +32,7 @@
     height: 73px;
     margin-top: 3px;
 }
+
 	</style>
 </head>
 <body>

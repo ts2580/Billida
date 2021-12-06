@@ -24,14 +24,8 @@
 		.contact-form label{ font-weight:600; }
 		.contact-form button{ background: #d14b4b; color: #fff; font-weight: 600; width: 25%; }
 		.contact-form button:focus{ box-shadow:none; }
-		.logo img {
-    display: inline-block;
-    height: 70px;
-    padding-top: 13px;
-    width: 180px;
-    height: 73px;
-    margin-top: 3px;
-}
+		.logOutImg { width: 35px; height: 35px; padding-right: 0px; }
+		.logo img { display: inline-block; height: 70px; padding-top: 13px; width: 180px; height: 73px; margin-top: 3px; }
 	</style>
 </head>
 <body>
@@ -59,19 +53,19 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">회원ID</label>
                         <div class="col-sm-10">          
-                            <input type="text" class="form-control" name = "userId" id=" fname" placeholder="신고할 회원의 아이디를 입력해주세요." required>
+                            <input type="text" class="form-control" name = "userId" id=" fname" placeholder="신고할 회원의 아이디를 입력해주세요. 40자 제한" maxlength="40" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">제목</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="reportTitle" id="report_title" placeholder="신고할 게시글의 제목을 작성해주세요." required>
+                            <input type="text" class="form-control" name="reportTitle" id="report_title" placeholder="신고할 게시글의 제목을 작성해주세요. 50자 제한" maxlength="50" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">내용</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="5" name="reportContent" id="comment" placeholder="신고 내용을 상세히 작성해주세요."required></textarea>
+                            <textarea class="form-control" rows="5" name="reportContent" id="comment" placeholder="신고 내용을 상세히 작성해주세요.&#13;&#10;입력 가능 텍스트는 300자입니다." maxlength="300" required></textarea>
                         </div>
                     </div>
                     <br>
