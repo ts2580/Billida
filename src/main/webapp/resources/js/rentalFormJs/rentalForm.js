@@ -5,9 +5,9 @@
 	if(lockerImage != "0"){
 		document.querySelector(".pic").setAttribute("src", baseImg);
 	}else{
-		const contentType = 'image/png';
-		const blob = b64toBlob(base64, contentType);
-		const blobUrl = URL.createObjectURL(blob);	
+		let contentType = 'image/png';
+		let blob = b64toBlob(base64, contentType);
+		let blobUrl = URL.createObjectURL(blob);	
 		
 		document.querySelector(".pic").setAttribute("src", blobUrl);
 	};
@@ -69,6 +69,7 @@
 		
 		let rentStartToNumber = document.querySelector('input[name="rentStart"]').valueAsNumber;
 		let rentEndToNumber = document.querySelector('input[name="rentEnd"]').valueAsNumber;
+		rentCost = (rentEndToNumber-rentStartToNumber)/172800+500;
 		
 		if(isRented == 1){
 			alert("대여중인 보관함입니다");

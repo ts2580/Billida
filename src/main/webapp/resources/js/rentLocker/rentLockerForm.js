@@ -3,15 +3,15 @@
 	
 	
 	/* 스크립트 순서 주의! */
-	var mapContainer = document.getElementById('map'),
+	let mapContainer = document.getElementById('map'),
 	mapOption = {
 	    center: new daum.maps.LatLng(37.5751759965089, 127.089222458333),
 	    level: 3
 	};
 		
-	var map = new daum.maps.Map(mapContainer, mapOption);
-	var geocoder = new daum.maps.services.Geocoder();
-	var marker = new daum.maps.Marker({
+	let map = new daum.maps.Map(mapContainer, mapOption);
+	let geocoder = new daum.maps.services.Geocoder();
+	let marker = new daum.maps.Marker({
 		position: new daum.maps.LatLng(37.5751759965089, 127.089222458333),
 		map: map
 		});
@@ -81,6 +81,7 @@
 			
 			document.querySelector(".image_container").appendChild(img); 
 			document.querySelector(".pic").style.display = "none";
+			base64 = img.src;
 			const base64Img = img.src.split("base64,");
 			
 			const contentType = 'image/png';
@@ -92,7 +93,6 @@
 			img.src = blobUrl;
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
-		// readAsDataURL에 대해 더 알아볼것
 	});
 	
 	

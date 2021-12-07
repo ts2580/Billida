@@ -96,7 +96,6 @@ public class RentalController {
 		model.addAttribute("longitude", longitude);
 	}
 	
-	@Transactional
 	@PostMapping("rental-form")
 	public String rentalForm(Rental rental, HttpSession session, Member member){
 		
@@ -120,13 +119,13 @@ public class RentalController {
 		rental.setUserCode(userCode);
 		rental.setRentCost(Long.valueOf(rentCost));
 		
+		
+		// 대여중인데 뚫고 여기까지 왔을시 강증
 		if(isRented == 1) {
 			rentalService.downGradeMember(userCode);
 			return "redirect:/";
 		}
 		
-		// rentalService.insertRental(rental);
-		// rentalService.updateRental(lockerId);	
 		rentalService.insertAndUpdateRental(rental);
 		// 프로시저
 		
@@ -136,8 +135,6 @@ public class RentalController {
 		RantalMileage.setUserCode(userCode);
 		RantalMileage.setMileage(rentCost);
 		
-		// rentalService.selectRentalMileage(userCode);
-		// rentalService.updateRentalMileage(RantalMileage);
 		rentalService.selectAndUpdateRentalMileage(RantalMileage);
 		// 프로시저
 		
@@ -147,15 +144,6 @@ public class RentalController {
 		lessorMileage.setLockerId(lockerId);
 		lessorMileage.setMileage(rentCost);
 		
-		// Mileage RantMileage = rentalService.selectLessorMileage(lockerId);
-		
-		// if(RantMileage == null) {
-		// 	rentalService.insertLessorMileage(lessor);
-		// 	RantMileage = rentalService.selectLessorMileage(lessor);
-		// }
-			
-		// RantMileage.setMileage(RantMileage.getMileage() + rentCost);
-		// rentalService.updateLessorMileage(RantMileage);
 		rentalService.selectAndUpdateLessorMileage(lessorMileage);
 		
 		return "redirect:/review/rent-list";

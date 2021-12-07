@@ -3,7 +3,7 @@
 	window.b64toBlob = function b64toBlob(b64Data, contentType='', sliceSize=512) {
 			
 		const byteCharacters = atob(b64Data);
-	  	const byteArrays = [];
+		const byteArrays = [];
 
 	  	for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
 	    
