@@ -182,7 +182,7 @@ footer a:link {
 	color: red;
 }
 </style>
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
 <body>
 <div class="wrapper">

@@ -114,7 +114,7 @@ public class RentalController {
 		
 		int rentCost = rentdate*500;
 		
-		// 대여 내역 업데이트 & 보관함 상태 업데이트
+		
 		rental.setLockerId(lockerId);
 		rental.setUserCode(userCode);
 		rental.setRentCost(Long.valueOf(rentCost));
@@ -126,25 +126,27 @@ public class RentalController {
 			return "redirect:/";
 		}
 		
-		rentalService.insertAndUpdateRental(rental);
-		// 프로시저
 		
 		
-		// 빌린사람 마일리지 -
 		Mileage RantalMileage = new Mileage();
 		RantalMileage.setUserCode(userCode);
 		RantalMileage.setMileage(rentCost);
 		
-		rentalService.selectAndUpdateRentalMileage(RantalMileage);
-		// 프로시저
 		
 		
-		// 빌려준사람 마일리지 +
 		LessorMileage lessorMileage = new LessorMileage();
 		lessorMileage.setLockerId(lockerId);
 		lessorMileage.setMileage(rentCost);
 		
+		// 대여 내역 업데이트 & 보관함 상태 업데이트 프로시저
+		rentalService.insertAndUpdateRental(rental);
+				
+		// 빌린사람 마일리지 차감 프로시저
+		rentalService.selectAndUpdateRentalMileage(RantalMileage);
+		
+		// 빌려준사람 마일리지 증가 프로시저
 		rentalService.selectAndUpdateLessorMileage(lessorMileage);
+		
 		
 		return "redirect:/review/rent-list";
 	}

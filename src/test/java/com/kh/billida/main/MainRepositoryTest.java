@@ -17,8 +17,8 @@ public interface MainRepositoryTest {
 			+ " values(locker_id.nextval,#{userCode}, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerPassword}, #{latitude}, #{longitude}, #{rentableDateEnd})")
 	int insertWithDto(Main main);
 	
-	@Insert("insert into locker(locker_id, locker_title, locker_content, locker_size, locker_image, locker_password, latitude, longitude, location, RENTABLE_DATE_END)"
-			+ " values(locker_id.nextval, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerImage}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDateEnd})")
+	@Insert("insert into locker(locker_id, locker_title, locker_content, locker_size, locker_image, locker_password, latitude, longitude, location, RENTABLE_DATE_END, USER_CODE, RENTABLE_DATE_START)"
+			+ " values(locker_id.nextval, #{lockerTitle}, #{lockerContent}, #{lockerSize}, #{lockerImage}, #{lockerPassword}, #{latitude}, #{longitude}, #{location}, #{rentableDateEnd}, #{userCode}, '2021/12/05')")
 	int insertDummyApi(Main main);
 	
 	@Select("select * from locker")

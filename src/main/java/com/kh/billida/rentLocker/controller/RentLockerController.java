@@ -29,7 +29,6 @@ public class RentLockerController {
 	@GetMapping("rent-form")
 	public void rental(Model model){
 		
-		
 		LocalDate today = LocalDate.now();
 		
 		model.addAttribute("today", today);

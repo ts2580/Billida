@@ -134,22 +134,12 @@ public class MainControllerTest {
 		String latitude;
 		String longitude;
 		String password;
-		LocalDate targetDate = LocalDate.of(2021, 12, 25); //대여가능날짜 임시 지정
+		LocalDate targetDate = LocalDate.of(2022, 12, 25); //대여가능날짜 임시 지정
 		
 		Main main = new Main();
-		//임시 이미지url 불러오기
-		File file = new File("C:/CODE/imgUrl.txt");
-		FileReader fileReader = new FileReader(file);
-		BufferedReader bufReader = new BufferedReader(fileReader);
-		List<String> urlList = new ArrayList<String>();
-				
-		String str = "";
-        while((str = bufReader.readLine()) != null){
-            urlList.add(str);
-        }
-        bufReader.close();
+		
         
-		for (int i = 0; i < 80; i++) {
+		for (int i = 1; i < 80; i++) {
 			JSONObject obj = jArray.getJSONObject(i);
 			
 			name = obj.getString("fcltyNm");
@@ -160,7 +150,7 @@ public class MainControllerTest {
 			password = obj.getString("insttCode");
 			//System.out.println(name+","+roadAd+","+address+","+latitude+","+longitude+","+password);
 			
-			//main.setUserCode("1");
+			main.setUserCode("2");
 			main.setLockerTitle(name);
 			main.setLockerContent(roadAd);
 			main.setLocation(address);
@@ -169,7 +159,6 @@ public class MainControllerTest {
 			main.setLockerPassword(password);
 			main.setRentableDateEnd(targetDate);
 			main.setLockerSize("L");
-			main.setLockerImage(urlList.get(i));
 			
 			mainRepositoryTest.insertDummyApi(main);	
 		}
