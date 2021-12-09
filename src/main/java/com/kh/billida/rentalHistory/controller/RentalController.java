@@ -120,7 +120,7 @@ public class RentalController {
 		rental.setRentCost(Long.valueOf(rentCost));
 		
 		
-		// 대여중인데 뚫고 여기까지 왔을시 강증
+		// 대여중인데 뚫고 여기까지 왔을시 강등
 		if(isRented == 1) {
 			rentalService.downGradeMember(userCode);
 			return "redirect:/";

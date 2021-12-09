@@ -22,7 +22,7 @@
 			  <div class="locker_list list1">
 			 	<c:forEach items="${mainList}" var="mains" begin="0" end="3" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg lockerId" id="${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg ${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -36,7 +36,7 @@
 			 <div class="list2">
 			 	<c:forEach items="${mainList}" var="mains" begin="0" end="1" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg ${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -50,7 +50,7 @@
 			 <div class="list3">
 			 	<c:forEach items="${mainList}" var="mains" begin="2" end="3" varStatus="status">
 					 <div class="locker_area">
-					 	<div class="lockerImg" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
+					 	<div class="lockerImg ${mains.lockerId}" style="cursor:pointer"><img class="imgs img${status.index}" src="${mains.lockerImage}"></div>
 					 	<div class="locker_name">${mains.lockerTitle}</div>
 					 	<div class="locker_location"><i class="fas fa-map-marker-alt"></i> 위치 : ${mains.lockerContent}</div>
 					 	<div class="locker_info">
@@ -72,14 +72,22 @@
 	let IdArr = new Array();
 	let zeroGradeMember = "${zeroGradeMember}";
 	
-	for(let i = 0; i < 4; i++) {
+	for(let i = 0; i < 8; i++) {
+		IdArr[i] = document.querySelectorAll('.lockerImg')[i].classList[1];
+	};
 	
-		IdArr[i] = document.getElementsByClassName('lockerId')[i].id;
-	
-		document.getElementById(IdArr[i]).addEventListener('click',() =>{
+	for(let i = 0; i < 8; i++){
+		
+		document.getElementsByClassName(IdArr[i])[1].addEventListener('click',() =>{
 			location.href='/rentalLocker/rental-form?lockerId='+IdArr[i];
 		}); 
-	};
+		
+		document.getElementsByClassName(IdArr[i])[0].addEventListener('click',() =>{
+			location.href='/rentalLocker/rental-form?lockerId='+IdArr[i];
+		});
+	}
+
+	
 	
 	if(zeroGradeMember == "zeroGradeMember"){
 		alert("허가되지 않은 접근으로 인하여 사이트 이용이 정지되었습니다.");
