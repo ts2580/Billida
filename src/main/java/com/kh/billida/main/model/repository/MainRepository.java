@@ -22,7 +22,9 @@ public interface MainRepository {
 	
 	@Select("select grade from member where user_code = #{userCode}")
 	Member isDegraded(String userCode);
-
+	
+	
+	@Select("select locker_id from (select locker_id, avg(score) \"평균\" from review inner join locker using(LOCKER_ID) where RENT_STATUS = 0 GROUP by locker_id ORDER BY \"평균\" desc) where ROWNUM <= 5")
 	List<Object> getLockerIds();
 
 }

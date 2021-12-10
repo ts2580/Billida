@@ -1,5 +1,5 @@
  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-Kakao.init('57c8d3889583c5684ec72affaa2346a7');
+Kakao.init('060604da6e42267573842a35f2c94da5');
 // SDK 초기화 여부를 판단합니다.
 console.log(Kakao.isInitialized());
 

@@ -31,19 +31,6 @@
 		or locker_content like '%'||#{keyword}||'%' 
 		or location like '%'||#{keyword}||'%'
 	</select>
-	
-	<select id="getLockerIds" resultType="com.kh.billida.main.model.dto.Main">
-		<![CDATA[
-			select v.locker_id
-			from
-				(select locker_id, avg(score) "평균"
-				from review
-				GROUP by locker_id
-				HAVING locker_id is not null
-				order by "평균" desc) v
-			where rownum < 5
-		]]>
-	</select>
                 
   
   </mapper>

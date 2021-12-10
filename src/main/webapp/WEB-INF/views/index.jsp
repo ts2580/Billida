@@ -72,11 +72,11 @@
 	let IdArr = new Array();
 	let zeroGradeMember = "${zeroGradeMember}";
 	
-	for(let i = 0; i < 8; i++) {
+	for(let i = 0; i < 7; i++) {
 		IdArr[i] = document.querySelectorAll('.lockerImg')[i].classList[1];
 	};
 	
-	for(let i = 0; i < 8; i++){
+	for(let i = 0; i < 4; i++){
 		
 		document.getElementsByClassName(IdArr[i])[1].addEventListener('click',() =>{
 			location.href='/rentalLocker/rental-form?lockerId='+IdArr[i];

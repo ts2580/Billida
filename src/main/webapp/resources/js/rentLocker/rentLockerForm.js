@@ -75,22 +75,38 @@
 				uploadedImg.remove();
 			}
 			
+			aaa = event.target;
+			
 			let img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result); 
 			img.classList.add("base64Img");
 			
 			document.querySelector(".image_container").appendChild(img); 
 			document.querySelector(".pic").style.display = "none";
-			base64 = img.src;
+			
 			const base64Img = img.src.split("base64,");
 			
-			const contentType = 'image/png';
-			const blob = b64toBlob(base64Img[1], contentType);
+			let base64 = base64Img[1];
 			
-			document.querySelector('input[name="imgToClob"]').value = base64Img[1];
 			
-			const blobUrl = URL.createObjectURL(blob);	
-			img.src = blobUrl;
+			if(1500000 < base64.length){
+				
+				async function start() {
+					await resizeImage(img);
+				};
+				start();
+			}else{
+				
+				document.querySelector('input[name="imgToClob"]').value = base64;
+			
+				const contentType = 'image/png';
+				const blob = b64toBlob(base64, contentType);
+			
+				const blobUrl = URL.createObjectURL(blob);	
+				img.src = blobUrl;
+			}
+			
+			
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
 	});

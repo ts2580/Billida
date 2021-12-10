@@ -103,10 +103,10 @@
 	<script type="text/javascript">
 	
 	const today = "${today}"
-	let base64 = null;
 	
 	</script>
 	<script type="text/javascript" src="${contextPath}/resources/js/common/changeBase64ToBlob.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/common/resizeImage.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/rentLocker/rentLockerForm.js"></script>
 	
 
