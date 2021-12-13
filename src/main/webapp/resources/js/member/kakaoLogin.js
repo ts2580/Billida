@@ -1,5 +1,5 @@
  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-Kakao.init('060604da6e42267573842a35f2c94da5');
+Kakao.init('b3d2bd52763449a074cc0c982030b6bf');
 // SDK 초기화 여부를 판단합니다.
 console.log(Kakao.isInitialized());
 
@@ -13,20 +13,8 @@ function loginWithKakao(){
 				url: '/v2/user/me', //사용자 정보를 읽어들이는 고정된 url
 				success: function(res) {
 				
-				
 				const id = res.id;		
-				const email = res.kakao_account.email;
-				const nick = res.properties.nickname;
-				const num = res.kakaoNum;
-				alert(nick+' 님 환영합니다!');	
-				console.log(email);
-				console.log(nick);
-				console.log(id);
-					
 				document.getElementById('kakaoId').value = id;
-				document.getElementById('kakaoEmail').value = email;
-				document.getElementById('kakaoNick').value = nick;
-				document.getElementById('kakaonum').value = '0';
 				document.kakaologin_frm.submit();
 				//location.href="/";
 				}

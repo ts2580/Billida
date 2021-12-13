@@ -17,7 +17,7 @@
   				<source src="${contextPath}/resources/images/bannerM.mp4" type="video/mp4">
 			</video>
 			<div class="wrapper">	 
-			 <a id="recommendList">추천 사물함 리스트</a>
+			 <a id="recommendList">추천 보관함 리스트</a>
 			 
 			  <div class="locker_list list1">
 			 	<c:forEach items="${mainList}" var="mains" begin="0" end="3" varStatus="status">

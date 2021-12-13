@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class RentalController {
 	
 	private final RentalService rentalService;
-	
+
 	private Long lockerId;
 	
 	private Long isRented;
@@ -96,6 +96,7 @@ public class RentalController {
 		model.addAttribute("longitude", longitude);
 	}
 	
+	@Transactional
 	@PostMapping("rental-form")
 	public String rentalForm(Rental rental, HttpSession session, Member member){
 		
