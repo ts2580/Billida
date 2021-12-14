@@ -140,8 +140,8 @@ public class RentalController {
 		lessorMileage.setMileage(rentCost);
 		
 		// 대여 내역 업데이트 & 보관함 상태 업데이트 프로시저
-		rentalService.insertAndUpdateRental(rental);
-				
+		rentalService.insertAndUpdateRental(rental);			
+		
 		// 빌린사람 마일리지 차감 프로시저
 		rentalService.selectAndUpdateRentalMileage(RantalMileage);
 		

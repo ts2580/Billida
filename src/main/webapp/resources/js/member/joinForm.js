@@ -146,7 +146,7 @@
    			if(confirmId == id.value && emailReg.test(email.value) && pwReg.test(password.value) 
    			&& password.value == passwordCheck.value&& confirmNick == nick.value
    			&& phoneReg.test(phone.value) && confirmEmail == email.value){
-				alert("입력하신 메일을 통해 회원가입이 마무리됩니다.");
+				alert("회원가입이 완료되었습니다.");
    			}
    		})
    	})();

@@ -53,21 +53,21 @@ public class MemberController {
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.addValidators(joinFormValidator);
 	}
-	
+
 	@GetMapping("captchaImg.do")
-    public void cpatchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().captchaImg(request, response);
-    }
-    @RequestMapping(value = "captchaAudio.do")
-    public void cpatchaAudio(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().captchaAudio(request, response);
-    }
-    
+	public void cpatchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		new CaptchaUtil().captchaImg(request, response);
+	}
+
+	@RequestMapping(value = "captchaAudio.do")
+	public void cpatchaAudio(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		new CaptchaUtil().captchaAudio(request, response);
+	}
+
 	@GetMapping("signUp")
 	public void singUp(Model model) {
 		model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
 	}
-	
 
 	@PostMapping("/message")
 	public @ResponseBody String testMessage(String phonNumber) {
@@ -93,31 +93,29 @@ public class MemberController {
 			return "member/signUp";
 		}
 		String token = UUID.randomUUID().toString();
-	    session.setAttribute("persistUser", form);
-	    session.setAttribute("persistToken", token);
-	      
-	    memberService.authenticateByEmail(form, token);
-	    //redirectAttr.addFlashAttribute("message","이메일이 발송되었습니다.");
-		//memberService.insertMember(form);
+		session.setAttribute("persistUser", form);
+		session.setAttribute("persistToken", token);
+
+		memberService.insertMember(form);
 		return "redirect:/";
 	}
-	   @GetMapping("signUpImpl/{token}")
-	   public String joinImpl(@PathVariable String token
-	                  ,@SessionAttribute(value = "persistToken", required = false) String persistToken
-	                  ,@SessionAttribute(value = "persistUser", required = false) JoinForm form
-	                  ,HttpSession session
-	                  ,RedirectAttributes redirectAttrs) {
-	      
-	      if(!token.equals(persistToken)) {
-	         throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
-	      }
-	      
-	      memberService.insertMember(form);
-	      redirectAttrs.addFlashAttribute("welcome","회원가입을 환영합니다. 로그인 해 주세요");
-	      session.removeAttribute("persistToken");
-	      session.removeAttribute("persistUser");
-	      return "redirect:/member/login";
-	   }
+
+	@GetMapping("signUpImpl/{token}")
+	public String joinImpl(@PathVariable String token,
+			@SessionAttribute(value = "persistToken", required = false) String persistToken,
+			@SessionAttribute(value = "persistUser", required = false) JoinForm form, HttpSession session,
+			RedirectAttributes redirectAttrs) {
+
+		if (!token.equals(persistToken)) {
+			throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
+		}
+
+		memberService.insertMember(form);
+		redirectAttrs.addFlashAttribute("welcome", "회원가입을 환영합니다. 로그인 해 주세요");
+		session.removeAttribute("persistToken");
+		session.removeAttribute("persistUser");
+		return "redirect:/member/login";
+	}
 
 	@GetMapping("id-check")
 	@ResponseBody
@@ -130,6 +128,7 @@ public class MemberController {
 			return "disable";
 		}
 	}
+
 	@GetMapping("email-check")
 	@ResponseBody
 	public String emailCheck(String email) {
@@ -140,7 +139,7 @@ public class MemberController {
 			return "disable";
 		}
 	}
-	
+
 	@GetMapping("nick-check")
 	@ResponseBody
 	public String nickCheck(String nick) {
@@ -156,28 +155,31 @@ public class MemberController {
 	@GetMapping("login")
 	public void login(Model model) {
 		// 카카오 로그인시 신규회원용
-		//model.addAttribute(new JoinForm()).addAttribute("error", new ValidateResult().getError());
+		// model.addAttribute(new JoinForm()).addAttribute("error", new
+		// ValidateResult().getError());
 	}
+
 	@PostMapping("login")
-	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr, HttpServletRequest request) {
+	public String loginlmpl(Model model, Member member, HttpSession session, RedirectAttributes redirectAttr,
+			HttpServletRequest request) {
 		String getAnswer = (String) request.getSession().getAttribute("captcha");
 		String answer = request.getParameter("answer");
 		System.out.println(getAnswer);
 		System.out.println(answer);
-		Member certifiedUser = memberService.authenticateUserAndCaptcha(member,getAnswer,answer);
+		Member certifiedUser = memberService.authenticateUserAndCaptcha(member, getAnswer, answer);
 		System.out.println(model);
 		System.out.println(member);
 		if (certifiedUser == null) {
 			redirectAttr.addFlashAttribute("message", "입력하신 정보를 확인해주세요.");
 			return "redirect:/member/login";
 		}
-		//중복로그인 방지용
+		// 중복로그인 방지용
 		String id = certifiedUser.getId();
 		String userId = SessionConfig.getSessionidCheck("login_id", id);
-		System.out.println(id + " : " +userId);
+		System.out.println(id + " : " + userId);
 		session.setMaxInactiveInterval(60 * 60);
 		session.setAttribute("login_id", id);
-		//여기까지
+		// 여기까지
 		session.setAttribute("authentication", certifiedUser); // 세션에 올려주기
 		session.setAttribute("check", userId);
 		session.setAttribute("Id", member.getId());
@@ -199,14 +201,14 @@ public class MemberController {
 		member = memberService.selectMemberById(form.getId());
 		System.out.println("컨트롤러처음" + member);
 		if (member != null && member.getName() != null) {
-			//중복로그인 방지용
+			// 중복로그인 방지용
 			Member certifiedUser = memberService.authenticateUser(member);
 			String id = certifiedUser.getId();
 			String userId = SessionConfig.getSessionidCheck("login_id", id);
-			System.out.println(id + " : " +userId);
+			System.out.println(id + " : " + userId);
 			session.setMaxInactiveInterval(60 * 60);
 			session.setAttribute("login_id", id);
-			//여기까지
+			// 여기까지
 			certifiedUser = memberService.authenticateUser(member);
 			session.setAttribute("authentication", certifiedUser);
 			session.setAttribute("check", userId);
@@ -266,11 +268,10 @@ public class MemberController {
 		return "member/mypage";
 	}
 
-	
 	@PostMapping("check")
 	public String passwordCheck(@ModelAttribute Member member, Errors errors, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
-		
+
 		if (memberService.checkPassword(member.getPassword(), session)) {
 			return "member/mypage";
 		} else {
@@ -317,12 +318,12 @@ public class MemberController {
 			return "redirect:/member/findId";
 		}
 		for (Member members : checkUser) {
-			if(members.getKakaoNum()==null) {
+			if (members.getKakaoNum() == null) {
 				System.out.println(members);
 				memberService.sendIdByEmail(members);
 			}
 		}
-		
+
 		return "redirect:/";
 	}
 
@@ -339,7 +340,7 @@ public class MemberController {
 			return "redirect:/member/findPassword";
 		}
 		for (Member members : checkUser) {
-			if(members.getKakaoNum()==null) {
+			if (members.getKakaoNum() == null) {
 				System.out.println(members);
 				String token = UUID.randomUUID().toString();
 				session.setAttribute("persistToken", token);
@@ -349,30 +350,29 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-
-
 	@GetMapping("findPasswordBy_Email/{token}_{id}")
-	public String checkToken(@PathVariable String token,@PathVariable String id,
+	public String checkToken(@PathVariable String token, @PathVariable String id,
 			@SessionAttribute(value = "persistToken", required = false) String persistToken, HttpSession session,
 			RedirectAttributes redirectAttrs, Member member) {
-		System.out.println("메일에서 아이디값"+id);
+		System.out.println("메일에서 아이디값" + id);
 		System.out.println("여기와짐?1ㅋㅋ");
 		if (!token.equals(persistToken)) {
 			throw new HandlableException(ErrorCode.AUTHENTICATION_FAILED_ERROR);
 		}
 		System.out.println("여기와짐?2ㅋㅋ");
-		System.out.println("아이디"+id);
+		System.out.println("아이디" + id);
 		member = memberService.selectMemberById(id);
-		System.out.println("멤버"+member);
+		System.out.println("멤버" + member);
 		Member certifiedUser = memberService.changePasswordByEmail(member);
-		System.out.println("세션에 올리는 멤버"+certifiedUser);
+		System.out.println("세션에 올리는 멤버" + certifiedUser);
 		session.setAttribute("authentication", certifiedUser);
-		session.removeAttribute("persistToken"); 
+		session.removeAttribute("persistToken");
 		return "redirect:/member/changePasswordByEmail";
 	}
 
 	@GetMapping("changePasswordByEmail")
-	public void a() {}
+	public void a() {
+	}
 
 	@PostMapping("changePasswordByEmail")
 	public String changePasswordByEmail(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
@@ -386,12 +386,13 @@ public class MemberController {
 			return "member/changePasswordByEmail";
 		}
 		Member member = (Member) session.getAttribute("authentication");
-		System.out.println("멤버서비스에 들어갈 멤버"+member);
-		System.out.println("멤버서비스에 들어갈 폼"+form);
-		memberService.updatePasswordByEmail(form,member);
+		System.out.println("멤버서비스에 들어갈 멤버" + member);
+		System.out.println("멤버서비스에 들어갈 폼" + form);
+		memberService.updatePasswordByEmail(form, member);
 		logout(session);
 		return "redirect:/";
 	}
+
 	@PostMapping("password")
 	public String updatePassword(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
@@ -408,10 +409,10 @@ public class MemberController {
 	@PostMapping("changeName")
 	public String updateName(@ModelAttribute JoinForm form, RedirectAttributes redirectAttr, HttpSession session) {
 		System.out.println(form);
-		if(form.getName()!=null) {
-		Member user = (Member) session.getAttribute("authentication");
-		System.out.println(user);
-		memberService.updateName(form,user);
+		if (form.getName() != null) {
+			Member user = (Member) session.getAttribute("authentication");
+			System.out.println(user);
+			memberService.updateName(form, user);
 		}
 		return "redirect:/member/mypage";
 	}
@@ -420,47 +421,52 @@ public class MemberController {
 	public String updateNick(@Validated JoinForm form, Errors errors, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
 		ValidateResult vr = new ValidateResult();
-		System.out.println("씨발 답답하다"+form);
+		System.out.println("씨발 답답하다" + form);
 		System.out.println(errors);
-		  model.addAttribute("error", vr.getError()); if (errors.hasErrors()) {
-		  vr.addError(errors); 
-		  return "redirect:/member/check";
-		  }
+		model.addAttribute("error", vr.getError());
+		if (errors.hasErrors()) {
+			vr.addError(errors);
+			return "redirect:/member/check";
+		}
 		Member user = (Member) session.getAttribute("authentication");
-		memberService.updateNick(form,user);
+		memberService.updateNick(form, user);
 		return "redirect:/member/mypage";
 	}
 
 	@PostMapping("changeTel")
-	public String updateTel(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr, HttpSession session) {
+	public String updateTel(@Validated JoinForm form, Errors errors, Model model, RedirectAttributes redirectAttr,
+			HttpSession session) {
 		ValidateResult vr = new ValidateResult();
 		model.addAttribute("error", vr.getError());
-		System.out.println("답답하다 phone: "+form);
+		System.out.println("답답하다 phone: " + form);
 		System.out.println(errors);
 		if (errors.hasErrors()) {
 			vr.addError(errors);
 			return "redirect:/member/check";
 		}
 		Member user = (Member) session.getAttribute("authentication");
-		memberService.updateTel(form,user);
+		memberService.updateTel(form, user);
 		return "redirect:/member/mypage";
 	}
 
 	@PostMapping("changeEmail")
-	public String updateEmail(@ModelAttribute JoinForm form,  HttpSession session, Model model, RedirectAttributes redirectAttr) {
+	public String updateEmail(@ModelAttribute JoinForm form, HttpSession session, Model model,
+			RedirectAttributes redirectAttr) {
 		Member user = (Member) session.getAttribute("authentication");
 		System.out.println(user);
-		memberService.updateEmail(form,user);
+		memberService.updateEmail(form, user);
 		return "redirect:/member/mypage";
-		
+
 	}
 
 	@PostMapping("changeAddress")
-	public String updateAddress(@ModelAttribute JoinForm form, HttpSession session, Errors errors, Model model, RedirectAttributes redirectAttr) {
+	public String updateAddress(@ModelAttribute JoinForm form, HttpSession session, Errors errors, Model model,
+			RedirectAttributes redirectAttr) {
 		Member user = (Member) session.getAttribute("authentication");
-		memberService.updateAddress(form,user);
+		memberService.updateAddress(form, user);
 		return "redirect:/member/mypage";
 	}
+
 	@PostMapping("kakaoChange")
 	public String kakaoChange(@Validated JoinForm form, Errors errors, Member member, Model model, HttpSession session,
 			RedirectAttributes redirectAttr) {
@@ -471,31 +477,31 @@ public class MemberController {
 			return "member/kakaoSignup";
 		}
 		Member user = (Member) session.getAttribute("authentication");
-		System.out.println("멤버값"+user);
+		System.out.println("멤버값" + user);
 		System.out.println("폼값" + form);
-		memberService.changeKakaoMember(form,user);
+		memberService.changeKakaoMember(form, user);
 		return "redirect:/";
-	
+
 	}
-	
+
 	@GetMapping("admin")
 	public String admin(Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("authentication");
-		if(!member.getGrade().equals("99")) {
+		if (!member.getGrade().equals("99")) {
 			return "redirect:/";
 		}
-		
-		List<Member> memberList = memberService.selectMember();		
+
+		List<Member> memberList = memberService.selectMember();
 		session.setAttribute("memberList", memberList);
 		session.setAttribute("size", memberList.size());
 		return "member/admin";
 	}
-	
+
 	@PostMapping("searchMember")
-	public String searchMember(@ModelAttribute Member member,HttpSession session, Model model) {
-		
+	public String searchMember(@ModelAttribute Member member, HttpSession session, Model model) {
+
 		Member findMember = memberService.selectMemberById(member.getId());
-		if(findMember != null) {
+		if (findMember != null) {
 			List<Member> memberList = new ArrayList<Member>();
 			memberList.add(findMember);
 			session.setAttribute("memberList", memberList);
@@ -504,35 +510,35 @@ public class MemberController {
 		}
 		return "member/admin";
 	}
-	
-	@PostMapping("gradeUp")	
+
+	@PostMapping("gradeUp")
 	public String memberGradeUp(@ModelAttribute Member member, Model model) {
-		
-		if(member.getGrade().equals("00")) {
-		memberService.updateGradeUpById(member.getId());
+
+		if (member.getGrade().equals("00")) {
+			memberService.updateGradeUpById(member.getId());
 		}
 		return "redirect:/member/admin";
 	}
-	
-	@PostMapping("gradeDown")	
+
+	@PostMapping("gradeDown")
 	public String memberGradeDown(@ModelAttribute Member member, Model model, RedirectAttributes redirectAttr) {
 		System.out.println(member.toString());
-		if(member.getGrade().equals("01")) {			
+		if (member.getGrade().equals("01")) {
 			memberService.updateGradeDownById(member.getId());
-			}		
+		}
 		return "redirect:/member/admin";
 	}
-	
+
 	@GetMapping("mypage")
 	public void mypage(HttpSession session, Model model, RedirectAttributes redirectAttr) {
 		Member user = (Member) session.getAttribute("authentication");
-		Member member= memberService.selectMemberById(user.getId());
+		Member member = memberService.selectMemberById(user.getId());
 		System.out.println(member.toString());
 		session.setAttribute("authentication", member);
 	}
-	
+
 	@GetMapping("change")
 	public void memberChange() {
-		
+
 	}
 }

@@ -1,12 +1,10 @@
 package com.kh.billida.member.common.code;
 
 public enum Config {
-	//DOMAIN("https://pclass.ga")
-	DOMAIN("http://localhost:9090"),
-	COMPANY_EMAIL("pclassgyu@gmail.com"),
-	SMTP_AUTHENTICATION_ID("pclassgyu@gmail.com"),
-	SMTP_AUTHENTICATION_PASSWORD("1q2w3e4r1!"),
-	//UPLOAD_PATH("C:\\CODE\\");배포경로 미리 생각해두기.
+	DOMAIN("https://www.billida.xyz/"),
+	COMPANY_EMAIL("billida1940@gmail.com"),
+	SMTP_AUTHENTICATION_ID("billida1940@gmail.com"),
+	SMTP_AUTHENTICATION_PASSWORD("123456tr!@#"),
 	UPLOAD_PATH("C:\\CODE\\upload\\");
 	
 	public final String DESC;

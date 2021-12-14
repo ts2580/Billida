@@ -126,7 +126,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<a href="http:/localhost:9090">
-																	<img  alt="Alternate text" src="http://localhost:9090/resources/images/mailLogo.gif"
+																	<img  alt="Alternate text" src="https://www.billida.xyz/resources/images/mailLogo.gif"
 																		style="display: block; height: auto; border: 0; width: 154px; max-width: 100%;"
 																		title="Alternate text" width="154" />
 																	</a>
@@ -192,7 +192,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<img alt="Alternate text" class="big"
-																		src="http://localhost:9090/resources/images/mail/Up_pink.png"
+																		src="https://www.billida.xyz/resources/images/mail/Up_pink.png"
 																		style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;"
 																		title="Alternate text" width="700" />
 																</div>
@@ -230,7 +230,7 @@ p {
 															<td
 																style="width: 100%; padding-right: 0px; padding-left: 0px; padding-top: 30px;">
 																<div align="center" style="line-height: 10px">
-																	<img alt="I'm an image" src="http://localhost:9090/resources/images/mail/Welcome_Email.png"
+																	<img alt="I'm an image" src="https://www.billida.xyz/resources/images/mail/Welcome_Email.png"
 																		style="display: block; height: auto; border: 0; width: 420px; max-width: 100%;"
 																		title="I'm an image" width="420" />
 																</div>
@@ -287,14 +287,14 @@ p {
 																			<span style="font-size: 22px; display: flex; flex-direction: column;">환영합니다. 
 																			<br>
 																			${param.NewId}님 버튼을 눌러 가입을 완료해주세요!</span>
-																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/signUpImpl/${param.persistToken}">welcome to bilida!</a></span>
+																			<span style="font-size: 22px;"><a href="https://www.billida.xyz/member/signUpImpl/${param.persistToken}">welcome to bilida!</a></span>
 																			
 																		</p>
 																		</c:if>
 																		<c:if test="${not empty param.check}">
 																		<p
 																			style="margin: 0; font-size: 14px; text-align: center;">
-																			<span style="font-size: 22px;"><a href="http://localhost:9090/member/findPasswordBy_Email/${param.persistToken}_${param.Id}">비밀번호 재설정</a></span>
+																			<span style="font-size: 22px;"><a href="https://www.billida.xyz/member/findPasswordBy_Email/${param.persistToken}_${param.Id}">비밀번호 재설정</a></span>
 																		</p>
 																		</c:if>
 																	</div>
@@ -385,7 +385,7 @@ p {
 																style="width: 100%; padding-right: 0px; padding-left: 0px;">
 																<div align="center" style="line-height: 10px">
 																	<img alt="Alternate text" class="big"
-																		src="http://localhost:9090/resources/images/mail/white_down.png"
+																		src="https://www.billida.xyz/resources/images/mail/white_down.png"
 																		style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;"
 																		title="Alternate text" width="700" />
 																</div>

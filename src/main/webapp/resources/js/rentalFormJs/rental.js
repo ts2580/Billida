@@ -88,7 +88,7 @@
 			event.preventDefault();
 		}else if(RantalMileage == "" || RantalMileage < rentCost){
 			alert("마일리지가 부족합니다. \n마일리지를 충전해주세요.");
-			location.href = 'http://localhost:9090/mileage/mileageInfo';
+			location.href = 'https://www.billida.xyz/mileage/mileageInfo';
 		}else{
 			alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
