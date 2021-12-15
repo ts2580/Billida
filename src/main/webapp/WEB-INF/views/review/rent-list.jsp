@@ -89,6 +89,14 @@
 
 let moveForm = $("#moveForm");
 
+const success = "${success}";
+
+if(success == 'success'){
+	alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
+}
+
+
+
 $(".pageInfo li").on("click", function(e){
 	 e.preventDefault();
      moveForm.find("input[name='pageNum']").val($(this).attr("href"));

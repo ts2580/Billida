@@ -2,6 +2,18 @@
 	
 	rentCost = null;
 	
+	if(DataBaseAccessError != ''){
+		alert("서버가 응답하지 않습니다. 잠시 후 다시 이용해주세요.");
+		location.href = 'https://www.billida.xyz/';
+	};
+	
+	if(procedureConnError != ''){
+		alert("서버가 응답하지 않습니다. 잠시 후 다시 이용해주세요.");
+		location.reload();
+		
+	}
+	
+	
 	if(lockerImage != "0"){
 		document.querySelector(".pic").setAttribute("src", baseImg);
 	}else{
@@ -86,11 +98,13 @@
 		}else if(rentStartToNumber > rentEndToNumber){
 			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			event.preventDefault();
+		}else if(RantalMileage == "error"){
+			alert("마일리지 불러오기를 실패했습니다. \n잠시 후 다시 시도해주세요.");
+			event.preventDefault();
 		}else if(RantalMileage == "" || RantalMileage < rentCost){
 			alert("마일리지가 부족합니다. \n마일리지를 충전해주세요.");
 			location.href = 'https://www.billida.xyz/mileage/mileageInfo';
 		}else{
-			alert("보관함 대여가 완료되었습니다. \n이용해주셔서 감사합니다");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
 	});

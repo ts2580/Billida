@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.rentalHistory.model.dto.LessorMileage;
@@ -49,22 +50,31 @@ public class RentalController {
 		
 		this.lockerId = lockerId;
 		locker.setLockerId(lockerId);
+		
 		locker = rentalService.selectLocker(lockerId);
 		
-		latitude = locker.getLatitude();
-		longitude = locker.getLongitude();
-		isRented = locker.getRentStatus();
-		
-		
+		if(locker == null) {
+			model.addAttribute("DataBaseAccessError", "DB접속 에러");
+		}else{
+			latitude = locker.getLatitude();
+			longitude = locker.getLongitude();
+			isRented = locker.getRentStatus();
+			
+			LocalDate today = LocalDate.now();
+			
+			if(today.getDayOfYear() < locker.getRentableDateStart().toLocalDate().getDayOfYear()) {
+				today = locker.getRentableDateStart().toLocalDate();
+			};
+			
+			model.addAttribute("today", today);
+		}
 		
 		List<ReviewForRentHistory> reviews = new ArrayList<ReviewForRentHistory>();
 		reviews = rentalService.selectReview(lockerId);
 		
-		LocalDate today = LocalDate.now();
-		
-		if(today.getDayOfYear() < locker.getRentableDateStart().toLocalDate().getDayOfYear()) {
-			today = locker.getRentableDateStart().toLocalDate();
-		};
+		if(reviews == null) {
+			model.addAttribute("DataBaseAccessError", "DB접속 에러");
+		}
 		
 		Mileage RantalMileage = new Mileage();
 		RantalMileage.setUserCode(userCode);
@@ -73,9 +83,10 @@ public class RentalController {
 		
 		if(RantalMileageCost != null) {
 			model.addAttribute("RantalMileage", RantalMileageCost);
+		}else{
+			model.addAttribute("RantalMileage", "error");
 		};
 		
-		model.addAttribute("today", today);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("locker", locker);
 		
@@ -98,7 +109,7 @@ public class RentalController {
 	
 	@Transactional
 	@PostMapping("rental-form")
-	public String rentalForm(Rental rental, HttpSession session, Member member){
+	public String rentalForm(Rental rental, HttpSession session, Member member, RedirectAttributes redirect){
 		
 		member = (Member)session.getAttribute("authentication");
 		
@@ -120,7 +131,6 @@ public class RentalController {
 		rental.setUserCode(userCode);
 		rental.setRentCost(Long.valueOf(rentCost));
 		
-		
 		// 대여중인데 뚫고 여기까지 왔을시 강등
 		if(isRented == 1) {
 			rentalService.downGradeMember(userCode);
@@ -140,15 +150,21 @@ public class RentalController {
 		lessorMileage.setMileage(rentCost);
 		
 		// 대여 내역 업데이트 & 보관함 상태 업데이트 프로시저
-		rentalService.insertAndUpdateRental(rental);			
+		int insertAndUpdateRental = rentalService.insertAndUpdateRental(rental);
 		
 		// 빌린사람 마일리지 차감 프로시저
-		rentalService.selectAndUpdateRentalMileage(RantalMileage);
-		
+		int selectAndUpdateRentalMileage = rentalService.selectAndUpdateRentalMileage(RantalMileage);
+				
 		// 빌려준사람 마일리지 증가 프로시저
-		rentalService.selectAndUpdateLessorMileage(lessorMileage);
+		int selectAndUpdateLessorMileage = rentalService.selectAndUpdateLessorMileage(lessorMileage);
 		
 		
+		if(insertAndUpdateRental == 0 || selectAndUpdateRentalMileage == 0 ||selectAndUpdateLessorMileage == 0) {
+			redirect.addFlashAttribute("procedureConnError", "프로시저 무응답");
+			return "redirect:/rentalLocker/rental-form?lockerId="+lockerId;
+		}
+		
+		redirect.addFlashAttribute("success", "success");
 		return "redirect:/review/rent-list";
 	}
 	

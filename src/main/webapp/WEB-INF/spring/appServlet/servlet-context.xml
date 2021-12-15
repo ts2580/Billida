@@ -102,7 +102,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
 	
-	<tx:annotation-driven/>
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<context:component-scan base-package="com.kh.billida" />
 

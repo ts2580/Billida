@@ -69,8 +69,7 @@
         
 <script type="text/javascript">
 
-	let IdArr = new Array();
-	let zeroGradeMember = "${zeroGradeMember}";
+	const IdArr = new Array();
 	
 	for(let i = 0; i < 7; i++) {
 		IdArr[i] = document.querySelectorAll('.lockerImg')[i].classList[1];
@@ -87,14 +86,6 @@
 		});
 	}
 
-	
-	
-	if(zeroGradeMember == "zeroGradeMember"){
-		alert("허가되지 않은 접근으로 인하여 사이트 이용이 정지되었습니다.");
-		alert("자세한 내용은 관리자에게 문의해주세요.");
-	};
-	
-	
 	let lockerImage = null;
 	
 	const b64toBlob = (b64Data, contentType='', sliceSize=512) => {

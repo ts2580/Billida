@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.billida.rentalHistory.common.exception.DataAccessException;
 import com.kh.billida.rentalHistory.model.dto.LessorMileage;
 import com.kh.billida.rentalHistory.model.dto.LockerForLental;
 import com.kh.billida.rentalHistory.model.dto.Mileage;
@@ -22,23 +23,44 @@ public class RentalServiceImpl implements RentalService{
 	private final RentalRepository rentalRepository;
 	
 	public LockerForLental selectLocker(Long lockerId) {
-		LockerForLental locker = rentalRepository.selectLocker(lockerId);
-		return locker;
+		
+		LockerForLental locker = null;
+		
+		try {
+			locker = rentalRepository.selectLocker(lockerId);
+		} catch (Exception e) {
+			throw new DataAccessException(e, "\n보관함 테이블 접근 에러\n");
+		}finally {
+			return locker;
+		}
+		
 	}
 	
-	public void insertAndUpdateRental(Rental rental) {
-		rentalRepository.insertAndUpdateRental(rental);
-	}
-
 	public List<ReviewForRentHistory> selectReview(Long lockerId) {
-		List<ReviewForRentHistory> reviews = rentalRepository.selectReview(lockerId);
-		return reviews;
+		List<ReviewForRentHistory> reviews = null;
+		
+		try {
+			reviews = rentalRepository.selectReview(lockerId);
+		} catch (Exception e) {
+			throw new DataAccessException(e, "\n리뷰 테이블 접근 에러\n");
+		}finally {
+			return reviews;
+		}
 	}
 	
 	public Long selectRentalMileage(Mileage rantalMileage) {
-		return rentalRepository.selectRentalMileage(rantalMileage);
+		
+		Long mileage = null;
+		
+		try {
+			mileage = rentalRepository.selectRentalMileage(rantalMileage);
+		} catch (Exception e) {
+			throw new DataAccessException(e, "\n마일리지 테이블 접근 에러\n");
+		}finally {
+			return mileage;
+		}
 	}
-
+	
 	public void downGradeMember(String userCode) {
 		rentalRepository.downGradeMember(userCode);
 		
@@ -49,12 +71,47 @@ public class RentalServiceImpl implements RentalService{
 		
 	}
 	
-	public void selectAndUpdateRentalMileage(Mileage RantalMileage) {
-		rentalRepository.selectAndUpdateRentalMileage(RantalMileage);
+	public int insertAndUpdateRental(Rental rental) {
+		
+		int result = 1;
+		
+		try {
+			rentalRepository.insertAndUpdateRental(rental);
+		} catch (Exception e) {
+			result = 0;
+			throw new DataAccessException(e, "\n대여 내역 업데이트 & 보관함 상태 업데이트 관련 테이블 접근 에러\n");
+		} finally {
+			return result;
+		}
+
+	}
+	
+	public int selectAndUpdateRentalMileage(Mileage RantalMileage) {
+		
+		int result = 1;
+		try {
+			rentalRepository.selectAndUpdateRentalMileage(RantalMileage);
+		} catch (Exception e) {
+			result = 0;
+			throw new DataAccessException(e, "\n빌린사람 마일리지 차감 프로시저 관련 테이블 접근 에러\n");
+		} finally {
+			return result;
+		}
+		
 	}
 
-	public void selectAndUpdateLessorMileage(LessorMileage lessorMileage) {
-		rentalRepository.selectAndUpdateLessorMileage(lessorMileage);
+	public int selectAndUpdateLessorMileage(LessorMileage lessorMileage) {
+		
+		int result = 1;
+		try {
+			rentalRepository.selectAndUpdateLessorMileage(lessorMileage);
+		} catch (Exception e) {
+			result = 0;
+			throw new DataAccessException(e, "\n빌려준사람 마일리지 증가 관련 테이블 접근 에러\n");
+		} finally {
+			return result;
+		}
+		
 		
 	}
 

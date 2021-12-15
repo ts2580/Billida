@@ -72,6 +72,9 @@
 		const base64 = "${locker.imgToClob}";
 		const baseImg = "${locker.lockerImage}";
 		const RantalMileage = "${RantalMileage}"
+		const DataBaseAccessError = "${DataBaseAccessError}";
+		const procedureConnError = "${procedureConnError}"
+		
 		
 		const idArr = new Array();
 		const scoreArr = new Array();

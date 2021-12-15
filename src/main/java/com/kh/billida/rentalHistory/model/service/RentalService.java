@@ -21,10 +21,10 @@ public interface RentalService {
 
 	void returnBatch(LocalDate today);
 	
-	void selectAndUpdateRentalMileage(Mileage RantalMileage);
+	int insertAndUpdateRental(Rental rental);
 	
-	void insertAndUpdateRental(Rental rental);
+	int selectAndUpdateRentalMileage(Mileage RantalMileage);
 
-	void selectAndUpdateLessorMileage(LessorMileage lessorMileage);
+	int selectAndUpdateLessorMileage(LessorMileage lessorMileage);
 	
 }
