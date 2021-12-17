@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.billida.member.model.dto.Member;
 import com.kh.billida.rentLocker.model.dto.Locker;
@@ -46,17 +47,25 @@ public class RentLockerController {
 	
 	@Transactional
 	@PostMapping("rent-form")
-	public String rentalForm(HttpSession session, Member member, Locker locker){
+	public String rentalForm(HttpSession session, Member member, Locker locker, RedirectAttributes redirect){
 		
 		member = (Member)session.getAttribute("authentication");
 		locker.setUserCode(member.getUserCode());
-		rentLockerService.insertLocker(locker);
+		int insertLocker = rentLockerService.insertLocker(locker);
 		
+		// 방금 새로 삽입한 보관함 ID 가져옴. 문자열화된 이미지 삽입과정과 그외 정보 삽입과정을 분리
 		Long insertedLockerId = rentLockerService.selectInsertedLocker();
 		locker.setImgToClob(locker.getImgToClob());
 		locker.setLockerId(insertedLockerId);
 		
-		rentLockerService.insertClob(locker);
+		int insertClob = rentLockerService.insertClob(locker);
+		
+		if(insertLocker == 0 || insertedLockerId == 0 ||insertClob == 0) {
+			redirect.addFlashAttribute("ConnectionError", "Error");
+			return "redirect:/rentLocker/rent-form";
+		}
+		
+		redirect.addFlashAttribute("success", "success");
 		return "redirect:/review/myLocker-list";
 	}	
 	

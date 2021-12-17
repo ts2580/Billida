@@ -102,7 +102,8 @@
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b3d2bd52763449a074cc0c982030b6bf&libraries=services"></script>
 	<script type="text/javascript">
 	
-	const today = "${today}"
+	const today = "${today}";
+	const ConnectionError = "${ConnectionError}";
 	
 	</script>
 	<script type="text/javascript" src="${contextPath}/resources/js/common/changeBase64ToBlob.js"></script>

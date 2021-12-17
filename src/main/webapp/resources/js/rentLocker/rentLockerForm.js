@@ -1,6 +1,9 @@
 (() => {
 	
-	
+	if(ConnectionError == "Error"){
+		alert("서버가 응답하지 않습니다. 잠시 후 다시 이용해주세요.");
+		location.reload();
+	};
 	
 	/* 스크립트 순서 주의! */
 	let mapContainer = document.getElementById('map'),
@@ -146,7 +149,6 @@
 			alert("대여 시작일이 대여 종료일보다 앞설 수 없습니다.");
 			event.preventDefault();
 		}else{
-			alert("보관함 빌려주기가 완료되었습니다. \n이용해주셔서 감사합니다.");
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
      });

@@ -2,15 +2,14 @@
 	
 	rentCost = null;
 	
-	if(DataBaseAccessError != ''){
+	if(DataBaseAccessError == "Error"){
 		alert("서버가 응답하지 않습니다. 잠시 후 다시 이용해주세요.");
 		location.href = 'https://www.billida.xyz/';
 	};
 	
-	if(procedureConnError != ''){
+	if(procedureConnError == "Error"){
 		alert("서버가 응답하지 않습니다. 잠시 후 다시 이용해주세요.");
 		location.reload();
-		
 	}
 	
 	

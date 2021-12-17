@@ -17,9 +17,9 @@ public interface RentalService {
 	
 	Long selectRentalMileage(Mileage rantalMileage);
 
-	void downGradeMember(String userCode);
+	int downGradeMember(String userCode);
 
-	void returnBatch(LocalDate today);
+	int returnBatch(LocalDate today);
 	
 	int insertAndUpdateRental(Rental rental);
 	

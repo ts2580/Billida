@@ -11,13 +11,13 @@ import com.kh.billida.rentLocker.model.dto.Locker;
 @Service
 public interface RentLockerService {
 
-	void insertLocker(Locker locker);
+	int insertLocker(Locker locker);
 
-	void insertClob(Locker locker);
+	int insertClob(Locker locker);
 
 	Long selectInsertedLocker();
 
-	void returnBatch(LocalDate today);
+	int returnBatch(LocalDate today);
 
 }
 

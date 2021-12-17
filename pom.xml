@@ -350,8 +350,8 @@
 				</executions>
 				<version>1.0.0</version>
 				<configuration> 
-					<imageName>trstyq/billida:1.2</imageName>
-					<baseImage>trstyq/tomcat:1.3</baseImage> 
+					<imageName>trstyq/billida:1.3</imageName>
+					<baseImage>trstyq/billida:1.2</baseImage> 
 					<!-- <dockerDirectory>src/main/resources/docker</dockerDirectory> -->
 					<resources>
 						<resource>

@@ -92,6 +92,14 @@ $(".pageInfo li").on("click", function(e){
 	             });
 	 }
 
+	const success = "${success}";
+	
+	if(success == "success"){
+		alert("보관함 빌려주기가 완료되었습니다. \n이용해주셔서 감사합니다.");
+	};
+	
+	
+	
 var list = new Array();
 var clobList = new Array();
 

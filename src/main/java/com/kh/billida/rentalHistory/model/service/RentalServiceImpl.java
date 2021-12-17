@@ -61,16 +61,6 @@ public class RentalServiceImpl implements RentalService{
 		}
 	}
 	
-	public void downGradeMember(String userCode) {
-		rentalRepository.downGradeMember(userCode);
-		
-	}
-
-	public void returnBatch(LocalDate today) {
-		rentalRepository.returnBatch(today);
-		
-	}
-	
 	public int insertAndUpdateRental(Rental rental) {
 		
 		int result = 1;
@@ -109,6 +99,32 @@ public class RentalServiceImpl implements RentalService{
 			result = 0;
 			throw new DataAccessException(e, "\n빌려준사람 마일리지 증가 관련 테이블 접근 에러\n");
 		} finally {
+			return result;
+		}
+	}
+	
+	public int downGradeMember(String userCode) {
+		int result = 1;
+		try {
+			rentalRepository.downGradeMember(userCode);
+		} catch (Exception e) {
+			result = 0;
+			throw new DataAccessException(e, "\n강등 실패\n");
+		}finally {
+			return result;
+		}
+		
+		
+	}
+
+	public int returnBatch(LocalDate today) {
+		int result = 1;
+		try {
+			rentalRepository.returnBatch(today);
+		} catch (Exception e) {
+			result = 0;
+			throw new DataAccessException(e, "\n배치 실패\n");
+		}finally {
 			return result;
 		}
 		

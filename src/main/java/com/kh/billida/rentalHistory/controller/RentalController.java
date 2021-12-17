@@ -54,7 +54,7 @@ public class RentalController {
 		locker = rentalService.selectLocker(lockerId);
 		
 		if(locker == null) {
-			model.addAttribute("DataBaseAccessError", "DB접속 에러");
+			model.addAttribute("DataBaseAccessError", "Error");
 		}else{
 			latitude = locker.getLatitude();
 			longitude = locker.getLongitude();
@@ -138,7 +138,6 @@ public class RentalController {
 		}
 		
 		
-		
 		Mileage RantalMileage = new Mileage();
 		RantalMileage.setUserCode(userCode);
 		RantalMileage.setMileage(rentCost);
@@ -160,7 +159,7 @@ public class RentalController {
 		
 		
 		if(insertAndUpdateRental == 0 || selectAndUpdateRentalMileage == 0 ||selectAndUpdateLessorMileage == 0) {
-			redirect.addFlashAttribute("procedureConnError", "프로시저 무응답");
+			redirect.addFlashAttribute("procedureConnError", "Error");
 			return "redirect:/rentalLocker/rental-form?lockerId="+lockerId;
 		}
 		
