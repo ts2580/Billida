@@ -131,8 +131,8 @@ public class RentalController {
 		rental.setUserCode(userCode);
 		rental.setRentCost(Long.valueOf(rentCost));
 		
-		// 대여중인데 뚫고 여기까지 왔을시 강등
-		if(isRented == 1) {
+		// 대여중인데 뚫고 여기까지 왔을시 or 넘어온 비용이 계산된 비용과 다를시 강등 
+		if(isRented == 1 || rental.getRentCost() != rentCost) {
 			rentalService.downGradeMember(userCode);
 			return "redirect:/";
 		}

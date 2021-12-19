@@ -104,6 +104,10 @@
 			alert("마일리지가 부족합니다. \n마일리지를 충전해주세요.");
 			location.href = 'https://www.billida.xyz/mileage/mileageInfo';
 		}else{
+			let createRentCostInput = document.createElement("input");
+			let createRentCostName = document.createAttribute("name");
+			createRentCostName.value = rentCost;
+			createRentCostInput.setAttributeNode(createRentCostName);
 			document.querySelector(".submitButton").getAttributeNode("type").value = "submit";
 		};
 	});
