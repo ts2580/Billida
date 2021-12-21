@@ -96,8 +96,8 @@
 				
 				async function start() {
 					await resizeImage(img);
-				};
-				start();
+				}
+				start()
 			}else{
 				
 				document.querySelector('input[name="imgToClob"]').value = base64;

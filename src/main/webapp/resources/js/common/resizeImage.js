@@ -1,10 +1,7 @@
 (() => {
 	
 	window.resizeImage = function resizeImage(img) {
-		
 		return new Promise(async function(resolve,reject){
-			
-			img.onload = () => {
 				
 				let width = document.querySelector(".base64Img").width;
 				let height = document.querySelector(".base64Img").height;
@@ -28,7 +25,7 @@
 				const blobUrl = URL.createObjectURL(blob);	
 				img.src = blobUrl;
 				resolve(resizedUrl);
-			}
+			
 		})
 	};
-})();
+})()
