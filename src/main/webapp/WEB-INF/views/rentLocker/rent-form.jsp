@@ -30,13 +30,13 @@
 					<form:form action="/rentLocker/rent-form" method="post" class="rent-contents">
 						<table>
 							<tr>
-								<td class="rent-contents-text">택배함 이름</td>
+								<td class="rent-contents-text">보관함 이름</td>
 								<td>
 									<input type="text" name="lockerTitle"/>
 								</td>
 							</tr>
 							<tr>
-								<td class="rent-contents-text">택배함 주소</td>
+								<td class="rent-contents-text">보관함 주소</td>
 								<td class="rent-contents-juso">
 									<input type="text" class="roadAddrPart1">
 									<input type="text" class="roadAddrPart2" placeholder="상세주소를 입력해주세요">
@@ -48,7 +48,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="rent-contents-text">택배함 이미지</td>
+								<td class="rent-contents-text">보관함 이미지</td>
 								<td>
 									<label for="image">이미지를 선택해주세요
 										<input type="file" id="image" accept="image/*" style="display:none"/>
@@ -57,7 +57,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="rent-contents-text">택배함 사이즈</td>
+								<td class="rent-contents-text">보관함 사이즈</td>
 								<td>
 									<select name="lockerSize">
     									<option value="30(X) X 30(Y) X 55(Z)">30(X) X 30(Y) X 55(Z) cm</option>
@@ -67,7 +67,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="rent-contents-text">택배함 비밀번호</td>
+								<td class="rent-contents-text">보관함 비밀번호</td>
 								<td>
 									<input type="text" name="lockerPassword"/>
 								</td>
