@@ -26,6 +26,6 @@
 				img.src = blobUrl;
 				resolve(resizedUrl);
 			
-		})
+		});
 	};
 })()

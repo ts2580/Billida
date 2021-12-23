@@ -63,9 +63,6 @@
 
 			</div>
 		</div>
-	
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         
 <script type="text/javascript">
 
@@ -126,26 +123,6 @@
 			}
 		}
 	</c:forEach>
-
-	
-     /* $.ajax({
-                method: "GET",
-                url: "https://dapi.kakao.com/v2/search/image",
-                data: {
-                    query: "무인택배",
-                    page:3,
-                },
-                headers: {
-                    Authorization: "KakaoAK c4cb5006db806d8310ea2e01c8fe254b"
-                },
-            })
-            .done(function (msg) {
-                console.log(msg);
-               
-                for (var i = 0; i < 80; i++) {
-                	console.log(msg.documents[i].image_url);
-				}
-            }); */
 
     </script>
 
